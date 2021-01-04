@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <!-- Landing page -->
+    <string name="landingPageTopLogo">Logo application</string>
+    <string name="loginLabel">Ho già un mio account</string>
+    <string name="loginButton">LOGIN</string>
+    <string name="registrationLabel">Voglio creare un account</string>
+    <string name="registrationButton">SIGN IN</string>
+
+    <!-- Menu utente -->
+    <string name="menu_profile_label">Profilo</string>
+    <string name="menu_diet_label">Dieta</string>
+    <string name="menu_libra_label">Bilancia</string>
+    <string name="menu_history_label">Storico</string>
+    <string name="menu_chat_label">Chat</string>
+</resources>

@@ -4,32 +4,27 @@
     <item
         android:id="@+id/profile_page"
         android:icon="@drawable/ic_profile"
-        android:title="Profilo"
-        />
+        android:title="@string/menu_profile_label" />
 
     <item
         android:id="@+id/diet_page"
         android:icon="@drawable/ic_diet"
-        android:title="Dieta"
-        />
+        android:title="@string/menu_diet_label" />
 
     <item
         android:id="@+id/libra_page"
         android:icon="@drawable/ic_libra"
-        android:title="Bilancia"
-        />
+        android:title="@string/menu_libra_label" />
 
     <item
         android:id="@+id/history_page"
         android:icon="@drawable/ic_history"
-        android:title="Storico"
-        />
+        android:title="@string/menu_history_label" />
 
     <item
         android:id="@+id/chat_page"
         android:icon="@drawable/ic_chat"
-        android:title="Chat"
-        />
+        android:title="@string/menu_chat_label" />
 
 
 </menu>

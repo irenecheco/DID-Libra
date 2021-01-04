@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">Libra</string>
+    <!-- Landing page -->
+    <string name="landingPageTopLogo">Logo application</string>
+    <string name="loginLabel">Already have an account</string>
+    <string name="loginButton">LOGIN</string>
+    <string name="registrationLabel">I wanna create an account</string>
+    <string name="registrationButton">SIGN IN</string>
+
+    <!-- Menu utente -->
+    <string name="menu_profile_label">Profile</string>
+    <string name="menu_diet_label">Diet</string>
+    <string name="menu_libra_label">Scale</string>
+    <string name="menu_history_label">History</string>
+    <string name="menu_chat_label">Chat</string>
 
 </resources>
