@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/profile_page"
+        android:icon="@drawable/ic_profile"
+        android:title="Profilo"
+        />
+
+    <item
+        android:id="@+id/diet_page"
+        android:icon="@drawable/ic_diet"
+        android:title="Dieta"
+        />
+
+    <item
+        android:id="@+id/libra_page"
+        android:icon="@drawable/ic_libra"
+        android:title="Bilancia"
+        />
+
+    <item
+        android:id="@+id/history_page"
+        android:icon="@drawable/ic_history"
+        android:title="Storico"
+        />
+
+    <item
+        android:id="@+id/chat_page"
+        android:icon="@drawable/ic_chat"
+        android:title="Chat"
+        />
+
+
+</menu>
