@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- https://material.io/develop/android/theming/dark -->
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
