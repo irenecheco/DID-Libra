@@ -10,8 +10,12 @@
     <!-- Menu utente -->
     <string name="menu_profile_label">Profile</string>
     <string name="menu_diet_label">Diet</string>
-    <string name="menu_libra_label">Scale</string>
+    <string name="menu_libra_label">Libra</string>
     <string name="menu_history_label">History</string>
     <string name="menu_chat_label">Chat</string>
+
+    <!-- Bilancia utente -->
+    <string name="utente_libra_button">Start Libra</string>
+    <string name="utente_last_measurement_label">Last measurement</string>
 
 </resources>

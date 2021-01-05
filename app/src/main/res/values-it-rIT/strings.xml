@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Libra</string>
     <!-- Landing page -->
     <string name="landingPageTopLogo">Logo application</string>
     <string name="loginLabel">Ho già un mio account</string>
@@ -13,4 +14,9 @@
     <string name="menu_libra_label">Bilancia</string>
     <string name="menu_history_label">Storico</string>
     <string name="menu_chat_label">Chat</string>
+
+    <!-- Bilancia utente-->
+    <string name="utente_libra_button">Avvia Bilancia</string>
+    <string name="utente_last_measurement_label">Ultima misurazione rilevata</string>
+
 </resources>
