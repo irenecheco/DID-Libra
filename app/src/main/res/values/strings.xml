@@ -18,4 +18,8 @@
     <string name="utente_libra_button">Start Libra</string>
     <string name="utente_last_measurement_label">Last measurement</string>
 
+    <!-- Storico utente -->
+    <string name="utente_graph_title">Weight trend</string>
+    <string name="utente_goals_title">Goals achieved</string>
+
 </resources>

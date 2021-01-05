@@ -19,4 +19,8 @@
     <string name="utente_libra_button">Avvia Bilancia</string>
     <string name="utente_last_measurement_label">Ultima misurazione rilevata</string>
 
+    <!-- Storico utente -->
+    <string name="utente_graph_title">Andamento del peso</string>
+    <string name="utente_goals_title">Obiettivi raggiunti</string>
+
 </resources>

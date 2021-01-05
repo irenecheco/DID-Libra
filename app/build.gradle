@@ -55,4 +55,5 @@ dependencies {
     // Navigation (opzionale)
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
+    implementation 'com.jjoe64:graphview:4.2.2'
 }
