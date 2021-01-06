@@ -21,7 +21,7 @@ class DietaAppuntiFragment: Fragment(R.layout.utente_dieta_appunti_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Log.d("aaaa","onViewCreated")
+
     }
 
 }

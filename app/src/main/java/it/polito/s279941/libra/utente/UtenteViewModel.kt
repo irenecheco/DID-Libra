@@ -7,6 +7,7 @@ import it.polito.s279941.libra.utentedieta.PastoItem
 
 class UtenteViewModel: ViewModel() {
 
+    private var _giorno: Long = System.currentTimeMillis()
     private var _pastiDelGiorno = listOf(
         PastoItem("COLAZIONE", "una mela", true),
         PastoItem("SPUNTINO", "uno yogurt\nmela", false),
@@ -21,8 +22,13 @@ class UtenteViewModel: ViewModel() {
     val pastiDelGiornoLiveData : LiveData<List<PastoItem>> =_pastiDelGiornoLiveData
 
 
-    fun setPastiDelGiorno(pastiDelGiorno:List<PastoItem> ){
+    fun setPastiDelGiorno(giorno: Long,pastiDelGiorno:List<PastoItem> ){
+        _giorno= giorno
         _pastiDelGiorno=pastiDelGiorno
         _pastiDelGiornoLiveData.value=_pastiDelGiorno
     }
+    fun getGiorno():Long{
+        return _giorno
+    }
+
 }

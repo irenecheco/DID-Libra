@@ -52,29 +52,24 @@ class UtenteDietaFragment : Fragment(R.layout.utente_dieta_fragment) {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        Log.d("aaaa","onOptionsItemSelected${item.itemId}")
+
         when (item.itemId){
             R.id.mnit_appunti -> {
-                Log.d("aaaa","menu1 Appunti")
                 //findNavController().navigate(R.id.action_utenteDietaFragment2_to_dietaAppuntiFragment)
                 val f: Fragment = DietaAppuntiFragment()
                 activity?.supportFragmentManager?.beginTransaction()?.apply{
-                    replace(R.id.fragment_container, f).commit()
-                    //add(R.id.fragment_container, f).commit()
+                    replace(R.id.fragment_container, f).addToBackStack("dietafrag_appunti").commit()
                 }
-
             }
             R.id.mnit_calendario -> {
-                Log.d("aaaa","menu2 Calendario")
-
                 //findNavController().navigate(R.id.action_utenteDietaFragment2_to_dietaCalendarioFragment)
                 val f: Fragment = DietaCalendarioFragment()
                 activity?.supportFragmentManager?.beginTransaction()?.apply{
-                    replace(R.id.fragment_container, f).commit()
+                    replace(R.id.fragment_container, f).addToBackStack("dietafrag_calendar").commit()
                     //add(R.id.fragment_container, f).commit()
                 }
             }
         }
-        return true //super.onOptionsItemSelected(item)
+        return super.onOptionsItemSelected(item)
     }
 }

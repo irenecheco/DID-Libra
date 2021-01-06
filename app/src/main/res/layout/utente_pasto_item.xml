@@ -33,4 +33,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_titolo_pasto" />
+
+    <CheckBox
+        android:id="@+id/cb_pasto_rispettato"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        app:layout_constraintBottom_toTopOf="@+id/tv_descrizione_pasto"
+        app:layout_constraintEnd_toEndOf="@+id/tv_titolo_pasto"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
