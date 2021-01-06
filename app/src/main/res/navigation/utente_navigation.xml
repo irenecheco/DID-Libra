@@ -4,7 +4,7 @@
     app:startDestination="@id/utenteProfiloFragment">
     <fragment
         android:id="@+id/utenteProfiloFragment"
-        android:name="it.polito.s279941.libra.UtenteProfiloFragment"
+        android:name="it.polito.s279941.libra.utente.UtenteProfiloFragment"
         android:label="UtenteProfiloFragment" >
         <action
             android:id="@+id/action_utenteProfiloFragment_to_utenteDietaFragment2"
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/utenteDietaFragment2"
-        android:name="it.polito.s279941.libra.UtenteDietaFragment"
+        android:name="it.polito.s279941.libra.utente.UtenteDietaFragment"
         android:label="UtenteDietaFragment" >
         <action
             android:id="@+id/action_utenteDietaFragment2_to_utenteBilanciaFragment"
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/utenteBilanciaFragment"
-        android:name="it.polito.s279941.libra.UtenteBilanciaFragment"
+        android:name="it.polito.s279941.libra.utente.UtenteBilanciaFragment"
         android:label="UtenteBilanciaFragment" >
         <action
             android:id="@+id/action_utenteBilanciaFragment_to_utenteProfiloFragment"
@@ -55,7 +55,7 @@
     </fragment>
     <fragment
         android:id="@+id/utenteStoricoFragment"
-        android:name="it.polito.s279941.libra.UtenteStoricoFragment"
+        android:name="it.polito.s279941.libra.utente.UtenteStoricoFragment"
         android:label="UtenteStoricoFragment" >
         <action
             android:id="@+id/action_utenteStoricoFragment_to_utenteBilanciaFragment"
@@ -72,7 +72,7 @@
     </fragment>
     <fragment
         android:id="@+id/utenteChatFragment"
-        android:name="it.polito.s279941.libra.UtenteChatFragment"
+        android:name="it.polito.s279941.libra.utente.UtenteChatFragment"
         android:label="UtenteChatFragment" >
         <action
             android:id="@+id/action_utenteChatFragment_to_utenteStoricoFragment"

@@ -43,4 +43,8 @@
     <string name="time_last_detection">%HH:MM%</string>
     <string name="text_next_detection">Next detection: </string>
 
+    <!-- Tab Professionista -->
+    <string name="tab_profile_label">Profile</string>
+    <string name="tab_patients_label">Patients</string>
+
 </resources>

@@ -1,8 +1,9 @@
-package it.polito.s279941.libra
+package it.polito.s279941.libra.utente
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import it.polito.s279941.libra.R
 import kotlinx.android.synthetic.main.utente_activity_main.*
 
 class UtenteMainActivity : AppCompatActivity() {
