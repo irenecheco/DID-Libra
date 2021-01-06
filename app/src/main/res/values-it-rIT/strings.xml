@@ -44,4 +44,7 @@
     <string name="time_last_detection">%HH:MM%</string>
     <string name="text_next_detection">Prossima rilevazione: </string>
 
+    <!-- Dieta utente -->
+    <string name="tv_today_data" >Data del giorno</string>
+
 </resources>
