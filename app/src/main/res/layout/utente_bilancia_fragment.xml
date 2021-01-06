@@ -48,7 +48,7 @@
             app:cardCornerRadius="100dp">
 
             <TextView
-                android:id="@+id/textview_peso_rilevato"
+                android:id="@+id/text_measure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

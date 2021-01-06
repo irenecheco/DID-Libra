@@ -23,4 +23,25 @@
     <string name="utente_graph_title">Andamento del peso</string>
     <string name="utente_goals_title">Obiettivi raggiunti</string>
 
+    <!-- Profilo utente -->
+    <string name="user_name">User Name</string>
+    <string name="nutr_name">Nutrizionista: %NutrSurname%</string>
+
+    <string name="text_dateOfBirth">Data di nascita: </string>
+    <string name="user_dateOfBirth">%DD/MM/YYYY%</string>
+    <string name="text_email">Email: </string>
+    <string name="user_email">%Email%</string>
+
+    <string name="text_goal">Prossimo obiettivo</string>
+    <string name="last_goal">%Last goal written by nutritionist%</string>
+
+    <string name="text_last_measure">Ultima misura rilevata</string>
+
+    <string name="text_measure">75 KG</string>
+    <string name="text_data_detection">Data rilevazione: </string>
+    <string name="date_last_detection">%DD/MM/YYYY%</string>
+    <string name="text_time_detection">Ora rilevazione: </string>
+    <string name="time_last_detection">%HH:MM%</string>
+    <string name="text_next_detection">Prossima rilevazione: </string>
+
 </resources>
