@@ -3,7 +3,9 @@ package it.polito.s279941.libra.utente
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation.findNavController
 import it.polito.s279941.libra.R
+import it.polito.s279941.libra.utente.UtenteDietaFragment
 import kotlinx.android.synthetic.main.utente_activity_main.*
 
 class UtenteMainActivity : AppCompatActivity() {

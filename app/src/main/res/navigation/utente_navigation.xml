@@ -35,6 +35,12 @@
         <action
             android:id="@+id/action_utenteDietaFragment2_to_utenteChatFragment"
             app:destination="@id/utenteChatFragment" />
+        <action
+            android:id="@+id/action_utenteDietaFragment2_to_dietaCalendarioFragment"
+            app:destination="@id/dietaCalendarioFragment" />
+        <action
+            android:id="@+id/action_utenteDietaFragment2_to_dietaAppuntiFragment"
+            app:destination="@id/dietaAppuntiFragment" />
     </fragment>
     <fragment
         android:id="@+id/utenteBilanciaFragment"
@@ -87,4 +93,12 @@
             android:id="@+id/action_utenteChatFragment_to_utenteProfiloFragment"
             app:destination="@id/utenteProfiloFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/dietaCalendarioFragment"
+        android:name="it.polito.s279941.libra.utentedieta.DietaCalendarioFragment"
+        android:label="DietaCalendarioFragment" />
+    <fragment
+        android:id="@+id/dietaAppuntiFragment"
+        android:name="it.polito.s279941.libra.utentedieta.DietaAppuntiFragment"
+        android:label="DietaAppuntiFragment" />
 </navigation>
