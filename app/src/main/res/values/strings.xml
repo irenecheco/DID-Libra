@@ -46,4 +46,8 @@
     <!-- Dieta utente -->
     <string name="tv_today_data" >Today data</string>
 
+    <!-- Tab Professionista -->
+    <string name="tab_profile_label">Profile</string>
+    <string name="tab_patients_label">Patients</string>
+
 </resources>

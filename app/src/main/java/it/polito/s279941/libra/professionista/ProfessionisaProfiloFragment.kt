@@ -1,14 +1,12 @@
-package it.polito.s279941.libra
+package it.polito.s279941.libra.professionista
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.utente_dieta_fragment.*
+import it.polito.s279941.libra.R
 
-class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
+class ProfessionisaProfiloFragment: Fragment(R.layout.professionista_profilo_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
-
-    // prova
 }

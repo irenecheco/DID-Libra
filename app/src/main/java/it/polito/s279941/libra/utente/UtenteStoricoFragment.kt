@@ -1,4 +1,4 @@
-package it.polito.s279941.libra
+package it.polito.s279941.libra.utente
 
 import android.graphics.Color
 import android.os.Bundle
@@ -8,6 +8,7 @@ import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
+import it.polito.s279941.libra.R
 import kotlinx.android.synthetic.main.utente_dieta_fragment.*
 
 class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
