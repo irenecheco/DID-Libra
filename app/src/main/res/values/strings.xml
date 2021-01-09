@@ -50,4 +50,20 @@
     <string name="tab_profile_label">Profile</string>
     <string name="tab_patients_label">Patients</string>
 
+    <!-- Profilo nutrizionista -->
+    <string name="nutr_user_name">Nutr_Name</string>
+    <string name="text_nutr_id">User ID:</string>
+    <string name="nutr_id">%D000001%</string>
+
+    <string name="text_nutr_dateOfBirth">Date of birth:</string>
+    <string name="nutr_dateOfBirth">%DD/MM/YYYY%</string>
+    <string name="text_albo">Registration n°:</string>
+    <string name="id_albo">%XX_NNNNNN%</string>
+    <string name="text_nutr_email">Email:</string>
+    <string name="nutr_email">%nutrizionista@email.it%</string>
+
+    <string name="text_n_patients">Number of patients</string>
+
+
+
 </resources>

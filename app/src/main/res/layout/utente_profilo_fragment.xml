@@ -4,10 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#00FFFFFF"
     tools:context=".utente.UtenteMainActivity">
 
+    <View
+        android:id="@+id/divider7"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="216dp"
+        android:background="@color/colorLight"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foto_utente" />
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginLeft="230dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="216dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foto_utente" />
+
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_last_measure"
+        android:id="@+id/card_n_patients"
         android:layout_width="362dp"
         android:layout_height="194dp"
         android:layout_gravity="center"
@@ -143,12 +176,14 @@
         android:id="@+id/text_last_measure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/text_last_measure"
         android:textAllCaps="false"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/card_last_measure"
-        app:layout_constraintEnd_toEndOf="@+id/card_last_measure" />
+        app:layout_constraintBottom_toTopOf="@+id/card_n_patients"
+        app:layout_constraintEnd_toEndOf="@+id/card_n_patients" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_goal"
@@ -159,9 +194,9 @@
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="0dp"
         app:layout_constraintBottom_toTopOf="@+id/text_last_measure"
-        app:layout_constraintEnd_toEndOf="@+id/card_last_measure"
+        app:layout_constraintEnd_toEndOf="@+id/card_n_patients"
         app:layout_constraintHorizontal_bias="0.539"
-        app:layout_constraintStart_toStartOf="@+id/card_last_measure">
+        app:layout_constraintStart_toStartOf="@+id/card_n_patients">
 
         <TextView
             android:id="@+id/last_goal"
@@ -192,7 +227,7 @@
         app:layout_constraintVertical_bias="0.437">
 
         <TextView
-            android:id="@+id/text_email"
+            android:id="@+id/text_albo"
             android:layout_width="52dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="70dp"
@@ -201,7 +236,7 @@
             android:text="@string/text_email" />
 
         <TextView
-            android:id="@+id/text_dateOfBirth"
+            android:id="@+id/text_nutr_dateOfBirth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="70dp"
@@ -210,7 +245,7 @@
             android:text="@string/text_dateOfBirth" />
 
         <TextView
-            android:id="@+id/user_dateOfBirth"
+            android:id="@+id/nutr_dateOfBirth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
@@ -219,7 +254,7 @@
             android:text="@string/user_dateOfBirth" />
 
         <TextView
-            android:id="@+id/user_email"
+            android:id="@+id/id_albo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="120dp"

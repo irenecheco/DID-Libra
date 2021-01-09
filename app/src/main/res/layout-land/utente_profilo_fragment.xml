@@ -5,6 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <View
+        android:id="@+id/divider_"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginStart="590dp"
+        android:layout_marginLeft="590dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
+        android:layout_marginBottom="7dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/card_n_patients"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foto_utente" />
+
+    <TextView
+        android:id="@+id/text_last_measure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/text_last_measure"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/card_n_patients"
+        app:layout_constraintEnd_toEndOf="@+id/card_n_patients" />
+
+    <View
+        android:id="@+id/divider8"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginStart="340dp"
+        android:layout_marginLeft="340dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginRight="140dp"
+        android:layout_marginBottom="7dp"
+        android:background="@color/colorLight"
+        app:layout_constraintBottom_toTopOf="@+id/card_n_patients"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foto_utente" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card_goal"
         android:layout_width="360dp"
@@ -12,11 +57,12 @@
         android:layout_gravity="center"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/card_last_measure"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.759"
+        app:layout_constraintHorizontal_bias="0.728"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/text_goal2">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.16">
 
         <TextView
             android:id="@+id/last_goal"
@@ -32,18 +78,17 @@
         android:id="@+id/text_goal2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginLeft="156dp"
-        android:layout_marginEnd="109dp"
-        android:layout_marginRight="109dp"
+        android:layout_marginBottom="7dp"
         android:text="@string/text_goal"
         android:textAllCaps="true"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/card_goal"
         app:layout_constraintEnd_toEndOf="@+id/card_goal"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="@+id/card_goal"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_data"
@@ -59,13 +104,13 @@
         app:cardPreventCornerOverlap="false"
         app:cardUseCompatPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/card_last_measure"
+        app:layout_constraintEnd_toStartOf="@+id/card_n_patients"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nutr_name">
 
         <TextView
-            android:id="@+id/text_email"
+            android:id="@+id/text_albo"
             android:layout_width="52dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -74,7 +119,7 @@
             android:text="@string/text_email" />
 
         <TextView
-            android:id="@+id/text_dateOfBirth"
+            android:id="@+id/text_nutr_dateOfBirth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -83,7 +128,7 @@
             android:text="@string/text_dateOfBirth" />
 
         <TextView
-            android:id="@+id/user_dateOfBirth"
+            android:id="@+id/nutr_dateOfBirth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="120dp"
@@ -92,7 +137,7 @@
             android:text="@string/user_dateOfBirth" />
 
         <TextView
-            android:id="@+id/user_email"
+            android:id="@+id/id_albo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="80dp"
@@ -109,7 +154,7 @@
         android:textAllCaps="true"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/card_data"
-        app:layout_constraintEnd_toStartOf="@+id/card_last_measure"
+        app:layout_constraintEnd_toStartOf="@+id/card_n_patients"
         app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_name4" />
@@ -134,23 +179,23 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/nutr_name"
-        app:layout_constraintEnd_toStartOf="@+id/card_last_measure"
+        app:layout_constraintEnd_toStartOf="@+id/card_n_patients"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_last_measure"
-        android:layout_width="364dp"
-        android:layout_height="216dp"
+        android:id="@+id/card_n_patients"
+        android:layout_width="362dp"
+        android:layout_height="209dp"
         android:layout_gravity="center"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="16dp"
         app:cardBackgroundColor="@color/colorLight"
         app:cardCornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_goal">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/circle"
