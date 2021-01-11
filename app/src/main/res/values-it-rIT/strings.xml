@@ -65,4 +65,8 @@
 
     <string name="text_n_patients">Numero di pazienti</string>
 
+    <!-- Lista pazienti professionista -->
+    <string name="nutr_button">Visita</string>
+    <string name="nutr_patient_check">Ultimo controllo:</string>
+
 </resources>

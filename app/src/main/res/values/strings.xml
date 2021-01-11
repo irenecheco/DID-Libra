@@ -64,6 +64,9 @@
 
     <string name="text_n_patients">Number of patients</string>
 
+    <!-- Lista pazienti professionista -->
+    <string name="nutr_button">Visit</string>
+    <string name="nutr_patient_check">Last check:</string>
 
 
 </resources>
