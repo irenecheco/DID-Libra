@@ -30,6 +30,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/landingPageLogo">
 
+        <Button
+            android:id="@+id/utente_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Interfaccia Utente"
+            app:backgroundTint="@color/colorAccent" />
+
+        <Button
+            android:id="@+id/professionista_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Interfaccia professionista"
+            app:backgroundTint="@color/colorPrimaryDark" />
+
         <TextView
             android:id="@+id/loginLabel"
             android:layout_width="wrap_content"
@@ -67,6 +83,7 @@
             android:paddingRight="@dimen/padding_huge"
             android:paddingBottom="@dimen/padding_large"
             android:text="@string/registrationButton" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
