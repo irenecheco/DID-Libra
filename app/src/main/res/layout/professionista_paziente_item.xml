@@ -51,7 +51,7 @@
         app:layout_constraintStart_toEndOf="@+id/lista_pazienti_ultimo_controllo_titolo" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/paziente_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
