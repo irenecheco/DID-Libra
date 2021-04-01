@@ -34,7 +34,10 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         avvia_bilancia.setOnClickListener {
-            text_measure.text = "Pulsante funziona"
+            //text_measure.text = "Pulsante funziona"
+
+            text_measure.visibility = View.GONE
+            progress_bar.visibility = View.VISIBLE
             val manager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
             val builder = NetworkRequest.Builder()
@@ -50,7 +53,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                 )
             }
             Log.d("esp", "Builder built")
-            text_measure.text = "Builder built"
+            //text_measure.text = "Builder built"
             try {
                 manager.requestNetwork(builder.build(), object : ConnectivityManager.NetworkCallback() {
                     @RequiresApi(Build.VERSION_CODES.M)
@@ -60,16 +63,19 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                         lifecycleScope.launch(Dispatchers.IO) {
                             val str= URL("http://192.168.4.1/").readText(Charset.forName("UTF-8"))
                             withContext(Dispatchers.Main) {
+                                progress_bar.visibility = View.GONE
+                                text_measure.visibility = View.VISIBLE
                                 //qui mi faccio mostrare il peso in una textView
                                 text_measure.text = str;
                             }
                         }
-
                     }
                 })
             } catch (e: SecurityException) {
                 Log.e("Ciao", e.message!!)
-
+                progress_bar.visibility = View.GONE
+                text_measure.text = "Error"
+                text_measure.visibility = View.VISIBLE
             }
         }
     }
