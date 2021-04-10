@@ -69,4 +69,8 @@
     <string name="nutr_button">Visita</string>
     <string name="nutr_patient_check">Ultimo controllo:</string>
 
+    <!-- Profilo pazienti professionista -->
+    <string name="nutr_patient_dateOfBirth">Data di nascita:</string>
+    <string name="nutr_patient_email">Email:</string>
+
 </resources>
