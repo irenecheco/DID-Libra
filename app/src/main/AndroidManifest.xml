@@ -18,10 +18,9 @@
         android:networkSecurityConfig="@xml/network_security_config">
         <activity android:name=".professionista.ProfessionistaMainActivity">
         </activity>
-        <activity android:name=".LandingPageActivity">
+        <activity android:name=".landing.LandingPageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,6 +28,7 @@
         </activity>
         <activity android:name=".professionistapazienti.ProfessionistaPazienteMainActivity">
         </activity>
+        
     </application>
 
 </manifest>

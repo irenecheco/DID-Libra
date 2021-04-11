@@ -7,6 +7,11 @@
     <string name="loginButton">LOGIN</string>
     <string name="registrationLabel">Voglio creare un account</string>
     <string name="registrationButton">SIGN IN</string>
+    <string name="loginDescription">Inserire le proprie credenziali per accedere</string>
+    <string name="emailLabel">e-mail</string>
+    <string name="emailTip"></string>
+    <string name="passwordLabel">password</string>
+    <string name="rememberMeCheckBox">Ricordami per i prossimi accessi</string>
 
     <!-- Menu utente -->
     <string name="menu_profile_label">Profilo</string>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".LandingPageFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/utente_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Interfaccia Utente"
+            app:backgroundTint="@color/colorAccent" />
+
+        <Button
+            android:id="@+id/professionista_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Interfaccia professionista"
+            app:backgroundTint="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/preLoginLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="72dp"
+            android:text="@string/loginLabel" />
+
+        <Button
+            android:id="@+id/preLoginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="@dimen/padding_huge"
+            android:paddingTop="@dimen/padding_large"
+            android:paddingRight="@dimen/padding_huge"
+            android:paddingBottom="@dimen/padding_large"
+            android:text="@string/loginButton" />
+
+        <TextView
+            android:id="@+id/preRegistrationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="128dp"
+            android:text="@string/registrationLabel" />
+
+        <Button
+            android:id="@+id/preRegistrationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="@dimen/padding_huge"
+            android:paddingTop="@dimen/padding_large"
+            android:paddingRight="@dimen/padding_huge"
+            android:paddingBottom="@dimen/padding_large"
+            android:text="@string/registrationButton" />
+
+    </LinearLayout>
+
+</FrameLayout>

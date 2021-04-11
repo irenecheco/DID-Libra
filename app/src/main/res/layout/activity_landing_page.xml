@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LandingPageActivity">
+    tools:context=".landing.LandingPageActivity">
 
     <ImageView
         android:id="@+id/landingPageLogo"
@@ -19,7 +19,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_black_testo" />
 
-    <LinearLayout
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/landing_page_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -27,62 +28,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/landingPageLogo">
+        app:layout_constraintTop_toBottomOf="@+id/landingPageLogo"
+        android:name="androidx.navigation.fragment.NavHostFragment" />
 
-        <Button
-            android:id="@+id/utente_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Interfaccia Utente"
-            app:backgroundTint="@color/colorAccent" />
-
-        <Button
-            android:id="@+id/professionista_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Interfaccia professionista"
-            app:backgroundTint="@color/colorPrimaryDark" />
-
-        <TextView
-            android:id="@+id/loginLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="72dp"
-            android:text="@string/loginLabel" />
-
-        <Button
-            android:id="@+id/loginButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingLeft="@dimen/padding_huge"
-            android:paddingTop="@dimen/padding_large"
-            android:paddingRight="@dimen/padding_huge"
-            android:paddingBottom="@dimen/padding_large"
-            android:text="@string/loginButton" />
-
-        <TextView
-            android:id="@+id/registrationLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="128dp"
-            android:text="@string/registrationLabel" />
-
-        <Button
-            android:id="@+id/registrationButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingLeft="@dimen/padding_huge"
-            android:paddingTop="@dimen/padding_large"
-            android:paddingRight="@dimen/padding_huge"
-            android:paddingBottom="@dimen/padding_large"
-            android:text="@string/registrationButton" />
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
