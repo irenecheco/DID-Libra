@@ -16,8 +16,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import it.polito.s279941.libra.R
 import kotlinx.android.synthetic.main.utente_bilancia_fragment.*
-import kotlinx.android.synthetic.main.utente_chat_fragment.*
-import kotlinx.android.synthetic.main.utente_profilo_fragment.*
 import kotlinx.android.synthetic.main.utente_profilo_fragment.text_measure
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

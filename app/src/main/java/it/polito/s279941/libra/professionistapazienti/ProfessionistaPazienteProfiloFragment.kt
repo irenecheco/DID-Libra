@@ -15,7 +15,6 @@ import it.polito.s279941.libra.R
 import it.polito.s279941.libra.utente.UtenteViewModel
 import it.polito.s279941.libra.utenteobiettivi.ObiettiviAdapter
 import kotlinx.android.synthetic.main.professionista_paziente_profilo_fragment.*
-import kotlinx.android.synthetic.main.utente_storico_fragment.*
 
 class ProfessionistaPazienteProfiloFragment: Fragment(R.layout.professionista_paziente_profilo_fragment) {
 

@@ -78,4 +78,12 @@
     <string name="nutr_patient_dateOfBirth">Data di nascita:</string>
     <string name="nutr_patient_email">Email:</string>
 
+    !-- Blocco bilancia pazienti professionista -->
+    <string name="nutr_patient_libraLock">Blocco per le misurazioni</string>
+    <string name="nutr_patient_libraLock_spinnerLabel">Nuova misurazione disponibile ogni:</string>
+    <string-array name="nut_libra_lock_options">
+        <item>24h</item>
+        <item>48h</item>
+        <item>72h</item>
+    </string-array>
 </resources>
