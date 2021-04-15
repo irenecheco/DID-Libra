@@ -2,6 +2,7 @@ package it.polito.s279941.libra.landing
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,6 +56,7 @@ class LandingPageFragment : Fragment() {
         }
 
         preLoginButton.setOnClickListener{
+            Log.d("LIBRA", "event CLICK on LOGIN button in LandingPageFragment")
             val transaction = activity?.supportFragmentManager?.beginTransaction()
             transaction?.replace(R.id.landing_page_fragment_container, login_page_fragment)
             transaction?.addToBackStack("LandigPageFragment")
