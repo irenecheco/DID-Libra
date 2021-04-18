@@ -2,6 +2,7 @@ package it.polito.s279941.libra.utente
 
 
 import android.content.Context
+import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
@@ -76,6 +77,8 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                 text_measure.visibility = View.VISIBLE
             }
         }
+
+        registra_peso.isEnabled = false
     }
 
 }

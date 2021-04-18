@@ -22,6 +22,8 @@
 
     <!-- Bilancia utente-->
     <string name="utente_libra_button">Avvia Bilancia</string>
+    <string name="utente_save_weight_button">Salva Peso</string>
+    <string name="utente_save_weight_label">Puoi registrare il tuo peso solo una volta ogni xx giorni</string>
     <string name="utente_last_measurement_label">Ultima misurazione rilevata</string>
 
     <!-- Storico utente -->

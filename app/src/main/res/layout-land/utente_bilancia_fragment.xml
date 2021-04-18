@@ -11,20 +11,21 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/utente_last_measurement_label"
-        app:layout_constraintBottom_toTopOf="@+id/avvia_bilancia"
+        app:layout_constraintBottom_toTopOf="@+id/data_ora_ultima_rilevazione"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/card_peso_rilevato"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/card_peso_rilevato" />
 
     <TextView
         android:id="@+id/data_ora_ultima_rilevazione"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="13dp"
         android:gravity="center"
         android:text="04/01/2020 h 10:30"
+        app:layout_constraintBottom_toTopOf="@+id/avvia_bilancia"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/card_peso_rilevato"
-        app:layout_constraintTop_toBottomOf="@+id/textview_ultima_rilevazione" />
+        app:layout_constraintStart_toEndOf="@+id/card_peso_rilevato" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_peso_rilevato"
@@ -68,10 +69,55 @@
         android:textColor="@color/colorLight"
         android:textSize="18sp"
         app:backgroundTint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/registra_peso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/card_peso_rilevato"
-        app:layout_constraintTop_toBottomOf="@+id/textview_ultima_rilevazione" />
+        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+    <Button
+        android:id="@+id/registra_peso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:background="@color/colorAccent"
+        android:shadowColor="#000000"
+        android:shadowRadius="1"
+        android:text="@string/utente_save_weight_button"
+        android:textColor="@color/colorLight"
+        android:textSize="18sp"
+        app:backgroundTint="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/card_peso_rilevato"
+        app:layout_constraintTop_toBottomOf="@+id/avvia_bilancia" />
+
+    <TextView
+        android:id="@+id/saveWeight_label"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="6dp"
+        android:text="@string/utente_save_weight_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toEndOf="@+id/card_peso_rilevato"
+        app:layout_constraintTop_toBottomOf="@+id/registra_peso" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
