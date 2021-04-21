@@ -85,12 +85,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     !-- Blocco bilancia pazienti professionista -->
-    <string name="nutr_patient_libraLock">Lock for measurement</string>
-    <string name="nutr_patient_libraLock_spinnerLabel">New measurement available every:</string>
+    <string name="nutr_patient_libraLock_spinnerLabel">Register measurement:</string>
     <string-array name="nut_libra_lock_options">
-        <item>24h</item>
-        <item>48h</item>
-        <item>72h</item>
+        <item>Once a week</item>
+        <item>Two times a week</item>
+        <item>Three times a week</item>
     </string-array>
 
 </resources>

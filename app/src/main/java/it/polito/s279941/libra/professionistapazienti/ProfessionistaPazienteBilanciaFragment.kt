@@ -24,15 +24,5 @@ class ProfessionistaPazienteBilanciaFragment: Fragment(R.layout.professionista_p
             // Apply the adapter to the spinner
             spinner.adapter = adapter
         }
-
-        libra_lock.setOnCheckedChangeListener{_, isChecked ->
-            if (isChecked){
-                libra_lock_spinnerLabel.visibility = View.VISIBLE
-                libra_lock_spinner.visibility = View.VISIBLE
-            } else {
-                libra_lock_spinnerLabel.visibility = View.GONE
-                libra_lock_spinner.visibility = View.GONE
-            }
-        }
     }
 }

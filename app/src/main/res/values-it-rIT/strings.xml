@@ -82,11 +82,10 @@
     <string name="goal_button">Aggiungi obiettivo</string>
 
     !-- Blocco bilancia pazienti professionista -->
-    <string name="nutr_patient_libraLock">Blocco per le misurazioni</string>
-    <string name="nutr_patient_libraLock_spinnerLabel">Nuova misurazione disponibile ogni:</string>
+    <string name="nutr_patient_libraLock_spinnerLabel">Registra misurazione:</string>
     <string-array name="nut_libra_lock_options">
-        <item>24h</item>
-        <item>48h</item>
-        <item>72h</item>
+        <item>Una volta a settimana</item>
+        <item>Due volte a settimana</item>
+        <item>Tre volte a settimana</item>
     </string-array>
 </resources>
