@@ -14,6 +14,7 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.google.gson.Gson
 import it.polito.s279941.libra.DataModel.UtenteAggiornaPesoClass
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.api.Api2
@@ -87,10 +88,9 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                             get_weight.enqueue(object: Callback<Number> {
                                                 override fun onResponse(call: Call<Number>, response: Response<Number>) {
                                                     try {
-                                                        //Trasformo la risposta da json a Double
-                                                        var obj = JSONObject(response.body().toString())
-                                                        val get_weight = obj.getDouble("get_weight")
-                                                        var weight = UtenteAggiornaPesoClass(get_weight)
+                                                        //Trasformo la risposta da json a Double e lo salvo in weight
+                                                        var jsonString = response.body().toString()
+                                                        var weight = Gson().fromJson(jsonString, UtenteAggiornaPesoClass::class.java)
                                                         //Stampo peso
                                                         text_measure.text = weight.get_weight.toString()
                                                     } catch (e:JSONException){
