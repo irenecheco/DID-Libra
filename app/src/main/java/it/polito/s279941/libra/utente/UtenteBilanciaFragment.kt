@@ -14,12 +14,15 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import it.polito.s279941.libra.DataModel.UtenteAggiornaPesoClass
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.api.Api2
 import kotlinx.android.synthetic.main.utente_bilancia_fragment.*
 import kotlinx.android.synthetic.main.utente_profilo_fragment.text_measure
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,9 +34,13 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // The singleton Api object is created lazily when the first time it is used.
+        // After that it will be reused without creation
         val apiServe by lazy {
             Api2.create()
         }
+
 
         avvia_bilancia.setOnClickListener {
             //text_measure.text = "Pulsante funziona"
@@ -63,19 +70,44 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                         manager.bindProcessToNetwork(network)
                         Log.d("esp","network connected")
                         lifecycleScope.launch(Dispatchers.IO) {
+                            //Faccio la GET per attivare bilancia
                             var init_scale =  apiServe.initScale()
-                            init_scale.enqueue(object: Callback<Number> {
-                                override fun onResponse(call: Call<Number>?, response: Response<Number>?){
+                            init_scale.enqueue(object: Callback<String> {
+                                override fun onResponse(call: Call<String>?, response: Response<String>) {
+                                    //Bilancia attiva
                                     progress_bar.visibility = View.GONE
                                     text_measure.visibility = View.VISIBLE
                                     if (response != null) {
+                                        //Abilito il pulsante PESAMI
                                         avvia_bilancia.visibility = View.GONE
                                         aggiorna_peso.visibility = View.VISIBLE
+                                        aggiorna_peso.setOnClickListener{
+                                            //Faccio la GET per prendere il peso
+                                            var get_weight = apiServe.getWeight()
+                                            get_weight.enqueue(object: Callback<Number> {
+                                                override fun onResponse(call: Call<Number>, response: Response<Number>) {
+                                                    try {
+                                                        //Trasformo la risposta da json a Double
+                                                        var obj = JSONObject(response.body().toString())
+                                                        val get_weight = obj.getDouble("get_weight")
+                                                        var weight = UtenteAggiornaPesoClass(get_weight)
+                                                        //Stampo peso
+                                                        text_measure.text = weight.get_weight.toString()
+                                                    } catch (e:JSONException){
+                                                        Log.d("LIBRA", "ERROR getting JSON object to show weight")
+                                                    }
+                                                }
+                                                override fun onFailure(call: Call<Number>, t: Throwable) {
+                                                    Log.d("LIBRA", "ERROR contacting the libra to get the weight")
+                                                }
+
+                                            })
+                                        }
 
                                     }
                                 }
-                                override fun onFailure(call: Call<Number>?, t: Throwable?){
-
+                                override fun onFailure(call: Call<String>?, t: Throwable?){
+                                    Log.d("LIBRA", "ERROR contacting the libra to turn it on")
                                 }
                             })
                             /*val str= URL("http://192.168.4.1/").readText(Charset.forName("UTF-8"))
@@ -101,7 +133,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
 }
 
-
+/* Non so a cosa serva, ma se lo tolgo mi dà errore*/
 private fun <T> Call<T>.enqueue(callback: Callback<Number>) {
 
 }
