@@ -36,6 +36,32 @@ interface Api {
 
 }
 
+interface Api2 {
+
+    companion object {
+        var BASE_URL2 = " http://softAPIP/libra/"
+
+        fun create(): Api2 {
+            val retrofit = Retrofit.Builder()
+                    .addCallAdapterFactory(
+                            RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(
+                            GsonConverterFactory.create())
+                    .baseUrl(BASE_URL2)
+                    .build()
+
+            return retrofit.create(Api2::class.java)
+        }
+    }
+
+    @GET("init_scale")
+    fun initScale() : Call<String>
+
+    @GET("get_weight")
+    fun getWeight() : Call<Number>
+
+}
+
 
 
 /*

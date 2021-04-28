@@ -23,7 +23,7 @@
         android:layout_marginBottom="13dp"
         android:gravity="center"
         android:text="04/01/2020 h 10:30"
-        app:layout_constraintBottom_toTopOf="@+id/avvia_bilancia"
+        app:layout_constraintBottom_toTopOf="@+id/aggiorna_peso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/card_peso_rilevato" />
 
@@ -34,7 +34,7 @@
         app:cardBackgroundColor="@color/colorPrimaryDark"
         app:cardCornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/avvia_bilancia"
+        app:layout_constraintEnd_toStartOf="@+id/aggiorna_peso"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -77,6 +77,25 @@
         app:layout_constraintTop_toTopOf="@+id/guideline8" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/aggiorna_peso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="true"
+        android:padding="12dp"
+        android:shadowColor="#000000"
+        android:shadowRadius="1"
+        android:text="@string/utente_refresh_button"
+        android:textColor="@color/button_text_color"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:backgroundTint="@color/button_background_color"
+        app:layout_constraintBottom_toTopOf="@+id/registra_peso"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/card_peso_rilevato"
+        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/registra_peso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -93,7 +112,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/card_peso_rilevato"
-        app:layout_constraintTop_toBottomOf="@+id/avvia_bilancia" />
+        app:layout_constraintTop_toBottomOf="@+id/aggiorna_peso" />
 
     <TextView
         android:id="@+id/saveWeight_label"

@@ -2,7 +2,6 @@ package it.polito.s279941.libra.utente
 
 
 import android.content.Context
-import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
@@ -16,13 +15,14 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import it.polito.s279941.libra.R
+import it.polito.s279941.libra.api.Api2
 import kotlinx.android.synthetic.main.utente_bilancia_fragment.*
 import kotlinx.android.synthetic.main.utente_profilo_fragment.text_measure
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.net.URL
-import java.nio.charset.Charset
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
@@ -31,6 +31,9 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val apiServe by lazy {
+            Api2.create()
+        }
 
         avvia_bilancia.setOnClickListener {
             //text_measure.text = "Pulsante funziona"
@@ -60,13 +63,28 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                         manager.bindProcessToNetwork(network)
                         Log.d("esp","network connected")
                         lifecycleScope.launch(Dispatchers.IO) {
-                            val str= URL("http://192.168.4.1/").readText(Charset.forName("UTF-8"))
+                            var init_scale =  apiServe.initScale()
+                            init_scale.enqueue(object: Callback<Number> {
+                                override fun onResponse(call: Call<Number>?, response: Response<Number>?){
+                                    progress_bar.visibility = View.GONE
+                                    text_measure.visibility = View.VISIBLE
+                                    if (response != null) {
+                                        avvia_bilancia.visibility = View.GONE
+                                        aggiorna_peso.visibility = View.VISIBLE
+
+                                    }
+                                }
+                                override fun onFailure(call: Call<Number>?, t: Throwable?){
+
+                                }
+                            })
+                            /*val str= URL("http://192.168.4.1/").readText(Charset.forName("UTF-8"))
                             withContext(Dispatchers.Main) {
                                 progress_bar.visibility = View.GONE
                                 text_measure.visibility = View.VISIBLE
                                 //qui mi faccio mostrare il peso in una textView
                                 text_measure.text = str;
-                            }
+                            }*/
                         }
                     }
                 })
@@ -80,5 +98,10 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
         registra_peso.isEnabled = false
     }
+
+}
+
+
+private fun <T> Call<T>.enqueue(callback: Callback<Number>) {
 
 }
