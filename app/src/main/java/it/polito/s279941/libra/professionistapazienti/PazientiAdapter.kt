@@ -3,20 +3,20 @@ package it.polito.s279941.libra.professionistapazienti
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import it.polito.s279941.libra.R
 import java.text.DateFormat
 import java.util.*
 
-class PazientiAdapter (var clickListener: OnPatientItemClickListener) : RecyclerView.Adapter<PazientiAdapter.PazientiViewHolder>() {
+class PazientiAdapter (var clickListener: OnPatientItemClickListener) : RecyclerView.Adapter<PazientiAdapter.PazientiViewHolder>(), Filterable {
 
-    private var pazienti: List<PazientiItem> = emptyList()
+    private var pazienti: MutableList<PazientiItem> = mutableListOf()
+    var pazientiFilter: MutableList<PazientiItem> = mutableListOf()
 
-    fun setPazienti(_pazienti: List<PazientiItem>){
+    fun setPazienti(_pazienti: MutableList<PazientiItem>){
         pazienti = _pazienti
+        pazientiFilter = _pazienti
         notifyDataSetChanged()
     }
 
@@ -48,6 +48,47 @@ class PazientiAdapter (var clickListener: OnPatientItemClickListener) : Recycler
 
     override fun getItemCount() = pazienti.size;
 
+    fun sortAlphabetically(){
+        val newPazienti = pazienti.sortedBy { it.nome_utente }
+        pazienti = newPazienti as MutableList<PazientiItem>
+        notifyDataSetChanged()
+    }
+
+    fun sortChronologically(){
+        val newPazienti = pazienti.sortedBy { it.data_ultimo_controllo }
+        pazienti = newPazienti as MutableList<PazientiItem>
+        notifyDataSetChanged()
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                if (charSearch.isEmpty()) {
+                    pazienti = pazientiFilter
+                } else {
+                    val resultList = mutableListOf<PazientiItem>()
+                    pazienti = pazientiFilter
+                    for (row in pazienti) {
+                        if (row.nome_utente.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
+                            resultList.add(row)
+                        }
+                    }
+                    pazienti = resultList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = pazienti
+                return filterResults
+            }
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                pazienti = results?.values as MutableList<PazientiItem>
+                notifyDataSetChanged()
+            }
+
+        }
+    }
 }
 
 interface OnPatientItemClickListener{

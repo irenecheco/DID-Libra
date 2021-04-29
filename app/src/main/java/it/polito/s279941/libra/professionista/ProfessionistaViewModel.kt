@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import it.polito.s279941.libra.professionistapazienti.PazientiItem
-import it.polito.s279941.libra.utentedieta.PastoItem
-import it.polito.s279941.libra.utenteobiettivi.ObiettiviItem
 
 class ProfessionistaViewModel: ViewModel() {
 
@@ -16,11 +14,11 @@ class ProfessionistaViewModel: ViewModel() {
             PazientiItem("url foto", "Alessandro Neri", System.currentTimeMillis()-7000000000)
     )
 
-    private val _pazientiLiveData = MutableLiveData<List<PazientiItem>>().also{
+    private val _pazientiLiveData = MutableLiveData<MutableList<PazientiItem>>().also{
         it.value = _pazienti
     }
 
-    val pazientiLiveData : LiveData<List<PazientiItem>> = _pazientiLiveData
+    val pazientiLiveData : LiveData<MutableList<PazientiItem>> = _pazientiLiveData
 
     fun addPazienti(foto: String, nome: String, ultimoControllo_data: Long) {
         val nuovoPaziente = PazientiItem(foto, nome, ultimoControllo_data)

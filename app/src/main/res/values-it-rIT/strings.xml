@@ -76,6 +76,9 @@
     <!-- Lista pazienti professionista -->
     <string name="nutr_button">Visita</string>
     <string name="nutr_patient_check">Ultimo controllo:</string>
+    <string name="order_alph">Ordine alfabetico</string>
+    <string name="order_check">Ordine per ultimo controllo</string>
+    <string name="search_patient">Cerca…</string>
 
     <!-- Profilo pazienti professionista -->
     <string name="nutr_patient_dateOfBirth">Data di nascita:</string>
