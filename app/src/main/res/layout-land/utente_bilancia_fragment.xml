@@ -34,7 +34,7 @@
         app:cardBackgroundColor="@color/colorPrimaryDark"
         app:cardCornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/aggiorna_peso"
+        app:layout_constraintEnd_toStartOf="@+id/registra_peso"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
