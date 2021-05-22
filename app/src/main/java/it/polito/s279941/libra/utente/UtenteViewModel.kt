@@ -9,6 +9,7 @@ import it.polito.s279941.libra.utenteobiettivi.ObiettiviItem
 class UtenteViewModel: ViewModel() {
 
     private var _giorno: Long = System.currentTimeMillis()
+
     private var _pastiDelGiorno = listOf(
         PastoItem("COLAZIONE", "una mela", true),
         PastoItem("SPUNTINO", "uno yogurt\nmela", false),
@@ -41,6 +42,10 @@ class UtenteViewModel: ViewModel() {
     }
     fun getGiorno():Long{
         return _giorno
+    }
+    fun setGiorno(giorno:Long) {
+        _giorno = giorno
+        // TODO: capire se mettere giorno live data oppure basta pastiDelGiornoLiveData
     }
 
     fun addObiettivi(obRaggiunto: String, obRaggiunto_data: Long) {

@@ -18,10 +18,12 @@ import java.util.*
 
 class DietaCalendarioFragment: Fragment(R.layout.utente_dieta_calendario_fragment) {
     // utenteViewModel by activityViewModels<UtenteViewModel>()
+    val utenteViewModel by activityViewModels<UtenteViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d("aaaa","onViewCreated")
+        // TODO: Aggiungere listener evento di selezione giorno calendario
     }
 
 }
