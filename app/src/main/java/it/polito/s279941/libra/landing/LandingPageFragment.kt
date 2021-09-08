@@ -20,22 +20,27 @@ import kotlinx.android.synthetic.main.fragment_landing_page.*
  */
 class LandingPageFragment : Fragment() {
 
+    companion object {
+        fun newInstance() = LandingPageFragment()
+    }
+
+    //private lateinit var viewModel: MainViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_landing_page, container, false)
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?): View? {
+            // Inflate the layout for this fragment
+            return inflater.inflate(R.layout.fragment_landing_page, container, false)
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState);
+        super.onViewCreated(view, savedInstanceState)
         //Qui può essere eseguita la personalizzazione della GUI
     }
 
@@ -43,22 +48,22 @@ class LandingPageFragment : Fragment() {
     // indica al frammento che è terminata la creazione dell'activity
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val login_page_fragment = LoginPageFragment()
+        val loginPageFragment = LoginPageFragment()
 
         utente_button.setOnClickListener{
-            val i = Intent(getActivity(), UtenteMainActivity::class.java)
+            val i = Intent(activity, UtenteMainActivity::class.java)
             startActivityForResult(i, 1)
         }
 
         professionista_button.setOnClickListener{
-            val i = Intent(getActivity(), ProfessionistaMainActivity::class.java)
+            val i = Intent(activity, ProfessionistaMainActivity::class.java)
             startActivityForResult(i, 1)
         }
 
         preLoginButton.setOnClickListener{
             Log.d("LIBRA", "event CLICK on LOGIN button in LandingPageFragment")
             val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.landing_page_fragment_container, login_page_fragment)
+            transaction?.replace(R.id.landing_page_fragment_container, loginPageFragment)
             transaction?.addToBackStack("LandigPageFragment")
             transaction?.commit()
         }

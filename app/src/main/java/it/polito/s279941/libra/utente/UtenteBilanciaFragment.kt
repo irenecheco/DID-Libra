@@ -23,7 +23,6 @@ import kotlinx.android.synthetic.main.utente_profilo_fragment.text_measure
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONException
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,7 +44,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
         avvia_bilancia.setOnClickListener {
             //text_measure.text = "Pulsante funziona"
-
+            Log.d("esp", "Builder built")
             text_measure.visibility = View.GONE
             progress_bar.visibility = View.VISIBLE
             val manager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -69,20 +68,21 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                     @RequiresApi(Build.VERSION_CODES.M)
                     override fun onAvailable(network: Network) {
                         manager.bindProcessToNetwork(network)
-                        Log.d("esp","network connected")
+                        Log.d("LIBRA","network connected")
                         lifecycleScope.launch(Dispatchers.IO) {
                             //Faccio la GET per attivare bilancia
                             var init_scale =  apiServe.initScale()
                             init_scale.enqueue(object: Callback<String> {
                                 override fun onResponse(call: Call<String>?, response: Response<String>) {
                                     //Bilancia attiva
+                                    Log.d("LIBRA","Bilancia attiva")
                                     progress_bar.visibility = View.GONE
                                     text_measure.visibility = View.VISIBLE
                                     if (response != null) {
                                         //Abilito il pulsante PESAMI
-                                        avvia_bilancia.visibility = View.GONE
-                                        aggiorna_peso.visibility = View.VISIBLE
-                                        aggiorna_peso.setOnClickListener{
+                                        this@UtenteBilanciaFragment.avvia_bilancia.visibility = View.GONE
+                                        this@UtenteBilanciaFragment.registra_peso.visibility = View.VISIBLE
+                                        registra_peso.setOnClickListener{
                                             //Faccio la GET per prendere il peso
                                             var get_weight = apiServe.getWeight()
                                             get_weight.enqueue(object: Callback<Number> {

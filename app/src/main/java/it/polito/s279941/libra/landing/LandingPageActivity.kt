@@ -5,13 +5,30 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import it.polito.s279941.libra.R
 
+/*
 class LandingPageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing_page)
 
-        val landing_page_fragment = LandingPageFragment()
-        showFragment(landing_page_fragment)
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.landing_page_fragment_container, LandingPageFragment.newInstance())
+                .commitNow()
+        }
+    }
+}
+*/
+
+class LandingPageActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_landing_page)
+
+        if (savedInstanceState == null) {
+            val landing_page_fragment = LandingPageFragment.newInstance()
+            showFragment(landing_page_fragment)
+        }
     }
 
 

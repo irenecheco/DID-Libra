@@ -8,100 +8,131 @@
     tools:context=".landing.LoginPageFragment">
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/loginDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="sans-serif"
-            android:text="@string/loginDescription" />
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:background="@color/colorPrimaryLight"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/emailIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                app:srcCompat="@drawable/ic_email" />
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/emailLabel"
+                android:id="@+id/loginDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/emailLabel" />
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/loginDescription"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="59dp"
+                android:background="@color/colorPrimaryLight"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/emailField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:text="@string/emailTip" />
+                <ImageView
+                    android:id="@+id/emailIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_email"
+                    tools:layout_conversion_absoluteHeight="24dp"
+                    tools:layout_conversion_absoluteWidth="24dp"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="67dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:background="@color/colorPrimaryLight"
-            android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/emailLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/emailLabel"
+                    tools:layout_conversion_absoluteHeight="19dp"
+                    tools:layout_conversion_absoluteWidth="38dp"
+                    tools:layout_editor_absoluteX="40dp"
+                    tools:layout_editor_absoluteY="69dp" />
 
-            <ImageView
-                android:id="@+id/passwordIcon"
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/emailField"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:text="@string/emailTip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@color/colorPrimaryLight"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailField">
+
+                <ImageView
+                    android:id="@+id/passwordIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    app:srcCompat="@drawable/ic_password" />
+
+                <TextView
+                    android:id="@+id/passwordLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/passwordLabel" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/editTextTextPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+            <CheckBox
+                android:id="@+id/remembeMe_checkBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/rememberMeCheckBox"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+
+            <Button
+                android:id="@+id/loginButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                app:srcCompat="@drawable/ic_password" />
-
-            <TextView
-                android:id="@+id/passwordLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/passwordLabel" />
-
-        </LinearLayout>
-
-        <EditText
-            android:id="@+id/editTextTextPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword" />
-
-        <CheckBox
-            android:id="@+id/remembeMe_checkBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/rememberMeCheckBox" />
-
-        <Button
-            android:id="@+id/loginButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="32dp"
-            android:paddingLeft="@dimen/padding_huge"
-            android:paddingTop="@dimen/padding_large"
-            android:paddingRight="@dimen/padding_huge"
-            android:paddingBottom="@dimen/padding_large"
-            android:text="@string/loginButton" />
+                android:layout_marginTop="32dp"
+                android:paddingLeft="@dimen/padding_huge"
+                android:paddingTop="@dimen/padding_large"
+                android:paddingRight="@dimen/padding_huge"
+                android:paddingBottom="@dimen/padding_large"
+                android:text="@string/loginButton"
+                app:layout_constraintEnd_toEndOf="@+id/remembeMe_checkBox"
+                app:layout_constraintStart_toStartOf="@+id/remembeMe_checkBox"
+                app:layout_constraintTop_toBottomOf="@+id/remembeMe_checkBox" />
 
 
-    </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </FrameLayout>

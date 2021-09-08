@@ -3,17 +3,20 @@ package it.polito.s279941.libra.api
 import io.reactivex.Observable
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.POST
-
 
 interface Api {
 
     companion object {
-        var BASE_URL = "https://192.168.225.240/api/"
+        // Set NodeJS server IP:port (solitamente il PC su cui gira NodeJS e AndroidStudio),
+        // ovviamente l'IP deve essere raggiungibile dall'app
+        // todo: definire una var globale unica (?)
+        //var BASE_URL = "https://192.168.225.240:8443/api/"
+        var BASE_URL = "http://192.168.225.240:3000/api/"
 
         fun create(): Api {
             val retrofit = Retrofit.Builder()
@@ -40,7 +43,9 @@ interface Api {
 interface Api2 {
 
     companion object {
-        var BASE_URL2 = " http://softAPIP/libra/"
+        // *** ATTENZIONE il cell deve avere WiFi attiva *** //
+        // URL della ESP8266
+        var BASE_URL2 = " http://192.168.4.1/libra/"
 
         fun create(): Api2 {
             val retrofit = Retrofit.Builder()
@@ -60,7 +65,6 @@ interface Api2 {
 
     @GET("get_weight")
     fun getWeight() : Call<Number>
-
 }
 
 

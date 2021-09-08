@@ -23,13 +23,12 @@ import retrofit2.*
 class LoginPageFragment : Fragment() {
     val myName : String = ""
     val myPassword : String = ""
-    // The NodeJS server IP
-    val url : String = "https://192.168.225.240"
+    // The NodeJS server IP (solitamente il PC su cui gira NodeJS e AndroidStudio)
+    val url : String = "https://192.168.63.240"
 
 
-        override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         }
 
     override fun onCreateView(
@@ -46,7 +45,7 @@ class LoginPageFragment : Fragment() {
 
         // The singleton Api object is created lazily when the first time it is used.
         // After that it will be reused without creation
-        val apiServe by lazy {
+        val apiServer by lazy {
             Api.create()
         }
         // The disposable object is basically a return object from the RxJava 2.0 that tracks
@@ -55,7 +54,7 @@ class LoginPageFragment : Fragment() {
 
         loginB.setOnClickListener {
             Log.d("LIBRA", "CLICK event on LOGIN button")
-            val disposable =  apiServe.getUsers()
+            val disposable =  apiServer.getUsers()
             Log.d("LIBRA", "disposable: $disposable" )
         }
     }

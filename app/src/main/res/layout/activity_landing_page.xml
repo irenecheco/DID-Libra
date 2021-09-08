@@ -21,6 +21,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/landing_page_fragment_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -28,8 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/landingPageLogo"
-        android:name="androidx.navigation.fragment.NavHostFragment" />
+        app:layout_constraintTop_toBottomOf="@+id/landingPageLogo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

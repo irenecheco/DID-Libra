@@ -3,69 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:ignore="ExtraText">
 
     <ImageView
         android:id="@+id/landingPageLogo"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@dimen/padding_large"
+        android:layout_marginRight="@dimen/padding_large"
         android:background="@color/colorPrimary"
         android:contentDescription="@string/landingPageTopLogo"
         android:padding="@dimen/padding_large"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/landing_page_fragment_container"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_black_testo" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logo_black_testo"
+        tools:layout_conversion_absoluteHeight="411dp"
+        tools:layout_conversion_absoluteWidth="242dp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/landing_page_fragment_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:isScrollContainer="true"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/landingPageLogo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/landingPageLogo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.231">
-
-        <TextView
-            android:id="@+id/loginLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="72dp"
-            android:text="@string/loginLabel" />
-
-        <Button
-            android:id="@+id/loginButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingLeft="@dimen/padding_huge"
-            android:paddingTop="@dimen/padding_large"
-            android:paddingRight="@dimen/padding_huge"
-            android:paddingBottom="@dimen/padding_large"
-            android:text="@string/loginButton" />
-
-        <TextView
-            android:id="@+id/registrationLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="128dp"
-            android:text="@string/registrationLabel" />
-
-        <Button
-            android:id="@+id/registrationButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingLeft="@dimen/padding_huge"
-            android:paddingTop="@dimen/padding_large"
-            android:paddingRight="@dimen/padding_huge"
-            android:paddingBottom="@dimen/padding_large"
-            android:text="@string/registrationButton" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="@+id/landingPageLogo"
+        tools:layout_conversion_absoluteHeight="0dp"
+        tools:layout_conversion_absoluteWidth="490dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
