@@ -41,7 +41,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
             Api2.create()
         }
 
-
+        //Con il tasto avvia bilancia inizio il procedimento di collegamento alla bilancia
         avvia_bilancia.setOnClickListener {
             //text_measure.text = "Pulsante funziona"
             Log.d("esp", "Builder built")
@@ -56,6 +56,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                 builder.setNetworkSpecifier(
                         WifiNetworkSpecifier.Builder().apply {
                             //Qui inserite il nome del vostro WIFI e la password
+                            //DA VERIFICARE
                             setSsid("LibraNET")
                             setWpa2Passphrase("libranet")
                         }.build()
@@ -79,10 +80,11 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                     progress_bar.visibility = View.GONE
                                     text_measure.visibility = View.VISIBLE
                                     if (response != null) {
-                                        //Abilito il pulsante PESAMI
+                                        //Abilito il pulsante Aggiorna Peso
                                         this@UtenteBilanciaFragment.avvia_bilancia.visibility = View.GONE
-                                        this@UtenteBilanciaFragment.registra_peso.visibility = View.VISIBLE
-                                        registra_peso.setOnClickListener{
+                                        this@UtenteBilanciaFragment.aggiorna_peso.visibility = View.VISIBLE
+                                        //Premendo il tasto di registra peso avvio procedura per stampare peso
+                                        aggiorna_peso.setOnClickListener{
                                             //Faccio la GET per prendere il peso
                                             var get_weight = apiServe.getWeight()
                                             get_weight.enqueue(object: Callback<Number> {
