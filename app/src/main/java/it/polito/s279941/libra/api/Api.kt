@@ -2,6 +2,7 @@ package it.polito.s279941.libra.api
 
 import io.reactivex.Observable
 import it.polito.s279941.libra.DataModel.UtenteDataClass
+import it.polito.s279941.libra.utenteobiettivi.ObiettiviItem
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -37,6 +38,10 @@ interface Api {
 
     @GET("users")
     fun getUsers2() : Observable<List<UtenteDataClass>>
+
+    @GET("users/goals/6071aea342e7530e8c1947ed") // id utente preso a caso dal server per vedere se funziona
+    // poi ci sarà da creare una variabile che indica l'utente che sta usando l'app da incatenare al resto dell'indirizzo
+    fun getGoals() : Call<List<ObiettiviItem>>
 
 }
 

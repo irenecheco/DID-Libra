@@ -12,9 +12,15 @@ import java.util.*
 class ObiettiviAdapter () : RecyclerView.Adapter<ObiettiviAdapter.ObiettiviViewHolder>() {
 
     private var obiettiviStorico: List<ObiettiviItem> = emptyList()
+    var goals = mutableListOf<ObiettiviItem>()
 
     fun setObiettivi(_obiettiviStorico: List<ObiettiviItem>){
         obiettiviStorico = _obiettiviStorico
+        notifyDataSetChanged()
+    }
+
+    fun setGoalList(goals: List<ObiettiviItem>) {
+        this.goals = goals.toMutableList()
         notifyDataSetChanged()
     }
 
