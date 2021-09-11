@@ -1,6 +1,7 @@
 package it.polito.s279941.libra.api
 
 import io.reactivex.Observable
+import it.polito.s279941.libra.DataModel.UtenteAggiornaPesoClass
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.utenteobiettivi.ObiettiviItem
 import retrofit2.Call
@@ -9,6 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import it.polito.s279941.libra.DataModel.UtenteAvviaBilanciaClass
 
 interface Api {
 
@@ -50,7 +52,7 @@ interface Api2 {
     companion object {
         // *** ATTENZIONE il cell deve avere WiFi attiva *** //
         // URL della ESP8266
-        var BASE_URL2 = " http://192.168.4.1/libra/"
+        val BASE_URL2 = " http://192.168.4.1/libra/"
 
         fun create(): Api2 {
             val retrofit = Retrofit.Builder()
@@ -66,10 +68,11 @@ interface Api2 {
     }
 
     @GET("init_scale")
-    fun initScale() : Call<String>
+    //fun initScale(): Call<String>
+     fun initScaleREST(): Call<UtenteAvviaBilanciaClass>
 
     @GET("get_weight")
-    fun getWeight() : Call<Number>
+    fun getWeightREST(): Call<UtenteAggiornaPesoClass>
 }
 
 
