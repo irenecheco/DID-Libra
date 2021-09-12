@@ -1,18 +1,17 @@
 package it.polito.s279941.libra.utente
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation.findNavController
 import it.polito.s279941.libra.R
-import it.polito.s279941.libra.utente.UtenteDietaFragment
 import kotlinx.android.synthetic.main.utente_activity_main.*
 
 class UtenteMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("LIBRA", "UtenteMainActivity avviata")
         setContentView(R.layout.utente_activity_main)
         setSupportActionBar(toolbar)
 

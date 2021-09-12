@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import io.reactivex.disposables.Disposable
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.api.Api
@@ -21,11 +22,7 @@ import retrofit2.*
  * create an instance of this fragment.
  */
 class LoginPageFragment : Fragment() {
-    val myName : String = ""
-    val myPassword : String = ""
-    // The NodeJS server IP (solitamente il PC su cui gira NodeJS e AndroidStudio)
-    val url : String = "https://192.168.63.240"
-
+    private val viewModel: LoginPageViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

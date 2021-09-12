@@ -15,9 +15,39 @@ data class UtenteDataClass(
         val nome: String,
         val cognome: String,
         val data_nascita: Date, // todo: check with date format in DB
+        val cod_iscrizione_albo: String,
+        val lista_pazienti: List<String>,
+        val scr_foto: String,
+        val obiettivi: List<Obiettivo>,
+        val storico_pesi: List<Peso>,
+        val dieta: List<Dieta>,
+        val registrazione_peso: Int,
 )
 
-/*
-object Model {
-    data class Result(val query: Query)
-}*/
+
+data class Obiettivo(
+        val data: Date,
+        val obiettivo: String,
+)
+
+
+data class Peso(
+        val data: Date,
+        val peso: Double,
+)
+
+
+data class Dieta(
+        val data_inizio: Date,
+        val giorni: List<GiornoDieta>,
+)
+
+
+data class GiornoDieta(
+        val nroGiorno: Int,
+        val colazione: String,
+        val spuntinoMattina: String,
+        val pranzo: String,
+        val spuntinoPomeriggio: String,
+        val cena: String,
+)

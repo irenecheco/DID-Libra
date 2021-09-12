@@ -50,7 +50,10 @@ class LandingPageFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val loginPageFragment = LoginPageFragment()
 
+        Log.d("LIBRA", "onActivityCreated start in LandingPageFragment")
+
         utente_button.setOnClickListener{
+            Log.d("LIBRA", "event CLICK on INTERFACCIA UTENTE button in LandingPageFragment")
             val i = Intent(activity, UtenteMainActivity::class.java)
             startActivityForResult(i, 1)
         }
