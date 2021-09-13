@@ -30,7 +30,8 @@ class ObiettiviAdapter () : RecyclerView.Adapter<ObiettiviAdapter.ObiettiviViewH
 
         fun bind(item: ObiettiviItem) {
             utente_obiettivo_raggiunto.text = item.obiettivo
-            utente_data_obiettivo.text = DateFormat.getDateInstance(DateFormat.SHORT).format(Date(item.data_obiettivo))
+            //utente_data_obiettivo.text = DateFormat.getDateInstance(DateFormat.SHORT).format(Date(item.data_obiettivo))
+            utente_data_obiettivo.text = item.data_obiettivo.toString()
         }
     }
 

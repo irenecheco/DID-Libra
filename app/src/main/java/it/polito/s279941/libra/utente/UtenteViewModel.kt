@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import it.polito.s279941.libra.utentedieta.PastoItem
 import it.polito.s279941.libra.utenteobiettivi.ObiettiviItem
+import java.util.*
 
 class UtenteViewModel: ViewModel() {
 
@@ -18,10 +19,10 @@ class UtenteViewModel: ViewModel() {
         PastoItem("CENA", "insalata \n300gr pasta carbonara \nscaloppine e patate al forno con maionese \n2 fette pandoro con nutella \n 1 tisana snellente", false)
     )
     private val _obiettiviStorico = mutableListOf(
-        ObiettiviItem("Pesare 70kg", System.currentTimeMillis()-100000000),
-        ObiettiviItem("Rispettare la dieta per tre giorni consecutivi", System.currentTimeMillis()-1000000000),
-        ObiettiviItem("Pesarsi una volta a settimana per un mese", System.currentTimeMillis()-3000000000),
-        ObiettiviItem("Diminuire i carboidrati", System.currentTimeMillis()-7000000000)
+        ObiettiviItem("Pesare 70kg", Date()),
+        ObiettiviItem("Rispettare la dieta per tre giorni consecutivi", Date()),
+        ObiettiviItem("Pesarsi una volta a settimana per un mese", Date()),
+        ObiettiviItem("Diminuire i carboidrati", Date())
     )
 
     private val _pastiDelGiornoLiveData =
@@ -48,7 +49,7 @@ class UtenteViewModel: ViewModel() {
         // TODO: capire se mettere giorno live data oppure basta pastiDelGiornoLiveData
     }
 
-    fun addObiettivi(obRaggiunto: String, obRaggiunto_data: Long) {
+    fun addObiettivi(obRaggiunto: String, obRaggiunto_data: Date) {
         val nuovoObiettivo = ObiettiviItem(obRaggiunto, obRaggiunto_data)
         _obiettiviStorico.add(nuovoObiettivo)
         _obiettiviStoricoLiveData.value = _obiettiviStorico
