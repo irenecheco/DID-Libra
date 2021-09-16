@@ -12,7 +12,7 @@ class UtenteViewModel: ViewModel() {
     private var _giorno: Long = System.currentTimeMillis()
 
     private var _pastiDelGiorno = listOf(
-        PastoItem("COLAZIONE", "una mela", true),
+        PastoItem("COLAZIONE", "una mela!", true),
         PastoItem("SPUNTINO", "uno yogurt\nmela", false),
         PastoItem("PRANZO", "100gr farro\nun gelato \n6 ferrero rocher \n4 fragole \nun caffè con panna", true),
         PastoItem("MERENDA", "una noce \n1coca cola", true),
