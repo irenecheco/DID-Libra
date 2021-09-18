@@ -20,6 +20,7 @@ import java.util.*
 import android.widget.CalendarView
 
 import android.widget.CalendarView.OnDateChangeListener
+import it.polito.s279941.libra.utente.UtenteDietaFragment
 import java.time.LocalDate
 
 
@@ -30,6 +31,10 @@ class DietaCalendarioFragment: Fragment(R.layout.utente_dieta_calendario_fragmen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d("aaaa","onViewCreated")
+
+        calendarioDieta.date = utenteViewModel.getGiorno()
+        val gg=utenteViewModel.getGiorno()
+        Log.e("date", "Giorno:$gg")
 
         // TODO: Aggiungere listener evento di selezione giorno calendario
        // val calendarView = view.findViewById(R.id.calendarView)
@@ -45,8 +50,20 @@ class DietaCalendarioFragment: Fragment(R.layout.utente_dieta_calendario_fragmen
             // se funziona poi evolvere aggiungendo prima della chiusura di questo frammento:
             // caricare dal DB la dieta del giorno ritornato e impostare nel view model anche la nuova diete oltre al giorno
 
-            //val giornoSelezionato = Date(year, month, dayOfMonth).time;
 
+            // Imposta il nuovo giorno selezionato nel view model
+            val cal = Calendar.getInstance()
+            cal.set(year, month, dayOfMonth)
+            utenteViewModel.setGiorno(cal.timeInMillis)
+
+            Log.e("date", "giornoSelezionato:$cal.timeInMillis")
+
+
+
+            // si riposiziona sul fragment della dieta chiudendo il calendario
+            this.activity?.supportFragmentManager?.beginTransaction()?.apply{
+                replace(R.id.fragment_container, UtenteDietaFragment()).commit()
+            }
 
             Log.e("date", "$Year/$Month/$curDate")
         })

@@ -10,6 +10,8 @@ import java.util.*
 class UtenteViewModel: ViewModel() {
 
     private var _giorno: Long = System.currentTimeMillis()
+    private val _giornoLiveData = MutableLiveData<Long>().also{it.value = _giorno}
+    val giornoLiveData : LiveData<Long> = _giornoLiveData
 
     private var _pastiDelGiorno = listOf(
         PastoItem("COLAZIONE", "una mela!", true),
@@ -36,8 +38,9 @@ class UtenteViewModel: ViewModel() {
 
     val obiettiviStoricoLiveData : LiveData<List<ObiettiviItem>> = _obiettiviStoricoLiveData
 
-    fun setPastiDelGiorno(giorno: Long,pastiDelGiorno:List<PastoItem> ){
-        _giorno= giorno
+    fun setPastiDelGiorno(pastiDelGiorno:List<PastoItem> ){
+        //_giorno= giorno
+        //_giornoLiveData.value=_giorno
         _pastiDelGiorno=pastiDelGiorno
         _pastiDelGiornoLiveData.value=_pastiDelGiorno
     }
@@ -47,6 +50,17 @@ class UtenteViewModel: ViewModel() {
     fun setGiorno(giorno:Long) {
         _giorno = giorno
         // TODO: capire se mettere giorno live data oppure basta pastiDelGiornoLiveData
+        _giornoLiveData.value=_giorno
+
+        // Carichiamo i pasti del giorno
+        var nuoviPasti = listOf(
+            PastoItem("COLAZIONE", "una pera!", true),
+            PastoItem("SPUNTINO", "uno yogurt\nciliege", false),
+            PastoItem("PRANZO", "100gr latte\nun gelato \n6 ferrero rocher \n4 fragole \nun caffè con panna", true),
+            PastoItem("MERENDA", "una madoirloa \n1coca cola", true),
+            PastoItem("CENA", "frittata \n300gr pasta carbonara \nscaloppine e patate al forno con maionese \n2 fette pandoro con nutella \n 1 tisana snellente", false)
+        )
+        setPastiDelGiorno(nuoviPasti)
     }
 
     fun addObiettivi(obRaggiunto: String, obRaggiunto_data: Date) {
