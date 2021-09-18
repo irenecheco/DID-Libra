@@ -18,6 +18,7 @@ import it.polito.s279941.libra.DataModel.UtenteAggiornaPesoClass
 import it.polito.s279941.libra.DataModel.UtenteAvviaBilanciaClass
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.api.Api2
+import it.polito.s279941.libra.utils.LOG_TAG_ESP
 import kotlinx.android.synthetic.main.utente_bilancia_fragment.*
 import kotlinx.android.synthetic.main.utente_profilo_fragment.text_measure
 import kotlinx.coroutines.Dispatchers
@@ -51,7 +52,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
         //Con il tasto avvia bilancia inizio il procedimento di collegamento alla bilancia
         avvia_bilancia.setOnClickListener {
             //text_measure.text = "Pulsante funziona"
-            Log.d("ESP8266", "Click on AVVIA bilancia")
+            Log.d(LOG_TAG_ESP, "Click on AVVIA bilancia")
             text_measure.visibility = View.GONE
             progress_bar.visibility = View.VISIBLE
 
@@ -67,14 +68,14 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                     )
                 }
 
-            Log.d("ESP8266", "NetworkRequest.Builder built")
+            Log.d(LOG_TAG_ESP, "NetworkRequest.Builder built")
             //text_measure.text = "Builder built"
             try {
                 manager.requestNetwork(builder.build(), object : ConnectivityManager.NetworkCallback() {
                         @RequiresApi(Build.VERSION_CODES.M)
                         override fun onAvailable(network: Network) {
                             manager.bindProcessToNetwork(network)
-                            Log.d("ESP8266", "network connected")
+                            Log.d(LOG_TAG_ESP, "network connected")
                             // avvio la fase di attivazione bilancia in uno scope dedicato all'I/O
                             lifecycleScope.launch(Dispatchers.IO) {
                                 //Inizializzo la richiesta GET per attivare bilancia
@@ -87,7 +88,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                         //if(response?.body() != null)
                                         if (response?.isSuccessful == true) {
                                             // posso recuperare e registrare il peso acquisito
-                                            Log.d("ESP8266",
+                                            Log.d(LOG_TAG_ESP,
                                                 "initScale: response.isSuccessful=true -> Bilancia attiva")
                                             // TODO: il bottone si deve attivare e/o visualizzare solo se previsto dal nutrizionista!
                                             registra_peso?.isEnabled = true
@@ -97,14 +98,14 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                     override fun onFailure(
                                         call: Call<UtenteAvviaBilanciaClass>?, t: Throwable?,
                                     ) {
-                                        Log.d("ESP8266", "initScale: response FAIL")
+                                        Log.d(LOG_TAG_ESP, "initScale: response FAIL")
                                     }
                                 })
                             }
                         }
                     })
             } catch (e: SecurityException) {
-                Log.e("Ciao", e.message!!)
+                Log.e(LOG_TAG_ESP, e.message!!)
                 progress_bar.visibility = View.GONE
                 text_measure.text = "Error"
                 text_measure.visibility = View.VISIBLE
@@ -113,7 +114,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
         //Con il tasto registra_peso faccio una get per acquisire il peso dalla bilancia
         registra_peso.setOnClickListener() {
-            Log.d("ESP8266", "Click on REGISTRA PESO")
+            Log.d(LOG_TAG_ESP, "Click on REGISTRA PESO")
             try {
                 // Inizializzo la richiesta GET per registrare il peso
                 val getWeight = apiServe.getWeightREST()
@@ -126,11 +127,11 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                             //if(response?.body() != null)
                             if (response?.isSuccessful == true) {
                                 // peso recuperato, devo elaborare il json
-                                Log.d("ESP8266",
-                                    "getWeight: response.isSuccessful=true -> PESO acquisito")
+                                Log.d(LOG_TAG_ESP,"response code: " + response.code())
+                                Log.d(LOG_TAG_ESP,"getWeight: response.isSuccessful=true -> PESO acquisito")
                                 // response.body() è oggetto della classe UtenteAggiornaPesoClass
                                 weight = response.body()!!.get_weight // '!!' forza cast da tipo "?Double" a "Double"
-                                Log.d("ESP8266", "weight: " + weight + "| type is double: " + (weight is Double).toString())
+                                Log.d(LOG_TAG_ESP, "weight: " + weight + "| type is double: " + (weight is Double).toString())
                                 // nascondo la progress_bar e visualizzo il peso
                                 progress_bar.visibility = View.GONE
                                 text_measure.text = weight.toString()
@@ -141,7 +142,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                             call: Call<UtenteAggiornaPesoClass>?,
                             t: Throwable?,
                         ) {
-                            Log.d("ESP8266", "getWeight: unable fetch weight")
+                            Log.d(LOG_TAG_ESP, "getWeight: unable fetch weight")
                         }
                     })
                 }
@@ -151,8 +152,8 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                 //builder.removeTransportType(NetworkCapabilities.TRANSPORT_WIFI)
 
             } catch (e: SecurityException) {
-                Log.e("ESP8266", "try/catch on getWeight, exception catched:" + e.message!!)
-                Log.d("ESP8266", "try/catch on getWeight, exception catched:" + e.message!!)
+                Log.e(LOG_TAG_ESP, "try/catch on getWeight, exception catched:" + e.message!!)
+                Log.d(LOG_TAG_ESP, "try/catch on getWeight, exception catched:" + e.message!!)
             }
         }
 
@@ -163,11 +164,11 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
 /*
  /*override fun onResponse(call: Call<String>?, response: Response<String>) {
-                                    Log.d("ESP8266","call  onResponse  (from initScale request)")
+                                    Log.d(LOG_TAG_ESP,"call  onResponse  (from initScale request)")
                                     if (response.isSuccessful) {
                                         //Bilancia attiva
                                         //Abilito il pulsante Aggiorna Peso
-                                        Log.d("ESP8266","initScale: response.isSuccessful=true -> Bilancia attiva")
+                                        Log.d(LOG_TAG_ESP,"initScale: response.isSuccessful=true -> Bilancia attiva")
                                         progress_bar.visibility = View.GONE
                                         text_measure.visibility = View.VISIBLE
                                         this@UtenteBilanciaFragment.avvia_bilancia.visibility = View.GONE
@@ -179,8 +180,8 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                             getWeight.enqueue(object: Callback<Number> {
                                                 override fun onResponse(call: Call<Number>, response: Response<Number>) {
                                                     if (response.isSuccessful) {
-                                                        Log.d("ESP8266","getWeight: response.isSuccessful=true -> Acquisizione dati ok")
-                                                        Log.d("ESP8266","weight: " + response.body().toString())
+                                                        Log.d(LOG_TAG_ESP,"getWeight: response.isSuccessful=true -> Acquisizione dati ok")
+                                                        Log.d(LOG_TAG_ESP,"weight: " + response.body().toString())
                                                         *//*try {
                                                             //Trasformo la risposta da json a Double e lo salvo in weight
                                                             val jsonString = response.body().toString()
@@ -189,13 +190,13 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                                             text_measure.text =
                                                                 weight.get_weight.toString()
                                                         } catch (e: JSONException) {
-                                                            Log.d("LIBRA",
+                                                            Log.d(LOG_TAG_ESP,
                                                                 "ERROR getting JSON object to show weight")
                                                         }*//*
                                                     }
                                                 }
                                                 override fun onFailure(call: Call<Number>, t: Throwable) {
-                                                    Log.d("LIBRA", "ERROR contacting the libra to get the weight")
+                                                    Log.d(LOG_TAG_ESP, "ERROR contacting the libra to get the weight")
                                                 }
 
                                             })
@@ -204,7 +205,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                     }
                                 }
                                 override fun onFailure(call: Call<String>?, t: Throwable?){
-                                    Log.d("LIBRA", "ERROR contacting the libra to turn it on")
+                                    Log.d(LOG_TAG_ESP, "ERROR contacting the libra to turn it on")
                                 }
                             })*/
 

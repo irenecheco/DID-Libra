@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.professionista.ProfessionistaMainActivity
 import it.polito.s279941.libra.utente.UtenteMainActivity
+import it.polito.s279941.libra.utils.LOG_TAG
 import kotlinx.android.synthetic.main.fragment_landing_page.*
 
 
@@ -19,6 +21,8 @@ import kotlinx.android.synthetic.main.fragment_landing_page.*
  * create an instance of this fragment.
  */
 class LandingPageFragment : Fragment() {
+    // istanzio il viewModel
+    private val viewModel: LandingPageViewModel by activityViewModels()
 
     companion object {
         fun newInstance() = LandingPageFragment()
@@ -50,10 +54,11 @@ class LandingPageFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val loginPageFragment = LoginPageFragment()
 
-        Log.d("LIBRA", "onActivityCreated start in LandingPageFragment")
+        Log.d(LOG_TAG, "onActivityCreated start in LandingPageFragment")
+        Log.d(LOG_TAG, "  viewModel: " + viewModel.toString() + " in LandingPageFragment")
 
         utente_button.setOnClickListener{
-            Log.d("LIBRA", "event CLICK on INTERFACCIA UTENTE button in LandingPageFragment")
+            Log.d(LOG_TAG, "event CLICK on INTERFACCIA UTENTE button in LandingPageFragment")
             val i = Intent(activity, UtenteMainActivity::class.java)
             startActivityForResult(i, 1)
         }
@@ -64,7 +69,8 @@ class LandingPageFragment : Fragment() {
         }
 
         preLoginButton.setOnClickListener{
-            Log.d("LIBRA", "event CLICK on LOGIN button in LandingPageFragment")
+            Log.d(LOG_TAG, "event CLICK on (pre)LOGIN button id: " + preLoginButton.id.toString() + " in LandingPageFragment")
+            viewModel.selectButton(preLoginButton.id)
             val transaction = activity?.supportFragmentManager?.beginTransaction()
             transaction?.replace(R.id.landing_page_fragment_container, loginPageFragment)
             transaction?.addToBackStack("LandigPageFragment")

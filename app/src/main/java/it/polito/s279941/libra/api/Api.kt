@@ -5,13 +5,13 @@ import it.polito.s279941.libra.DataModel.UtenteAggiornaPesoClass
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.utenteobiettivi.ObiettiviItem
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import it.polito.s279941.libra.DataModel.UtenteAvviaBilanciaClass
-import it.polito.s279941.libra.utils.MainConfig
+import it.polito.s279941.libra.utils.BACKEND_URL
+import it.polito.s279941.libra.utils.ESP8266_URL
 
 interface Api {
 
@@ -19,8 +19,7 @@ interface Api {
         // Set NodeJS server IP:port (solitamente il PC su cui gira NodeJS e AndroidStudio),
         // ovviamente l'IP deve essere raggiungibile dall'app
         // The NodeJS server IP (solitamente il PC su cui gira NodeJS e AndroidStudio)
-        val mainConfig = MainConfig()
-        val BASE_URL = mainConfig.nodeJsBaseUrl
+        val BASE_URL = BACKEND_URL
 
         fun create(): Api {
             val retrofit = Retrofit.Builder()
@@ -51,11 +50,9 @@ interface Api {
 interface Api2 {
 
     companion object {
-        // importo i parametri di cfg generali
-        val mainConfig = MainConfig()
         // *** ATTENZIONE il cell deve avere WiFi attiva *** //
         // URL della ESP8266
-        val BASE_URL = Api.mainConfig.esp8266URL
+        val BASE_URL = ESP8266_URL
 
         fun create(): Api2 {
             val retrofit = Retrofit.Builder()

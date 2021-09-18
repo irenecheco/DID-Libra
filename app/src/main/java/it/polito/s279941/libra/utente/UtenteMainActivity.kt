@@ -5,13 +5,14 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import it.polito.s279941.libra.R
+import it.polito.s279941.libra.utils.LOG_TAG
 import kotlinx.android.synthetic.main.utente_activity_main.*
 
 class UtenteMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("LIBRA", "UtenteMainActivity avviata")
+        Log.d(LOG_TAG, "UtenteMainActivity avviata")
         setContentView(R.layout.utente_activity_main)
         setSupportActionBar(toolbar)
 
