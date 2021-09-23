@@ -34,7 +34,7 @@
         android:layout_height="200dp"
         app:cardBackgroundColor="@color/colorPrimaryDark"
         app:cardCornerRadius="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/aggiorna_peso"
+        app:layout_constraintBottom_toTopOf="@+id/avvia_bilancia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,23 +86,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_peso_rilevato" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/aggiorna_peso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:padding="12dp"
-        android:shadowColor="#000000"
-        android:shadowRadius="0.5"
-        android:text="@string/utente_refresh_button"
-        android:textColor="@color/button_text_color"
-        android:textSize="16sp"
-        android:visibility="gone"
-        app:backgroundTint="@color/button_background_color"
-        app:layout_constraintBottom_toTopOf="@+id/registra_peso"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_peso_rilevato" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/registra_peso"
@@ -121,7 +104,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aggiorna_peso" />
+        app:layout_constraintTop_toBottomOf="@+id/avvia_bilancia" />
 
     <TextView
         android:id="@+id/saveWeight_label"
@@ -142,5 +125,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.95" />
+
+    <Button
+        android:id="@+id/prova_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prova"
+        app:backgroundTint="#FF0000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

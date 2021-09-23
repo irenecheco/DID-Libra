@@ -34,7 +34,11 @@ class UtenteDietaFragment : Fragment(R.layout.utente_dieta_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         Log.d("aaaa","onViewCreated")
-        tv_today_data.text= DateFormat.getDateInstance(DateFormat.SHORT).format(Date(System.currentTimeMillis()))
+        //tv_today_data.text= DateFormat.getDateInstance(DateFormat.SHORT).format(Date(System.currentTimeMillis()))
+        utenteViewModel.giornoLiveData.observe(viewLifecycleOwner,
+            Observer { giorno -> tv_today_data.text= DateFormat.getDateInstance(DateFormat.SHORT).format(Date(giorno))
+            })
+
 
         utenteViewModel.pastiDelGiornoLiveData.observe(viewLifecycleOwner,
             Observer { data -> adapter.setPastiDelGiorno(data)

@@ -22,7 +22,6 @@
 
     <!-- Bilancia utente-->
     <string name="utente_libra_button">Avvia Bilancia</string>
-    <string name="utente_refresh_button">Pesami</string>
     <string name="utente_save_weight_button">Salva Peso</string>
     <string name="utente_save_weight_label">Puoi registrare il tuo peso solo una volta ogni xx giorni</string>
     <string name="utente_last_measurement_label">Ultima misurazione rilevata</string>
@@ -85,7 +84,10 @@
     <string name="nutr_patient_email">Email:</string>
     <string name="goal_button">Aggiungi obiettivo</string>
 
-    !-- Blocco bilancia pazienti professionista -->
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Blocco bilancia pazienti professionista -->
     <string name="nutr_patient_libraLock_spinnerLabel">Registra misurazione:</string>
     <string-array name="nut_libra_lock_options">
         <item>Una volta a settimana</item>
