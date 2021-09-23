@@ -2,8 +2,12 @@ package it.polito.s279941.libra.DataModel
 
 import java.util.*
 
-// TODO: aggiungere attributi mancanti come definiti nel server NodeJS
+data class UtenteLoginData(
+        var email: String ="",
+        var password: String =""
+)
 
+// TODO: aggiungere attributi mancanti come definiti nel server NodeJS
 data class UtenteDataClass(
         val id: String,
         val tipo: String,
@@ -20,7 +24,7 @@ data class UtenteDataClass(
         val scr_foto: String,
         val obiettivi: List<Obiettivo>,
         val storico_pesi: List<Peso>,
-        val dieta: List<Dieta>,
+        val dieta: Dieta,
         val registrazione_peso: Int,
 )
 

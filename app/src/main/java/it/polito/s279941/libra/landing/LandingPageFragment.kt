@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_landing_page.*
  * create an instance of this fragment.
  */
 class LandingPageFragment : Fragment() {
-    // istanzio il viewModel
+    // creo il rif al viewModel istanziato dall'activity
     private val viewModel: LandingPageViewModel by activityViewModels()
 
     companion object {
@@ -52,9 +52,10 @@ class LandingPageFragment : Fragment() {
     // indica al frammento che è terminata la creazione dell'activity
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val loginPageFragment = LoginPageFragment()
+        val loginPageFragment = LoginPageFragment.newInstance()
 
         Log.d(LOG_TAG, "onActivityCreated start in LandingPageFragment")
+        //Log.d(LOG_TAG, "onActivityCreated -> savedInstanceState = " + savedInstanceState.toString())
         Log.d(LOG_TAG, "  viewModel: " + viewModel.toString() + " in LandingPageFragment")
 
         utente_button.setOnClickListener{
@@ -64,13 +65,14 @@ class LandingPageFragment : Fragment() {
         }
 
         professionista_button.setOnClickListener{
+            Log.d(LOG_TAG, "event CLICK on INTERFACCIA PROFESSIONISTA button in LandingPageFragment")
             val i = Intent(activity, ProfessionistaMainActivity::class.java)
             startActivityForResult(i, 1)
         }
 
         preLoginButton.setOnClickListener{
             Log.d(LOG_TAG, "event CLICK on (pre)LOGIN button id: " + preLoginButton.id.toString() + " in LandingPageFragment")
-            viewModel.selectButton(preLoginButton.id)
+            viewModel.setSelectedButton(preLoginButton.id)
             val transaction = activity?.supportFragmentManager?.beginTransaction()
             transaction?.replace(R.id.landing_page_fragment_container, loginPageFragment)
             transaction?.addToBackStack("LandigPageFragment")

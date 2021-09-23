@@ -3,6 +3,6 @@
     <domain-config cleartextTrafficPermitted="true">
         <!-- IP devono essere gli stessi specificati in utils.Config  -->
         <domain includeSubdomains="true">192.168.4.1</domain>
-        <domain includeSubdomains="true">192.168.121.240</domain>
+        <domain includeSubdomains="true">192.168.145.240</domain>
     </domain-config>
 </network-security-config>
