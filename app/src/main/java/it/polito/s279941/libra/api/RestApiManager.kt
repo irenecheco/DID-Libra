@@ -1,6 +1,7 @@
 package it.polito.s279941.libra.api
 
 import android.util.Log
+import it.polito.s279941.libra.DataModel.Obiettivo
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.DataModel.UtenteLoginData
 import it.polito.s279941.libra.utils.LOG_TAG
@@ -32,6 +33,26 @@ class RestApiManager {
                 override fun onFailure(call: Call<UtenteDataClass>, t: Throwable) {
                     Log.d(LOG_TAG, "onFailure -> throwable.message=" + t.message)
                     Log.d(LOG_TAG, "onFailure -> throwable.cause=" + t.cause)
+                }
+            }
+        )
+    }
+
+    fun getGoals(onResult: (List<Obiettivo>?) -> Unit){
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        // richiamo al metodo associato alla richiesta REST
+        retrofit.getGoals().enqueue(
+            object : Callback<List<Obiettivo>> {
+                override fun onFailure(call: Call<List<Obiettivo>>, t: Throwable) {
+                    Log.d("LIBRA", "  start onFailure()  in  retrofit.getGoal().enqueue  in  RestApiManager")
+                    Log.d("LIBRA", "    throwable mess: " + t.message)
+                    onResult(null)
+                }
+                override fun onResponse(call: Call<List<Obiettivo>>, response: Response<List<Obiettivo>>) {
+                    Log.d("LIBRA", "  start onResponse()  in  retrofit.getGoal().enqueue  in  RestApiManager")
+                    Log.d("LIBRA", "    status code: " + response.code())
+                    val listOfGoals = response.body()
+                    onResult(listOfGoals)
                 }
             }
         )

@@ -1,9 +1,11 @@
 package it.polito.s279941.libra.api
 
+import it.polito.s279941.libra.DataModel.Obiettivo
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.DataModel.UtenteLoginData
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
@@ -27,8 +29,12 @@ interface RestApi {
     /*@GET("users")
     fun getUsers2() : Observable<List<UtenteDataClass>>
 
-    @GET("users/goals/6071aea342e7530e8c1947ed") // id utente preso a caso dal server per vedere se funziona
-    // poi ci sarà da creare una variabile che indica l'utente che sta usando l'app da incatenare al resto dell'indirizzo
-    fun getGoals() : Call<List<ObiettiviItem>>*/
+    // id utente preso a caso dal server per vedere se funziona
+    // poi ci sarà da creare una variabile che indica l'utente che sta usando l'app da incatenare al resto dell'indirizzo*/
+    @GET("users/goals/6071aea342e7530e8c1947ed")
+    fun getGoals(): Call<List<Obiettivo>>
+
+    @POST("nut/add-goal/6071aea342e7530e8c1947ed")
+    fun addGoal(@Body userData: Obiettivo): Call<Obiettivo>
 
 }

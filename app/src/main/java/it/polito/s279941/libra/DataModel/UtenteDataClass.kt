@@ -1,5 +1,7 @@
 package it.polito.s279941.libra.DataModel
 
+import com.google.gson.annotations.SerializedName
+import java.text.SimpleDateFormat
 import java.util.*
 
 data class UtenteLoginData(
@@ -30,7 +32,11 @@ data class UtenteDataClass(
 
 
 data class Obiettivo(
-        val data: Date,
+        @SerializedName("_id")
+        var id: String,
+        @SerializedName("data_obiettivo")
+        val data_obiettivo: Date,
+        @SerializedName("obiettivo")
         val obiettivo: String,
 )
 

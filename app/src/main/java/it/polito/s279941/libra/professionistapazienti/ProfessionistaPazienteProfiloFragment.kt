@@ -14,11 +14,12 @@ import com.jjoe64.graphview.series.LineGraphSeries
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.utente.UtenteViewModel
 import it.polito.s279941.libra.utenteobiettivi.ObiettiviAdapter
+import it.polito.s279941.libra.utenteobiettivi.ObiettiviViewModel
 import kotlinx.android.synthetic.main.professionista_paziente_profilo_fragment.*
 
 class ProfessionistaPazienteProfiloFragment: Fragment(R.layout.professionista_paziente_profilo_fragment) {
 
-    val patientGoalsViewModel by activityViewModels<UtenteViewModel>()
+    val patientGoalsViewModel by activityViewModels<ObiettiviViewModel>()
     val patientGoalsAdapter = ObiettiviAdapter(); // stesso adapter usato per il lato utente (per ora (?))
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +39,7 @@ class ProfessionistaPazienteProfiloFragment: Fragment(R.layout.professionista_pa
         patientGraph.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.NONE
 
         // Obiettivi
-        patientGoalsViewModel.obiettiviStoricoLiveData.observe(viewLifecycleOwner, Observer { data -> patientGoalsAdapter.setObiettivi(data) })
+        //patientGoalsViewModel.obiettiviStoricoLiveData.observe(viewLifecycleOwner, Observer { data -> patientGoalsAdapter.setObiettivi(data) })
         recyclerView_obiettivi_paziente.layoutManager= LinearLayoutManager(requireContext())
         recyclerView_obiettivi_paziente.adapter = patientGoalsAdapter
     }

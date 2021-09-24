@@ -2,9 +2,9 @@ package it.polito.s279941.libra.utente
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,24 +12,23 @@ import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
-import it.polito.s279941.libra.MainViewModel
-import it.polito.s279941.libra.R
-import it.polito.s279941.libra.Repository
-import it.polito.s279941.libra.ViewModelFactory
-import it.polito.s279941.libra.api.Api
+import it.polito.s279941.libra.*
+import it.polito.s279941.libra.api.RestApiManager
 import it.polito.s279941.libra.utenteobiettivi.ObiettiviAdapter
+import it.polito.s279941.libra.utenteobiettivi.ObiettiviViewModel
 import kotlinx.android.synthetic.main.utente_storico_fragment.*
 
 class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
 
     //val utenteGoalsViewModel by activityViewModels<UtenteViewModel>()
-    lateinit var utenteGoalsViewModel: MainViewModel
     val goalsAdapter = ObiettiviAdapter()
-
-    private val retrofitService = Api.create()
+    private lateinit var viewModel: ObiettiviViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(this).get(ObiettiviViewModel::class.java)
+        Log.d("LIBRA","calling & create the viewModel of class ObiettiviVieModel in UtenteStoricoFragment")
 
         // Grafico
         val graph = getView()?.findViewById(R.id.utente_grafico) as GraphView
@@ -45,12 +44,12 @@ class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
         graph.gridLabelRenderer.gridStyle = GridLabelRenderer.GridStyle.NONE
 
         // Obiettivi
-        utenteGoalsViewModel = ViewModelProvider(this, ViewModelFactory(Repository(retrofitService))).get(MainViewModel::class.java)
-        //utenteGoalsViewModel.obiettiviStoricoLiveData.observe(viewLifecycleOwner, Observer { data -> goalsAdapter.setObiettivi(data) })
+        // utenteGoalsViewModel.obiettiviStoricoLiveData.observe(viewLifecycleOwner, Observer { data -> goalsAdapter.setObiettivi(data) })
+        //viewModel.getGoals()
+        //viewModel.obiettiviStoricoLiveData.observe(viewLifecycleOwner, Observer { data -> goalsAdapter.setObiettivi(data) })
+        viewModel.getGoals().observe(viewLifecycleOwner, Observer { data -> goalsAdapter.setObiettivi(data) })
         recyclerView_obiettivi.layoutManager= LinearLayoutManager(requireContext())
         recyclerView_obiettivi.adapter = goalsAdapter
-        utenteGoalsViewModel.goalList.observe(viewLifecycleOwner, Observer{ goalsAdapter.setGoalList(it) })
-        utenteGoalsViewModel.errorMessage.observe(viewLifecycleOwner, Observer{})
-        utenteGoalsViewModel.getGoals()
+        Log.d("LIBRA","  return from call viewModel.getGoals().toString()  in UtenteStoricoFragment")
     }
 }
