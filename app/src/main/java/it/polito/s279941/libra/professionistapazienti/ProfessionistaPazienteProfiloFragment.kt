@@ -1,7 +1,9 @@
 package it.polito.s279941.libra.professionistapazienti
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -12,10 +14,15 @@ import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import it.polito.s279941.libra.R
+import it.polito.s279941.libra.utente.UtenteMainActivity
 import it.polito.s279941.libra.utente.UtenteViewModel
 import it.polito.s279941.libra.utenteobiettivi.ObiettiviAdapter
 import it.polito.s279941.libra.utenteobiettivi.ObiettiviViewModel
+import it.polito.s279941.libra.utils.LOG_TAG
+import kotlinx.android.synthetic.main.fragment_landing_page.*
 import kotlinx.android.synthetic.main.professionista_paziente_profilo_fragment.*
+import androidx.fragment.app.FragmentTransaction
+
 
 class ProfessionistaPazienteProfiloFragment: Fragment(R.layout.professionista_paziente_profilo_fragment) {
 
@@ -42,5 +49,14 @@ class ProfessionistaPazienteProfiloFragment: Fragment(R.layout.professionista_pa
         //patientGoalsViewModel.obiettiviStoricoLiveData.observe(viewLifecycleOwner, Observer { data -> patientGoalsAdapter.setObiettivi(data) })
         recyclerView_obiettivi_paziente.layoutManager= LinearLayoutManager(requireContext())
         recyclerView_obiettivi_paziente.adapter = patientGoalsAdapter
+
+        val newFragment: Fragment = ProfessionistaPazienteAggiungiObiettivoFragment()
+        add_goal_button.setOnClickListener{
+            Log.d(LOG_TAG, "event CLICK on ADD GOAL in ProfessionistaPazienteProfiloFragment")
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.pazienti_fragment_container, newFragment)
+            transaction?.addToBackStack("ProfessionistaPazienteProfiloFragment")
+            transaction?.commit()
+        }
     }
 }

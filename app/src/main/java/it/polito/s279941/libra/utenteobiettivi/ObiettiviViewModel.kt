@@ -41,6 +41,23 @@ class ObiettiviViewModel : ViewModel() {
         return obiettiviStoricoLiveData
     }
 
+    fun addGoal(newUserGoal: Obiettivo) {
+        Log.d("LIBRA","start fun addGoal() in class ObiettiviViewModel")
+        val restApiManager = RestApiManager()
+        //val userGoal = Obiettivo(data_obiettivo = Date(), obiettivo = "obiettivo n")
+        val userGoal = newUserGoal
+
+        restApiManager.addGoal(userGoal) {
+            Log.d("LIBRA","  start fun restApiManager.addGoal(userGoal) in class ObiettiviViewModel ")
+            if (it?.obiettivo != null) {
+                Log.d("LIBRA", "    restApiManager.addGoal() : Success registering new goal")
+                Log.d("LIBRA", "    it = " + it.toString() + "  --  classe: " + it.javaClass)
+            } else {
+                Log.d("LIBRA", "    restApiManager.addGoal() : Error registering new goal")
+            }
+        }
+    }
+
     //private val _obiettiviStorico: MutableList<Obiettivo> = mutableListOf<Obiettivo>()
     //private val _obiettiviStoricoLiveData = MutableLiveData<List<Obiettivo>>().also{it.value = _obiettiviStorico}
     //val obiettiviStoricoLiveData : LiveData<List<Obiettivo>> = _obiettiviStoricoLiveData

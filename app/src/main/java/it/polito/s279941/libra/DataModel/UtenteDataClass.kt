@@ -32,8 +32,8 @@ data class UtenteDataClass(
 
 
 data class Obiettivo(
-        @SerializedName("_id")
-        var id: String,
+        //@SerializedName("_id")
+        //var id: String,
         @SerializedName("data_obiettivo")
         val data_obiettivo: Date,
         @SerializedName("obiettivo")
