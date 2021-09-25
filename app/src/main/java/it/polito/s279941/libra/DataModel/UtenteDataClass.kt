@@ -1,7 +1,6 @@
 package it.polito.s279941.libra.DataModel
 
 import com.google.gson.annotations.SerializedName
-import java.text.SimpleDateFormat
 import java.util.*
 
 data class UtenteLoginData(
@@ -11,23 +10,23 @@ data class UtenteLoginData(
 
 // TODO: aggiungere attributi mancanti come definiti nel server NodeJS
 data class UtenteDataClass(
-        val id: String,
-        val tipo: String,
-        val data_iscrizione: Date, // todo: check with date format in DB
-        val email: String,
-        val password: String,
-        val passwordHash: String,
-        val salt: String,
-        val nome: String,
-        val cognome: String,
-        val data_nascita: Date, // todo: check with date format in DB
-        val cod_iscrizione_albo: String,
-        val lista_pazienti: List<String>,
-        val scr_foto: String,
-        val obiettivi: List<Obiettivo>,
-        val storico_pesi: List<Peso>,
-        val dieta: Dieta,
-        val registrazione_peso: Int,
+        var id: String ="",
+        var tipo: String ="",
+        var data_iscrizione: Date? = null, // todo: check with date format in DB
+        var email: String ="",
+        var password: String ="",
+        var passwordHash: String ="",
+        var salt: String ="",
+        var nome: String ="",
+        var cognome: String ="",
+        var data_nascita: Date? = null, // todo: check with date format in DB
+        var cod_iscrizione_albo: String ="",
+        var lista_pazienti: List<String>? = null,
+        var scr_foto: String ="",
+        var obiettivi: List<Obiettivo>? = null,
+        var storico_pesi: List<Peso>? = null,
+        var dieta: Dieta? = null,
+        var registrazione_peso: Int =0
 )
 
 

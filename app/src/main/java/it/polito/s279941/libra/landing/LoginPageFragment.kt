@@ -13,7 +13,7 @@ import it.polito.s279941.libra.utils.LOG_TAG
 import kotlinx.android.synthetic.main.fragment_login_page.*
 
 class LoginPageFragment : Fragment() {
-    // istanzio il viewModel
+    // creo il rif al viewModel istanziato dall'activity
     private val viewModel: LandingPageViewModel by activityViewModels()
 
     // flag per verifica integrità dati inseriti
@@ -39,21 +39,24 @@ class LoginPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //val loginButton : Button = view.findViewById(R.id.loginButton)
-        Log.d(LOG_TAG, "LoginPageFragment called by pressing button with id : " + viewModel.getSelectedButtonId() + " in LandingPageFragment")
-        Log.d(LOG_TAG, "viewModel: " + viewModel.toString() + " in LoginPageFragment")
+        Log.d(LOG_TAG, "LoginPageFragment called by pressing button with id : " + viewModel.getSelectedButtonId() + " in LandingPageFragment") //--->DBG
+        Log.d(LOG_TAG, "viewModel: " + viewModel.toString() + " in LoginPageFragment") //--->DBG
         // bottone LOGIN disabilitato finché non sono inseriti i dati corretti
         loginButton.isEnabled = emailFieldDataIntegrity && passwordFieldDataIntegrity
+        val loggedPageFragment = LoggedPageFragment.newInstance() //--->DBG
+
 
         // Verifica integrità dati
         emailField.doAfterTextChanged() {
         // regex con match ~99,9% https://emailregex.com/
             val email_regex = "(?:[a-z0-9!#\$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#\$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
             if (emailField.text.matches(Regex(email_regex))) {
-                Log.d(LOG_TAG, "email field matches regex: ${emailField.text}")
+                Log.d(LOG_TAG, "email field matches regex: ${emailField.text}") //--->DBG
+                // salvo il vlore nel viewModel
                 viewModel.utenteLoginData.email=emailField.text.toString()
                 emailFieldDataIntegrity = true
             } else{
-                Log.d(LOG_TAG, "email field does NOT match regex: ${emailField.text}")
+                Log.d(LOG_TAG, "email field does NOT match regex: ${emailField.text}") //--->DBG
                 emailFieldDataIntegrity = false
             }
             loginButton.isEnabled = emailFieldDataIntegrity && passwordFieldDataIntegrity
@@ -62,20 +65,26 @@ class LoginPageFragment : Fragment() {
         passwordField.doAfterTextChanged() {
             // blando check su campo mail
             if (passwordField.text.matches(Regex(".{3,}"))) {
-                Log.d("$LOG_TAG", "password field matches regex: ${passwordField.text}")
+                Log.d(LOG_TAG, "password field matches regex: ${passwordField.text}") //--->DBG
+                // salvo il vlore nel viewModel
                 viewModel.utenteLoginData.password = passwordField.text.toString()
                 passwordFieldDataIntegrity = true
             } else {
-                Log.d("$LOG_TAG", "password field does NOT match regex: ${passwordField.text}")
+                Log.d(LOG_TAG, "password field does NOT match regex: ${passwordField.text}") //--->DBG
                 passwordFieldDataIntegrity = false
             }
             loginButton.isEnabled = emailFieldDataIntegrity && passwordFieldDataIntegrity
         }
 
         loginButton.setOnClickListener {
-            Log.d(LOG_TAG, "CLICK event on LOGIN button id: " + loginButton.id.toString() + " in LoginPageFragment")
+            Log.d(LOG_TAG, "CLICK event on LOGIN button id: " + loginButton.id.toString() + " in LoginPageFragment") //--->DBG
             viewModel.logLogingData()
             viewModel.login()
+
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.landing_page_fragment_container, loggedPageFragment)
+            transaction?.addToBackStack("LoginPageFragment")
+            transaction?.commit()
         }
     }
 }

@@ -39,7 +39,7 @@ object ServiceBuilder {
         .build()
 
     fun<T> buildService(service: Class<T>): T{
-        Log.d(LOG_TAG, "start fun  buildService()  in object ServiceBuilder")
+        Log.d(LOG_TAG, "start fun  buildService()  in object ServiceBuilder") //--->DBG
         return retrofit.create(service)
     }
 }

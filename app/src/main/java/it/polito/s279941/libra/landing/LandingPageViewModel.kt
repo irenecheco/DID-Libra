@@ -1,33 +1,66 @@
 package it.polito.s279941.libra.landing
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.DataModel.UtenteLoginData
 import it.polito.s279941.libra.api.RestApiManager
 import it.polito.s279941.libra.utils.LOG_TAG
 
+// https://thanasakis.medium.com/restful-api-consuming-on-android-using-retrofit-and-architecture-components-livedata-room-and-59e3b064f94
+// https://developer.android.com/jetpack/guide#connect-viewmodel-repository
+
 // il viewModel si occupa della gestione dei dati
 class LandingPageViewModel : ViewModel(){
     private var selectedButtonId : Int = 0
-    var utenteLoginData : UtenteLoginData = UtenteLoginData()
 
+    // istanzio oggetti per il recupero dei dati
+    val restApiManager = RestApiManager()
+    val loginRepository = LoginRepository(restApiManager)
+
+    // contiene le credenziali passate dall'utente nella finetra di login
+    var utenteLoginData: UtenteLoginData = UtenteLoginData()
+
+    // contiene tutte le info sull'utente che ha fatto il login
+    // (non so come mai c'è il passaggio interrmedio atraverso la var
+    // che inizia con "_" ma su sito android era così
+    // definiti come LiveData al fine di essere osservabili dal Fragment
+    private var _utenteCorrente = MutableLiveData<UtenteDataClass>()
+    var utenteCorrente : LiveData<UtenteDataClass> = _utenteCorrente
+
+
+    // invoca il repository per il recupero dei dati
+    fun login(){
+        Log.d(LOG_TAG, "  start login()  in LandingPageViewModel") //--->DBG
+        _utenteCorrente = loginRepository.login(utenteLoginData)
+        utenteCorrente = _utenteCorrente
+        Log.d(LOG_TAG, "LandingPageViewModel --> _utenteCorrente=" + _utenteCorrente.toString()) //--->DBG
+        Log.d(LOG_TAG, "LandingPageViewModel --> utenteCorrente=" + utenteCorrente.toString()) //--->DBG
+        val alcuniAttributiUtenteCorrente = with(utenteCorrente.value){
+            this?.nome.toString() + " " +
+            this?.cognome.toString() + " - " +
+            this?.email.toString() + " " +
+            this?.tipo} //--->DBG
+        Log.d(LOG_TAG, "LandingPageViewModel --> attributi utenteCorrente=" + alcuniAttributiUtenteCorrente) //--->DBG
+    }
+
+
+    // varie funzioni a scopo di debug
     fun setSelectedButton (buttonId: Int) {
-        Log.d(LOG_TAG, "selectButton() id : " + buttonId + " in LandingPageViewModel")
+        Log.d(LOG_TAG, "selectButton() id : " + buttonId + " in LandingPageViewModel") //--->DBG
         selectedButtonId = buttonId
     }
 
     fun getSelectedButtonId (): Int {
-        Log.d(LOG_TAG, "selectedButton() id : " + selectedButtonId + " in LandingPageViewModel")
+        Log.d(LOG_TAG, "selectedButton() id : " + selectedButtonId + " in LandingPageViewModel") //--->DBG
         return selectedButtonId
     }
 
     fun logLogingData() {
-        Log.d(LOG_TAG, "utenteLoginData: email= ${utenteLoginData.email}  in LandingPageViewModel")
-        Log.d(LOG_TAG, "utenteLoginData: password= ${utenteLoginData.password}  in LandingPageViewModel")
+        Log.d(LOG_TAG, "utenteLoginData: email= ${utenteLoginData.email}  in LandingPageViewModel") //--->DBG
+        Log.d(LOG_TAG, "utenteLoginData: password= ${utenteLoginData.password}  in LandingPageViewModel") //--->DBG
     }
 
-    fun login(){
-        val restApiManager = RestApiManager()
-        restApiManager.login(utenteLoginData)
-    }
 }

@@ -1,7 +1,6 @@
 package it.polito.s279941.libra.api
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import it.polito.s279941.libra.DataModel.Obiettivo
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.DataModel.UtenteLoginData
@@ -18,32 +17,26 @@ We call it service but don’t be confused with Android service.
 If you feel you can rename the class as your own like with RestApiManager or ApiManager etc
 */
 
-class RestApiManager {
+class `RestApiManager_pre-LiveData` {
 
-    fun login(utenteLoginData: UtenteLoginData): MutableLiveData<UtenteDataClass> {
-        Log.d(LOG_TAG, "start fun  login()  in class RestApiManager") //--->DBG
-        val utenteData = MutableLiveData<UtenteDataClass>()
-
+    fun login(utenteLoginData: UtenteLoginData) {
+        Log.d(LOG_TAG, "start fun  login()  in class RestApiManager")
         val apiService = ServiceBuilder.buildService(RestApi::class.java)
-
         apiService.login(utenteLoginData).enqueue(
-            object : Callback<UtenteDataClass> {
+            object : Callback<UtenteDataClass>{
                 override fun onResponse(call: Call<UtenteDataClass>, response: Response<UtenteDataClass>) {
-                    Log.d(LOG_TAG, "RestApiManager.onResponse() -> response.isSuccessful=" + response.isSuccessful) //--->DBG
-                    Log.d(LOG_TAG, "RestApiManager.onResponse() -> response.code()=" + response.code()) //--->DBG
-                    Log.d(LOG_TAG, "RestApiManager.onResponse() -> response.body()=" + response.body()) //--->DBG
-                    utenteData.value = response.body()
+                    Log.d(LOG_TAG, "onResponse -> response.isSuccessful=" + response.isSuccessful)
+                    Log.d(LOG_TAG, "onResponse -> response.code()=" + response.code())
+                    Log.d(LOG_TAG, "onResponse -> response.body()=" + response.body())
                 }
 
                 override fun onFailure(call: Call<UtenteDataClass>, t: Throwable) {
-                    Log.d(LOG_TAG, "RestApiManager.onFailure() -> throwable.message=" + t.message) //--->DBG
-                    Log.d(LOG_TAG, "RestApiManager.onFailure() -> throwable.cause=" + t.cause) //--->DBG
+                    Log.d(LOG_TAG, "onFailure -> throwable.message=" + t.message)
+                    Log.d(LOG_TAG, "onFailure -> throwable.cause=" + t.cause)
                 }
             }
         )
-        return utenteData
     }
-
 
     fun getGoals(onResult: (List<Obiettivo>?) -> Unit){
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
@@ -64,7 +57,6 @@ class RestApiManager {
             }
         )
     }
-
 
     fun addGoal(userGoal: Obiettivo, onResult: (Obiettivo?) -> Unit){
         Log.d("LIBRA","start fun addGoal() in class RestApiManager")

@@ -14,7 +14,7 @@ import it.polito.s279941.libra.utente.UtenteMainActivity
 import it.polito.s279941.libra.utils.LOG_TAG
 import kotlinx.android.synthetic.main.fragment_landing_page.*
 
-
+// https://thanasakis.medium.com/restful-api-consuming-on-android-using-retrofit-and-architecture-components-livedata-room-and-59e3b064f94
 /**
  * A simple [Fragment] subclass.
  * Use the [LandingPageFragment.newInstance] factory method to
