@@ -22,7 +22,7 @@ class PazientiAdapter (var clickListener: OnPatientItemClickListener) : Recycler
 
     class PazientiViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         private val lista_pazienti_immagine: ImageView = v.findViewById(R.id.lista_pazienti_immagine)
-        private val lista_pazienti_nome: TextView = v.findViewById(R.id.lista_pazienti_nome)
+        private val lista_pazienti_nome: TextView = v.findViewById(R.id.numeroGiorno)
         private val lista_pazienti_data_ultimo_controllo: TextView = v.findViewById(R.id.lista_pazienti_data_ultimo_controllo)
         private val paziente_button: Button = v.findViewById(R.id.paziente_button)
 

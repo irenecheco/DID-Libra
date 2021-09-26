@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
     app:startDestination="@id/utenteProfiloFragment">
     <fragment
         android:id="@+id/utenteProfiloFragment"
@@ -22,7 +24,7 @@
     <fragment
         android:id="@+id/utenteDietaFragment2"
         android:name="it.polito.s279941.libra.utente.UtenteDietaFragment"
-        android:label="UtenteDietaFragment" >
+        android:label="UtenteDietaFragment">
         <action
             android:id="@+id/action_utenteDietaFragment2_to_utenteBilanciaFragment"
             app:destination="@id/utenteBilanciaFragment" />

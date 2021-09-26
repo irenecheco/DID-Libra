@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.utils.LOG_TAG
-import kotlinx.android.synthetic.main.fragment_logged_page.*
+//import kotlinx.android.synthetic.main.fragment_logged_page.*
 
 class LoggedPageFragment : Fragment() {
     // creo il rif al viewModel istanziato dall'activity
@@ -28,7 +28,8 @@ class LoggedPageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_logged_page, container, false)
+        //return inflater.inflate(R.layout.fragment_logged_page, container, false)
+        return null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,7 +47,7 @@ class LoggedPageFragment : Fragment() {
                         this?.email.toString() + "\n" +
                         this?.tipo} //--->DBG
             Log.d(LOG_TAG, "LoggedPageFragment --> attributi utenteCorrente=" + alcuniAttributiUtenteCorrente) //--->DBG
-            loggedUserTV.text = alcuniAttributiUtenteCorrente
+            //loggedUserTV.text = alcuniAttributiUtenteCorrente
         }
         Log.d(LOG_TAG, "end of onViewCreated()  in LoggedPageFragment")//--->DBG
     }
