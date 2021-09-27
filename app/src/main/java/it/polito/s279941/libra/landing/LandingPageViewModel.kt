@@ -20,7 +20,8 @@ class LandingPageViewModel : ViewModel(){
     val restApiManager = RestApiManager()
     val loginRepository = LoginRepository(restApiManager)
 
-    // contiene le credenziali passate dall'utente nella finetra di login
+    // serve a contenere le credenziali che verranno passate
+    // dall'utente nella finestra di login (LoginPageFragment)
     var utenteLoginData: UtenteLoginData = UtenteLoginData()
 
     // contiene tutte le info sull'utente che ha fatto il login
