@@ -32,7 +32,4 @@ class ProfessionistaGiorniDietaPazienteViewModel: ViewModel() {
         _giornoInModificaLiveData.value = _giornoInModifica
     }
 
-
-
-
 }

@@ -7,6 +7,15 @@ import it.polito.s279941.libra.utentedieta.PastoItem
 
 class UtenteViewModel: ViewModel() {
 
+    private var _noteDelGiorno: String = "note iniziali"
+    private val _noteDelGiornoLiveData = MutableLiveData<String>().also{it.value = _noteDelGiorno}
+    val noteDelGiornoLiveData : LiveData<String> = _noteDelGiornoLiveData
+    fun setNoteDelGiorno(note:String ){
+        _noteDelGiorno = note
+        _noteDelGiornoLiveData.value = _noteDelGiorno
+        // Salvarle anche sul database
+    }
+
     private var _giorno: Long = System.currentTimeMillis()
     private val _giornoLiveData = MutableLiveData<Long>().also{it.value = _giorno}
     val giornoLiveData : LiveData<Long> = _giornoLiveData

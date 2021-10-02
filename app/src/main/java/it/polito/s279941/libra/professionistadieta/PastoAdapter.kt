@@ -22,12 +22,12 @@ class PastoAdapter () : RecyclerView.Adapter<PastoAdapter.ViewHolder>() {
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         private val tv_titolo_pasto: TextView = v.findViewById(R.id.tv_titolo_pasto)
         private val tv_descrizione_pasto: TextView = v.findViewById(R.id.tv_descrizione_pasto)
-        private val cb_pasto_rispettato: CheckBox = v.findViewById(R.id.cb_pasto_rispettato)
+        //private val cb_pasto_rispettato: CheckBox = v.findViewById(R.id.cb_pasto_rispettato)
 
         fun bind(item: PastoItem) {
             tv_titolo_pasto.text = item.titolo
             tv_descrizione_pasto.text = item.descrizione
-            cb_pasto_rispettato.isChecked=item.ho_rispettato
+            //cb_pasto_rispettato.isChecked=item.ho_rispettato
                 // DateFormat
                // .getDateInstance(DateFormat.SHORT)
               //  .format(Date(item.data))
