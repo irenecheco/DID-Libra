@@ -46,6 +46,8 @@ class UtenteDietaFragment : Fragment(R.layout.utente_dieta_fragment) {
 
         utente_pasti_rv.layoutManager= LinearLayoutManager(requireContext())
         utente_pasti_rv.adapter = adapter
+
+
         setHasOptionsMenu(true)
     }
 

@@ -1,8 +1,10 @@
 package it.polito.s279941.libra.professionistadieta
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import it.polito.s279941.libra.utentedieta.PastoItem
 
 class ProfessionistaGiorniDietaPazienteViewModel: ViewModel() {
 
@@ -28,8 +30,19 @@ class ProfessionistaGiorniDietaPazienteViewModel: ViewModel() {
     }
     val giornoInModificaLiveData : LiveData<GiornoItem> = _giornoInModificaLiveData
     fun setGiornoInModifica(idx: Int) {
-        _giornoInModifica = _giorni.get(idx)
+        _giornoInModifica = _giorni[idx]
         _giornoInModificaLiveData.value = _giornoInModifica
+    }
+    fun updateDatiGiornoInModifica(colazione: String, spuntino : String, pranzo : String, merenda: String, cena: String ) {
+        Log.d("aaaa","colazione:"+_giornoInModifica?._pastiDelGiorno?.get(0)?.descrizione+"=>"+colazione)
+        _giornoInModifica?._pastiDelGiorno?.get(0)?.descrizione = colazione
+        _giornoInModifica?._pastiDelGiorno?.get(1)?.descrizione = spuntino
+        _giornoInModifica?._pastiDelGiorno?.get(2)?.descrizione = pranzo
+        _giornoInModifica?._pastiDelGiorno?.get(3)?.descrizione = merenda
+        _giornoInModifica?._pastiDelGiorno?.get(4)?.descrizione = cena
+
+        _giornoInModificaLiveData.value = _giornoInModifica
+        // TODO_ Salvare i dati sul DB
     }
 
 }

@@ -3,9 +3,38 @@ package it.polito.s279941.libra.utente
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import it.polito.s279941.libra.DataModel.CalendarioDieta
+import it.polito.s279941.libra.DataModel.ConsumazionePasto
+import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.utentedieta.PastoItem
 
 class UtenteViewModel: ViewModel() {
+
+    private var _userData: UtenteDataClass ?= null
+
+    /**
+     * Quando viene letto l'utente occorre che qualcuno richiami questo metodo
+     *
+     */
+    fun initByUtenteDataClass(userData: UtenteDataClass){
+        // TODO: Quando viene letto l'utente occorre che qualcuno richiami questo metodo !!!!
+        _userData=userData;
+
+        // Individua la data Odiera
+        val dataOdierna = "20210609"
+
+        // impostiamo le note del giorno individuato precedentemente
+        var currDayCalDieta = _userData!!.calendarioDieta?.find { el -> el.data.equals(dataOdierna) }
+        if (currDayCalDieta==null) {
+            currDayCalDieta = CalendarioDieta(dataOdierna,"",
+                ConsumazionePasto()
+            )
+            _userData!!.calendarioDieta?.add(currDayCalDieta)
+        }
+
+        // TODO: Da continuare, solo impostato
+    }
+
 
     private var _noteDelGiorno: String = "note iniziali"
     private val _noteDelGiornoLiveData = MutableLiveData<String>().also{it.value = _noteDelGiorno}

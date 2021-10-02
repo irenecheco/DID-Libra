@@ -26,7 +26,22 @@ data class UtenteDataClass(
         var obiettivi: List<Obiettivo>? = null,
         var storico_pesi: List<Peso>? = null,
         var dieta: Dieta? = null,
+        var calendarioDieta: MutableList<CalendarioDieta>? = null,
         var registrazione_peso: Int =0
+)
+
+
+data class CalendarioDieta(
+        var data: String? = null,
+        var commento: String? = null,
+        var consumazionePasto: ConsumazionePasto? = null
+)
+data class  ConsumazionePasto(
+        var colazione: Boolean = false,
+        var spuntinoMattina: Boolean = false ,
+        var pranzo: Boolean = false,
+        var spuntinoPomeriggio: Boolean = false,
+        var cena: Boolean = false
 )
 
 
