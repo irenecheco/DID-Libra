@@ -45,7 +45,7 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
     }
 
     override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
-        menuInflater.inflate(R.menu.utente_dieta_menu,menu)
+        menuInflater.inflate(R.menu.professionista_dieta_menu,menu)
         super.onCreateOptionsMenu(menu,menuInflater)
 
     }
@@ -53,14 +53,14 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when (item.itemId){
-            R.id.mnit_appunti -> {
+            R.id.menuDataInizio -> {
                 //findNavController().navigate(R.id.action_utenteDietaFragment2_to_dietaAppuntiFragment)
-                val f: Fragment = DietaAppuntiFragment()
+                val f: Fragment = ProfessionistaCalendarioDietaDataInizio()
                 activity?.supportFragmentManager?.beginTransaction()?.apply{
-                    replace(R.id.fragment_container, f).addToBackStack("dietafrag_appunti").commit()
+                    replace(R.id.pazienti_fragment_container, f).addToBackStack("dietafrag_caldatainizio").commit()
                 }
             }
-            R.id.mnit_calendario -> {
+            R.id.menuCalendario -> {
                 //findNavController().navigate(R.id.action_utenteDietaFragment2_to_dietaCalendarioFragment)
                 val f: Fragment = DietaCalendarioFragment()
                 activity?.supportFragmentManager?.beginTransaction()?.apply{

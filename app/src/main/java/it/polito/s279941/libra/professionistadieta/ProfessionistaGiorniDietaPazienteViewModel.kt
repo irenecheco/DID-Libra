@@ -8,6 +8,20 @@ import it.polito.s279941.libra.utentedieta.PastoItem
 
 class ProfessionistaGiorniDietaPazienteViewModel: ViewModel() {
 
+
+
+    private var _giornoInizioDieta: Long = System.currentTimeMillis()
+    private val _giornoInizioDietaLiveData = MutableLiveData<Long>().also{it.value = _giornoInizioDieta}
+    val giornoInizioDietaLiveData : LiveData<Long> = _giornoInizioDietaLiveData
+    fun setGiornoInizioDieta(giorno: Long) {
+        _giornoInizioDieta = giorno
+        _giornoInizioDietaLiveData.value = _giornoInizioDieta
+    }
+    fun getGiornoInizioDieta(): Long {
+        return _giornoInizioDieta
+    }
+
+
     private val _giorni= mutableListOf<GiornoItem>()
 
     private val _giorniLiveData = MutableLiveData<MutableList<GiornoItem>>().also{
