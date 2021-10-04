@@ -13,11 +13,14 @@ import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import it.polito.s279941.libra.DataModel.UtenteAggiornaPesoClass
 import it.polito.s279941.libra.DataModel.UtenteAvviaBilanciaClass
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.api.Api2
+import it.polito.s279941.libra.landing.LandingPageViewModel
 import it.polito.s279941.libra.utils.LOG_TAG_ESP
 import kotlinx.android.synthetic.main.utente_bilancia_fragment.*
 import kotlinx.android.synthetic.main.utente_profilo_fragment.text_measure
@@ -26,12 +29,15 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 // TODO : l'app va in crash quando si ruota il telefono
 // TODO: al  termine della lettura l'app deve collegarsi al DB e salvare il peso, quindi deve
 //  scollegarsi dal wifi bilancia e ricollegarsi a quello precedente !
 
 class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
+
+    private val viewModel: UtenteBilanciaViewModel by activityViewModels()
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -126,6 +132,8 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                         override fun onResponse(call: Call<UtenteAggiornaPesoClass>?, response: Response<UtenteAggiornaPesoClass>?) {
                             //if(response?.body() != null)
                             if (response?.isSuccessful == true) {
+                                //recupero data odierna
+                                var today = Calendar.getInstance().time
                                 // peso recuperato, devo elaborare il json
                                 Log.d(LOG_TAG_ESP,"response code: " + response.code())
                                 Log.d(LOG_TAG_ESP,"getWeight: response.isSuccessful=true -> PESO acquisito")
@@ -136,6 +144,8 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                 progress_bar.visibility = View.GONE
                                 text_measure.text = weight.toString()
                                 text_measure.visibility = View.VISIBLE
+                                //lancio la funzione post weight contenuta in UtenteBilanciaViewModel per fare POST al server
+                                viewModel.postWeight(today, weight)
                             }
                         }
                         override fun onFailure(

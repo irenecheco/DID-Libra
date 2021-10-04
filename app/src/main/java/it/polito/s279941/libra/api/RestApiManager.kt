@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import it.polito.s279941.libra.DataModel.Obiettivo
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.DataModel.UtenteLoginData
+import it.polito.s279941.libra.DataModel.Peso
 import it.polito.s279941.libra.utils.LOG_TAG
 import retrofit2.Call
 import retrofit2.Callback
@@ -84,6 +85,31 @@ class RestApiManager {
                     Log.d("LIBRA", "    response.body= " + response.body().toString())
                 val addedGoal = response.body()
                 onResult(addedGoal)
+            }
+        }
+        )
+    }
+
+    fun postWeight(userWeight: Peso, onResult: (Peso?) -> Unit){
+        Log.d("LIBRA","start fun  postWeight()  in class RestApiManager")
+
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+
+        // qui richiamo il metodo associato alla richiesta REST
+        val myCall = retrofit.postWeight(userWeight)
+        myCall.enqueue( object : Callback<Peso> {
+            override fun onFailure(call: Call<Peso>, t: Throwable) {
+                Log.d("LIBRA", "  start onFailure()  in  retrofit.postWeight(userWeight).enqueue  in  RestApiManager")
+                Log.d("LIBRA", "    throwable mess: " + t.message)
+                onResult(null)
+            }
+            override fun onResponse(call: Call<Peso>, response: Response<Peso>) {
+                Log.d("LIBRA", "  start onResponse()  in  retrofit.postWeight(userWeight).enqueue  in  RestApiManager")
+                Log.d("LIBRA", "    status code: " + response.code())
+                if(response?.body() != null)
+                    Log.d("LIBRA", "Measurement added, response.body= " + response.body().toString())
+                val postedWeight = response.body()
+                onResult(postedWeight)
             }
         }
         )

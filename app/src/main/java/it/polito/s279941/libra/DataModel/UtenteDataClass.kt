@@ -56,8 +56,8 @@ data class Obiettivo(
 
 
 data class Peso(
-        val data: Date,
-        val peso: Double,
+        @SerializedName("data") var data: Date?,
+        @SerializedName("peso") var peso: Double?,
 )
 
 

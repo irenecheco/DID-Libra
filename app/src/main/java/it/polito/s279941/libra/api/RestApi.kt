@@ -1,8 +1,10 @@
 package it.polito.s279941.libra.api
 
+import androidx.lifecycle.MutableLiveData
 import it.polito.s279941.libra.DataModel.Obiettivo
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.DataModel.UtenteLoginData
+import it.polito.s279941.libra.DataModel.Peso
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -36,5 +38,8 @@ interface RestApi {
 
     @POST("nut/add-goal/6071aea342e7530e8c1947ed")
     fun addGoal(@Body userData: Obiettivo): Call<Obiettivo>
+
+    @POST("users/add-measurement/6071aea342e7530e8c1947ed") // id utente preso a caso dal server per vedere se funziona
+    fun postWeight(@Body userWeight: Peso) : Call<Peso>
 
 }
