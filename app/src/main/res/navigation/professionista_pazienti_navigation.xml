@@ -14,9 +14,6 @@
         <action
             android:id="@+id/action_professionistaPazienteProfiloFragment_to_professionistaPazienteChatFragment"
             app:destination="@id/professionistaPazienteChatFragment" />
-        <action
-            android:id="@+id/action_professionistaPazienteProfiloFragment_to_professionistaPazienteBilanciaFragment"
-            app:destination="@id/professionistaPazienteBilanciaFragment" />
     </fragment>
     <fragment
         android:id="@+id/professionistaPazienteDietaFragment"
@@ -26,33 +23,13 @@
             android:id="@+id/action_professionistaPazienteDietaFragment_to_professionistaPazienteProfiloFragment"
             app:destination="@id/professionistaPazienteProfiloFragment" />
         <action
-            android:id="@+id/action_professionistaPazienteDietaFragment_to_professionistaPazienteBilanciaFragment"
-            app:destination="@id/professionistaPazienteBilanciaFragment" />
-        <action
             android:id="@+id/action_professionistaPazienteDietaFragment_to_professionistaPazienteChatFragment"
-            app:destination="@id/professionistaPazienteChatFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/professionistaPazienteBilanciaFragment"
-        android:name="it.polito.s279941.libra.professionistapazienti.ProfessionistaPazienteBilanciaFragment"
-        android:label="ProfessionistaPazienteBilanciaFragment" >
-        <action
-            android:id="@+id/action_professionistaPazienteBilanciaFragment_to_professionistaPazienteDietaFragment"
-            app:destination="@id/professionistaPazienteDietaFragment" />
-        <action
-            android:id="@+id/action_professionistaPazienteBilanciaFragment_to_professionistaPazienteProfiloFragment"
-            app:destination="@id/professionistaPazienteProfiloFragment" />
-        <action
-            android:id="@+id/action_professionistaPazienteBilanciaFragment_to_professionistaPazienteChatFragment"
             app:destination="@id/professionistaPazienteChatFragment" />
     </fragment>
     <fragment
         android:id="@+id/professionistaPazienteChatFragment"
         android:name="it.polito.s279941.libra.professionistapazienti.ProfessionistaPazienteChatFragment"
         android:label="ProfessionistaPazienteChatFragment" >
-        <action
-            android:id="@+id/action_professionistaPazienteChatFragment_to_professionistaPazienteBilanciaFragment"
-            app:destination="@id/professionistaPazienteBilanciaFragment" />
         <action
             android:id="@+id/action_professionistaPazienteChatFragment_to_professionistaPazienteDietaFragment"
             app:destination="@id/professionistaPazienteDietaFragment" />

@@ -23,7 +23,6 @@ class ProfessionistaPazienteMainActivity : AppCompatActivity() {
 
         val paziente_profilo_fragment = ProfessionistaPazienteProfiloFragment()
         val paziente_dieta_fragment = ProfessionistaPazienteDietaFragment()
-        val paziente_bilancia_fragment = ProfessionistaPazienteBilanciaFragment()
         val paziente_chat_fragment = ProfessionistaPazienteChatFragment()
 
         paziente_bottom_bar.setOnNavigationItemSelectedListener { item ->
@@ -34,10 +33,6 @@ class ProfessionistaPazienteMainActivity : AppCompatActivity() {
                 }
                 R.id.patient_diet_page -> {
                     showFragment(paziente_dieta_fragment)
-                    true
-                }
-                R.id.patient_libra_page -> {
-                    showFragment(paziente_bilancia_fragment)
                     true
                 }
                 R.id.patient_chat_page -> {

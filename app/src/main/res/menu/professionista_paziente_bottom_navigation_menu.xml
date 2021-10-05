@@ -10,10 +10,6 @@
         android:icon="@drawable/ic_diet"
         android:title="@string/menu_diet_label" />
     <item
-        android:id="@+id/patient_libra_page"
-        android:icon="@drawable/ic_libra"
-        android:title="@string/menu_libra_label" />
-    <item
         android:id="@+id/patient_chat_page"
         android:icon="@drawable/ic_chat"
         android:title="@string/menu_chat_label" />
