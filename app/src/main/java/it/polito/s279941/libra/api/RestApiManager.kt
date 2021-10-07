@@ -52,13 +52,13 @@ class RestApiManager {
         retrofit.getGoals().enqueue(
             object : Callback<List<Obiettivo>> {
                 override fun onFailure(call: Call<List<Obiettivo>>, t: Throwable) {
-                    Log.d("LIBRA", "  start onFailure()  in  retrofit.getGoal().enqueue  in  RestApiManager")
-                    Log.d("LIBRA", "    throwable mess: " + t.message)
+                    Log.d("LIBRAgoals", "  start onFailure()  in  retrofit.getGoals().enqueue  in  RestApiManager")
+                    Log.d("LIBRAgoals", "    throwable mess: " + t.message)
                     onResult(null)
                 }
                 override fun onResponse(call: Call<List<Obiettivo>>, response: Response<List<Obiettivo>>) {
-                    Log.d("LIBRA", "  start onResponse()  in  retrofit.getGoal().enqueue  in  RestApiManager")
-                    Log.d("LIBRA", "    status code: " + response.code())
+                    Log.d("LIBRAgoals", "  start onResponse()  in  retrofit.getGoals().enqueue  in  RestApiManager")
+                    Log.d("LIBRAgoals", "    status code: " + response.code())
                     val listOfGoals = response.body()
                     onResult(listOfGoals)
                 }
@@ -74,14 +74,14 @@ class RestApiManager {
         val myCall = retrofit.addGoal(userGoal)
         myCall.enqueue( object : Callback<Obiettivo> {
             override fun onFailure(call: Call<Obiettivo>, t: Throwable) {
-                Log.d("LIBRA", "  start onFailure()  in  retrofit.addGoal(userGoal).enqueue  in  RestApiManager")
-                Log.d("LIBRA", "    throwable mess: " + t.message)
+                Log.d("LIBRAgoals", "  start onFailure()  in  retrofit.addGoal(userGoal).enqueue  in  RestApiManager")
+                Log.d("LIBRAgoals", "    throwable mess: " + t.message)
                 onResult(null)
             }
             override fun onResponse(call: Call<Obiettivo>, response: Response<Obiettivo>) {
-                Log.d("LIBRA", "  start onResponse()  in  retrofit.addGoal(userGoal).enqueue  in  RestApiManager")
-                Log.d("LIBRA", "    status code: " + response.code())
-                if(response?.body() != null)
+                Log.d("LIBRAgoals", "  start onResponse()  in  retrofit.addGoal(userGoal).enqueue  in  RestApiManager")
+                Log.d("LIBRAgoals", "    status code: " + response.code())
+                if(response.body() != null)
                     Log.d("LIBRA", "    response.body= " + response.body().toString())
                 val addedGoal = response.body()
                 onResult(addedGoal)

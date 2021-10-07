@@ -7,6 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import it.polito.s279941.libra.DataModel.Obiettivo
 import it.polito.s279941.libra.R
+import java.text.DateFormat
+import java.util.*
 
 class ObiettiviAdapter () : RecyclerView.Adapter<ObiettiviAdapter.ObiettiviViewHolder>() {
 
@@ -23,8 +25,7 @@ class ObiettiviAdapter () : RecyclerView.Adapter<ObiettiviAdapter.ObiettiviViewH
 
         fun bind(item: Obiettivo) {
             utente_obiettivo_raggiunto.text = item.obiettivo
-            //utente_data_obiettivo.text = DateFormat.getDateInstance(DateFormat.SHORT).format(Date(item.data_obiettivo))
-            utente_data_obiettivo.text = item.data_obiettivo.toString()
+            utente_data_obiettivo.text = DateFormat.getDateInstance(DateFormat.SHORT).format(item.data_obiettivo)
         }
     }
 
