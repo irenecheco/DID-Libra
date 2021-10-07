@@ -1,17 +1,22 @@
 package it.polito.s279941.libra.utente
 
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import android.net.wifi.WifiInfo
+import android.net.wifi.WifiManager
 import android.net.wifi.WifiNetworkSpecifier
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -51,6 +56,21 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
         val manager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val builder = NetworkRequest.Builder()
+        //controllo permessi per recuperare ssid del wifi
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            //se localizzazione non abilitata, chiedo all'utente di abilitarla e poi recupero ssid
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
+            val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
+            var wifiInfo : WifiInfo = wifi_manager.connectionInfo
+            var wifi_ssid : String = wifiInfo.ssid
+            Log.d("LIBRA", "wifi ssid è " + wifi_ssid)
+        }else{
+            //se localizzazione abilitata recupero direttamente ssid
+            val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
+            var wifiInfo : WifiInfo = wifi_manager.connectionInfo
+            var wifi_ssid : String = wifiInfo.ssid
+            Log.d("LIBRA", "wifi ssid è " + wifi_ssid)
+        }
         var weight : Double = 0.0
 
         registra_peso.isEnabled = false
