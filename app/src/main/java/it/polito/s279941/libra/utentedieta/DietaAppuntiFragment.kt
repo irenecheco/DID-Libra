@@ -34,7 +34,7 @@ class DietaAppuntiFragment: Fragment(R.layout.utente_dieta_appunti_fragment) {
        Observer { note -> tiCommento.setText(note) })
 
         salvaCommentoButton.setOnClickListener{
-            utenteViewModel.setNoteDelGiorno(tiCommento.text.toString())
+            utenteViewModel.saveNoteGiornoToDB(tiCommento.text.toString())
 
             this.activity?.onBackPressed()
             // val f: Fragment = UtenteDietaFragment()

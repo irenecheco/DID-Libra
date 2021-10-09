@@ -17,18 +17,16 @@ import it.polito.s279941.libra.R
 import it.polito.s279941.libra.utente.UtenteMainActivity
 import it.polito.s279941.libra.utente.UtenteProfiloFragment
 import it.polito.s279941.libra.utente.UtenteViewModel
-import it.polito.s279941.libra.utentedieta.DietaAppuntiFragment
-import it.polito.s279941.libra.utentedieta.DietaCalendarioFragment
-import it.polito.s279941.libra.utentedieta.PastoAdapter
-import it.polito.s279941.libra.utentedieta.PastoItem
+import it.polito.s279941.libra.utentedieta.*
 import kotlinx.android.synthetic.main.utente_dieta_fragment.*
 import java.text.DateFormat
 import java.util.*
 
-class UtenteDietaFragment : Fragment(R.layout.utente_dieta_fragment) {
+class UtenteDietaFragment : Fragment(R.layout.utente_dieta_fragment), OnRowEditedChangeListener {
 
     val utenteViewModel by activityViewModels<UtenteViewModel>()
-    val adapter = PastoAdapter();
+    val utenteViewModel1111 by activityViewModels<UtenteBilanciaViewModel>()
+    val adapter = PastoAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -77,5 +75,9 @@ class UtenteDietaFragment : Fragment(R.layout.utente_dieta_fragment) {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onPastoConsumatoListener(item: PastoItem, position: Int, isChecked: Boolean) {
+        utenteViewModel.savePastoConsumatoToDB(item.titolo,isChecked)
     }
 }

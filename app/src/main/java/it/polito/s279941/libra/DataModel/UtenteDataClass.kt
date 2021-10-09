@@ -62,7 +62,7 @@ data class Peso(
 
 
 data class Dieta(
-        val data_inizio: Date,
+        val data_inizio: String,
         val giorni: List<GiornoDieta>,
 )
 

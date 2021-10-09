@@ -2,13 +2,23 @@ package it.polito.s279941.libra.utente
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import it.polito.s279941.libra.DataModel.CalendarioDieta
+import it.polito.s279941.libra.DataModel.Dieta
+import it.polito.s279941.libra.DataModel.GiornoDieta
+import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.R
+import it.polito.s279941.libra.utentedieta.PastoItem
 import it.polito.s279941.libra.utils.LOG_TAG
 import kotlinx.android.synthetic.main.utente_activity_main.*
+import java.util.*
 
 class UtenteMainActivity : AppCompatActivity() {
+
+    val utenteViewModel by viewModels<UtenteViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,11 +26,24 @@ class UtenteMainActivity : AppCompatActivity() {
         setContentView(R.layout.utente_activity_main)
         setSupportActionBar(toolbar)
 
+
+        // Chi carica dal database l' UtenteDataClass deve passare l'istanza con il
+        // metodo utenteViewModel.initByUtenteDataClass(utenteDataClassIstancCaricataDalDatabase)
+        // Intando creo un MOCK dell' UtenteDataClass e temporaneamente gli passo il mock
+        val utenteDataClassIstancCaricataDalDatabase = UtenteDataClass()
+        utenteViewModel.initByUtenteDataClass(utenteDataClassIstancCaricataDalDatabase)
+
+
+
         val profilo_fragment = UtenteProfiloFragment()
         val dieta_fragment = UtenteDietaFragment()
         val bilancia_fragment = UtenteBilanciaFragment()
         val storico_fragment = UtenteStoricoFragment()
         val chat_fragment = UtenteChatFragment()
+
+
+
+
 
         bottom_bar.setOnNavigationItemSelectedListener { item ->
             when(item.itemId){

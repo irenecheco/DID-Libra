@@ -61,9 +61,11 @@ class DietaCalendarioFragment: Fragment(R.layout.utente_dieta_calendario_fragmen
 
 
             // si riposiziona sul fragment della dieta chiudendo il calendario
-            this.activity?.supportFragmentManager?.beginTransaction()?.apply{
-                replace(R.id.fragment_container, UtenteDietaFragment()).commit()
-            }
+            this.activity?.onBackPressed()
+            //this.activity?.supportFragmentManager?.beginTransaction()?.apply{
+            //    replace(R.id.fragment_container, UtenteDietaFragment()).commit()
+            //}
+
 
             Log.e("date", "$Year/$Month/$curDate")
         })
