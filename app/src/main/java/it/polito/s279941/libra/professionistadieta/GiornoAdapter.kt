@@ -5,14 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
+import it.polito.s279941.libra.DataModel.GiornoDieta
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.professionistapazienti.PazientiItem
+import it.polito.s279941.libra.utentedieta.PastoItem
 import kotlinx.android.synthetic.main.professionista_paziente_dieta_fragment.*
 
 class GiornoAdapter (var btnClickListener: OnGiornoDietaRowButtonClickListener): RecyclerView.Adapter<GiornoAdapter.ViewHolder>() {
-    private var giorniDieta: List<GiornoItem> = emptyList()
-    fun setGiorniDieta(_giorniDieta:List<GiornoItem>){
+    private var giorniDieta:MutableList<GiornoDieta> = mutableListOf()
+    fun setGiorniDieta( _giorniDieta:MutableList<GiornoDieta>){
         giorniDieta=_giorniDieta
         notifyDataSetChanged()
     }
@@ -23,7 +26,7 @@ class GiornoAdapter (var btnClickListener: OnGiornoDietaRowButtonClickListener):
         //private val tv_descrizione_pasto: TextView = v.findViewById(R.id.tv_descrizione_pasto)
         //private val cb_pasto_rispettato: CheckBox = v.findViewById(R.id.cb_pasto_rispettato)
 
-        fun bind(item: GiornoItem, position: Int, vhBtnClickListener: OnGiornoDietaRowButtonClickListener) {
+        fun bind(item: GiornoDieta, position: Int, vhBtnClickListener: OnGiornoDietaRowButtonClickListener) {
             Log.d("aaaa1",position.toString())
             numeroGiorno.text = "Giorno: " + (position+1).toString()
 
@@ -65,7 +68,7 @@ class GiornoAdapter (var btnClickListener: OnGiornoDietaRowButtonClickListener):
 
 }
 interface OnGiornoDietaRowButtonClickListener {
-    fun onEditaDietaGiorno(item: GiornoItem, position: Int)
-    fun onEliminaDietaGiorno(item: GiornoItem, position: Int)
+    fun onEditaDietaGiorno(item: GiornoDieta, position: Int)
+    fun onEliminaDietaGiorno(item: GiornoDieta, position: Int)
 }
 

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import it.polito.s279941.libra.DataModel.GiornoDieta
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.professionistadieta.*
 import it.polito.s279941.libra.utentedieta.DietaAppuntiFragment
@@ -27,7 +28,7 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
         super.onViewCreated(view, savedInstanceState)
 
         Log.d("aaaa","onViewCreated")
-
+        // giornoAdapter.setGiorniDieta(professionistaGiorniDietaPazienteViewModel.getGiorniDietaPaziente())
         professionistaGiorniDietaPazienteViewModel.giorniLiveData.observe(viewLifecycleOwner, Observer {
                 data -> giornoAdapter.setGiorniDieta(data)
         })
@@ -73,7 +74,7 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
     }
 
 
-    override fun onEditaDietaGiorno(item: GiornoItem, position: Int) {
+    override fun onEditaDietaGiorno(item: GiornoDieta, position: Int) {
         professionistaGiorniDietaPazienteViewModel.setGiornoInModifica(position)
 
         val f: Fragment = ProfessionistaGiornoDietaFragment()
@@ -83,7 +84,7 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
         }
     }
 
-    override fun onEliminaDietaGiorno(item: GiornoItem, position: Int) {
+    override fun onEliminaDietaGiorno(item: GiornoDieta, position: Int) {
         TODO("Not yet implemented")
     }
 }

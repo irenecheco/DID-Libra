@@ -13,19 +13,25 @@ import it.polito.s279941.libra.utentedieta.PastoItem
 import android.text.Editable
 
 import android.text.TextWatcher
-
+import it.polito.s279941.libra.DataModel.GiornoDieta
 
 
 class PastoAdapter () : RecyclerView.Adapter<PastoAdapter.ViewHolder>() {
-    private var pastiDelGiorno: List<PastoItem> = emptyList()
-    fun setPastiDelGiorno(_pastiDelGiorno:List<PastoItem>){
+    private var pastiDelGiorno: MutableList<PastoItem> = mutableListOf<PastoItem>()
+    fun setPastiDelGiorno(giornoDieta: GiornoDieta){
         Log.d("Nro pasti!!!!!!!:","-----------")
-        Log.d("Nro pasti:",_pastiDelGiorno.size.toString())
+        //Log.d("Nro pasti:",_pastiDelGiorno.size.toString())
 
         // Faccio una copia dei dati in modo da non sovrascrivere i dati originali nel caso non salvasse le modifiche
-        pastiDelGiorno=_pastiDelGiorno.map { o -> PastoItem(o.titolo,o.descrizione,o.ho_rispettato) }
+        pastiDelGiorno= mutableListOf(
+            PastoItem("COLAZIONE", giornoDieta.colazione, false),
+            PastoItem("SPUNTINO", giornoDieta.spuntinoMattina, false),
+            PastoItem("PRANZO", giornoDieta.pranzo, false),
+            PastoItem("MERENDA",giornoDieta.spuntinoPomeriggio, true),
+            PastoItem("CENA",giornoDieta.cena, false)
+        )
 
-        notifyDataSetChanged()
+        notifyDataSetChanged();
     }
     fun getPastiDelGiorno(): List<PastoItem> {
         return pastiDelGiorno

@@ -2,19 +2,31 @@ package it.polito.s279941.libra.professionistapazienti
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.databinding.ProfessionistaPazientiFragmentBinding
 import it.polito.s279941.libra.professionista.ProfessionistaPazientiFragment
+import it.polito.s279941.libra.professionistadieta.ProfessionistaGiorniDietaPazienteViewModel
 import kotlinx.android.synthetic.main.professionista_paziente_activity_main.*
 
 class ProfessionistaPazienteMainActivity : AppCompatActivity() {
+
+    val professionistaGiorniDietaPazienteViewModel by viewModels<ProfessionistaGiorniDietaPazienteViewModel>()
 
     lateinit var binding: ProfessionistaPazientiFragmentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // TODO: ho aggiunto (Sofia) la seguente riga, si aspetta che venga passato l'id del paziente per caricarlo dal database
+        val idUtente = "78698769876978uiyuy"
+        professionistaGiorniDietaPazienteViewModel.setPaziente(idUtente)
+
+
+
         //binding = DataBindingUtil.setContentView(this, R.layout.professionista_paziente_activity_main)
         setContentView(R.layout.professionista_paziente_activity_main)
         setSupportActionBar(toolbar2)

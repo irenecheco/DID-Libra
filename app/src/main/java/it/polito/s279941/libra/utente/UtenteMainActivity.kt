@@ -27,9 +27,9 @@ class UtenteMainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
 
-        // Chi carica dal database l' UtenteDataClass deve passare l'istanza con il
+        // TODO: Chi carica dal database l' UtenteDataClass deve passare l'istanza con il
         // metodo utenteViewModel.initByUtenteDataClass(utenteDataClassIstancCaricataDalDatabase)
-        // Intando creo un MOCK dell' UtenteDataClass e temporaneamente gli passo il mock
+        // Intando creo un MOCK vuoto dell' UtenteDataClass e temporaneamente gli passo il mock
         val utenteDataClassIstancCaricataDalDatabase = UtenteDataClass()
         utenteViewModel.initByUtenteDataClass(utenteDataClassIstancCaricataDalDatabase)
 
