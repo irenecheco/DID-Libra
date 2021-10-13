@@ -17,7 +17,7 @@ class ObiettiviRepository (private val restApiManager: RestApiManager){
         var _obiettiviStorico: List<Obiettivo>? = emptyList()
 
         restApiManager.getGoals() {
-            Log.d("LIBRA","3.  class ObiettiviViewModel, fun getGoals(), apiManager.getGoal()")
+            Log.d("LIBRAgoals","3.  class ObiettiviViewModel, fun getGoals(), apiManager.getGoal()")
             if (it != null) {
                 Log.d("LIBRAgoals", "4.  Success getGoals()")
                 Log.d("LIBRAgoals", "5.  GOALS: " + it.toString())
