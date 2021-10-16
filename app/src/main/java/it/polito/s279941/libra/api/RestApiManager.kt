@@ -2,10 +2,7 @@ package it.polito.s279941.libra.api
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import it.polito.s279941.libra.DataModel.Obiettivo
-import it.polito.s279941.libra.DataModel.UtenteDataClass
-import it.polito.s279941.libra.DataModel.UtenteLoginData
-import it.polito.s279941.libra.DataModel.Peso
+import it.polito.s279941.libra.DataModel.*
 import it.polito.s279941.libra.utils.LOG_TAG
 import retrofit2.Call
 import retrofit2.Callback
@@ -114,5 +111,65 @@ class RestApiManager {
         }
         )
     }
+
+
+
+
+
+
+
+    // =================================================================================
+    // Metodi per gestione della dieta utente salvata dal professionista e delle modifiche alla dieta effettuate dal paziente
+    // aggiunti da Sofia in corrispondenza di quelli aggiunti in RestApi
+    // =================================================================================
+    fun getPaziente(idPaziente: String, onResult: (UtenteDataClass?) -> Unit){
+        Log.d("aaaa","getDieta in class RestApiManager")
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        val myCall = retrofit.getPaziente(idPaziente) //a cosa corrisponde id paziente? quello del db?
+        myCall.enqueue( object : Callback<UtenteDataClass> { //a cosa corrisponde utente data class?
+            override fun onFailure(call: Call<UtenteDataClass>, t: Throwable) {
+                Log.d("aaaa", "  start onFailure()  in  retrofit.putDieta(userGoal).enqueue  in  RestApiManager")
+                Log.d("aaaa", "    throwable mess: " + t.message)
+                onResult(null)
+            }
+            override fun onResponse(call: Call<UtenteDataClass>, response: Response<UtenteDataClass>) {
+                Log.d("aaaa", "  start onResponse()  in  retrofit.putDieta(userGoal).enqueue  in  RestApiManager")
+                Log.d("aaaa", "    status code: " + response.code())
+                if(response.body() != null)
+                    Log.d("aaaa", "    response.body= " + response.body().toString())
+                val getDietaResponse = response.body() //quindi get dieta response è la variabile che qui su kotlin conterrà il dato del db
+                onResult(getDietaResponse)
+            }
+        }
+        )
+    }
+    /**
+     * Salvataggio della dieta da parte del dietologo
+     */
+    fun putDieta(idPaziente: String, dieta: Dieta, onResult: (Dieta?) -> Unit){
+        Log.d("aaaa","putDieta in class RestApiManager")
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        val myCall = retrofit.putDieta(idPaziente,dieta)
+        myCall.enqueue( object : Callback<Dieta> {
+            override fun onFailure(call: Call<Dieta>, t: Throwable) {
+                Log.d("aaaa", "  start onFailure()  in  retrofit.putDieta(userGoal).enqueue  in  RestApiManager")
+                Log.d("aaaa", "    throwable mess: " + t.message)
+                onResult(null)
+            }
+            override fun onResponse(call: Call<Dieta>, response: Response<Dieta>) {
+                Log.d("aaaa", "  start onResponse()  in  retrofit.putDieta(userGoal).enqueue  in  RestApiManager")
+                Log.d("aaaa", "    status code: " + response.code())
+                if(response.body() != null)
+                    Log.d("aaaa", "    response.body= " + response.body().toString())
+                val addDietaResponse = response.body()
+                onResult(null)
+            }
+        }
+        )
+    }
+
+
+
+
 
 }

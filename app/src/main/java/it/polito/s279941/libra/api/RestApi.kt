@@ -1,15 +1,9 @@
 package it.polito.s279941.libra.api
 
 import androidx.lifecycle.MutableLiveData
-import it.polito.s279941.libra.DataModel.Obiettivo
-import it.polito.s279941.libra.DataModel.UtenteDataClass
-import it.polito.s279941.libra.DataModel.UtenteLoginData
-import it.polito.s279941.libra.DataModel.Peso
+import it.polito.s279941.libra.DataModel.*
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /*
 https://medium.com/swlh/simplest-post-request-on-android-kotlin-using-retrofit-e0a9db81f11a
@@ -42,4 +36,13 @@ interface RestApi {
     @POST("users/add-measurement/6071aea342e7530e8c1947ed") // id utente preso a caso dal server per vedere se funziona
     fun postWeight(@Body userWeight: Peso) : Call<Peso>
 
+
+
+    // I seguenti sono stati aggiunti da Sofia
+    @GET("users/{idPaziente}")
+    fun getPaziente(@Path("idPaziente") idPaziente: String) : Call<UtenteDataClass>
+    //
+    @PUT("nut/set-dieta/{idPaziente}")
+    fun putDieta(@Path("idPaziente") idPaziente: String, @Body dieta: Dieta) : Call<Dieta>
+    // Fine metodi  aggiunti da Sofia
 }

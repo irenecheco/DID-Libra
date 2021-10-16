@@ -47,6 +47,9 @@ class ProfessionistaGiornoDietaFragment : Fragment(R.layout.professionista_giorn
         professionistaGiorniDietaPazienteViewModel.giornoInModificaLiveData.observe(viewLifecycleOwner,
             Observer { data -> adapter.setPastiDelGiorno(data)
             })
+        professionistaGiorniDietaPazienteViewModel.paziente.observe(viewLifecycleOwner,
+            Observer { data -> professionistaGiorniDietaPazienteViewModel.pazienteRicaricato(data)
+            })
 
          professionista_pasti_rv.layoutManager= LinearLayoutManager(requireContext())
          professionista_pasti_rv.adapter = adapter

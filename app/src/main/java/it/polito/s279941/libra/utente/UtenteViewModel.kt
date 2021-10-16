@@ -5,12 +5,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import it.polito.s279941.libra.DataModel.*
+import it.polito.s279941.libra.api.RestApiManager
 import it.polito.s279941.libra.utentedieta.PastoItem
+import it.polito.s279941.libra.utentedieta.UtenteDietaRepository
+import it.polito.s279941.libra.utenteobiettivi.ObiettiviRepository
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 
 class UtenteViewModel: ViewModel() {
+
+    val restApiManager = RestApiManager()
+    val utenteDietaRepository = UtenteDietaRepository(restApiManager)
 
     private var _userData: UtenteDataClass = UtenteDataClass()
 
@@ -146,19 +152,19 @@ class UtenteViewModel: ViewModel() {
 
 
         // Carichiamo i pasti del giorno
-        _pastiDelGiorno[0].descrizione   = dietaDelGiorno.colazione
+        _pastiDelGiorno[0].descrizione   = dietaDelGiorno.colazione?:""
         _pastiDelGiorno[0].ho_rispettato = currDayCalDieta.consumazionePasto!!.colazione
 
-        _pastiDelGiorno[1].descrizione = dietaDelGiorno.spuntinoMattina
+        _pastiDelGiorno[1].descrizione = dietaDelGiorno.spuntinoMattina?:""
         _pastiDelGiorno[1].ho_rispettato = currDayCalDieta.consumazionePasto!!.spuntinoMattina
 
-        _pastiDelGiorno[2].descrizione = dietaDelGiorno.pranzo
+        _pastiDelGiorno[2].descrizione = dietaDelGiorno.pranzo?:""
         _pastiDelGiorno[2].ho_rispettato = currDayCalDieta.consumazionePasto!!.pranzo
 
-        _pastiDelGiorno[3].descrizione = dietaDelGiorno.spuntinoPomeriggio
+        _pastiDelGiorno[3].descrizione = dietaDelGiorno.spuntinoPomeriggio?:""
         _pastiDelGiorno[3].ho_rispettato = currDayCalDieta.consumazionePasto!!.spuntinoPomeriggio
 
-        _pastiDelGiorno[4].descrizione = dietaDelGiorno.cena
+        _pastiDelGiorno[4].descrizione = dietaDelGiorno.cena?:""
         _pastiDelGiorno[4].ho_rispettato = currDayCalDieta.consumazionePasto!!.cena
 
         setNoteDelGiorno(currDayCalDieta.commento?:"")

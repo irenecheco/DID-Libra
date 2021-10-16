@@ -16,6 +16,9 @@ import it.polito.s279941.libra.professionistadieta.*
 import it.polito.s279941.libra.utentedieta.DietaAppuntiFragment
 import it.polito.s279941.libra.utentedieta.DietaCalendarioFragment
 import kotlinx.android.synthetic.main.professionista_paziente_dieta_fragment.*
+import kotlinx.android.synthetic.main.utente_dieta_fragment.*
+import java.text.DateFormat
+import java.util.*
 
 //import java.util.*
 
@@ -41,6 +44,13 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
             professionistaGiorniDietaPazienteViewModel.addGiorno()
         }
 
+        professionistaGiorniDietaPazienteViewModel.giornoInizioDietaLiveData.observe(viewLifecycleOwner,
+            Observer { giorno -> tv_data_inizio.text= DateFormat.getDateInstance(DateFormat.LONG).format(
+                Date(giorno)
+            )
+            })
+
+
         setHasOptionsMenu(true)
 
     }
@@ -61,14 +71,14 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
                     replace(R.id.pazienti_fragment_container, f).addToBackStack("dietafrag_caldatainizio").commit()
                 }
             }
-            R.id.menuCalendario -> {
+            //R.id.menuCalendario -> {
                 //findNavController().navigate(R.id.action_utenteDietaFragment2_to_dietaCalendarioFragment)
-                val f: Fragment = DietaCalendarioFragment()
-                activity?.supportFragmentManager?.beginTransaction()?.apply{
-                    replace(R.id.fragment_container, f).addToBackStack("dietafrag_calendar").commit()
+              //  val f: Fragment = DietaCalendarioFragment()
+               // activity?.supportFragmentManager?.beginTransaction()?.apply{
+                 //   replace(R.id.fragment_container, f).addToBackStack("dietafrag_calendar").commit()
                     //add(R.id.fragment_container, f).commit()
-                }
-            }
+              //  }
+          //  }
         }
         return super.onOptionsItemSelected(item)
     }

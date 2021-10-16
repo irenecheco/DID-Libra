@@ -62,16 +62,15 @@ data class Peso(
 
 
 data class Dieta(
-        val data_inizio: String,
+        var data_inizio: String?,
         val giorni: MutableList<GiornoDieta>,
 )
 
-
 data class GiornoDieta(
         var nroGiorno: Int,
-        var colazione: String,
-        var spuntinoMattina: String,
-        var pranzo: String,
-        var spuntinoPomeriggio: String,
-        var cena: String,
+        var colazione: String?,
+        var spuntinoMattina: String?,
+        var pranzo: String?,
+        var spuntinoPomeriggio: String?,
+        var cena: String?,
 )
