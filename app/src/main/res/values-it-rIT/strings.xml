@@ -8,9 +8,21 @@
     <string name="registrationLabel">Voglio creare un account</string>
     <string name="registrationButton">SIGN IN</string>
     <string name="loginDescription">Inserire le proprie credenziali per accedere</string>
+    <string name="signinDescription">Compilare con i propri dati per la registrazione</string>
     <string name="emailLabel">e-mail</string>
-    <string name="emailTip"></string>
+    <string name="emailTip">pinco.pallino@acme.it</string>
     <string name="passwordLabel">password</string>
+    <string name="passwordTip">minimo 3 caratteri</string>
+    <string name="signinRoleLabel">Selezionare ruolo</string>
+    <string name="signinRadioButtonLabelPaz">Paziente</string>
+    <string name="signinRadioButtonLabelNut">Nutrizionista</string>
+    <string name="signinNameLabel">Nome</string>
+    <string name="signinSurnameLabel">Cognome</string>
+    <string name="signinNameTip">Pinco</string>
+    <string name="signinSurnameTip">Pallino</string>
+    <string name="signinBirthdayLabel">Data di nascita</string>
+    <string name="signinUserRoleBasedLabel">UserRoleBased</string>
+    <string name="signinUserRoleBasedFieldTip">UserRoleBasedHint</string>
     <string name="rememberMeCheckBox">Ricordami per i prossimi accessi</string>
 
     <!-- Menu utente -->

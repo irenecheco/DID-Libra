@@ -1,16 +1,30 @@
 <resources>
     <string name="app_name">Libra</string>
-    <!-- Landing page -->
+    <!-- Landing page e fragment relativi -->
     <string name="landingPageTopLogo">Logo application</string>
     <string name="loginLabel">Already have an account</string>
     <string name="loginButton">LOGIN</string>
     <string name="registrationLabel">I wanna create an account</string>
     <string name="registrationButton">SIGN IN</string>
     <string name="loginDescription">Fill-in with your Libra credentials to login</string>
+    <string name="signinDescription">Fill-in with your personal data to sign-in</string>
     <string name="emailLabel">e-mail</string>
-    <string name="emailTip"></string>
+    <string name="emailTip">john.doe@acme.com</string>
     <string name="passwordLabel">password</string>
+    <string name="passwordTip">3 chars at least</string>
+    <string name="signinRoleLabel">Select role</string>
+    <string name="signinRadioButtonLabelPaz">Patient</string>
+    <string name="signinRadioButtonLabelNut">Nutritionist</string>
+    <string name="signinNameLabel">Name</string>
+    <string name="signinSurnameLabel">Surname</string>
+    <string name="signinNameTip">John</string>
+    <string name="signinSurnameTip">Doe</string>
+    <string name="signinBirthdayLabel">Day of Birth</string>
+    <string name="signinUserRoleBasedLabel">UserRoleBased</string>
+    <string name="signinUserRoleBasedFieldTip">UserRoleBasedHint</string>
     <string name="rememberMeCheckBox">Remember me for future login</string>
+
+
 
 
     <!-- Menu utente -->

@@ -5,10 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.utils.LOG_TAG
+import kotlinx.android.synthetic.main.fragment_signin_page.*
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -46,6 +49,17 @@ class SigninPageFragment : Fragment() {
 
         Log.d(LOG_TAG, "SigninPageFragment called by pressing button with id : " + viewModel.getSelectedButtonId() + " in LandingPageFragment") //--->DBG
         Log.d(LOG_TAG, "viewModel: " + viewModel.toString() + " in SigninPageFragment") //--->DBG
+
+        //setto datePicker a data corrente
+        val oggi = Calendar.getInstance()
+        datePickerBirthday.init(
+            oggi.get(Calendar.YEAR),
+            oggi.get(Calendar.MONTH),
+            oggi.get(Calendar.DAY_OF_MONTH)) { view, year, month, day ->
+            val month = month + 1
+            val msg = "You Selected: $day/$month/$year"
+            Toast.makeText(this.context, msg, Toast.LENGTH_SHORT).show()
+        }
 
     }
 
