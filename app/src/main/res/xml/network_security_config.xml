@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<network-security-config>
-    <domain-config cleartextTrafficPermitted="true">
-        <!-- IP devono essere gli stessi specificati in *** utils.Config *** -->
-        <domain includeSubdomains="true">192.168.178.36</domain>
-        <domain includeSubdomains="true">192.168.4.1</domain>
-        <domain includeSubdomains="true">192.168.224.240</domain>
-    </domain-config>
-</network-security-config>

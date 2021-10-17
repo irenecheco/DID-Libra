@@ -53,6 +53,7 @@ class LandingPageFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val loginPageFragment = LoginPageFragment.newInstance()
+        val signinPageFragment = SigninPageFragment.newInstance()
 
         Log.d(LOG_TAG, "onActivityCreated start in LandingPageFragment")
         //Log.d(LOG_TAG, "onActivityCreated -> savedInstanceState = " + savedInstanceState.toString())
@@ -75,6 +76,15 @@ class LandingPageFragment : Fragment() {
             viewModel.setSelectedButton(preLoginButton.id)
             val transaction = activity?.supportFragmentManager?.beginTransaction()
             transaction?.replace(R.id.landing_page_fragment_container, loginPageFragment)
+            transaction?.addToBackStack("LandigPageFragment")
+            transaction?.commit()
+        }
+
+        preRegistrationButton.setOnClickListener{
+            Log.d(LOG_TAG, "event CLICK on (pre)SIGNIN button id: " + preRegistrationButton.id.toString() + " in LandingPageFragment")
+            viewModel.setSelectedButton(preRegistrationButton.id)
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.landing_page_fragment_container, signinPageFragment)
             transaction?.addToBackStack("LandigPageFragment")
             transaction?.commit()
         }
