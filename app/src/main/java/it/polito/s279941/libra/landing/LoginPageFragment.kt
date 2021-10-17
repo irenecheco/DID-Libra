@@ -1,5 +1,6 @@
 package it.polito.s279941.libra.landing
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import it.polito.s279941.libra.R
+import it.polito.s279941.libra.professionista.ProfessionistaMainActivity
+import it.polito.s279941.libra.utente.UtenteMainActivity
 import it.polito.s279941.libra.utils.LOG_TAG
 import kotlinx.android.synthetic.main.fragment_login_page.*
 
@@ -43,8 +46,8 @@ class LoginPageFragment : Fragment() {
         Log.d(LOG_TAG, "viewModel: " + viewModel.toString() + " in LoginPageFragment") //--->DBG
         // bottone LOGIN disabilitato finché non sono inseriti i dati corretti
         loginButton.isEnabled = emailFieldDataIntegrity && passwordFieldDataIntegrity
-        val loggedPageFragment = LoggedPageFragment.newInstance() //--->DBG
 
+        val loggedPageFragment = LoggedPageFragment.newInstance() //--->DBG
 
         // Verifica integrità dati
         emailField.doAfterTextChanged() {
@@ -52,7 +55,7 @@ class LoginPageFragment : Fragment() {
             val email_regex = "(?:[a-z0-9!#\$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#\$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
             if (emailField.text.matches(Regex(email_regex))) {
                 Log.d(LOG_TAG, "email field matches regex: ${emailField.text}") //--->DBG
-                // salvo il vlore nel viewModel
+                // salvo il valore nel viewModel
                 viewModel.utenteLoginData.email=emailField.text.toString()
                 emailFieldDataIntegrity = true
             } else{
@@ -61,12 +64,12 @@ class LoginPageFragment : Fragment() {
             }
             loginButton.isEnabled = emailFieldDataIntegrity && passwordFieldDataIntegrity
         }
-
+        // Verifica integrità dati
         passwordField.doAfterTextChanged() {
-            // blando check su campo mail
+            // blando check su campo mail (almeno 3 caratteri)
             if (passwordField.text.matches(Regex(".{3,}"))) {
                 Log.d(LOG_TAG, "password field matches regex: ${passwordField.text}") //--->DBG
-                // salvo il vlore nel viewModel
+                // salvo il valore nel viewModel
                 viewModel.utenteLoginData.password = passwordField.text.toString()
                 passwordFieldDataIntegrity = true
             } else {
@@ -78,13 +81,26 @@ class LoginPageFragment : Fragment() {
 
         loginButton.setOnClickListener {
             Log.d(LOG_TAG, "CLICK event on LOGIN button id: " + loginButton.id.toString() + " in LoginPageFragment") //--->DBG
-            viewModel.logLogingData()
+            viewModel.logLogingData() //--->DBG
             viewModel.login()
-
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.landing_page_fragment_container, loggedPageFragment)
-            transaction?.addToBackStack("LoginPageFragment")
-            transaction?.commit()
+            loginButton.visibility = View.INVISIBLE
+            progressBarLogin.visibility = View.VISIBLE
+            // Osservo il LiveData "utenteCorrente" e quando aggiornato invoco la transizione
+            // alla pagina coretta
+            viewModel.utenteCorrente.observe(viewLifecycleOwner) {
+                progressBarLogin.visibility = View.INVISIBLE
+                loginButton.visibility = View.VISIBLE
+                when (viewModel.getTipologiaUtente()) {
+                    "PAZ" -> {val i = Intent(activity, UtenteMainActivity::class.java)
+                        startActivityForResult(i, 1)}
+                    "NUT" ->{val i = Intent(activity, ProfessionistaMainActivity::class.java)
+                        startActivityForResult(i, 1)}
+                    "NETERR" -> {val transaction = activity?.supportFragmentManager?.beginTransaction()
+                transaction?.replace(R.id.landing_page_fragment_container, loggedPageFragment)
+                transaction?.addToBackStack("LoginPageFragment")
+                transaction?.commit() } //--->DBG
+                }
+            }
         }
     }
 }

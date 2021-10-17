@@ -25,7 +25,7 @@ class LandingPageViewModel : ViewModel(){
     var utenteLoginData: UtenteLoginData = UtenteLoginData()
 
     // contiene tutte le info sull'utente che ha fatto il login
-    // (non so come mai c'è il passaggio interrmedio atraverso la var
+    // (non so come mai c'è il passaggio intermedio attraverso la var
     // che inizia con "_" ma su sito android era così
     // definiti come LiveData al fine di essere osservabili dal Fragment
     private var _utenteCorrente = MutableLiveData<UtenteDataClass>()
@@ -40,13 +40,17 @@ class LandingPageViewModel : ViewModel(){
         Log.d(LOG_TAG, "LandingPageViewModel --> _utenteCorrente=" + _utenteCorrente.toString()) //--->DBG
         Log.d(LOG_TAG, "LandingPageViewModel --> utenteCorrente=" + utenteCorrente.toString()) //--->DBG
         val alcuniAttributiUtenteCorrente = with(utenteCorrente.value){
-            this?.nome.toString() + " " +
-            this?.cognome.toString() + " - " +
-            this?.email.toString() + " " +
-            this?.tipo} //--->DBG
+            "nome " + this?.nome.toString() + " " +
+            "cogn " + this?.cognome.toString() + " - " +
+            "email " + this?.email.toString() + " " +
+            "tipo " + this?.tipo} //--->DBG
         Log.d(LOG_TAG, "LandingPageViewModel --> attributi utenteCorrente=" + alcuniAttributiUtenteCorrente) //--->DBG
     }
 
+    fun getTipologiaUtente(): String {
+        var t = utenteCorrente.value?.tipo ?: "NULL"
+        return t
+    }
 
     // varie funzioni a scopo di debug
     fun setSelectedButton (buttonId: Int) {

@@ -34,7 +34,7 @@ class LoggedPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //val loginButton : Button = view.findViewById(R.id.loginButton)
-        Log.d(LOG_TAG, "LoggedPageFragment called by SUCCESSFUL LOGIN") //--->DBG
+        Log.d(LOG_TAG, "LoggedPageFragment called after a  SUCCESSFUL LOGIN") //--->DBG
         Log.d(LOG_TAG, "viewModel: " + viewModel.toString() + " in LoggedPageFragment") //--->DBG
 
         // osservo attributo utenteCorrente del viewModel
@@ -49,6 +49,7 @@ class LoggedPageFragment : Fragment() {
             Log.d(LOG_TAG, "LoggedPageFragment --> attributi utenteCorrente=" + alcuniAttributiUtenteCorrente) //--->DBG
             loggedUserTV.text = alcuniAttributiUtenteCorrente
         }
+
         Log.d(LOG_TAG, "end of onViewCreated()  in LoggedPageFragment")//--->DBG
     }
 }

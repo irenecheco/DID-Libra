@@ -13,7 +13,7 @@
         android:inputType="textPersonName"
         android:lines="2"
         android:singleLine="false"
-        android:text="DEBUG purpose only"
+        android:text="DEBUG purpose only (bad credentials or network error)"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/loggedUserTV"
         app:layout_constraintEnd_toEndOf="parent"

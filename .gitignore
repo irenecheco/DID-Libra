@@ -92,3 +92,7 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 
+# File di configurazione parametri di rete (ip NodeJS)
+app/src/main/java/it/polito/s279941/libra/utils/Config.kt
+app/src/main/res/xml/network_security_config.xml
+
