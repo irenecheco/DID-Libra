@@ -11,7 +11,7 @@
     <string name="signinDescription">Compilare con i propri dati per la registrazione</string>
     <string name="emailLabel">e-mail</string>
     <string name="emailTip">pinco.pallino@acme.it</string>
-    <string name="passwordLabel">password</string>
+    <string name="passwordLabel">Password</string>
     <string name="passwordTip">minimo 3 caratteri</string>
     <string name="signinRoleLabel">Selezionare ruolo</string>
     <string name="signinRadioButtonLabelPaz">Paziente</string>
@@ -25,6 +25,9 @@
     <string name="signinUserRoleBasedFieldPazTip">Codice_mio_nutrizionista</string>
     <string name="signinUserRoleBasedLabelNut">Numero iscrizione ALBO dei nutrizionisti</string>
     <string name="signinUserRoleBasedFieldNutTip">mio_ID_iscrizone_albo</string>
+    <string name="signinPasswordConfirmLabel">Conferma password</string>
+    <string name="signinPasswordConfirmField">Ripeti password</string>
+    <string name="signinButton">Registrazione</string>
     <string name="rememberMeCheckBox">Ricordami per i prossimi accessi</string>
 
     <!-- Menu utente -->

@@ -10,7 +10,7 @@
     <string name="signinDescription">Fill-in with your personal data to sign-in</string>
     <string name="emailLabel">e-mail</string>
     <string name="emailTip">john.doe@acme.com</string>
-    <string name="passwordLabel">password</string>
+    <string name="passwordLabel">Password</string>
     <string name="passwordTip">3 chars at least</string>
     <string name="signinRoleLabel">Select role</string>
     <string name="signinRadioButtonLabelPaz">Patient</string>
@@ -24,6 +24,9 @@
     <string name="signinUserRoleBasedFieldPazTip">my_personal_nutritionist_ID</string>
     <string name="signinUserRoleBasedLabelNut">My Professional ID Register of Nutritionists</string>
     <string name="signinUserRoleBasedFieldNutTip">My_Professional_ID</string>
+    <string name="signinPasswordConfirmLabel">Confirm password</string>
+    <string name="signinPasswordConfirmField">Retype password</string>
+    <string name="signinButton">Signin</string>
     <string name="rememberMeCheckBox">Remember me for future login</string>
 
 
