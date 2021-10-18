@@ -21,8 +21,10 @@
     <string name="signinNameTip">Pinco</string>
     <string name="signinSurnameTip">Pallino</string>
     <string name="signinBirthdayLabel">Data di nascita</string>
-    <string name="signinUserRoleBasedLabel">UserRoleBased</string>
-    <string name="signinUserRoleBasedFieldTip">UserRoleBasedHint</string>
+    <string name="signinUserRoleBasedLabelPaz">Codice del MIO nutrizionista</string>
+    <string name="signinUserRoleBasedFieldPazTip">Codice_mio_nutrizionista</string>
+    <string name="signinUserRoleBasedLabelNut">Numero iscrizione ALBO dei nutrizionisti</string>
+    <string name="signinUserRoleBasedFieldNutTip">mio_ID_iscrizone_albo</string>
     <string name="rememberMeCheckBox">Ricordami per i prossimi accessi</string>
 
     <!-- Menu utente -->

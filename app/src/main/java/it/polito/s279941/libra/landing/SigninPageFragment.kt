@@ -50,6 +50,22 @@ class SigninPageFragment : Fragment() {
         Log.d(LOG_TAG, "SigninPageFragment called by pressing button with id : " + viewModel.getSelectedButtonId() + " in LandingPageFragment") //--->DBG
         Log.d(LOG_TAG, "viewModel: " + viewModel.toString() + " in SigninPageFragment") //--->DBG
 
+
+        // Imposto il form in base alla tipoligoa di utente (PAZ/NUT)
+        signinRadioButtonPaz
+            .setOnClickListener(View.OnClickListener {
+                Log.d(LOG_TAG, "SigninPageFragment -> signinRadioButtonPAZ selected" + view.getId()) //--->DBG
+                signinUserRoleBasedLabel.text = getString(R.string.signinUserRoleBasedLabelPaz)
+                signinUserRoleBasedField.hint = getString(R.string.signinUserRoleBasedFieldPazTip)
+            })
+        signinRadioButtonNut
+            .setOnClickListener(View.OnClickListener {
+                Log.d(LOG_TAG, "SigninPageFragment -> signinRadioButtonNUT selected" + view.getId()) //--->DBG
+                signinUserRoleBasedLabel.text = getString(R.string.signinUserRoleBasedLabelNut)
+                signinUserRoleBasedField.hint = getString(R.string.signinUserRoleBasedFieldNutTip)
+        })
+
+
         //setto datePicker a data corrente
         val oggi = Calendar.getInstance()
         datePickerBirthday.init(
@@ -60,6 +76,7 @@ class SigninPageFragment : Fragment() {
             val msg = "You Selected: $day/$month/$year"
             Toast.makeText(this.context, msg, Toast.LENGTH_SHORT).show()
         }
+
 
     }
 

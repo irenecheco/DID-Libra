@@ -8,223 +8,262 @@
     tools:context=".landing.SigninPageFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="946dp">
+
+        <TextView
+            android:id="@+id/signinDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/signinDescription"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout4"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout5"
+            app:layout_constraintTop_toBottomOf="@+id/signinDescription">
+
+            <TextView
+                android:id="@+id/signinRoleLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimaryLight"
+                android:text="@string/signinRoleLabel" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/signinRadioButtonPaz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:onClick="onRadioButtonClicked"
+                    android:paddingRight="@dimen/padding_large"
+                    android:text="@string/signinRadioButtonLabelPaz" />
+
+                <RadioButton
+                    android:id="@+id/signinRadioButtonNut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="@string/signinRadioButtonLabelNut" />
+
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout6"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout6"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+            <TextView
+                android:id="@+id/signinNameLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryLight"
+                android:text="@string/signinNameLabel" />
+
+            <EditText
+                android:id="@+id/nameField"
+                android:layout_width="411dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/signinNameTip"
+                android:inputType="textCapWords"
+                android:padding="@dimen/padding_large" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout7"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout7"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+            <TextView
+                android:id="@+id/signinSurnameLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryLight"
+                android:text="@string/signinSurnameLabel" />
+
+            <EditText
+                android:id="@+id/surnameField"
+                android:layout_width="411dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/signinSurnameTip"
+                android:inputType="textCapWords"
+                android:padding="@dimen/padding_large" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout8"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout8"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/signinBirthdayLabel"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryLight"
+                android:text="@string/signinBirthdayLabel" />
 
-                <TextView
-                    android:id="@+id/signinDescription"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/signinDescription"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
-                    app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/linearLayout4"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <DatePicker
+                android:id="@+id/datePickerBirthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner" />
 
-                <LinearLayout
-                    android:id="@+id/linearLayout4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
-                    app:layout_constraintEnd_toEndOf="@+id/linearLayout5"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/linearLayout5"
-                    app:layout_constraintTop_toBottomOf="@+id/signinDescription">
-
-                    <TextView
-                        android:id="@+id/signinRoleLabel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/colorPrimaryLight"
-                        android:text="@string/signinRoleLabel" />
-
-                    <RadioGroup
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/signinRadioButtonPaz"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingRight="@dimen/padding_large"
-                            android:text="@string/signinRadioButtonLabelPaz" />
-
-                        <RadioButton
-                            android:id="@+id/signinRadioButtonNut"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/signinRadioButtonLabelNut" />
-
-                    </RadioGroup>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
-                    app:layout_constraintEnd_toEndOf="@+id/linearLayout6"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/linearLayout6"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
-
-                    <TextView
-                        android:id="@+id/signinNameLabel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimaryLight"
-                        android:text="@string/signinNameLabel" />
-
-                    <EditText
-                        android:id="@+id/nameField"
-                        android:layout_width="411dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/signinNameTip"
-                        android:inputType="textCapWords"
-                        android:padding="@dimen/padding_large" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
-                    app:layout_constraintEnd_toEndOf="@+id/linearLayout7"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/linearLayout7"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-                    <TextView
-                        android:id="@+id/signinSurnameLabel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimaryLight"
-                        android:text="@string/signinSurnameLabel" />
-
-                    <EditText
-                        android:id="@+id/surnameField"
-                        android:layout_width="411dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/signinSurnameTip"
-                        android:inputType="textCapWords"
-                        android:padding="@dimen/padding_large" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
-                    app:layout_constraintEnd_toEndOf="@+id/linearLayout8"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/linearLayout8"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
-
-                    <TextView
-                        android:id="@+id/signinBirthdayLabel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimaryLight"
-                        android:text="@string/signinBirthdayLabel" />
-
-                    <DatePicker
-                        android:id="@+id/datePickerBirthday"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:calendarViewShown="false"
-                        android:datePickerMode="spinner" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayoutUserRole"
-                    app:layout_constraintEnd_toEndOf="@+id/linearLayoutUserRole"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/linearLayoutUserRole"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
-
-                    <TextView
-                        android:id="@+id/signinEmailLabel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimaryLight"
-                        android:text="@string/emailLabel" />
-
-                    <EditText
-                        android:id="@+id/signinEmailField"
-                        android:layout_width="411dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/emailTip"
-                        android:inputType="textCapWords"
-                        android:padding="@dimen/padding_large" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayoutUserRole"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
-
-                    <TextView
-                        android:id="@+id/signinUserRoleBasedLabel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_weight="1"
-                        android:background="@color/colorPrimaryLight"
-                        android:text="@string/signinUserRoleBasedLabel" />
-
-                    <EditText
-                        android:id="@+id/signinUserRoleBasedField"
-                        android:layout_width="411dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/signinUserRoleBasedFieldTip"
-                        android:inputType="textCapWords"
-                        android:padding="@dimen/padding_large" />
-
-                </LinearLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
-    </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayoutUserRole"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayoutUserRole"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/linearLayoutUserRole"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+
+            <TextView
+                android:id="@+id/signinEmailLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryLight"
+                android:text="@string/emailLabel" />
+
+            <EditText
+                android:id="@+id/signinEmailField"
+                android:layout_width="411dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/emailTip"
+                android:inputType="textCapWords"
+                android:padding="@dimen/padding_large" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutUserRole"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
+
+            <TextView
+                android:id="@+id/signinUserRoleBasedLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryLight"
+                android:text="@string/signinUserRoleBasedLabelPaz" />
+
+            <EditText
+                android:id="@+id/signinUserRoleBasedField"
+                android:layout_width="411dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/signinUserRoleBasedFieldPazTip"
+                android:inputType="textCapWords"
+                android:padding="@dimen/padding_large" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteY="579dp">
+
+            <TextView
+                android:id="@+id/signinPasswordLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryLight"
+                android:text="@string/signinUserRoleBasedLabelPaz" />
+
+            <EditText
+                android:id="@+id/signinPasswordField"
+                android:layout_width="411dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/signinUserRoleBasedFieldPazTip"
+                android:inputType="textCapWords"
+                android:padding="@dimen/padding_large" />
+
+            <TextView
+                android:id="@+id/signinPasswordConfirmLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryLight"
+                android:text="@string/signinUserRoleBasedLabelPaz" />
+
+            <EditText
+                android:id="@+id/signinPasswordConfirmField"
+                android:layout_width="411dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/signinUserRoleBasedFieldPazTip"
+                android:inputType="textCapWords"
+                android:padding="@dimen/padding_large" />
+
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </FrameLayout>
