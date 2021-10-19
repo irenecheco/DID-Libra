@@ -1,6 +1,7 @@
 package it.polito.s279941.libra.api
 
 import io.reactivex.Observable
+import it.polito.s279941.libra.DataModel.Dieta
 import it.polito.s279941.libra.DataModel.UtenteAggiornaPesoClass
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import retrofit2.Call
@@ -11,6 +12,9 @@ import retrofit2.http.GET
 import it.polito.s279941.libra.DataModel.UtenteAvviaBilanciaClass
 import it.polito.s279941.libra.utils.BACKEND_URL
 import it.polito.s279941.libra.utils.ESP8266_URL
+import retrofit2.http.Body
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface Api {
 
@@ -34,6 +38,10 @@ interface Api {
     @GET("users")
     //fun getUsers() : Call<List<UtenteDataClass>>
     fun getUsers() : Call<String>
+
+    @POST("set-dieta")
+    fun putDieta() : Call<Dieta>
+
 
     @GET("users")
     fun getUsers2() : Observable<List<UtenteDataClass>>

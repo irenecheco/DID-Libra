@@ -42,7 +42,7 @@ interface RestApi {
     @GET("users/{idPaziente}")
     fun getPaziente(@Path("idPaziente") idPaziente: String) : Call<UtenteDataClass>
     //
-    @PUT("nut/set-dieta/{idPaziente}")
+    @POST("nut/set-dieta/{idPaziente}")
     fun putDieta(@Path("idPaziente") idPaziente: String, @Body dieta: Dieta) : Call<Dieta>
     // Fine metodi  aggiunti da Sofia
 }

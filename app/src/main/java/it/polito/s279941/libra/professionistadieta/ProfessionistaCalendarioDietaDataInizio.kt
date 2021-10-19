@@ -42,6 +42,7 @@ class ProfessionistaCalendarioDietaDataInizio : Fragment(R.layout.professionista
             val cal = Calendar.getInstance()
             cal.set(year, month, dayOfMonth)
             professionistaGiorniDietaPazienteViewModel.setGiornoInizioDieta(cal.timeInMillis)
+            professionistaGiorniDietaPazienteViewModel.saveDietaPaziente()
 
             Log.e("date", "giornoSelezionato:$cal.timeInMillis")
 
