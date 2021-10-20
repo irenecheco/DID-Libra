@@ -22,6 +22,7 @@ data class UtenteSigninData(
 // TODO: aggiungere attributi mancanti come definiti nel server NodeJS
 data class UtenteDataClass(
         var id: String ="",
+        var _id: String ="",
         var tipo: String ="",
         var data_iscrizione: Date? = null, // todo: check with date format in DB
         var email: String ="",

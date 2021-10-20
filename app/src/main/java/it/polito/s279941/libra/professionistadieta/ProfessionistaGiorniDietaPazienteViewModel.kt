@@ -45,9 +45,9 @@ class ProfessionistaGiorniDietaPazienteViewModel: ViewModel() {
             // Fine mock
         }
 
-        val d= (_paziente.dieta!!.data_inizio?:"2021-10-12").split("-")
+        val d= (_paziente.dieta!!.data_inizio?:"2021-10-12").split("T")[0].split("-")
         val cal = Calendar.getInstance()
-        cal.set(d[0].toInt(),d[1].toInt(),d[2].toInt())
+        cal.set(d[0].toInt(),d[1].toInt()-1,d[2].toInt())
         setGiornoInizioDieta(cal.timeInMillis)
 
         _giorni = _paziente.dieta!!.giorni
@@ -93,7 +93,7 @@ class ProfessionistaGiorniDietaPazienteViewModel: ViewModel() {
         // Data sarà nel formato YYYY-MM-GG
 
 
-        saveDietaPaziente()
+        //saveDietaPaziente()
     }
     fun getGiornoInizioDieta(): Long {
         return _giornoInizioDieta
@@ -143,16 +143,16 @@ class ProfessionistaGiorniDietaPazienteViewModel: ViewModel() {
         _giornoInModifica?.cena = cena
 
         _giornoInModificaLiveData.value = _giornoInModifica
-        saveDietaPaziente()
+        //saveDietaPaziente()
     }
 
     fun saveDietaPaziente(){
         // PUT http://localhost:3000/api/nut/set-dieta/idpazienteeeeeee
         // content-type: application/json
     // TODO: Salvare la dieta per il dato paziente
+        utenteDietaRepository.saveDieta(paziente.value!!._id,paziente.value!!.dieta!!)
         // ìèò _paziente.dieta
-        paziente.value!!.dieta
-
+       // paziente.value!!.dieta
 
     }
 

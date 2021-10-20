@@ -38,6 +38,7 @@ class ProfessionistaGiornoDietaFragment : Fragment(R.layout.professionista_giorn
                 pasti[0].descrizione, pasti[1].descrizione, pasti[2].descrizione,
                 pasti[3].descrizione, pasti[4].descrizione
             )
+            professionistaGiorniDietaPazienteViewModel.saveDietaPaziente()
 
             this.activity?.onBackPressed()
 
