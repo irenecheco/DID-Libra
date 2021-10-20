@@ -22,9 +22,9 @@
     <string name="signinSurnameTip">Pallino</string>
     <string name="signinBirthdayLabel">Data di nascita</string>
     <string name="signinUserRoleBasedLabelPaz">Codice del MIO nutrizionista</string>
-    <string name="signinUserRoleBasedFieldPazTip">Codice_mio_nutrizionista</string>
+    <string name="signinUserRoleBasedFieldPazTip">AA_123456</string>
     <string name="signinUserRoleBasedLabelNut">Numero iscrizione ALBO dei nutrizionisti</string>
-    <string name="signinUserRoleBasedFieldNutTip">mio_ID_iscrizone_albo</string>
+    <string name="signinUserRoleBasedFieldNutTip">AA_123456</string>
     <string name="signinPasswordConfirmLabel">Conferma password</string>
     <string name="signinPasswordConfirmField">Ripeti password</string>
     <string name="signinButton">Registrazione</string>

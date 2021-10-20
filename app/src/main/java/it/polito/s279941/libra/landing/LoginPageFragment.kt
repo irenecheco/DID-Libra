@@ -58,9 +58,14 @@ class LoginPageFragment : Fragment() {
                 // salvo il valore nel viewModel
                 viewModel.utenteLoginData.email=emailField.text.toString()
                 emailFieldDataIntegrity = true
+                emailLabel.setTextColor(resources.getColor(R.color.colorPrimaryDark))
+                emailLabel.text = emailLabel.text.trimStart('*')
             } else{
                 Log.d(LOG_TAG, "email field does NOT match regex: ${emailField.text}") //--->DBG
                 emailFieldDataIntegrity = false
+                emailLabel.setTextColor(resources.getColor(R.color.colorAccentERROR))
+                emailLabel.text = emailLabel.text.trimStart('*')
+                emailLabel.text = "* ${emailLabel.text}"
             }
             loginButton.isEnabled = emailFieldDataIntegrity && passwordFieldDataIntegrity
         }
@@ -72,9 +77,11 @@ class LoginPageFragment : Fragment() {
                 // salvo il valore nel viewModel
                 viewModel.utenteLoginData.password = passwordField.text.toString()
                 passwordFieldDataIntegrity = true
+                // NON ha senso informare della lunghezza password in questo contesto
             } else {
                 Log.d(LOG_TAG, "password field does NOT match regex: ${passwordField.text}") //--->DBG
                 passwordFieldDataIntegrity = false
+                // NON ha senso informare della lunghezza password in questo contesto
             }
             loginButton.isEnabled = emailFieldDataIntegrity && passwordFieldDataIntegrity
         }

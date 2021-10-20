@@ -4,6 +4,6 @@
         <!-- IP devono essere gli stessi specificati in *** utils.Config *** -->
         <domain includeSubdomains="true">192.168.178.36</domain>
         <domain includeSubdomains="true">192.168.4.1</domain>
-        <domain includeSubdomains="true">192.168.48.240</domain>
+        <domain includeSubdomains="true">192.168.216.240</domain>
     </domain-config>
 </network-security-config>

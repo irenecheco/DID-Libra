@@ -8,6 +8,17 @@ data class UtenteLoginData(
         var password: String =""
 )
 
+
+data class UtenteSigninData(
+        var tipo: String ="", //  PAZ|NUT
+        var email: String ="",
+        var password: String ="",
+        var nome: String ="",
+        var cognome: String ="",
+        var data_nascita: Date? = null, // todo: check with date format in DB
+        var cod_nutrizionista: String ="" // valido sia per pazienti che per nutrizionisti
+)
+
 // TODO: aggiungere attributi mancanti come definiti nel server NodeJS
 data class UtenteDataClass(
         var id: String ="",

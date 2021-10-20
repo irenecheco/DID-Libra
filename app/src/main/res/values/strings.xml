@@ -21,13 +21,14 @@
     <string name="signinSurnameTip">Doe</string>
     <string name="signinBirthdayLabel">Day of Birth</string>
     <string name="signinUserRoleBasedLabelPaz">ID of  my personal nutritionist</string>
-    <string name="signinUserRoleBasedFieldPazTip">my_personal_nutritionist_ID</string>
+    <string name="signinUserRoleBasedFieldPazTip">AA_123456</string>
     <string name="signinUserRoleBasedLabelNut">My Professional ID Register of Nutritionists</string>
-    <string name="signinUserRoleBasedFieldNutTip">My_Professional_ID</string>
+    <string name="signinUserRoleBasedFieldNutTip">AA_123456</string>
     <string name="signinPasswordConfirmLabel">Confirm password</string>
     <string name="signinPasswordConfirmField">Retype password</string>
     <string name="signinButton">Signin</string>
     <string name="rememberMeCheckBox">Remember me for future login</string>
+
 
 
 

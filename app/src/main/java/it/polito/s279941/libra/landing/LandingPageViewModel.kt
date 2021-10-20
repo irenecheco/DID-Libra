@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.DataModel.UtenteLoginData
+import it.polito.s279941.libra.DataModel.UtenteSigninData
 import it.polito.s279941.libra.api.RestApiManager
 import it.polito.s279941.libra.utils.LOG_TAG
 
@@ -23,6 +24,9 @@ class LandingPageViewModel : ViewModel(){
     // serve a contenere le credenziali che verranno passate
     // dall'utente nella finestra di login (LoginPageFragment)
     var utenteLoginData: UtenteLoginData = UtenteLoginData()
+
+    // serve a contenere le info passate in fase di registrazione
+    var utenteSigninData: UtenteSigninData = UtenteSigninData()
 
     // contiene tutte le info sull'utente che ha fatto il login
     // (non so come mai c'è il passaggio intermedio attraverso la var
@@ -47,8 +51,16 @@ class LandingPageViewModel : ViewModel(){
         Log.d(LOG_TAG, "LandingPageViewModel --> attributi utenteCorrente=" + alcuniAttributiUtenteCorrente) //--->DBG
     }
 
+    // invoca il repository per la registrazione
+    fun signin(){
+        Log.d(LOG_TAG, "  start sigin()  in LandingPageViewModel") //--->DBG
+
+
+    }
+
+
     fun getTipologiaUtente(): String {
-        var t = utenteCorrente.value?.tipo ?: "NULL"
+        val t = utenteCorrente.value?.tipo ?: "NULL"
         return t
     }
 
