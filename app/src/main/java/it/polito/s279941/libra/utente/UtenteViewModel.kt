@@ -30,12 +30,29 @@ class UtenteViewModel: ViewModel() {
         PastoItem("CENA", "", false)
     )
 
+
+
     /**
      * Quando viene letto l'utente occorre che qualcuno richiami questo metodo
      *
      */
+    fun setPaziente(idPaziente: String){
+
+        // GET http://localhost:3000/api/users/{idUtente} // 6071aea342e7530e8c1947ed
+        //"6071aea342e7530e8c1947ed"
+        utenteDietaRepository.getPaziente("6071aea342e7530e8c1947ed") {
+            //paziente.value = _PazienteLiveData.value
+            //_paziente = it // _PazienteLiveData.value ?: UtenteDataClass()
+            if (it!=null) initByUtenteDataClass(it)
+        }
+    }
+
+        /**
+     * Quando viene letto l'utente occorre che qualcuno richiami questo metodo
+     *
+     */
     fun initByUtenteDataClass(userData: UtenteDataClass){
-        // TODO: Quando viene letto l'utente occorre che qualcuno richiami questo metodo !!!!
+
         _userData=userData;
 
 
@@ -69,6 +86,10 @@ class UtenteViewModel: ViewModel() {
 
         // TODO: Salvarle anche sul database
         // POST http://localhost:3000/api/users/set-comment/6071aea342e7530e8c1947ed/2020-04-23
+        var d= Date(_giorno)
+        val dataDelGiorno = (d.year+1900).toString() +"-"+ (if (d.month<9) "0" else "") + (d.month+1)+"-" + (if (d.date>9) "" else "0")+ d.date
+        val commentoJson = CommentoDietaPerUpdateDB(note)
+        utenteDietaRepository.saveCommento(_userData._id, dataDelGiorno, commentoJson,)
         // content-type: application/json
         //{"commento": "Mangia benissimo il 23"}
     }
@@ -144,29 +165,38 @@ class UtenteViewModel: ViewModel() {
         val fromDate = sdf.parse(_userData.dieta?.data_inizio)
         val toDate = sdf.parse(currDayCalDieta.data)
         val diffInDay = TimeUnit.DAYS.convert(toDate.getTime() - fromDate.getTime(), TimeUnit.MILLISECONDS)
+        if (diffInDay<0) {
+            // La data inizio dieta è successiva ad oggi, non deve mostrare la dieta
+            _pastiDelGiorno[0].descrizione = "Data inizio dieta successiva alla data selezionata"
+            _pastiDelGiorno[1].descrizione = ""
+            _pastiDelGiorno[2].descrizione = ""
+            _pastiDelGiorno[3].descrizione = ""
+            _pastiDelGiorno[4].descrizione = ""
+        } else {
+            val resto = diffInDay % _userData.dieta?.giorni?.size!!
+            Log.d(
+                "aaaa",
+                "Nro Giornidtra le date:" + fromDate + " - " + toDate + " - " + diffInDay + "=>Resto:" + resto
+            )
 
-        val resto = diffInDay % _userData.dieta?.giorni?.size!!
-        Log.d("aaaa","Nro Giornidtra le date:"+fromDate+" - "+toDate+" - " +diffInDay+ "=>Resto:"+resto)
+            var dietaDelGiorno = _userData.dieta?.giorni!![resto.toInt()]
 
-        var dietaDelGiorno = _userData.dieta?.giorni!![resto.toInt()]
+            // Carichiamo i pasti del giorno
+            _pastiDelGiorno[0].descrizione = dietaDelGiorno.colazione ?: ""
+            _pastiDelGiorno[0].ho_rispettato = currDayCalDieta.consumazionePasto?.colazione ?:false
 
+            _pastiDelGiorno[1].descrizione = dietaDelGiorno.spuntinoMattina ?: ""
+            _pastiDelGiorno[1].ho_rispettato = currDayCalDieta.consumazionePasto?.spuntinoMattina?:false
 
-        // Carichiamo i pasti del giorno
-        _pastiDelGiorno[0].descrizione   = dietaDelGiorno.colazione?:""
-        _pastiDelGiorno[0].ho_rispettato = currDayCalDieta.consumazionePasto!!.colazione
+            _pastiDelGiorno[2].descrizione = dietaDelGiorno.pranzo ?: ""
+            _pastiDelGiorno[2].ho_rispettato = currDayCalDieta.consumazionePasto?.pranzo?:false
 
-        _pastiDelGiorno[1].descrizione = dietaDelGiorno.spuntinoMattina?:""
-        _pastiDelGiorno[1].ho_rispettato = currDayCalDieta.consumazionePasto!!.spuntinoMattina
+            _pastiDelGiorno[3].descrizione = dietaDelGiorno.spuntinoPomeriggio ?: ""
+            _pastiDelGiorno[3].ho_rispettato = currDayCalDieta.consumazionePasto?.spuntinoPomeriggio?:false
 
-        _pastiDelGiorno[2].descrizione = dietaDelGiorno.pranzo?:""
-        _pastiDelGiorno[2].ho_rispettato = currDayCalDieta.consumazionePasto!!.pranzo
-
-        _pastiDelGiorno[3].descrizione = dietaDelGiorno.spuntinoPomeriggio?:""
-        _pastiDelGiorno[3].ho_rispettato = currDayCalDieta.consumazionePasto!!.spuntinoPomeriggio
-
-        _pastiDelGiorno[4].descrizione = dietaDelGiorno.cena?:""
-        _pastiDelGiorno[4].ho_rispettato = currDayCalDieta.consumazionePasto!!.cena
-
+            _pastiDelGiorno[4].descrizione = dietaDelGiorno.cena ?: ""
+            _pastiDelGiorno[4].ho_rispettato = currDayCalDieta.consumazionePasto?.cena?:false
+        }
         setNoteDelGiorno(currDayCalDieta.commento?:"")
 
         _giornoLiveData.value=_giorno

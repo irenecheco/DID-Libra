@@ -2,6 +2,7 @@ package it.polito.s279941.libra.utentedieta
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import it.polito.s279941.libra.DataModel.CommentoDietaPerUpdateDB
 import it.polito.s279941.libra.DataModel.Dieta
 import it.polito.s279941.libra.DataModel.Obiettivo
 import it.polito.s279941.libra.DataModel.UtenteDataClass
@@ -52,5 +53,19 @@ class UtenteDietaRepository (private val restApiManager: RestApiManager){
         }
 
         //return _pazienteLiveData
+    }
+
+    fun saveCommento(idPaziente: String, data: String, note: CommentoDietaPerUpdateDB) {
+        Log.d("aaaa","Salvataggio dieta")
+        restApiManager.postCommento(idPaziente, data, note) {
+            Log.d("aaaaa","3.  class ObiettiviViewModel, fun getGoals(), apiManager.getGoal()")
+           // if (it != null) {
+                // Log.d("aaaa", "4.  Success getGoals()")
+              //  Log.d("aaaa", "5.  GOALS: " + it.toString())
+                // _obiettiviStorico = it
+            //} else {
+              //  Log.d("aaaaa", "Error saveDieta()")
+            //}
+        }
     }
 }

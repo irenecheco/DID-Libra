@@ -168,6 +168,28 @@ class RestApiManager {
         )
     }
 
+    fun postCommento(idPaziente: String, data: String, note: CommentoDietaPerUpdateDB, onResult: () -> Unit){
+        Log.d("aaaa","putDieta in class RestApiManager")
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        val myCall = retrofit.postCommento(idPaziente, data, note)
+        myCall.enqueue( object : Callback<Unit> {
+            override fun onFailure(call: Call<Unit>, t: Throwable) {
+                Log.d("aaaa", "  start onFailure()  in  retrofit.putDieta(userGoal).enqueue  in  RestApiManager")
+                Log.d("aaaa", "    throwable mess: " + t.message)
+                onResult()
+            }
+            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                Log.d("aaaa", "  start onResponse()  in  retrofit.putDieta(userGoal).enqueue  in  RestApiManager")
+                Log.d("aaaa", "    status code: " + response.code())
+                if(response.body() != null)
+                    Log.d("aaaa", "    response.body= " + response.body().toString())
+                val addDietaResponse = response.body()
+                onResult()
+            }
+        }
+        )
+    }
+
 
 
 

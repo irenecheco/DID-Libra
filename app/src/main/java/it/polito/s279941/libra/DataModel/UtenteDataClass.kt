@@ -86,3 +86,7 @@ data class GiornoDieta(
         var spuntinoPomeriggio: String?,
         var cena: String?,
 )
+
+data class CommentoDietaPerUpdateDB (
+        var commento: String,
+)

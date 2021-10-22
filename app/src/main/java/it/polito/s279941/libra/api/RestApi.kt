@@ -45,4 +45,8 @@ interface RestApi {
     @POST("nut/set-dieta/{idPaziente}")
     fun putDieta(@Path("idPaziente") idPaziente: String, @Body dieta: Dieta) : Call<Dieta>
     // Fine metodi  aggiunti da Sofia
+
+    // POST http://localhost:3000/api/users/set-comment/6071aea342e7530e8c1947ed/2020-04-23
+    @POST("users/set-comment/{idPaziente}/{data}")
+    fun postCommento(@Path("idPaziente") idPaziente: String,@Path("data") data: String, @Body note: CommentoDietaPerUpdateDB) : Call<Unit>
 }

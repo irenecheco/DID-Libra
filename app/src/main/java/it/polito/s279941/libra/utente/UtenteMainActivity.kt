@@ -31,7 +31,8 @@ class UtenteMainActivity : AppCompatActivity() {
         // metodo utenteViewModel.initByUtenteDataClass(utenteDataClassIstancCaricataDalDatabase)
         // Intando creo un MOCK vuoto dell' UtenteDataClass e temporaneamente gli passo il mock
         val utenteDataClassIstancCaricataDalDatabase = UtenteDataClass()
-        utenteViewModel.initByUtenteDataClass(utenteDataClassIstancCaricataDalDatabase)
+        //utenteViewModel.initByUtenteDataClass(utenteDataClassIstancCaricataDalDatabase)
+        utenteViewModel.setPaziente("6071aea342e7530e8c1947ed")
 
 
 

@@ -5,7 +5,4 @@
     <item
         android:id="@+id/menuDataInizio"
         android:title="Imposta data inizio" />
-    <item
-        android:id="@+id/menuCalendario"
-        android:title="Calendario" />
 </menu>
