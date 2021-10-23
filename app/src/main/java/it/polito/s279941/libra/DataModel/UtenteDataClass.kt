@@ -87,6 +87,10 @@ data class GiornoDieta(
         var cena: String?,
 )
 
-data class CommentoDietaPerUpdateDB (
-        var commento: String,
-)
+
+// =====================================================================================================================================
+// Classi accessorie per passare alcune informazioni al server
+// =====================================================================================================================================
+data class CommentoDietaPerUpdateDB (var commento: String) // Per aggiornare le note del giorno in una dieta dell'utente
+data class CheckPastoPerUpdateDB (var pastoConsumato: Boolean) // Per aggiornare il pasto consumeto o meno in una dieta dell'utente
+// =====================================================================================================================================

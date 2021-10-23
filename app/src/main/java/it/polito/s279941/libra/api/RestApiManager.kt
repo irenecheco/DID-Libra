@@ -7,6 +7,8 @@ import it.polito.s279941.libra.utils.LOG_TAG
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Body
+import retrofit2.http.Path
 
 /*
 https://medium.com/swlh/simplest-post-request-on-android-kotlin-using-retrofit-e0a9db81f11a
@@ -190,8 +192,26 @@ class RestApiManager {
         )
     }
 
-
-
-
+    fun postCheckPasto(idPaziente: String, data: String, nomePasto: String, checkPasto: CheckPastoPerUpdateDB, onResult: () -> Unit){
+        Log.d("aaaa","putDieta in class RestApiManager")
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        val myCall = retrofit.postCheckPasto(idPaziente, data, nomePasto, checkPasto)
+        myCall.enqueue( object : Callback<Unit> {
+            override fun onFailure(call: Call<Unit>, t: Throwable) {
+                Log.d("aaaa", "  start onFailure()  in  retrofit.putDieta(userGoal).enqueue  in  RestApiManager")
+                Log.d("aaaa", "    throwable mess: " + t.message)
+                onResult()
+            }
+            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                Log.d("aaaa", "  start onResponse()  in  retrofit.putDieta(userGoal).enqueue  in  RestApiManager")
+                Log.d("aaaa", "    status code: " + response.code())
+                if(response.body() != null)
+                    Log.d("aaaa", "    response.body= " + response.body().toString())
+                val addDietaResponse = response.body()
+                onResult()
+            }
+        }
+        )
+    }
 
 }

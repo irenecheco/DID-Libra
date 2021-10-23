@@ -22,7 +22,7 @@ class ProfessionistaPazienteMainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         // TODO: ho aggiunto (Sofia) la seguente riga, si aspetta che venga passato l'id del paziente per caricarlo dal database
-        val idUtente = "78698769876978uiyuy"
+        val idUtente = "61391a94f264961050bd82fb"
         professionistaGiorniDietaPazienteViewModel.setPaziente(idUtente)
 
 

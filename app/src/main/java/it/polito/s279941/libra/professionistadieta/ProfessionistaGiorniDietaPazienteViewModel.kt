@@ -59,7 +59,7 @@ class ProfessionistaGiorniDietaPazienteViewModel: ViewModel() {
     private var _PazienteLiveData = MutableLiveData<UtenteDataClass>().also{it.value = UtenteDataClass()}
     var paziente : LiveData<UtenteDataClass> = _PazienteLiveData
     fun getPazienteFromRepository(idPaziente: String) {//} : LiveData<UtenteDataClass>{
-         utenteDietaRepository.getPaziente("6071aea342e7530e8c1947ed") {
+         utenteDietaRepository.getPaziente(idPaziente) {
              //paziente.value = _PazienteLiveData.value
              //_paziente = it // _PazienteLiveData.value ?: UtenteDataClass()
              _PazienteLiveData.value = it
@@ -75,7 +75,7 @@ class ProfessionistaGiorniDietaPazienteViewModel: ViewModel() {
     fun setPaziente(idPaziente: String){
         // TODO: Occorre leggere il paziente dal Database
         // GET http://localhost:3000/api/users/{idUtente} // 6071aea342e7530e8c1947ed
-        getPazienteFromRepository("6071aea342e7530e8c1947ed")
+        getPazienteFromRepository(idPaziente)
     }
 
 

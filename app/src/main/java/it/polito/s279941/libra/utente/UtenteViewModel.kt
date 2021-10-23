@@ -40,7 +40,7 @@ class UtenteViewModel: ViewModel() {
 
         // GET http://localhost:3000/api/users/{idUtente} // 6071aea342e7530e8c1947ed
         //"6071aea342e7530e8c1947ed"
-        utenteDietaRepository.getPaziente("6071aea342e7530e8c1947ed") {
+        utenteDietaRepository.getPaziente(idPaziente) {
             //paziente.value = _PazienteLiveData.value
             //_paziente = it // _PazienteLiveData.value ?: UtenteDataClass()
             if (it!=null) initByUtenteDataClass(it)
@@ -96,34 +96,46 @@ class UtenteViewModel: ViewModel() {
     fun savePastoConsumatoToDB(nomePasto:String,consumato: Boolean){
 
         var currDayCalDieta= getDietaDelGiornoSeEsisteOCrealaNuova(_giorno)
+        var nomePastoDB: String
         when (nomePasto) {
             "COLAZIONE" -> {
+                nomePastoDB = "colazione"
                 _pastiDelGiorno[0].ho_rispettato = consumato
                 currDayCalDieta.consumazionePasto!!.colazione = consumato
             }
             "SPUNTINO" -> {
+                nomePastoDB = "spuntinoMattina"
                 _pastiDelGiorno[1].ho_rispettato = consumato
                 currDayCalDieta.consumazionePasto!!.spuntinoMattina = consumato
             }
             "PRANZO" -> {
+                nomePastoDB = "pranzo"
                 _pastiDelGiorno[2].ho_rispettato = consumato
                 currDayCalDieta.consumazionePasto!!.pranzo = consumato
             }
             "MERENDA" -> {
+                nomePastoDB ="spuntinoPomeriggio"
                 _pastiDelGiorno[3].ho_rispettato = consumato
                 currDayCalDieta.consumazionePasto!!.spuntinoPomeriggio = consumato
             }
             "CENA" -> {
+                nomePastoDB ="cena"
                 _pastiDelGiorno[4].ho_rispettato = consumato
                 currDayCalDieta.consumazionePasto!!.cena = consumato
             }
             else -> { // Note the block
                 Log.e("nome pasto non gestito",nomePasto)
+                return;
             }
 
         }
 
         // TODO: Salvare anche sul database
+        var d= Date(_giorno)
+        val dataDelGiorno = (d.year+1900).toString() +"-"+ (if (d.month<9) "0" else "") + (d.month+1)+"-" + (if (d.date>9) "" else "0")+ d.date
+        val checkJson = CheckPastoPerUpdateDB(consumato)
+        utenteDietaRepository.saveCheckPasto(_userData._id, dataDelGiorno, nomePastoDB, checkJson,)
+
         // POST http://localhost:3000/api/users/set-check-pasto/6071aea342e7530e8c1947ed/2020-04-23/pranzo
         // content-type: application/json
         // { "pastoConsumato": true }

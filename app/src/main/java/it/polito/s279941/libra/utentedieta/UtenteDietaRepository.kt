@@ -2,10 +2,7 @@ package it.polito.s279941.libra.utentedieta
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import it.polito.s279941.libra.DataModel.CommentoDietaPerUpdateDB
-import it.polito.s279941.libra.DataModel.Dieta
-import it.polito.s279941.libra.DataModel.Obiettivo
-import it.polito.s279941.libra.DataModel.UtenteDataClass
+import it.polito.s279941.libra.DataModel.*
 import it.polito.s279941.libra.api.RestApiManager
 
 //https://thanasakis.medium.com/restful-api-consuming-on-android-using-retrofit-and-architecture-components-livedata-room-and-59e3b064f94
@@ -66,6 +63,14 @@ class UtenteDietaRepository (private val restApiManager: RestApiManager){
             //} else {
               //  Log.d("aaaaa", "Error saveDieta()")
             //}
+        }
+    }
+
+    fun saveCheckPasto(idPaziente: String, data: String, nomePasto: String, checkPasto: CheckPastoPerUpdateDB)
+    {
+        Log.d("aaaa","Salvataggio dieta")
+        restApiManager.postCheckPasto(idPaziente, data, nomePasto, checkPasto) {
+            Log.d("aaaaa","3.  class ObiettiviViewModel, fun getGoals(), apiManager.getGoal()")
         }
     }
 }
