@@ -1,5 +1,6 @@
 package it.polito.s279941.libra.landing
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,7 +11,10 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import it.polito.s279941.libra.R
+import it.polito.s279941.libra.professionista.ProfessionistaMainActivity
+import it.polito.s279941.libra.utente.UtenteMainActivity
 import it.polito.s279941.libra.utils.LOG_TAG
+import kotlinx.android.synthetic.main.fragment_login_page.*
 import kotlinx.android.synthetic.main.fragment_signin_page.*
 import java.util.*
 
@@ -54,6 +58,8 @@ class SigninPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val landingPageFragment = LandingPageFragment.newInstance() //--->DBG
 
         Log.d(LOG_TAG, "SigninPageFragment called by pressing button with id : " + viewModel.getSelectedButtonId() + " in LandingPageFragment") //--->DBG
         Log.d(LOG_TAG, "viewModel: " + viewModel.toString() + " in SigninPageFragment") //--->DBG
@@ -285,6 +291,25 @@ class SigninPageFragment : Fragment() {
                             "${viewModel.utenteSigninData.data_iscrizione}"
                 )
                 viewModel.signin()
+
+                signinButton.visibility = View.INVISIBLE
+                progressBarSignin.visibility = View.VISIBLE
+                // Osservo il LiveData "utenteCorrente" e quando aggiornato invoco la transizione
+                // alla pagina coretta
+                viewModel.utenteCorrente.observe(viewLifecycleOwner) {
+                    progressBarSignin.visibility = View.INVISIBLE
+                    signinButton.visibility = View.VISIBLE
+                    when (viewModel.getTipologiaUtente()) {
+                        "PAZ" -> {val i = Intent(activity, UtenteMainActivity::class.java)
+                            startActivityForResult(i, 1)}
+                        "NUT" -> {val i = Intent(activity, ProfessionistaMainActivity::class.java)
+                            startActivityForResult(i, 1)}
+                        "NETERR" -> {val transaction = activity?.supportFragmentManager?.beginTransaction()
+                            transaction?.replace(R.id.landing_page_fragment_container, landingPageFragment)
+                            transaction?.addToBackStack("LoginPageFragment")
+                            transaction?.commit() } //--->DBG
+                    }
+                }
             }
         }
     }

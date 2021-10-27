@@ -89,5 +89,4 @@ class LandingPageFragment : Fragment() {
             transaction?.commit()
         }
     }
-
 }

@@ -47,7 +47,7 @@ class LoginPageFragment : Fragment() {
         // bottone LOGIN disabilitato finché non sono inseriti i dati corretti
         loginButton.isEnabled = emailFieldDataIntegrity && passwordFieldDataIntegrity
 
-        val loggedPageFragment = LoggedPageFragment.newInstance() //--->DBG
+        val landingPageFragment = LandingPageFragment.newInstance() //--->DBG
 
         // Verifica integrità dati
         emailField.doAfterTextChanged() {
@@ -100,10 +100,10 @@ class LoginPageFragment : Fragment() {
                 when (viewModel.getTipologiaUtente()) {
                     "PAZ" -> {val i = Intent(activity, UtenteMainActivity::class.java)
                         startActivityForResult(i, 1)}
-                    "NUT" ->{val i = Intent(activity, ProfessionistaMainActivity::class.java)
+                    "NUT" -> {val i = Intent(activity, ProfessionistaMainActivity::class.java)
                         startActivityForResult(i, 1)}
                     "NETERR" -> {val transaction = activity?.supportFragmentManager?.beginTransaction()
-                transaction?.replace(R.id.landing_page_fragment_container, loggedPageFragment)
+                transaction?.replace(R.id.landing_page_fragment_container, landingPageFragment)
                 transaction?.addToBackStack("LoginPageFragment")
                 transaction?.commit() } //--->DBG
                 }

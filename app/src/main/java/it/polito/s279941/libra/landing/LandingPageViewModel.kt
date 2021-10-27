@@ -79,7 +79,8 @@ class LandingPageViewModel : ViewModel(){
 
 
     fun getTipologiaUtente(): String {
-        val t = utenteCorrente.value?.tipo ?: "NULL"
+        //Log.d(LOG_TAG, "getTipologiaUtente()  in LandingPageViewModel") //--->DBG
+        val t = utenteCorrente.value?.tipo ?: "NETERR"
         return t
     }
 
