@@ -9,13 +9,15 @@ data class UtenteLoginData(
 )
 
 
+// TODO: verificare coerenza con attributi definiti in NodeJS
 data class UtenteSigninData(
-        var tipo: String ="", //  PAZ|NUT
+        var tipo: String ="PAZ", //  PAZ(default)|NUT
         var email: String ="",
         var password: String ="",
         var nome: String ="",
         var cognome: String ="",
         var data_nascita: Date? = null, // todo: check with date format in DB
+        var data_iscrizione: Date? = null,
         var cod_nutrizionista: String ="" // valido sia per pazienti che per nutrizionisti
 )
 
@@ -32,7 +34,8 @@ data class UtenteDataClass(
         var nome: String ="",
         var cognome: String ="",
         var data_nascita: Date? = null, // todo: check with date format in DB
-        var cod_iscrizione_albo: String ="",
+        var cod_nutrizionista: String ="", // valido sia per pazienti che per nutrizionisti
+        //var cod_iscrizione_albo: String ="",  // TODO: OBSOLETO: ELIMINARE e sostituire con "cod_nutrizionista"
         var lista_pazienti: List<String>? = null,
         var scr_foto: String ="",
         var obiettivi: List<Obiettivo>? = null,

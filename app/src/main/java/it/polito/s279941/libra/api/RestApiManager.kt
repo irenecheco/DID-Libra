@@ -7,8 +7,6 @@ import it.polito.s279941.libra.utils.LOG_TAG
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.Path
 
 /*
 https://medium.com/swlh/simplest-post-request-on-android-kotlin-using-retrofit-e0a9db81f11a
@@ -43,6 +41,33 @@ class RestApiManager {
         )
         return utenteData
     }
+
+
+
+    fun signin(utenteSigninData: UtenteSigninData): MutableLiveData<UtenteDataClass> {
+        Log.d(LOG_TAG, "start fun  signin()  in class RestApiManager") //--->DBG
+        val utenteData = MutableLiveData<UtenteDataClass>()
+
+        val apiService = ServiceBuilder.buildService(RestApi::class.java)
+
+        apiService.signin(utenteSigninData).enqueue(
+            object : Callback<UtenteDataClass> {
+                override fun onResponse(call: Call<UtenteDataClass>, response: Response<UtenteDataClass>) {
+                    Log.d(LOG_TAG, "RestApiManager.onResponse() -> response.isSuccessful=" + response.isSuccessful) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.onResponse() -> response.code()=" + response.code()) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.onResponse() -> response.body()=" + response.body()) //--->DBG
+                    utenteData.value = response.body()
+                }
+
+                override fun onFailure(call: Call<UtenteDataClass>, t: Throwable) {
+                    Log.d(LOG_TAG, "RestApiManager.onFailure() -> throwable.message=" + t.message) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.onFailure() -> throwable.cause=" + t.cause) //--->DBG
+                }
+            }
+        )
+        return utenteData
+    }
+
 
 
     fun getGoals(onResult: (List<Obiettivo>?) -> Unit){

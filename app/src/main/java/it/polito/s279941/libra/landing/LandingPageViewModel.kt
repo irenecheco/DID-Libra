@@ -20,6 +20,7 @@ class LandingPageViewModel : ViewModel(){
     // istanzio oggetti per il recupero dei dati
     val restApiManager = RestApiManager()
     val loginRepository = LoginRepository(restApiManager)
+    val signinRepository = SigninRepository(restApiManager)
 
     // serve a contenere le credenziali che verranno passate
     // dall'utente nella finestra di login (LoginPageFragment)
@@ -54,8 +55,26 @@ class LandingPageViewModel : ViewModel(){
     // invoca il repository per la registrazione
     fun signin(){
         Log.d(LOG_TAG, "  start sigin()  in LandingPageViewModel") //--->DBG
+        Log.d(LOG_TAG,"   dati inseriti: \n" +
+                "Tipo=${utenteSigninData.tipo},\n" +
+                "Data nascita=${utenteSigninData.data_nascita},\n" +
+                "Nome=${utenteSigninData.nome},\n" +
+                "Cognome=${utenteSigninData.cognome},\n" +
+                "email=${utenteSigninData.email},\n" +
+                "cod_nutriz=${utenteSigninData.cod_nutrizionista},\n" +
+                "password=${utenteSigninData.password},\n" +
+                "data iscrizione=${utenteSigninData.data_iscrizione}")
 
+        _utenteCorrente = signinRepository.signin(utenteSigninData)
+        utenteCorrente = _utenteCorrente
 
+        val alcuniAttributiUtenteRegistrato = with(utenteCorrente.value){
+            "nome " + this?.nome.toString() + " " +
+                    "cogn " + this?.cognome.toString() + " - " +
+                    "email " + this?.email.toString() + " " +
+                    "tipo " + this?.tipo
+                    "_id " + this?._id } //--->DBG
+        Log.d(LOG_TAG, "LandingPageViewModel --> attributi utenteRegistrato=" + alcuniAttributiUtenteRegistrato) //--->DBG
     }
 
 
@@ -78,6 +97,16 @@ class LandingPageViewModel : ViewModel(){
     fun logLogingData() {
         Log.d(LOG_TAG, "utenteLoginData: email= ${utenteLoginData.email}  in LandingPageViewModel") //--->DBG
         Log.d(LOG_TAG, "utenteLoginData: password= ${utenteLoginData.password}  in LandingPageViewModel") //--->DBG
+    }
+
+    fun logSigninData() {
+        Log.d(LOG_TAG,"landingPageViewModel -> dati inseriti: " +
+                "Tipo=${utenteSigninData.tipo},\n" +
+                "Data nascita=${utenteSigninData.data_nascita},\n" +
+                "Nome=${utenteSigninData.nome},\n" +
+                "Cognome=${utenteSigninData.cognome},\n" +
+                "emain=${utenteSigninData.email},\n" +
+                "password=${utenteSigninData.password}")
     }
 
 }

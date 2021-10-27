@@ -1,6 +1,5 @@
 package it.polito.s279941.libra.api
 
-import androidx.lifecycle.MutableLiveData
 import it.polito.s279941.libra.DataModel.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -21,6 +20,10 @@ interface RestApi {
     @POST("auth/login")
     fun login(@Body utenteLoginData: UtenteLoginData) : Call<UtenteDataClass>
 
+    // http://BACKEND_URL:3000/api/auth/register (POST con json dei dati utente)
+    @Headers("Content-Type: application/json")
+    @POST("auth/register")
+    fun signin(@Body utenteSigninData: UtenteSigninData) : Call<UtenteDataClass>
 
     /*@GET("users")
     fun getUsers2() : Observable<List<UtenteDataClass>>

@@ -21,12 +21,14 @@
     <string name="signinNameTip">Pinco</string>
     <string name="signinSurnameTip">Pallino</string>
     <string name="signinBirthdayLabel">Data di nascita</string>
+    <string name="signinBirthdayNotice">Verificare campo Data di nascita</string>
     <string name="signinUserRoleBasedLabelPaz">Codice del MIO nutrizionista</string>
     <string name="signinUserRoleBasedFieldPazTip">AA_123456</string>
     <string name="signinUserRoleBasedLabelNut">Numero iscrizione ALBO dei nutrizionisti</string>
     <string name="signinUserRoleBasedFieldNutTip">AA_123456</string>
     <string name="signinPasswordConfirmLabel">Conferma password</string>
-    <string name="signinPasswordConfirmField">Ripeti password</string>
+    <string name="signinPasswordConfirmFieldTip">Ripeti password</string>
+    <string name="signinPasswordNotice">Password  corretta</string>
     <string name="signinButton">Registrazione</string>
     <string name="rememberMeCheckBox">Ricordami per i prossimi accessi</string>
 
