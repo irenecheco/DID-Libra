@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.google.gson.Gson
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.professionista.ProfessionistaMainActivity
 import it.polito.s279941.libra.utente.UtenteMainActivity
@@ -97,12 +98,22 @@ class LoginPageFragment : Fragment() {
             viewModel.utenteCorrente.observe(viewLifecycleOwner) {
                 progressBarLogin.visibility = View.INVISIBLE
                 loginButton.visibility = View.VISIBLE
+                // converto l'oggetto utenteCorrente in oggetto json per il passaggio all'activity successiva
+                val gson = Gson()
+                val utenteCorrenteGson = gson.toJson(viewModel.utenteCorrente)
                 when (viewModel.getTipologiaUtente()) {
-                    "PAZ" -> {val i = Intent(activity, UtenteMainActivity::class.java)
-                        startActivityForResult(i, 1)}
-                    "NUT" -> {val i = Intent(activity, ProfessionistaMainActivity::class.java)
-                        startActivityForResult(i, 1)}
-                    "NETERR" -> {val transaction = activity?.supportFragmentManager?.beginTransaction()
+                    "PAZ" -> {
+                        val i = Intent(activity, UtenteMainActivity::class.java)
+                        i.putExtra("loggedUser", utenteCorrenteGson)
+                        startActivityForResult(i, 1)
+                    }
+                    "NUT" -> {
+                        val i = Intent(activity, ProfessionistaMainActivity::class.java)
+                        i.putExtra("loggedUser", utenteCorrenteGson)
+                        startActivityForResult(i, 1)
+                    }
+                    "NETERR" -> {// TODO: NON FUNZIONA QUESTA PARTE
+                        val transaction = activity?.supportFragmentManager?.beginTransaction()
                 transaction?.replace(R.id.landing_page_fragment_container, landingPageFragment)
                 transaction?.addToBackStack("LoginPageFragment")
                 transaction?.commit() } //--->DBG

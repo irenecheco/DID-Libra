@@ -73,4 +73,7 @@ dependencies {
     // FIX "Cannot fit requested classes in a single dex file (# methods: 65537 > 65536)" during build
     // (https://developer.android.com/studio/build/multidex)
     implementation("androidx.multidex:multidex:2.0.1")
+    // Provide simple toJson() and fromJson() methods to convert Java objects to JSON and vice-versa
+    // per passare oggetti tra le activity
+    implementation 'com.google.code.gson:gson:2.8.8'
 }

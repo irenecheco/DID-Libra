@@ -5,16 +5,11 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import it.polito.s279941.libra.DataModel.CalendarioDieta
-import it.polito.s279941.libra.DataModel.Dieta
-import it.polito.s279941.libra.DataModel.GiornoDieta
+import com.google.gson.Gson
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.R
-import it.polito.s279941.libra.utentedieta.PastoItem
 import it.polito.s279941.libra.utils.LOG_TAG
 import kotlinx.android.synthetic.main.utente_activity_main.*
-import java.util.*
 
 class UtenteMainActivity : AppCompatActivity() {
 
@@ -32,9 +27,13 @@ class UtenteMainActivity : AppCompatActivity() {
         // Intando creo un MOCK vuoto dell' UtenteDataClass e temporaneamente gli passo il mock
         val utenteDataClassIstancCaricataDalDatabase = UtenteDataClass()
         //utenteViewModel.initByUtenteDataClass(utenteDataClassIstancCaricataDalDatabase)
-        utenteViewModel.setPaziente("61391a94f264961050bd82fb")
+        //utenteViewModel.setPaziente("61391a94f264961050bd82fb")
 
+        val gson = Gson()
+        val utenteCorrente = gson.fromJson<UtenteDataClass>(intent.getStringExtra("loggedUser"), UtenteDataClass::class.java)
+        utenteViewModel.initByUtenteDataClass(utenteCorrente)
 
+        Log.d(LOG_TAG, "UtenteMainActivity:-> tipologia utente: ${utenteCorrente.tipo} , email ${utenteCorrente.email}")
 
         val profilo_fragment = UtenteProfiloFragment()
         val dieta_fragment = UtenteDietaFragment()
