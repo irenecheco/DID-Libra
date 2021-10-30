@@ -10,6 +10,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.google.gson.Gson
+import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.professionista.ProfessionistaMainActivity
 import it.polito.s279941.libra.utente.UtenteMainActivity
@@ -60,12 +61,12 @@ class LoginPageFragment : Fragment() {
                 viewModel.utenteLoginData.email=emailField.text.toString()
                 emailFieldDataIntegrity = true
                 emailLabel.setTextColor(resources.getColor(R.color.colorPrimaryDark))
-                emailLabel.text = emailLabel.text.trimStart('*')
+                emailLabel.text = emailLabel.text.trimStart('*',' ')
             } else{
                 Log.d(LOG_TAG, "email field does NOT match regex: ${emailField.text}") //--->DBG
                 emailFieldDataIntegrity = false
                 emailLabel.setTextColor(resources.getColor(R.color.colorAccentERROR))
-                emailLabel.text = emailLabel.text.trimStart('*')
+                emailLabel.text = emailLabel.text.trimStart('*',' ')
                 emailLabel.text = "* ${emailLabel.text}"
             }
             loginButton.isEnabled = emailFieldDataIntegrity && passwordFieldDataIntegrity
@@ -98,19 +99,24 @@ class LoginPageFragment : Fragment() {
             viewModel.utenteCorrente.observe(viewLifecycleOwner) {
                 progressBarLogin.visibility = View.INVISIBLE
                 loginButton.visibility = View.VISIBLE
-                // converto l'oggetto utenteCorrente in oggetto json per il passaggio all'activity successiva
+
+                // Estraggo l'oggetto di tipo UtenteDataClass contenuto nel Livedata per trasformarlo in
+                // oggetto json e poterlo passare all'activity successiva
                 val gson = Gson()
-                val utenteCorrenteGson = gson.toJson(viewModel.utenteCorrente)
+                val utenteCorrenteInLivedata : UtenteDataClass? = viewModel.utenteCorrente.value
+                val utenteCorrenteGson = gson.toJson(utenteCorrenteInLivedata)
+                //Log.d(LOG_TAG, "utenteCorrenteGson: " + utenteCorrenteGson + " in LoginPageFragment") //--->DBG
+
                 when (viewModel.getTipologiaUtente()) {
                     "PAZ" -> {
-                        val i = Intent(activity, UtenteMainActivity::class.java)
-                        i.putExtra("loggedUser", utenteCorrenteGson)
-                        startActivityForResult(i, 1)
+                        val myIntent = Intent(activity, UtenteMainActivity::class.java)
+                        myIntent.putExtra("libra.loggedUserGson", utenteCorrenteGson)
+                        startActivityForResult(myIntent, 1)
                     }
                     "NUT" -> {
-                        val i = Intent(activity, ProfessionistaMainActivity::class.java)
-                        i.putExtra("loggedUser", utenteCorrenteGson)
-                        startActivityForResult(i, 1)
+                        val myIntent = Intent(activity, ProfessionistaMainActivity::class.java)
+                        myIntent.putExtra("libra.loggedUserGson", utenteCorrenteGson)
+                        startActivityForResult(myIntent, 1)
                     }
                     "NETERR" -> {// TODO: NON FUNZIONA QUESTA PARTE
                         val transaction = activity?.supportFragmentManager?.beginTransaction()

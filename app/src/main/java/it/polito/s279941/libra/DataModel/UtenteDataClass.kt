@@ -35,7 +35,7 @@ data class UtenteDataClass(
         var cognome: String ="",
         var data_nascita: Date? = null, // todo: check with date format in DB
         var cod_nutrizionista: String ="", // valido sia per pazienti che per nutrizionisti
-        //var cod_iscrizione_albo: String ="",  // TODO: OBSOLETO: ELIMINARE e sostituire con "cod_nutrizionista"
+        //var cod_iscrizione_albo: String ="",  // OBSOLETO: ELIMINATO e sostituito con "cod_nutrizionista"
         var lista_pazienti: List<String>? = null,
         var scr_foto: String ="",
         var obiettivi: List<Obiettivo>? = null,

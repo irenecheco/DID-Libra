@@ -8,7 +8,7 @@ import it.polito.s279941.libra.DataModel.*
 import it.polito.s279941.libra.api.RestApiManager
 import it.polito.s279941.libra.utentedieta.PastoItem
 import it.polito.s279941.libra.utentedieta.UtenteDietaRepository
-import it.polito.s279941.libra.utenteobiettivi.ObiettiviRepository
+import it.polito.s279941.libra.utils.LOG_TAG
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -30,6 +30,13 @@ class UtenteViewModel: ViewModel() {
         PastoItem("CENA", "", false)
     )
 
+    /** @AG **/
+    // var che contiene l'oggetto utente (che ha fatto login/signin) passato dall'activity di login/signin
+    var utenteCorrente : UtenteDataClass = UtenteDataClass()
+    // funzione di test per verificare se effettivamente l'oggetto c'è
+    fun initByUtenteDataClass_AG(userData: UtenteDataClass){
+        Log.d(LOG_TAG, "initByUtenteDataClass_AG() tipologia utente: ${utenteCorrente.tipo} , email: ${utenteCorrente.email}  in UtenteViewModel")
+    }
 
 
     /**
@@ -55,7 +62,6 @@ class UtenteViewModel: ViewModel() {
 
         _userData=userData;
 
-
         if (userData.dieta==null) {
             userData.dieta = Dieta("2021-10-09",
                 mutableListOf<GiornoDieta>(
@@ -68,7 +74,6 @@ class UtenteViewModel: ViewModel() {
         }
 
         setGiorno(System.currentTimeMillis())
-
     }
 
 
@@ -79,6 +84,7 @@ class UtenteViewModel: ViewModel() {
         _noteDelGiornoLiveData.value = note
 
     }
+
     fun saveNoteGiornoToDB(note:String){
         setNoteDelGiorno(note)
         var currDayCalDieta= getDietaDelGiornoSeEsisteOCrealaNuova(_giorno)
@@ -93,6 +99,7 @@ class UtenteViewModel: ViewModel() {
         // content-type: application/json
         //{"commento": "Mangia benissimo il 23"}
     }
+
     fun savePastoConsumatoToDB(nomePasto:String,consumato: Boolean){
 
         var currDayCalDieta= getDietaDelGiornoSeEsisteOCrealaNuova(_giorno)
@@ -229,6 +236,16 @@ class UtenteViewModel: ViewModel() {
             _userData!!.calendarioDieta?.add(currDayCalDieta)
         }
         return currDayCalDieta
+    }
+
+    /** alcune funzioni di utilità per DBG etc..  ***/
+
+    fun getTipo() : String {
+        return _userData.tipo
+    }
+
+    fun getEmail() : String {
+        return _userData.email
     }
 
 }

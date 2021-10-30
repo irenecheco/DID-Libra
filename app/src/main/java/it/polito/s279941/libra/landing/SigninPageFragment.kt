@@ -10,11 +10,12 @@ import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.google.gson.Gson
+import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.professionista.ProfessionistaMainActivity
 import it.polito.s279941.libra.utente.UtenteMainActivity
 import it.polito.s279941.libra.utils.LOG_TAG
-import kotlinx.android.synthetic.main.fragment_login_page.*
 import kotlinx.android.synthetic.main.fragment_signin_page.*
 import java.util.*
 
@@ -299,15 +300,31 @@ class SigninPageFragment : Fragment() {
                 viewModel.utenteCorrente.observe(viewLifecycleOwner) {
                     progressBarSignin.visibility = View.INVISIBLE
                     signinButton.visibility = View.VISIBLE
+
+                    // Estraggo l'oggetto di tipo UtenteDataClass contenuto nel Livedata per trasformarlo in
+                    // oggetto json e poterlo passare all'activity successiva
+                    val gson = Gson()
+                    val utenteCorrenteInLivedata : UtenteDataClass? = viewModel.utenteCorrente.value
+                    val utenteCorrenteGson = gson.toJson(utenteCorrenteInLivedata)
+                    //Log.d(LOG_TAG, "utenteCorrenteGson: " + utenteCorrenteGson + " in LoginPageFragment") //--->DBG
+
                     when (viewModel.getTipologiaUtente()) {
-                        "PAZ" -> {val i = Intent(activity, UtenteMainActivity::class.java)
-                            startActivityForResult(i, 1)}
-                        "NUT" -> {val i = Intent(activity, ProfessionistaMainActivity::class.java)
-                            startActivityForResult(i, 1)}
-                        "NETERR" -> {val transaction = activity?.supportFragmentManager?.beginTransaction()
+                        "PAZ" -> {
+                            val myIntent = Intent(activity, UtenteMainActivity::class.java)
+                            myIntent.putExtra("libra.loggedUserGson", utenteCorrenteGson)
+                            startActivityForResult(myIntent, 1)
+                        }
+                        "NUT" -> {
+                            val myIntent = Intent(activity, ProfessionistaMainActivity::class.java)
+                            myIntent.putExtra("libra.loggedUserGson", utenteCorrenteGson)
+                            startActivityForResult(myIntent, 1)
+                        }
+                        "NETERR" -> {
+                            val transaction = activity?.supportFragmentManager?.beginTransaction()
                             transaction?.replace(R.id.landing_page_fragment_container, landingPageFragment)
                             transaction?.addToBackStack("LoginPageFragment")
-                            transaction?.commit() } //--->DBG
+                            transaction?.commit()
+                        } //--->DBG
                     }
                 }
             }

@@ -29,11 +29,19 @@ class UtenteMainActivity : AppCompatActivity() {
         //utenteViewModel.initByUtenteDataClass(utenteDataClassIstancCaricataDalDatabase)
         //utenteViewModel.setPaziente("61391a94f264961050bd82fb")
 
-        val gson = Gson()
-        val utenteCorrente = gson.fromJson<UtenteDataClass>(intent.getStringExtra("loggedUser"), UtenteDataClass::class.java)
-        utenteViewModel.initByUtenteDataClass(utenteCorrente)
 
-        Log.d(LOG_TAG, "UtenteMainActivity:-> tipologia utente: ${utenteCorrente.tipo} , email ${utenteCorrente.email}")
+        /** @AG  **/
+        // estraggo dall'intent l'oggetto json passatto dal fragment precedente e lo riconverto
+        // in oggetto UtenteDataClass
+        val gson = Gson()
+        val utenteCorrenteGson = intent.getStringExtra("libra.loggedUserGson")
+        Log.d(LOG_TAG, "UtenteMainActivity :--> utenteCorrenteGson: ${utenteCorrenteGson}")
+        utenteViewModel.utenteCorrente = gson.fromJson(utenteCorrenteGson, UtenteDataClass::class.java)
+        Log.d(LOG_TAG, "UtenteMainActivity :--> utenteCorrente<${utenteViewModel.utenteCorrente.javaClass}>, ${utenteViewModel.utenteCorrente}")
+        // classe init per test dato che l'altra andava in crash
+        utenteViewModel.initByUtenteDataClass_AG(utenteViewModel.utenteCorrente)
+
+
 
         val profilo_fragment = UtenteProfiloFragment()
         val dieta_fragment = UtenteDietaFragment()
