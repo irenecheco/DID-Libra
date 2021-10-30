@@ -95,7 +95,7 @@
             android:id="@+id/passwordField"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/passwordTip"
+            android:hint="@string/passwordLabel"
             android:inputType="textPassword"
             android:padding="@dimen/padding_large"
             app:layout_constraintEnd_toEndOf="parent"

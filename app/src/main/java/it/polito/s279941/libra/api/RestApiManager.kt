@@ -27,18 +27,37 @@ class RestApiManager {
         apiService.login(utenteLoginData).enqueue(
             object : Callback<UtenteDataClass> {
                 override fun onResponse(call: Call<UtenteDataClass>, response: Response<UtenteDataClass>) {
-                    Log.d(LOG_TAG, "RestApiManager.onResponse() -> response.isSuccessful=" + response.isSuccessful) //--->DBG
-                    Log.d(LOG_TAG, "RestApiManager.onResponse() -> response.code()=" + response.code()) //--->DBG
-                    Log.d(LOG_TAG, "RestApiManager.onResponse() -> response.body()=" + response.body()) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.login.onResponse() -> response.isSuccessful=" + response.isSuccessful) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.login.onResponse() -> response.code()=" + response.code()) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.login.onResponse() -> response.body()=" + response.body()) //--->DBG
+                    when (response.code()){
+                        200 -> {
+                            Log.d(LOG_TAG, "when( response.code() == 200)") //--->DBG
+                            Log.d(LOG_TAG, "  right credential, login allowed") //--->DBG
+                        }
+                        401 -> {
+                            Log.d(LOG_TAG, "when( response.code() == 401)") //--->DBG
+                            Log.d(LOG_TAG, "  wrong password") //--->DBG
+                        }
+                        404 -> {
+                            Log.d(LOG_TAG, "when( response.code() == 404)") //--->DBG
+                            Log.d(LOG_TAG, "  user not exist") //--->DBG
+                        }
+                    }
+                    // questa istruzione serve a terminare la chiamata retrofit, che altrimenti resta "appesa"
                     utenteData.value = response.body()
+                    // questa serve ad aggiornare il LiveData con il codice di errore passato nel campo 'tipo',
+                    // in modo da poter dare un certo feedback all''utente (ved. LoginPageFragment e SigninPageFragment)
+                    utenteData.value = UtenteDataClass(tipo=response.code().toString())
                 }
 
                 override fun onFailure(call: Call<UtenteDataClass>, t: Throwable) {
-                    Log.d(LOG_TAG, "RestApiManager.onFailure() -> throwable.message=" + t.message) //--->DBG
-                    Log.d(LOG_TAG, "RestApiManager.onFailure() -> throwable.cause=" + t.cause) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.login.onFailure() -> throwable.message=" + t.message) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.login.onFailure() -> throwable.cause=" + t.cause) //--->DBG
                 }
             }
         )
+        Log.d(LOG_TAG, "return of RestApiManager = ${utenteData}")
         return utenteData
     }
 
@@ -53,15 +72,25 @@ class RestApiManager {
         apiService.signin(utenteSigninData).enqueue(
             object : Callback<UtenteDataClass> {
                 override fun onResponse(call: Call<UtenteDataClass>, response: Response<UtenteDataClass>) {
-                    Log.d(LOG_TAG, "RestApiManager.onResponse() -> response.isSuccessful=" + response.isSuccessful) //--->DBG
-                    Log.d(LOG_TAG, "RestApiManager.onResponse() -> response.code()=" + response.code()) //--->DBG
-                    Log.d(LOG_TAG, "RestApiManager.onResponse() -> response.body()=" + response.body()) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.signin.onResponse() -> response.isSuccessful=" + response.isSuccessful) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.signin.onResponse() -> response.code()=" + response.code()) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.signin.onResponse() -> response.body()=" + response.body()) //--->DBG
+                    when (response.code()){
+                        201 -> {
+                            Log.d(LOG_TAG, "when( response.code() == 201)") //--->DBG
+                            Log.d(LOG_TAG, "  user created, signin allowed") //--->DBG
+                        }
+                        409 -> {
+                            Log.d(LOG_TAG, "when( response.code() == 409)") //--->DBG
+                            Log.d(LOG_TAG, "  user already exists") //--->DBG
+                        }
+                    }
                     utenteData.value = response.body()
                 }
 
                 override fun onFailure(call: Call<UtenteDataClass>, t: Throwable) {
-                    Log.d(LOG_TAG, "RestApiManager.onFailure() -> throwable.message=" + t.message) //--->DBG
-                    Log.d(LOG_TAG, "RestApiManager.onFailure() -> throwable.cause=" + t.cause) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.signin.onFailure() -> throwable.message=" + t.message) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.signin.onFailure() -> throwable.cause=" + t.cause) //--->DBG
                 }
             }
         )

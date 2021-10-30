@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -107,22 +108,37 @@ class LoginPageFragment : Fragment() {
                 val utenteCorrenteGson = gson.toJson(utenteCorrenteInLivedata)
                 //Log.d(LOG_TAG, "utenteCorrenteGson: " + utenteCorrenteGson + " in LoginPageFragment") //--->DBG
 
+                Log.d(LOG_TAG, "before 'when (viewModel.getTipologiaUtente())'   in LoginPageFragment") //--->DBG
                 when (viewModel.getTipologiaUtente()) {
                     "PAZ" -> {
+                        Log.d(LOG_TAG, "when (viewModel.getTipologiaUtente() -> PAZ") //--->DBG
                         val myIntent = Intent(activity, UtenteMainActivity::class.java)
                         myIntent.putExtra("libra.loggedUserGson", utenteCorrenteGson)
                         startActivityForResult(myIntent, 1)
                     }
                     "NUT" -> {
+                        Log.d(LOG_TAG, "when (viewModel.getTipologiaUtente() -> NUT") //--->DBG
                         val myIntent = Intent(activity, ProfessionistaMainActivity::class.java)
                         myIntent.putExtra("libra.loggedUserGson", utenteCorrenteGson)
                         startActivityForResult(myIntent, 1)
                     }
-                    "NETERR" -> {// TODO: NON FUNZIONA QUESTA PARTE
+                    // se abilito queste due clausole posso inviare un msg più dettagliato
+                    /*"401" -> {
+                        Log.d(LOG_TAG, "when (viewModel.getTipologiaUtente() -> 401") //--->DBG
+                        Toast.makeText(this.context, "utente inesistente", Toast.LENGTH_LONG).show()
+                    }
+                    "404" -> {
+                        Log.d(LOG_TAG, "when (viewModel.getTipologiaUtente() -> 404") //--->DBG
+                        Toast.makeText(this.context, "utente inesistente", Toast.LENGTH_LONG).show()
+                    }*/
+                    // Mandiamo un messaggio generico all'utente
+                    "NETERR" -> {
+                        Log.d(LOG_TAG, "when (viewModel.getTipologiaUtente() -> NETERR") //--->DBG
+                        Toast.makeText(this.context, R.string.loginErrorMsg, Toast.LENGTH_LONG).show()
                         val transaction = activity?.supportFragmentManager?.beginTransaction()
-                transaction?.replace(R.id.landing_page_fragment_container, landingPageFragment)
-                transaction?.addToBackStack("LoginPageFragment")
-                transaction?.commit() } //--->DBG
+                        transaction?.replace(R.id.landing_page_fragment_container, landingPageFragment)
+                        transaction?.addToBackStack("LoginPageFragment")
+                        transaction?.commit() } //--->DBG
                 }
             }
         }

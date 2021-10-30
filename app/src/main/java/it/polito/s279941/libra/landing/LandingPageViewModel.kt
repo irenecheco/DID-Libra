@@ -78,9 +78,11 @@ class LandingPageViewModel : ViewModel(){
     }
 
 
+    // se restituisce "NETERR" c'è stato un errore
     fun getTipologiaUtente(): String {
-        //Log.d(LOG_TAG, "getTipologiaUtente()  in LandingPageViewModel") //--->DBG
+        Log.d(LOG_TAG, "1 getTipologiaUtente()=${utenteCorrente.value?.tipo}  in LandingPageViewModel") //--->DBG
         val t = utenteCorrente.value?.tipo ?: "NETERR"
+        Log.d(LOG_TAG, "  2 getTipologiaUtente()=${utenteCorrente.value?.tipo}  in LandingPageViewModel")
         return t
     }
 

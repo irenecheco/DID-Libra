@@ -30,6 +30,7 @@
     <string name="signinPasswordConfirmFieldTip">Ripeti password</string>
     <string name="signinPasswordNotice">Password  corretta</string>
     <string name="signinButton">Registrazione</string>
+    <string name="loginErrorMsg">Credenziali errate</string>
     <string name="rememberMeCheckBox">Ricordami per i prossimi accessi</string>
 
     <!-- Menu utente -->
