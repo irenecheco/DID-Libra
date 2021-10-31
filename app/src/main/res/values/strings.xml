@@ -29,7 +29,8 @@
     <string name="signinPasswordConfirmFieldTip">Retype password</string>
     <string name="signinPasswordNotice">Password match</string>
     <string name="signinButton">Signin</string>
-    <string name="loginErrorMsg">Wrong credentiall</string>
+    <string name="loginErrorMsg">Wrong credential</string>
+    <string name="signinErrorMsg">e-mail already exists.\n Try login or use another e-mail</string>
     <string name="rememberMeCheckBox">Remember me for future login</string>
 
 

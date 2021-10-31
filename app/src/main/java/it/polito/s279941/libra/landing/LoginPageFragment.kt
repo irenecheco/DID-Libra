@@ -108,7 +108,9 @@ class LoginPageFragment : Fragment() {
                 val utenteCorrenteGson = gson.toJson(utenteCorrenteInLivedata)
                 //Log.d(LOG_TAG, "utenteCorrenteGson: " + utenteCorrenteGson + " in LoginPageFragment") //--->DBG
 
-                Log.d(LOG_TAG, "before 'when (viewModel.getTipologiaUtente())'   in LoginPageFragment") //--->DBG
+                //Log.d(LOG_TAG, "before 'when (viewModel.getTipologiaUtente())'   in LoginPageFragment") //--->DBG
+                /* La notifica di eventuali errori viene fatta per semplicità tramite Toast, che fa apparire
+                * a schermo una sorta di pop-up con il messaggio */
                 when (viewModel.getTipologiaUtente()) {
                     "PAZ" -> {
                         Log.d(LOG_TAG, "when (viewModel.getTipologiaUtente() -> PAZ") //--->DBG
@@ -122,7 +124,9 @@ class LoginPageFragment : Fragment() {
                         myIntent.putExtra("libra.loggedUserGson", utenteCorrenteGson)
                         startActivityForResult(myIntent, 1)
                     }
-                    // se abilito queste due clausole posso inviare un msg più dettagliato
+                    /* se abilito queste due clausole (401 e 404) posso inviare un msg più dettagliato
+                    * oltre a quello che viene inviato da NETERR
+                    */
                     /*"401" -> {
                         Log.d(LOG_TAG, "when (viewModel.getTipologiaUtente() -> 401") //--->DBG
                         Toast.makeText(this.context, "utente inesistente", Toast.LENGTH_LONG).show()
@@ -131,14 +135,16 @@ class LoginPageFragment : Fragment() {
                         Log.d(LOG_TAG, "when (viewModel.getTipologiaUtente() -> 404") //--->DBG
                         Toast.makeText(this.context, "utente inesistente", Toast.LENGTH_LONG).show()
                     }*/
-                    // Mandiamo un messaggio generico all'utente
+                    // Mandiamo alll'utente un generico messaggio di errore per il login
+                    // e torniamo alla landing page
                     "NETERR" -> {
                         Log.d(LOG_TAG, "when (viewModel.getTipologiaUtente() -> NETERR") //--->DBG
                         Toast.makeText(this.context, R.string.loginErrorMsg, Toast.LENGTH_LONG).show()
                         val transaction = activity?.supportFragmentManager?.beginTransaction()
                         transaction?.replace(R.id.landing_page_fragment_container, landingPageFragment)
                         transaction?.addToBackStack("LoginPageFragment")
-                        transaction?.commit() } //--->DBG
+                        transaction?.commit()
+                    }
                 }
             }
         }

@@ -319,12 +319,22 @@ class SigninPageFragment : Fragment() {
                             myIntent.putExtra("libra.loggedUserGson", utenteCorrenteGson)
                             startActivityForResult(myIntent, 1)
                         }
+                        /* se abilito questa clausola (409) posso inviare (sempre con toast)
+                        * un msg più dettagliato oltre a quello che viene inviato da NETERR */
+                        /*"409" -> {
+                            Log.d(LOG_TAG, "when (viewModel.getTipologiaUtente() -> 401") //--->DBG
+                            Toast.makeText(this.context, "email già esistente", Toast.LENGTH_LONG).show()
+                        }
+                        */
+                        // Mandiamo all'utente un generico messaggio di errore per il signin
+                        // e torniamo alla landing page
                         "NETERR" -> {
                             val transaction = activity?.supportFragmentManager?.beginTransaction()
+                            Toast.makeText(this.context, R.string.signinErrorMsg, Toast.LENGTH_LONG).show()
                             transaction?.replace(R.id.landing_page_fragment_container, landingPageFragment)
                             transaction?.addToBackStack("LoginPageFragment")
                             transaction?.commit()
-                        } //--->DBG
+                        }
                     }
                 }
             }

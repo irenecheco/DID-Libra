@@ -31,6 +31,7 @@
     <string name="signinPasswordNotice">Password  corretta</string>
     <string name="signinButton">Registrazione</string>
     <string name="loginErrorMsg">Credenziali errate</string>
+    <string name="signinErrorMsg">e-mail già esistente.\n Fare login o cambiare e-mail</string>
     <string name="rememberMeCheckBox">Ricordami per i prossimi accessi</string>
 
     <!-- Menu utente -->

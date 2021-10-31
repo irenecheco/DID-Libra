@@ -34,21 +34,41 @@ class RestApiManager {
                         200 -> {
                             Log.d(LOG_TAG, "when( response.code() == 200)") //--->DBG
                             Log.d(LOG_TAG, "  right credential, login allowed") //--->DBG
+                            utenteData.value = response.body()
                         }
                         401 -> {
                             Log.d(LOG_TAG, "when( response.code() == 401)") //--->DBG
                             Log.d(LOG_TAG, "  wrong password") //--->DBG
+                            // questa istr. serve a terminare correttamente la chiamata retrofit, che altrimenti resta "appesa"
+                            utenteData.value = response.body()
+                            /* questa serve ad aggiornare il LiveData con il codice di errore passato nel campo 'tipo',
+                            * in modo da poter dare un certo feedback all''utente (ved. LoginPageFragment e SigninPageFragment)
+                            * Non è proprio bellissimo, ma non ho trovato altre soluzioni che non stravolgessero e/o complicassero
+                            * il codice.
+                            * In pratica in questo modo il LiveData viene "aggiornato" 2 volte:
+                            *  - la prima volta vale 'null'
+                            *  - la seconda volta carico il livedata con una istanza di utenteDataClass a cui assegno al
+                            * campo tipo il codice di errore
+                             */
+                            utenteData.value = UtenteDataClass(tipo=response.code().toString())
                         }
                         404 -> {
                             Log.d(LOG_TAG, "when( response.code() == 404)") //--->DBG
                             Log.d(LOG_TAG, "  user not exist") //--->DBG
+                            // questa istr. serve a terminare correttamente la chiamata retrofit, che altrimenti resta "appesa"
+                            utenteData.value = response.body()
+                            /* questa serve ad aggiornare il LiveData con il codice di errore passato nel campo 'tipo',
+                            * in modo da poter dare un certo feedback all''utente (ved. LoginPageFragment e SigninPageFragment)
+                            * Non è proprio bellissimo, ma non ho trovato altre soluzioni che non stravolgessero e/o complicassero
+                            * il codice.
+                            * In pratica in questo modo il LiveData viene "aggiornato" 2 volte:
+                            *  - la prima volta vale 'null'
+                            *  - la seconda volta carico il livedata con una istanza di utenteDataClass a cui assegno al
+                            * campo tipo il codice di errore
+                             */
+                            utenteData.value = UtenteDataClass(tipo=response.code().toString())
                         }
                     }
-                    // questa istruzione serve a terminare la chiamata retrofit, che altrimenti resta "appesa"
-                    utenteData.value = response.body()
-                    // questa serve ad aggiornare il LiveData con il codice di errore passato nel campo 'tipo',
-                    // in modo da poter dare un certo feedback all''utente (ved. LoginPageFragment e SigninPageFragment)
-                    utenteData.value = UtenteDataClass(tipo=response.code().toString())
                 }
 
                 override fun onFailure(call: Call<UtenteDataClass>, t: Throwable) {
@@ -57,9 +77,9 @@ class RestApiManager {
                 }
             }
         )
-        Log.d(LOG_TAG, "return of RestApiManager = ${utenteData}")
         return utenteData
     }
+
 
 
 
@@ -79,13 +99,16 @@ class RestApiManager {
                         201 -> {
                             Log.d(LOG_TAG, "when( response.code() == 201)") //--->DBG
                             Log.d(LOG_TAG, "  user created, signin allowed") //--->DBG
+                            utenteData.value = response.body()
                         }
                         409 -> {
                             Log.d(LOG_TAG, "when( response.code() == 409)") //--->DBG
                             Log.d(LOG_TAG, "  user already exists") //--->DBG
+                            // v. login()
+                            utenteData.value = response.body()
+                            utenteData.value = UtenteDataClass(tipo=response.code().toString())
                         }
                     }
-                    utenteData.value = response.body()
                 }
 
                 override fun onFailure(call: Call<UtenteDataClass>, t: Throwable) {
