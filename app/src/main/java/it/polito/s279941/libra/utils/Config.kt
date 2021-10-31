@@ -9,10 +9,11 @@ Questi gli stessi IP vanno configurati nel file
       *** xml/network_security_config.xml ***          */
 
 // The NodeJS server IP (solitamente il PC su cui gira NodeJS e AndroidStudio)
-// porta e path definiti in nodeJS. ATTENZIONE allo "/" finale
+// porta e path definiti in nodeJS. ATTENZIONE allo "/" finale nell'URL
 // non è localhost!
-//const val BACKEND_URL = "http://192.168.178.36:3000/api/"
-const val BACKEND_URL = "http://192.168.150.240:3000/api/"
+//const val BACKEND_IP = "192.168.178.36"
+const val BACKEND_IP = "192.168.30.240"
+const val BACKEND_URL = "http://${BACKEND_IP}:3000/api/"
 
 // URL di ESP8266
 const val ESP8266_URL = "http://192.168.4.1/libra/"

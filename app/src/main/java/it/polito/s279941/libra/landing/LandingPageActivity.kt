@@ -2,11 +2,15 @@ package it.polito.s279941.libra.landing
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import it.polito.s279941.libra.R
+import it.polito.s279941.libra.utils.BACKEND_IP
 import it.polito.s279941.libra.utils.LOG_TAG
+import java.io.IOException
+
 
 class LandingPageActivity : AppCompatActivity() {
     // istanzio il viewModel per coordinare il passaggio dati tra i fragment dell'activity
@@ -17,16 +21,36 @@ class LandingPageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_landing_page)
 
         if (savedInstanceState == null) {
-            val landing_page_fragment = LandingPageFragment.newInstance()
-            showFragment(landing_page_fragment)
+            Toast.makeText(this,"Checking connection", Toast.LENGTH_SHORT).show()
+            Log.d(LOG_TAG, "isConnected()=${isConnected()}  in LandingPageActivity")    //-->DBG
+            if ( ! isConnected() ) {
+                val networkErrorFragment = NetworkErrorFragment.newInstance()
+                showFragment(networkErrorFragment)
+            }
+            else {
+                val landingPageFragment = LandingPageFragment.newInstance()
+                showFragment(landingPageFragment)
+            }
         }
-        Log.d(LOG_TAG, "viewModel: " + viewModel.toString() + " in LandingPageActivity")
+        Log.d(LOG_TAG, "viewModel: " + viewModel.toString() + " in LandingPageActivity")    //-->DBG
     }
 
     fun showFragment(f: Fragment) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.landing_page_fragment_container, f).commit()
         }
+    }
+
+    @Throws(InterruptedException::class, IOException::class)
+    fun isConnected(): Boolean {
+        //val command = "ping -c 1 google.com"
+        val command = "ping -c 1 ${BACKEND_IP}"
+        return Runtime.getRuntime().exec(command).waitFor() == 0
+    }
+
+    fun quitApp() {
+        this.finish()
+        System.exit(0)
     }
 
 }

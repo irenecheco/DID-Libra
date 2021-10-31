@@ -4,7 +4,7 @@
     <string name="landingPageTopLogo">Logo application</string>
     <string name="loginLabel">Already have an account</string>
     <string name="loginButton">LOGIN</string>
-    <string name="registrationLabel">I wanna create an account</string>
+    <string name="registrationLabel">I want to create an account</string>
     <string name="registrationButton">SIGN IN</string>
     <string name="loginDescription">Fill-in with your Libra credentials to login</string>
     <string name="signinDescription">Fill-in with your personal data to sign-in</string>
@@ -31,10 +31,9 @@
     <string name="signinButton">Signin</string>
     <string name="loginErrorMsg">Wrong credential</string>
     <string name="signinErrorMsg">e-mail already exists.\n Try login or use another e-mail</string>
+    <string name="quitMessage">A network error occurred.\nPlease check your internet connection before use Libra</string>
+    <string name="quitButton">QUIT</string>
     <string name="rememberMeCheckBox">Remember me for future login</string>
-
-
-
 
 
     <!-- Menu utente -->

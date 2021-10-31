@@ -48,16 +48,25 @@ class LandingPageFragment : Fragment() {
         //Qui può essere eseguita la personalizzazione della GUI
     }
 
+    // funzione per check della connessione internet
+    fun checkNet() : Boolean? {
+        Log.d(LOG_TAG, "isConnected()=${(activity as LandingPageActivity?)?.isConnected()}  in LandingPageFragment"
+        )    //-->DBG
+        return (activity as LandingPageActivity?)?.isConnected()
+    }
+
 
     // indica al frammento che è terminata la creazione dell'activity
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val loginPageFragment = LoginPageFragment.newInstance()
         val signinPageFragment = SigninPageFragment.newInstance()
+        val networkErrorFragment = NetworkErrorFragment.newInstance()
 
         Log.d(LOG_TAG, "onActivityCreated start in LandingPageFragment")
         //Log.d(LOG_TAG, "onActivityCreated -> savedInstanceState = " + savedInstanceState.toString())
         Log.d(LOG_TAG, "  viewModel: " + viewModel.toString() + " in LandingPageFragment")
+
 
         utente_button.setOnClickListener{
             Log.d(LOG_TAG, "event CLICK on INTERFACCIA UTENTE button in LandingPageFragment")
@@ -73,20 +82,38 @@ class LandingPageFragment : Fragment() {
 
         preLoginButton.setOnClickListener{
             Log.d(LOG_TAG, "event CLICK on (pre)LOGIN button id: " + preLoginButton.id.toString() + " in LandingPageFragment")
-            viewModel.setSelectedButton(preLoginButton.id)
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.landing_page_fragment_container, loginPageFragment)
-            transaction?.addToBackStack("LandigPageFragment")
-            transaction?.commit()
+            if ( checkNet() == true ) {
+                viewModel.setSelectedButton(preLoginButton.id)
+                val transaction = activity?.supportFragmentManager?.beginTransaction()
+                transaction?.replace(R.id.landing_page_fragment_container, loginPageFragment)
+                transaction?.addToBackStack("LandigPageFragment")
+                transaction?.commit()
+            }
+            else {
+                Log.d(LOG_TAG, "Network error in LandingPageFragment")
+                val transaction = activity?.supportFragmentManager?.beginTransaction()
+                transaction?.replace(R.id.landing_page_fragment_container, networkErrorFragment)
+                //transaction?.addToBackStack("LandigPageFragment")
+                transaction?.commit()
+            }
         }
 
         preRegistrationButton.setOnClickListener{
             Log.d(LOG_TAG, "event CLICK on (pre)SIGNIN button id: " + preRegistrationButton.id.toString() + " in LandingPageFragment")
-            viewModel.setSelectedButton(preRegistrationButton.id)
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.landing_page_fragment_container, signinPageFragment)
-            transaction?.addToBackStack("LandigPageFragment")
-            transaction?.commit()
+            if ( checkNet() == true ) {
+                viewModel.setSelectedButton(preRegistrationButton.id)
+                val transaction = activity?.supportFragmentManager?.beginTransaction()
+                transaction?.replace(R.id.landing_page_fragment_container, signinPageFragment)
+                transaction?.addToBackStack("LandigPageFragment")
+                transaction?.commit()
+            }
+            else {
+                Log.d(LOG_TAG, "Network error in LandingPageFragment")
+                val transaction = activity?.supportFragmentManager?.beginTransaction()
+                transaction?.replace(R.id.landing_page_fragment_container, networkErrorFragment)
+                //transaction?.addToBackStack("LandigPageFragment")
+                transaction?.commit()
+            }
         }
     }
 }
