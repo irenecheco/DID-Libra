@@ -36,6 +36,9 @@ class LandingPageViewModel : ViewModel(){
     private var _utenteCorrente = MutableLiveData<UtenteDataClass>()
     var utenteCorrente : LiveData<UtenteDataClass> = _utenteCorrente
 
+    // var per comunicazione msg di errore
+    var netErrorMsg = ""
+
 
     // invoca il repository per il recupero dei dati
     fun login(){
