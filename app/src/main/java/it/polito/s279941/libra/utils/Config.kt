@@ -12,8 +12,9 @@ Questi gli stessi IP vanno configurati nel file
 // porta e path definiti in nodeJS. ATTENZIONE allo "/" finale nell'URL
 // non è localhost!
 //const val BACKEND_IP = "192.168.178.36"
-const val BACKEND_IP = "192.168.30.240"
-const val BACKEND_URL = "http://${BACKEND_IP}:3000/api/"
+const val BACKEND_IP = "192.168.177.240"
+const val MONGO_PORT = "3000"
+const val BACKEND_URL = "http://${BACKEND_IP}:${MONGO_PORT}/api/"
 
 // URL di ESP8266
 const val ESP8266_URL = "http://192.168.4.1/libra/"

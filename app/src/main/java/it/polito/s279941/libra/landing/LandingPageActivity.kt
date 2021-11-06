@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.utils.BACKEND_IP
 import it.polito.s279941.libra.utils.LOG_TAG
+import it.polito.s279941.libra.utils.MONGO_PORT
 import java.io.IOException
 
 
@@ -43,8 +44,8 @@ class LandingPageActivity : AppCompatActivity() {
 
     @Throws(InterruptedException::class, IOException::class)
     fun isConnected(): Boolean {
-        //val command = "ping -c 1 google.com"
-        val command = "ping -c 1 ${BACKEND_IP}"
+        // usiamo nc perchè ping non passa attraverso l'emulatore
+        val command = "nc -v -w 1 ${BACKEND_IP} ${MONGO_PORT}"
         return Runtime.getRuntime().exec(command).waitFor() == 0
     }
 
