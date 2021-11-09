@@ -248,4 +248,32 @@ class UtenteViewModel: ViewModel() {
         return _userData.email
     }
 
+    /**
+     * VIEWMODEL PER BILANCIA
+     *
+     */
+
+    // TODO: salva peso tra dati utente in locale, al momento aggiorna solo il server
+
+    var userWeight = Peso(
+        data = null,
+        peso = null
+    )
+
+    fun postWeight(new_date: Date, new_weight: Double){
+
+        userWeight.data = new_date
+        userWeight.peso = new_weight
+
+        Log.d("LIBRA", "start fun postWeight() in class UtenteBilanciaViewModel")
+        Log.d("LIBRA", "attuale valore di userWeight: data " + userWeight.data + ", peso " + userWeight.peso )
+
+        restApiManager.postWeight(userWeight) {
+            Log.d(
+                "LIBRA",
+                "start fun restApiManager.postWeight(userWeight)  in class UtenteBilanciaViewModel "
+            )
+        }
+    }
+
 }

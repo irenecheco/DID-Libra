@@ -25,7 +25,7 @@ import java.util.*
 class UtenteDietaFragment : Fragment(R.layout.utente_dieta_fragment), OnRowEditedChangeListener {
 
     val utenteViewModel by activityViewModels<UtenteViewModel>()
-    val utenteViewModel1111 by activityViewModels<UtenteBilanciaViewModel>()
+    //val utenteViewModel1111 by activityViewModels<UtenteBilanciaViewModel>()
     val adapter = PastoAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
