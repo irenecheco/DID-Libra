@@ -1,7 +1,5 @@
 package it.polito.s279941.libra.professionistapazienti
 
-import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,8 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import it.polito.s279941.libra.DataModel.Obiettivo
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.professionista.ProfessionistaViewModel
-import it.polito.s279941.libra.utente.UtenteViewModel
-import it.polito.s279941.libra.utenteobiettivi.ObiettiviViewModel
 import kotlinx.android.synthetic.main.professionista_paziente_aggiungi_obiettivo_fragment.*
 import java.util.*
 

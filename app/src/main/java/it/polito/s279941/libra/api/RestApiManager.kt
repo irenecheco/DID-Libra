@@ -123,7 +123,7 @@ class RestApiManager {
 
 
     // OBIETTIVI
-    fun getGoals(idPaziente: String, onResult: (List<Obiettivo>?) -> Unit){
+    /*fun getGoals(idPaziente: String, onResult: (List<Obiettivo>?) -> Unit){
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         // richiamo al metodo associato alla richiesta REST
         retrofit.getGoals(idPaziente).enqueue(
@@ -141,7 +141,7 @@ class RestApiManager {
                 }
             }
         )
-    }
+    }*/
 
     fun addGoal(idPaziente: String, userGoal: Obiettivo, onResult: (Obiettivo?) -> Unit){
         Log.d("LIBRA","start fun addGoal() in class RestApiManager")

@@ -5,14 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import it.polito.s279941.libra.DataModel.Obiettivo
-import it.polito.s279941.libra.DataModel.Peso
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.api.RestApiManager
 import it.polito.s279941.libra.professionistapazienti.PazientiItem
-import it.polito.s279941.libra.utentedieta.UtenteDietaRepository
-import it.polito.s279941.libra.utenteobiettivi.ObiettiviRepository
 import it.polito.s279941.libra.utils.LOG_TAG
-import java.util.*
 
 class ProfessionistaViewModel: ViewModel() {
 

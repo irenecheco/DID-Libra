@@ -1,32 +1,24 @@
 package it.polito.s279941.libra.professionistapazienti
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.GridLabelRenderer
 import com.jjoe64.graphview.series.DataPoint
 import com.jjoe64.graphview.series.LineGraphSeries
 import it.polito.s279941.libra.R
-import it.polito.s279941.libra.utente.UtenteMainActivity
-import it.polito.s279941.libra.utente.UtenteViewModel
 import it.polito.s279941.libra.utenteobiettivi.ObiettiviAdapter
-import it.polito.s279941.libra.utenteobiettivi.ObiettiviViewModel
 import it.polito.s279941.libra.utils.LOG_TAG
-import kotlinx.android.synthetic.main.fragment_landing_page.*
 import kotlinx.android.synthetic.main.professionista_paziente_profilo_fragment.*
-import androidx.fragment.app.FragmentTransaction
 
 
 class ProfessionistaPazienteProfiloFragment: Fragment(R.layout.professionista_paziente_profilo_fragment) {
 
-    val patientGoalsViewModel by activityViewModels<ObiettiviViewModel>()
+    //val patientGoalsViewModel by activityViewModels<ObiettiviViewModel>()
     val patientGoalsAdapter = ObiettiviAdapter(); // stesso adapter usato per il lato utente (per ora (?))
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

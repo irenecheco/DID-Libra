@@ -30,8 +30,8 @@ interface RestApi {
 
 
     // OBIETTIVI
-    @GET("users/goals/{idPaziente}")
-    fun getGoals(@Path("idPaziente") idPaziente: String) : Call<List<Obiettivo>>
+    //@GET("users/goals/{idPaziente}")
+    //fun getGoals(@Path("idPaziente") idPaziente: String) : Call<List<Obiettivo>>
 
     @POST("nut/add-goal/{idPaziente}")
     fun addGoal(@Path("idPaziente") idPaziente: String, @Body userData: Obiettivo) : Call<Obiettivo>

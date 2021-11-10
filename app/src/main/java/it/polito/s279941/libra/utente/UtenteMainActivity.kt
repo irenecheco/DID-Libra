@@ -47,7 +47,8 @@ class UtenteMainActivity : AppCompatActivity() {
         utenteViewModel.initByUtenteDataClass_AG(utenteViewModel.utenteCorrente)
 
 
-        Log.d("LIBRAgoals","1.  calling & create the viewModel of class UtenteVieModel in UtenteMainActivity")
+        // OBIETTIVI
+        // prendo la lista degli obiettivi dell'utente a partire dall'utente corrente in UtenteViewModel
         obiettiviLista = utenteViewModel.getGoalsFromUserData()
 
 

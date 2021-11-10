@@ -8,7 +8,6 @@ import it.polito.s279941.libra.DataModel.*
 import it.polito.s279941.libra.api.RestApiManager
 import it.polito.s279941.libra.utentedieta.PastoItem
 import it.polito.s279941.libra.utentedieta.UtenteDietaRepository
-import it.polito.s279941.libra.utenteobiettivi.ObiettiviRepository
 import it.polito.s279941.libra.utils.LOG_TAG
 import java.text.SimpleDateFormat
 import java.util.*
@@ -18,7 +17,6 @@ class UtenteViewModel: ViewModel() {
 
     val restApiManager = RestApiManager()
     val utenteDietaRepository = UtenteDietaRepository(restApiManager)
-    val goalsRepository = ObiettiviRepository(restApiManager)
 
     private var _userData: UtenteDataClass = UtenteDataClass()
 
@@ -282,15 +280,6 @@ class UtenteViewModel: ViewModel() {
     // OBIETTIVI
     private var _obiettiviStorico = MutableLiveData<List<Obiettivo>>()
     var obiettiviStorico : LiveData<List<Obiettivo>> = _obiettiviStorico
-    //var idPaziente = "6071aea342e7530e8c1947ed"  // TODO recuperare id paziente in questione
-    //var idPaziente = utenteCorrente._id  // NON FUNGE: STRINGA VUOTA
-
-    fun getGoalsRepository() : LiveData<List<Obiettivo>>{
-        _obiettiviStorico = goalsRepository.getGoalsList()
-        obiettiviStorico = _obiettiviStorico
-        Log.d("LIBRAgoals","6.  getGoalsRepository: " + obiettiviStorico)
-        return obiettiviStorico
-    }
 
     fun getGoalsFromUserData() : LiveData<List<Obiettivo>>{
         _obiettiviStorico = MutableLiveData<List<Obiettivo>>().also{
@@ -299,10 +288,5 @@ class UtenteViewModel: ViewModel() {
         obiettiviStorico = _obiettiviStorico
         return obiettiviStorico
     }
-
-    //private val _obiettiviStorico: MutableList<Obiettivo> = mutableListOf<Obiettivo>()
-    //private val _obiettiviStoricoLiveData = MutableLiveData<List<Obiettivo>>().also{it.value = _obiettiviStorico}
-    //val obiettiviStoricoLiveData : LiveData<List<Obiettivo>> = _obiettiviStoricoLiveData
-
 
 }
