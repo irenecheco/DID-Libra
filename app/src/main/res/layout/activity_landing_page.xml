@@ -28,7 +28,7 @@
                 android:id="@+id/landing_page_fragment_container"
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="478dp"
                 android:orientation="vertical" />
         </LinearLayout>
     </ScrollView>

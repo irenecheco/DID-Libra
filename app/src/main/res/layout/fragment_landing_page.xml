@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
+        <!--<Button
             android:id="@+id/utente_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,18 +32,16 @@
             app:layout_constraintEnd_toEndOf="@+id/preLoginLabel"
             app:layout_constraintStart_toStartOf="@+id/preLoginLabel"
             app:layout_constraintTop_toBottomOf="@+id/utente_button" />
+        -->
 
         <TextView
             android:id="@+id/preLoginLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:text="@string/loginLabel"
             app:layout_constraintBottom_toTopOf="@+id/preLoginButton"
             app:layout_constraintEnd_toEndOf="@+id/preLoginButton"
-            app:layout_constraintHorizontal_bias="0.454"
-            app:layout_constraintStart_toStartOf="@+id/preLoginButton"
-            app:layout_constraintTop_toBottomOf="@+id/professionista_button" />
+            app:layout_constraintStart_toStartOf="@+id/preLoginButton" />
 
         <Button
             android:id="@+id/preLoginButton"
@@ -54,21 +52,20 @@
             android:paddingRight="@dimen/padding_huge"
             android:paddingBottom="@dimen/padding_large"
             android:text="@string/loginButton"
-            app:layout_constraintBottom_toTopOf="@+id/preRegistrationLabel"
-            app:layout_constraintEnd_toEndOf="@+id/preRegistrationLabel"
-            app:layout_constraintStart_toStartOf="@+id/preRegistrationLabel"
-            app:layout_constraintTop_toBottomOf="@+id/preLoginLabel" />
+            app:layout_constraintBottom_toTopOf="@+id/preRegistrationButton"
+            app:layout_constraintEnd_toEndOf="@+id/preRegistrationButton"
+            app:layout_constraintStart_toStartOf="@+id/preRegistrationButton"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/preRegistrationLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginBottom="6dp"
             android:text="@string/registrationLabel"
             app:layout_constraintBottom_toTopOf="@+id/preRegistrationButton"
             app:layout_constraintEnd_toEndOf="@+id/preRegistrationButton"
-            app:layout_constraintStart_toStartOf="@+id/preRegistrationButton"
-            app:layout_constraintTop_toBottomOf="@+id/preLoginButton" />
+            app:layout_constraintStart_toStartOf="@+id/preRegistrationButton" />
 
         <Button
             android:id="@+id/preRegistrationButton"
@@ -82,7 +79,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/preRegistrationLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/preLoginButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

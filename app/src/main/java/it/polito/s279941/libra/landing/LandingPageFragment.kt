@@ -68,7 +68,7 @@ class LandingPageFragment : Fragment() {
         Log.d(LOG_TAG, "  viewModel: " + viewModel.toString() + " in LandingPageFragment")
 
 
-        utente_button.setOnClickListener{
+        /*utente_button.setOnClickListener{
             Log.d(LOG_TAG, "event CLICK on INTERFACCIA UTENTE button in LandingPageFragment")
             val i = Intent(activity, UtenteMainActivity::class.java)
             startActivityForResult(i, 1)
@@ -79,6 +79,7 @@ class LandingPageFragment : Fragment() {
             val i = Intent(activity, ProfessionistaMainActivity::class.java)
             startActivityForResult(i, 1)
         }
+         */
 
         preLoginButton.setOnClickListener{
             Log.d(LOG_TAG, "event CLICK on (pre)LOGIN button id: " + preLoginButton.id.toString() + " in LandingPageFragment")
