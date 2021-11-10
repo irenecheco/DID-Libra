@@ -16,7 +16,9 @@ class ObiettiviRepository (private val restApiManager: RestApiManager){
         Log.d("LIBRAgoals","2.  class ObiettiviRepository, fun getGoalsList()")
         var _obiettiviStorico: List<Obiettivo>? = emptyList()
 
-        restApiManager.getGoals() {
+        val idPaziente = "6071aea342e7530e8c1947ed"  // TODO recuperare id paziente in questione
+
+        restApiManager.getGoals(idPaziente) {
             Log.d("LIBRAgoals","3.  class ObiettiviViewModel, fun getGoals(), apiManager.getGoal()")
             if (it != null) {
                 Log.d("LIBRAgoals", "4.  Success getGoals()")

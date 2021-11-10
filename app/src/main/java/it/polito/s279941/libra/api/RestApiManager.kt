@@ -122,10 +122,11 @@ class RestApiManager {
 
 
 
-    fun getGoals(onResult: (List<Obiettivo>?) -> Unit){
+    // OBIETTIVI
+    fun getGoals(idPaziente: String, onResult: (List<Obiettivo>?) -> Unit){
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         // richiamo al metodo associato alla richiesta REST
-        retrofit.getGoals().enqueue(
+        retrofit.getGoals(idPaziente).enqueue(
             object : Callback<List<Obiettivo>> {
                 override fun onFailure(call: Call<List<Obiettivo>>, t: Throwable) {
                     Log.d("LIBRAgoals", "  start onFailure()  in  retrofit.getGoals().enqueue  in  RestApiManager")
@@ -142,12 +143,11 @@ class RestApiManager {
         )
     }
 
-
-    fun addGoal(userGoal: Obiettivo, onResult: (Obiettivo?) -> Unit){
+    fun addGoal(idPaziente: String, userGoal: Obiettivo, onResult: (Obiettivo?) -> Unit){
         Log.d("LIBRA","start fun addGoal() in class RestApiManager")
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         // richiamo al metodo associato alla richiesta REST
-        val myCall = retrofit.addGoal(userGoal)
+        val myCall = retrofit.addGoal(idPaziente,userGoal)
         myCall.enqueue( object : Callback<Obiettivo> {
             override fun onFailure(call: Call<Obiettivo>, t: Throwable) {
                 Log.d("LIBRAgoals", "  start onFailure()  in  retrofit.addGoal(userGoal).enqueue  in  RestApiManager")
@@ -157,14 +157,17 @@ class RestApiManager {
             override fun onResponse(call: Call<Obiettivo>, response: Response<Obiettivo>) {
                 Log.d("LIBRAgoals", "  start onResponse()  in  retrofit.addGoal(userGoal).enqueue  in  RestApiManager")
                 Log.d("LIBRAgoals", "    status code: " + response.code())
+                Log.d("LIBRAgoals", "    idPaziente: " + idPaziente)
                 if(response.body() != null)
-                    Log.d("LIBRA", "    response.body= " + response.body().toString())
+                    Log.d("LIBRAgoals", "    response.body= " + response.body().toString())
                 val addedGoal = response.body()
                 onResult(addedGoal)
             }
         }
         )
     }
+
+
 
     fun postWeight(userWeight: Peso, onResult: (Peso?) -> Unit){
         Log.d("LIBRA","start fun  postWeight()  in class RestApiManager")

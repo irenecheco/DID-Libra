@@ -9,6 +9,7 @@ import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.DataModel.UtenteLoginData
 import it.polito.s279941.libra.api.RestApiManager
 import it.polito.s279941.libra.landing.LoginRepository
+import it.polito.s279941.libra.utente.UtenteMainActivity
 import it.polito.s279941.libra.utils.LOG_TAG
 import java.text.DateFormat.getDateInstance
 import java.text.SimpleDateFormat
@@ -21,7 +22,7 @@ import java.util.*
 
 class ObiettiviViewModel : ViewModel() {
 
-    val restApiManager = RestApiManager()
+    /*val restApiManager = RestApiManager()
     val goalsRepository = ObiettiviRepository(restApiManager)
 
     private var _obiettiviStorico = MutableLiveData<List<Obiettivo>>()
@@ -33,7 +34,7 @@ class ObiettiviViewModel : ViewModel() {
 
         Log.d("LIBRAgoals","6.  getGoalsRepository: " + obiettiviStorico)
         return obiettiviStorico
-    }
+    }*/
 
     /*fun getGoals(): LiveData<List<Obiettivo>> {
         Log.d("LIBRA","class ObiettiviViewModel, fun getGoals()")
@@ -58,12 +59,14 @@ class ObiettiviViewModel : ViewModel() {
         return obiettiviStoricoLiveData
     }*/
 
+    /*var idPaziente = "6071aea342e7530e8c1947ed"  // TODO recuperare id paziente in questione
+
     fun addGoal(newUserGoal: Obiettivo) {
         Log.d("LIBRAgoals","start fun addGoal() in class ObiettiviViewModel")
         //val userGoal = Obiettivo(data_obiettivo = Date(), obiettivo = "obiettivo n")
         val userGoal = newUserGoal
 
-        restApiManager.addGoal(userGoal) {
+        restApiManager.addGoal(idPaziente,userGoal) {
             Log.d("LIBRAgoals","  start fun restApiManager.addGoal(userGoal) in class ObiettiviViewModel ")
             if (it?.obiettivo != null) {
                 Log.d("LIBRAgoals", "    restApiManager.addGoal() : Success registering new goal")
@@ -72,7 +75,7 @@ class ObiettiviViewModel : ViewModel() {
                 Log.d("LIBRAgoals", "    restApiManager.addGoal() : Error registering new goal")
             }
         }
-    }
+    } */
 
     //private val _obiettiviStorico: MutableList<Obiettivo> = mutableListOf<Obiettivo>()
     //private val _obiettiviStoricoLiveData = MutableLiveData<List<Obiettivo>>().also{it.value = _obiettiviStorico}

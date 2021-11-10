@@ -4,11 +4,19 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import it.polito.s279941.libra.DataModel.Obiettivo
+import it.polito.s279941.libra.DataModel.Peso
 import it.polito.s279941.libra.DataModel.UtenteDataClass
+import it.polito.s279941.libra.api.RestApiManager
 import it.polito.s279941.libra.professionistapazienti.PazientiItem
+import it.polito.s279941.libra.utentedieta.UtenteDietaRepository
+import it.polito.s279941.libra.utenteobiettivi.ObiettiviRepository
 import it.polito.s279941.libra.utils.LOG_TAG
+import java.util.*
 
 class ProfessionistaViewModel: ViewModel() {
+
+    val restApiManager = RestApiManager()
 
     /** @AG **/
     // var che contiene l'oggetto utente (che ha fatto login/signin) passato dall'activity di login/signin
@@ -36,5 +44,25 @@ class ProfessionistaViewModel: ViewModel() {
         val nuovoPaziente = PazientiItem(foto, nome, ultimoControllo_data)
         _pazienti.add(nuovoPaziente)
         _pazientiLiveData.value = _pazienti
+    }
+
+
+    // OBIETTIVI
+    fun addGoal(newUserGoal: Obiettivo) {
+        Log.d("LIBRAgoals","start fun addGoal() in class ProfessionistaViewModel")
+        //val idPaziente = "6071aea342e7530e8c1947ed"   // solito utente prova
+        val idPaziente = "617ea2a7b5bee74a7064f702"     // utente q@q.com
+        //val idPaziente = utenteCorrente._id  -->  è null
+        //val idPaziente TODO con getPaziente per trovare id paziente a cui assegnare obiettivo
+
+        restApiManager.addGoal(idPaziente,newUserGoal) {
+            Log.d("LIBRAgoals","  start fun restApiManager.addGoal(userGoal) in class ProfessionistaViewModel ")
+            if (it?.obiettivo != null) {
+                Log.d("LIBRAgoals", "    restApiManager.addGoal() : Success registering new goal")
+                Log.d("LIBRAgoals", "    it = " + it.toString() + "  --  classe: " + it.javaClass)
+            } else {
+                Log.d("LIBRAgoals", "    restApiManager.addGoal() : Error registering new goal")
+            }
+        }
     }
 }

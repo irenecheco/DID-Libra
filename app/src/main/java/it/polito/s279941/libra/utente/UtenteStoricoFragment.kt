@@ -20,6 +20,8 @@ import it.polito.s279941.libra.utenteobiettivi.ObiettiviAdapter
 import it.polito.s279941.libra.utenteobiettivi.ObiettiviViewModel
 import kotlinx.android.synthetic.main.utente_storico_fragment.*
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import com.google.gson.Gson
 import com.jjoe64.graphview.series.DataPointInterface
 import com.jjoe64.graphview.series.Series
 import com.jjoe64.graphview.series.OnDataPointTapListener
@@ -28,13 +30,13 @@ import com.jjoe64.graphview.DefaultLabelFormatter
 class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
     
     val goalsAdapter = ObiettiviAdapter()
-    private lateinit var goalsViewModel: ObiettiviViewModel
+    //private lateinit var goalsViewModel: ObiettiviViewModel
+    private val viewModel: UtenteViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        goalsViewModel = ViewModelProvider(this).get(ObiettiviViewModel::class.java)
-        Log.d("LIBRAgoals","1.  calling & create the viewModel of class ObiettiviVieModel in UtenteStoricoFragment")
+        //goalsViewModel = ViewModelProvider(this).get(ObiettiviViewModel::class.java)
 
         // Grafico
         val graph = getView()?.findViewById(R.id.utente_grafico) as GraphView
@@ -69,7 +71,11 @@ class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
 
         // Obiettivi
         //goalsViewModel.obiettiviStoricoLiveData.observe(viewLifecycleOwner, Observer { data -> goalsAdapter.setObiettivi(data) })
-        goalsViewModel.getGoalsRepository().observe(viewLifecycleOwner, Observer { data -> goalsAdapter.setObiettivi(data) })
+        //goalsViewModel.getGoalsRepository().observe(viewLifecycleOwner, Observer { data -> goalsAdapter.setObiettivi(data) })
+
+
+        viewModel.obiettiviStorico.observe(viewLifecycleOwner, Observer { data -> goalsAdapter.setObiettivi(data) })
+
         recyclerView_obiettivi.layoutManager = LinearLayoutManager(requireContext())
         recyclerView_obiettivi.adapter = goalsAdapter
         Log.d("LIBRAgoals","7.  return from call viewModel.getGoals().toString()  in UtenteStoricoFragment")

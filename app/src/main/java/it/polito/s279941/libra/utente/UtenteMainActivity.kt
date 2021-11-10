@@ -5,7 +5,10 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
+import it.polito.s279941.libra.DataModel.Obiettivo
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.utils.LOG_TAG
@@ -14,6 +17,8 @@ import kotlinx.android.synthetic.main.utente_activity_main.*
 class UtenteMainActivity : AppCompatActivity() {
 
     val utenteViewModel by viewModels<UtenteViewModel>()
+    private var _obiettiviLista = MutableLiveData<List<Obiettivo>>()
+    var obiettiviLista : LiveData<List<Obiettivo>> = _obiettiviLista
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +46,9 @@ class UtenteMainActivity : AppCompatActivity() {
         // classe init per test dato che l'altra andava in crash
         utenteViewModel.initByUtenteDataClass_AG(utenteViewModel.utenteCorrente)
 
+
+        Log.d("LIBRAgoals","1.  calling & create the viewModel of class UtenteVieModel in UtenteMainActivity")
+        obiettiviLista = utenteViewModel.getGoalsFromUserData()
 
 
         val profilo_fragment = UtenteProfiloFragment()

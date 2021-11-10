@@ -26,15 +26,16 @@ interface RestApi {
     fun signin(@Body utenteSigninData: UtenteSigninData) : Call<UtenteDataClass>
 
     /*@GET("users")
-    fun getUsers2() : Observable<List<UtenteDataClass>>
+    fun getUsers2() : Observable<List<UtenteDataClass>>*/
 
-    // id utente preso a caso dal server per vedere se funziona
-    // poi ci sarà da creare una variabile che indica l'utente che sta usando l'app da incatenare al resto dell'indirizzo*/
-    @GET("users/goals/6071aea342e7530e8c1947ed")
-    fun getGoals(): Call<List<Obiettivo>>
 
-    @POST("nut/add-goal/6071aea342e7530e8c1947ed")
-    fun addGoal(@Body userData: Obiettivo): Call<Obiettivo>
+    // OBIETTIVI
+    @GET("users/goals/{idPaziente}")
+    fun getGoals(@Path("idPaziente") idPaziente: String) : Call<List<Obiettivo>>
+
+    @POST("nut/add-goal/{idPaziente}")
+    fun addGoal(@Path("idPaziente") idPaziente: String, @Body userData: Obiettivo) : Call<Obiettivo>
+
 
     @POST("users/add-measurement/6071aea342e7530e8c1947ed") // id utente preso a caso dal server per vedere se funziona
     fun postWeight(@Body userWeight: Peso) : Call<Peso>

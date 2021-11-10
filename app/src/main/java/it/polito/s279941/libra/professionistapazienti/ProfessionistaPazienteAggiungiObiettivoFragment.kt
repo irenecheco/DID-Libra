@@ -9,13 +9,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import it.polito.s279941.libra.DataModel.Obiettivo
 import it.polito.s279941.libra.R
+import it.polito.s279941.libra.professionista.ProfessionistaViewModel
+import it.polito.s279941.libra.utente.UtenteViewModel
 import it.polito.s279941.libra.utenteobiettivi.ObiettiviViewModel
 import kotlinx.android.synthetic.main.professionista_paziente_aggiungi_obiettivo_fragment.*
 import java.util.*
 
 class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.professionista_paziente_aggiungi_obiettivo_fragment) {
 
-    private lateinit var viewModel: ObiettiviViewModel
+    //private lateinit var viewModel: ObiettiviViewModel
+    private lateinit var viewModel: ProfessionistaViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,10 +28,10 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
         addGoal_submitButton.text = getString(R.string.goal_submit_button)
         add_goal_input.visibility = View.VISIBLE
         add_goal_confirmation.visibility = View.GONE
-        addGoal_input.isFocusable = true
+        addGoal_input.isFocusable = true  //TODO da emulatore funge, ma da telefono no --> da rivedere
         var goalConfirmed = false
 
-        viewModel = ViewModelProvider(this).get(ObiettiviViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ProfessionistaViewModel::class.java)
         Log.d("LIBRA","calling & create the viewModel of class ObiettiviVieModel in ProfessionistaPazienteAggiungiObiettivoFragment")
 
         val newFragment: Fragment = ProfessionistaPazienteProfiloFragment()

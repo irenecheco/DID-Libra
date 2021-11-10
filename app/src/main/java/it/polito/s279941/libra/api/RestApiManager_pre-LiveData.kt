@@ -38,47 +38,4 @@ class `RestApiManager_pre-LiveData` {
         )
     }
 
-    fun getGoals(onResult: (List<Obiettivo>?) -> Unit){
-        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
-        // richiamo al metodo associato alla richiesta REST
-        retrofit.getGoals().enqueue(
-            object : Callback<List<Obiettivo>> {
-                override fun onFailure(call: Call<List<Obiettivo>>, t: Throwable) {
-                    Log.d("LIBRA", "  start onFailure()  in  retrofit.getGoal().enqueue  in  RestApiManager")
-                    Log.d("LIBRA", "    throwable mess: " + t.message)
-                    onResult(null)
-                }
-                override fun onResponse(call: Call<List<Obiettivo>>, response: Response<List<Obiettivo>>) {
-                    Log.d("LIBRA", "  start onResponse()  in  retrofit.getGoal().enqueue  in  RestApiManager")
-                    Log.d("LIBRA", "    status code: " + response.code())
-                    val listOfGoals = response.body()
-                    onResult(listOfGoals)
-                }
-            }
-        )
-    }
-
-    fun addGoal(userGoal: Obiettivo, onResult: (Obiettivo?) -> Unit){
-        Log.d("LIBRA","start fun addGoal() in class RestApiManager")
-        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
-        // richiamo al metodo associato alla richiesta REST
-        val myCall = retrofit.addGoal(userGoal)
-        myCall.enqueue( object : Callback<Obiettivo> {
-            override fun onFailure(call: Call<Obiettivo>, t: Throwable) {
-                Log.d("LIBRA", "  start onFailure()  in  retrofit.addGoal(userGoal).enqueue  in  RestApiManager")
-                Log.d("LIBRA", "    throwable mess: " + t.message)
-                onResult(null)
-            }
-            override fun onResponse(call: Call<Obiettivo>, response: Response<Obiettivo>) {
-                Log.d("LIBRA", "  start onResponse()  in  retrofit.addGoal(userGoal).enqueue  in  RestApiManager")
-                Log.d("LIBRA", "    status code: " + response.code())
-                if(response?.body() != null)
-                    Log.d("LIBRA", "    response.body= " + response.body().toString())
-                val addedGoal = response.body()
-                onResult(addedGoal)
-            }
-        }
-        )
-    }
-
 }
