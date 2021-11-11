@@ -6,6 +6,8 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.google.gson.Gson
+import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.databinding.ProfessionistaPazientiFragmentBinding
 import it.polito.s279941.libra.professionista.ProfessionistaPazientiFragment
@@ -21,9 +23,13 @@ class ProfessionistaPazienteMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // TODO: ho aggiunto (Sofia) la seguente riga, si aspetta che venga passato l'id del paziente per caricarlo dal database
-        val idUtente = "61391a94f264961050bd82fb"
-        professionistaGiorniDietaPazienteViewModel.setPaziente(idUtente)
+        // TODO: Sofia da verificare, non sono riuscita a provare a causa del network error e poi mi serve
+        // un utente professionista ed un utente paziente gia inseriti
+        //val idUtente = "61391a94f264961050bd82fb"
+        val gson = Gson()
+        val utenteCorrenteGson = intent.getStringExtra("libra.loggedUserGson")
+        val utenteCorrente = gson.fromJson(utenteCorrenteGson, UtenteDataClass::class.java)
+        professionistaGiorniDietaPazienteViewModel.setPaziente(utenteCorrente._id)
 
 
 
