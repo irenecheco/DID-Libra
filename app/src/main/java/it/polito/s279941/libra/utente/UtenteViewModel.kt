@@ -270,7 +270,7 @@ class UtenteViewModel: ViewModel() {
         Log.d("LIBRA", "start fun postWeight() in class UtenteBilanciaViewModel")
         Log.d("LIBRA", "attuale valore di userWeight: data " + userWeight.data + ", peso " + userWeight.peso )
 
-        restApiManager.postWeight(userWeight) {
+        restApiManager.postWeight(_userData._id, userWeight) {
             Log.d(
                 "LIBRA",
                 "start fun restApiManager.postWeight(userWeight)  in class UtenteBilanciaViewModel "

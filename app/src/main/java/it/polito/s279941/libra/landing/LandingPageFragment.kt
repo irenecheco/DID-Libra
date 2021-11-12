@@ -83,20 +83,20 @@ class LandingPageFragment : Fragment() {
 
         preLoginButton.setOnClickListener{
             Log.d(LOG_TAG, "event CLICK on (pre)LOGIN button id: " + preLoginButton.id.toString() + " in LandingPageFragment")
-            if ( checkNet() == true ) {
+            //if ( checkNet() == true ) {
                 viewModel.setSelectedButton(preLoginButton.id)
                 val transaction = activity?.supportFragmentManager?.beginTransaction()
                 transaction?.replace(R.id.landing_page_fragment_container, loginPageFragment)
                 transaction?.addToBackStack("LandigPageFragment")
                 transaction?.commit()
-            }
+            /*}
             else {
                 Log.d(LOG_TAG, "Network error in LandingPageFragment")
                 val transaction = activity?.supportFragmentManager?.beginTransaction()
                 transaction?.replace(R.id.landing_page_fragment_container, networkErrorFragment)
                 //transaction?.addToBackStack("LandigPageFragment")
                 transaction?.commit()
-            }
+            }*/
         }
 
         preRegistrationButton.setOnClickListener{

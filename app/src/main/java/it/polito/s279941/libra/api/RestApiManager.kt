@@ -169,13 +169,13 @@ class RestApiManager {
 
 
 
-    fun postWeight(userWeight: Peso, onResult: (Peso?) -> Unit){
+    fun postWeight(idPaziente: String, userWeight: Peso, onResult: (Peso?) -> Unit){
         Log.d("LIBRA","start fun  postWeight()  in class RestApiManager")
 
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
 
         // qui richiamo il metodo associato alla richiesta REST
-        val myCall = retrofit.postWeight(userWeight)
+        val myCall = retrofit.postWeight(idPaziente, userWeight)
         myCall.enqueue( object : Callback<Peso> {
             override fun onFailure(call: Call<Peso>, t: Throwable) {
                 Log.d("LIBRA", "  start onFailure()  in  retrofit.postWeight(userWeight).enqueue  in  RestApiManager")
@@ -185,6 +185,7 @@ class RestApiManager {
             override fun onResponse(call: Call<Peso>, response: Response<Peso>) {
                 Log.d("LIBRA", "  start onResponse()  in  retrofit.postWeight(userWeight).enqueue  in  RestApiManager")
                 Log.d("LIBRA", "    status code: " + response.code())
+                Log.d("LIBRA", "    idPaziente: " + idPaziente)
                 if(response?.body() != null)
                     Log.d("LIBRA", "Measurement added, response.body= " + response.body().toString())
                 val postedWeight = response.body()
