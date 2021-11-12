@@ -64,13 +64,13 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
             val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
             var wifiInfo : WifiInfo = wifi_manager.connectionInfo
             wifi_ssid = wifiInfo.getSSID()
-            //Log.d("LIBRA", "wifi ssid è " + wifi_ssid)
+            Log.d("BILANCIA", "wifi ssid prima della bilancia è " + wifi_ssid)
         }else{
             //se localizzazione abilitata recupero direttamente ssid
             val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
             var wifiInfo : WifiInfo = wifi_manager.connectionInfo
             wifi_ssid = wifiInfo.getSSID()
-            //Log.d("LIBRA", "wifi ssid è " + wifi_ssid)
+            Log.d("BILANCIA", "wifi ssid prima della bilancia è " + wifi_ssid)
         }
 
 
@@ -198,6 +198,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
         registra_peso?.isEnabled = false
 
         //prova cambio wifi
+        val manager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val builder = NetworkRequest.Builder()
         builder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
         builder.removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
@@ -206,11 +207,22 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                 WifiNetworkSpecifier.Builder().apply{
                     //Qui inserite il nome del vostro WIFI e la password
                     setSsid(wifi_ssid)
-                    Log.d("BILANCIA", "Forse cambia wifi")
+                    Log.d("BILANCIA", "ssid è " + wifi_ssid)
                 }.build()
             )
         }
-        Log.d("BILANCIA", "ssid è " + wifi_ssid)
+        Log.d(LOG_TAG_ESP, "NetworkRequest.Builder built")
+        try{
+            manager.requestNetwork(builder.build(), object: ConnectivityManager.NetworkCallback(){
+                @RequiresApi(Build.VERSION_CODES.M)
+                override fun onAvailable(network: Network) {
+                    manager.bindProcessToNetwork(network)
+                    Log.d(LOG_TAG_ESP, "network changed")
+                }
+            })
+        }catch (e: SecurityException) {
+            Log.e(LOG_TAG_ESP, e.message!!)
+        }
 
         //recupero data odierna
         var today = Calendar.getInstance().time
@@ -218,6 +230,8 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
         if(weight > 0) {
             //lancio la funzione post weight contenuta in UtenteBilanciaViewModel per fare POST al server
             viewModel.postWeight(today, weight)
+            Log.d("BILANCIA", "Lanciata post")
         }
+
     }
 }
