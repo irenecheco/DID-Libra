@@ -9,52 +9,46 @@
         android:id="@+id/textview_ultima_rilevazione"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
         android:gravity="center"
+        android:padding="16dp"
         android:text="@string/utente_last_measurement_label"
-        app:layout_constraintBottom_toTopOf="@+id/data_ora_ultima_rilevazione"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/card_peso_rilevato" />
-
-    <TextView
-        android:id="@+id/data_ora_ultima_rilevazione"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
-        android:gravity="center"
-        android:text="04/01/2020 h 10:30"
-        app:layout_constraintBottom_toTopOf="@+id/avvia_bilancia"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/card_peso_rilevato" />
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
+        app:layout_constraintEnd_toEndOf="@+id/cardView2"
+        app:layout_constraintStart_toStartOf="@+id/cardView2" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_peso_rilevato"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        app:cardBackgroundColor="@color/colorPrimaryDark"
+        android:id="@+id/cardView2"
+        android:layout_width="198dp"
+        android:layout_height="198dp"
+        android:layout_gravity="center"
+        app:cardBackgroundColor="@color/colorPrimaryLight"
         app:cardCornerRadius="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/registra_peso"
+        app:cardElevation="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
+        app:layout_constraintEnd_toStartOf="@+id/avvia_bilancia"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/guideline8">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="198dp"
-            android:layout_height="198dp"
+        <TextView
+            android:id="@+id/text_measure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:cardBackgroundColor="@color/colorPrimaryLight"
-            app:cardCornerRadius="100dp">
+            android:text="75 KG"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="@color/colorPrimaryDark" />
 
-            <TextView
-                android:id="@+id/text_measure"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="75 KG"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-                android:textColor="@color/colorPrimaryDark" />
-        </androidx.cardview.widget.CardView>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            android:padding="10dp"
+            android:visibility="gone" />
 
     </androidx.cardview.widget.CardView>
 
@@ -64,16 +58,16 @@
         android:layout_height="wrap_content"
         android:includeFontPadding="true"
         android:padding="12dp"
-        android:shadowColor="#000000"
-        android:shadowRadius="1"
+        android:shadowRadius="0.5"
         android:text="@string/utente_libra_button"
-        android:textColor="@color/button_text_color"
+        android:textColor="@color/colorLight"
         android:textSize="18sp"
         app:backgroundTint="@color/button_background_color"
-        app:layout_constraintBottom_toTopOf="@+id/registra_peso"
+        app:elevation="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/card_peso_rilevato"
+        app:layout_constraintStart_toEndOf="@+id/cardView2"
         app:layout_constraintTop_toTopOf="@+id/guideline8" />
 
 
@@ -84,30 +78,16 @@
         android:layout_gravity="center|top"
         android:includeFontPadding="true"
         android:padding="12dp"
-        android:shadowColor="#000000"
-        android:shadowRadius="1"
+        android:shadowRadius="0.5"
         android:text="@string/utente_save_weight_button"
-        android:textColor="@color/button_text_color"
+        android:textColor="@color/colorLight"
         android:textSize="18sp"
         app:backgroundTint="@color/button_background_color"
+        app:elevation="6dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/card_peso_rilevato"
-        app:layout_constraintTop_toBottomOf="@+id/avvia_bilancia" />
-
-    <TextView
-        android:id="@+id/saveWeight_label"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:padding="6dp"
-        android:text="@string/utente_save_weight_label"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toEndOf="@+id/card_peso_rilevato"
-        app:layout_constraintTop_toBottomOf="@+id/registra_peso" />
+        app:layout_constraintStart_toEndOf="@+id/cardView2"
+        app:layout_constraintTop_toTopOf="@+id/guideline8" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"

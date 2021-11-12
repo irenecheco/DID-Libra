@@ -47,7 +47,8 @@
     <string name="utente_libra_button">Start Libra</string>
     <string name="utente_save_weight_button">Save Weight</string>
     <string name="utente_save_weight_label">You can save your weight only once every xx days</string>
-    <string name="utente_last_measurement_label">Last measurement</string>
+    <string name="utente_last_measurement_label">Last measurement:</string>
+
 
     <!-- Storico utente -->
     <string name="utente_graph_title">Weight trend</string>

@@ -37,7 +37,6 @@ import java.util.*
 // TODO : l'app va in crash quando si ruota il telefono
 // TODO: salvare il peso in locale
 // TODO: se peso già presente per quella data è da sovrascrivere --> sia in locale sia su DB (questo da gestire su server)
-// TODO: per post recuperare peso da dati locali (?) --> cambiare onPause()
 
 class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
@@ -114,9 +113,12 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                         //if(response?.body() != null)
                                         if (response?.isSuccessful == true) {
                                             // posso recuperare e registrare il peso acquisito
+                                            avvia_bilancia.visibility = View.GONE
+                                            registra_peso.visibility = View.VISIBLE
                                             Log.d(LOG_TAG_ESP,
                                                 "initScale: response.isSuccessful=true -> Bilancia attiva")
                                             registra_peso?.isEnabled = true
+                                            avvia_bilancia?.isEnabled = false
                                         }
                                     }
 
@@ -188,6 +190,12 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
     override fun onPause(){
         super.onPause()
         Log.d("BILANCIA", "Fragment è onpause()")
+
+        registra_peso.visibility = View.GONE
+        avvia_bilancia.visibility = View.VISIBLE
+
+        avvia_bilancia?.isEnabled = true
+        registra_peso?.isEnabled = false
 
         //prova cambio wifi
         val builder = NetworkRequest.Builder()

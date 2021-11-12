@@ -12,7 +12,7 @@ Questi gli stessi IP vanno configurati nel file
 // porta e path definiti in nodeJS. ATTENZIONE allo "/" finale nell'URL
 // non è localhost!
 //const val BACKEND_IP = "192.168.178.36"
-const val BACKEND_IP = "192.168.43.31"
+const val BACKEND_IP = "192.168.1.7"
 const val MONGO_PORT = "3000"
 const val BACKEND_URL = "http://${BACKEND_IP}:${MONGO_PORT}/api/"
 
