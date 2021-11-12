@@ -37,8 +37,8 @@ interface RestApi {
     fun addGoal(@Path("idPaziente") idPaziente: String, @Body userData: Obiettivo) : Call<Obiettivo>
 
 
-    @POST("users/add-measurement/6071aea342e7530e8c1947ed") // id utente preso a caso dal server per vedere se funziona
-    fun postWeight(@Body userWeight: Peso) : Call<Peso>
+    @PUT("users/add-measurement/{idPaziente}")
+    fun postWeight(@Path("idPaziente") idPaziente: String, @Body userWeight: Peso) : Call<Peso>
 
 
 
