@@ -37,7 +37,7 @@ class UtenteViewModel: ViewModel() {
     fun initByUtenteDataClass_AG(userData: UtenteDataClass){
         Log.d(LOG_TAG, "initByUtenteDataClass_AG() tipologia utente: ${utenteCorrente.tipo} , email: ${utenteCorrente.email}  in UtenteViewModel")
         //setPaziente(userData._id)
-        initByUtenteDataClass(userData)
+        //initByUtenteDataClass(userData)
     }
 
 

@@ -64,7 +64,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
             val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
             var wifiInfo : WifiInfo = wifi_manager.connectionInfo
             wifi_ssid = wifiInfo.getSSID()
-            Log.d("BILANCIA", "wifi ssid prima della bilancia è " + wifi_ssid)
+            //Log.d("BILANCIA", "wifi ssid prima della bilancia è " + wifi_ssid)
         }else{
             //se localizzazione abilitata recupero direttamente ssid
             val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
@@ -75,6 +75,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
 
         registra_peso.isEnabled = false
+        disconnetti_bilancia.isEnabled = false
 
         //Con il tasto avvia bilancia inizio il procedimento di collegamento alla bilancia
         avvia_bilancia.setOnClickListener {
@@ -115,9 +116,11 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                             // posso recuperare e registrare il peso acquisito
                                             avvia_bilancia.visibility = View.GONE
                                             registra_peso.visibility = View.VISIBLE
+                                            disconnetti_bilancia.visibility = View.VISIBLE
                                             Log.d(LOG_TAG_ESP,
                                                 "initScale: response.isSuccessful=true -> Bilancia attiva")
                                             registra_peso?.isEnabled = true
+                                            disconnetti_bilancia.isEnabled = true
                                             avvia_bilancia?.isEnabled = false
                                         }
                                     }
@@ -184,54 +187,53 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
             }
         }
 
+        disconnetti_bilancia.setOnClickListener(){
+            Log.d("BILANCIA", "Fragment è onpause()")
+
+            registra_peso.visibility = View.GONE
+            disconnetti_bilancia.visibility = View.GONE
+            avvia_bilancia.visibility = View.VISIBLE
+
+            avvia_bilancia?.isEnabled = true
+            registra_peso?.isEnabled = false
+            disconnetti_bilancia?.isEnabled = false
+
+            //prova cambio wifi
+            builder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+            builder.removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+            if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q){
+                builder.setNetworkSpecifier(
+                    WifiNetworkSpecifier.Builder().apply{
+                        //Qui inserite il nome del vostro WIFI e la password
+                        setSsid(wifi_ssid)
+                        Log.d("BILANCIA", "ssid è " + wifi_ssid)
+                    }.build()
+                )
+            }
+            Log.d(LOG_TAG_ESP, "NetworkRequest.Builder built")
+            try{
+                manager.requestNetwork(builder.build(), object: ConnectivityManager.NetworkCallback(){
+                    @RequiresApi(Build.VERSION_CODES.M)
+                    override fun onAvailable(network: Network) {
+                        manager.bindProcessToNetwork(network)
+                        Log.d(LOG_TAG_ESP, "network changed")
+                    }
+                })
+            }catch (e: SecurityException) {
+                Log.e(LOG_TAG_ESP, e.message!!)
+            }
+
+            //recupero data odierna
+            var today = Calendar.getInstance().time
+
+            if(weight > 0) {
+                //lancio la funzione post weight contenuta in UtenteBilanciaViewModel per fare POST al server
+                viewModel.postWeight(today, weight)
+                Log.d("BILANCIA", "Lanciata post")
+            }
 
     }
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    override fun onPause(){
-        super.onPause()
-        Log.d("BILANCIA", "Fragment è onpause()")
 
-        registra_peso.visibility = View.GONE
-        avvia_bilancia.visibility = View.VISIBLE
-
-        avvia_bilancia?.isEnabled = true
-        registra_peso?.isEnabled = false
-
-        //prova cambio wifi
-        val manager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val builder = NetworkRequest.Builder()
-        builder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
-        builder.removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q){
-            builder.setNetworkSpecifier(
-                WifiNetworkSpecifier.Builder().apply{
-                    //Qui inserite il nome del vostro WIFI e la password
-                    setSsid(wifi_ssid)
-                    Log.d("BILANCIA", "ssid è " + wifi_ssid)
-                }.build()
-            )
-        }
-        Log.d(LOG_TAG_ESP, "NetworkRequest.Builder built")
-        try{
-            manager.requestNetwork(builder.build(), object: ConnectivityManager.NetworkCallback(){
-                @RequiresApi(Build.VERSION_CODES.M)
-                override fun onAvailable(network: Network) {
-                    manager.bindProcessToNetwork(network)
-                    Log.d(LOG_TAG_ESP, "network changed")
-                }
-            })
-        }catch (e: SecurityException) {
-            Log.e(LOG_TAG_ESP, e.message!!)
-        }
-
-        //recupero data odierna
-        var today = Calendar.getInstance().time
-
-        if(weight > 0) {
-            //lancio la funzione post weight contenuta in UtenteBilanciaViewModel per fare POST al server
-            viewModel.postWeight(today, weight)
-            Log.d("BILANCIA", "Lanciata post")
-        }
 
     }
 }
