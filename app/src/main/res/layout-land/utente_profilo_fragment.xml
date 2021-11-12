@@ -33,7 +33,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/card_n_patients"
         app:layout_constraintEnd_toEndOf="@+id/card_n_patients" />
-
+<!--
     <View
         android:id="@+id/divider8"
         android:layout_width="match_parent"
@@ -49,7 +49,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/foto_utente" />
-
+-->
     <androidx.cardview.widget.CardView
         android:id="@+id/card_goal"
         android:layout_width="360dp"
@@ -157,7 +157,7 @@
         app:layout_constraintEnd_toStartOf="@+id/card_n_patients"
         app:layout_constraintHorizontal_bias="0.536"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_name4" />
+        app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -165,13 +165,13 @@
         android:layout_height="154dp"
         android:layout_marginStart="92dp"
         android:layout_marginLeft="92dp"
-        app:layout_constraintBottom_toTopOf="@+id/user_name4"
+        app:layout_constraintBottom_toTopOf="@+id/user_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/user_name4"
+        android:id="@+id/user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/user_name"
