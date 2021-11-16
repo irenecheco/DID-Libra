@@ -72,7 +72,7 @@
         app:layout_constraintBottom_toTopOf="@+id/divider1"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.jjoe64.graphview.GraphView
+    <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/utente_grafico"
         android:layout_width="0dp"
         android:layout_height="0dp"

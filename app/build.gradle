@@ -41,6 +41,14 @@ android {
     }
 }
 
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -62,7 +70,9 @@ dependencies {
     // Navigation
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
+    // Graph
     implementation 'com.jjoe64:graphview:4.2.2'
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.2.4'
     // Add the Kotlin Coroutines dependencies
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
     // API management import the dependencies of Retrofit and RxJava

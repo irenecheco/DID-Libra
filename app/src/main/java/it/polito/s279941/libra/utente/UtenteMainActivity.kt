@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import it.polito.s279941.libra.DataModel.Obiettivo
+import it.polito.s279941.libra.DataModel.Peso
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.utils.LOG_TAG
@@ -19,6 +20,8 @@ class UtenteMainActivity : AppCompatActivity() {
     val utenteViewModel by viewModels<UtenteViewModel>()
     private var _obiettiviLista = MutableLiveData<List<Obiettivo>>()
     var obiettiviLista : LiveData<List<Obiettivo>> = _obiettiviLista
+    private var _pesiLista = MutableLiveData<List<Peso>>()
+    var pesiLista : LiveData<List<Peso>> = _pesiLista
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +48,11 @@ class UtenteMainActivity : AppCompatActivity() {
         Log.d(LOG_TAG, "UtenteMainActivity :--> utenteCorrente<${utenteViewModel.utenteCorrente.javaClass}>, ${utenteViewModel.utenteCorrente}")
         // classe init per test dato che l'altra andava in crash
         utenteViewModel.initByUtenteDataClass_AG(utenteViewModel.utenteCorrente)
+
+
+        // MISURAZIONI PESO PER GRAFICO
+        // prendo la lista delle misurazioni dei pesi dell'utente a partire dall'utente corrente in UtenteViewModel
+        pesiLista = utenteViewModel.getWeightFromUserData()
 
 
         // OBIETTIVI
