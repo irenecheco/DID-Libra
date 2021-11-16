@@ -46,8 +46,8 @@ class LandingPageActivity : AppCompatActivity() {
     @Throws(InterruptedException::class, IOException::class)
     fun isConnected(): Boolean {
         // usiamo sia ping che netcat perché su emulatore ping non passa e su cell reale manca netcat
-        val command1 = "ping -c 1 -W 1 ${BACKEND_IP}"
-        val command2 = "nc -v -w 1 ${BACKEND_IP} ${MONGO_PORT}"
+        val command1 = "ping -c 1 -W 2 ${BACKEND_IP}"
+        val command2 = "nc -v -w 2 ${BACKEND_IP} ${MONGO_PORT}"
 
         if (Runtime.getRuntime().exec(command1).waitFor() == 0){
             Log.d(LOG_TAG, "ping to ${BACKEND_IP} OK  in LandingPageActivity")  //-->DBG

@@ -2,9 +2,9 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <!-- IP devono essere gli stessi specificati in *** utils.Config *** -->
+        <domain includeSubdomains="true">130.192.27.230</domain>
         <domain includeSubdomains="true">192.168.178.36</domain>
         <domain includeSubdomains="true">192.168.4.1</domain>
-        <domain includeSubdomains="true">192.168.177.240</domain>
         <domain includeSubdomains="true">192.168.43.31</domain>
         <domain includeSubdomains="true">192.168.1.205</domain>
         <domain includeSubdomains="true">192.168.1.184</domain>
