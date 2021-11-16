@@ -14,17 +14,23 @@ import android.net.wifi.WifiNetworkSpecifier
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.snackbar.Snackbar
+import it.polito.s279941.libra.DataModel.Peso
 import it.polito.s279941.libra.DataModel.UtenteAggiornaPesoClass
 import it.polito.s279941.libra.DataModel.UtenteAvviaBilanciaClass
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.api.Api2
 import it.polito.s279941.libra.utils.LOG_TAG_ESP
+import kotlinx.android.synthetic.main.utente_activity_main.*
 import kotlinx.android.synthetic.main.utente_bilancia_fragment.*
 import kotlinx.android.synthetic.main.utente_profilo_fragment.text_measure
 import kotlinx.coroutines.Dispatchers
@@ -35,14 +41,14 @@ import retrofit2.Response
 import java.util.*
 
 // TODO : l'app va in crash quando si ruota il telefono
-// TODO: salvare il peso in locale
-// TODO: se peso già presente per quella data è da sovrascrivere --> sia in locale sia su DB (questo da gestire su server)
+// TODO: se funziona tutto pulizia codice
 
 class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
     private val viewModel: UtenteViewModel by activityViewModels()
-    var wifi_ssid : String = "null"
+    //var wifi_ssid : String = "null"
     var weight : Double = 0.0
+    //var wifi_bssid : String = "null"
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 
@@ -55,23 +61,37 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
             Api2.create()
         }
 
+        try {
+            text_measure.text =
+                viewModel.utenteCorrente.storico_pesi?.last()?.peso.toString() + " KG"
+        }catch (e: NoSuchElementException){
+            val bottomNavView: View? = activity?.findViewById(R.id.bottom_bar)
+            Snackbar.make(bottomNavView!!, "No previous measure", Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorPrimaryDark)).setAnchorView(bottomNavView).show()
+            text_measure.text = "- KG"
+        }
+
         val manager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val builder = NetworkRequest.Builder()
+
         //controllo permessi per recuperare ssid del wifi
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+        var wifi_id = 0
+        /*if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             //se localizzazione non abilitata, chiedo all'utente di abilitarla e poi recupero ssid
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
             val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
             var wifiInfo : WifiInfo = wifi_manager.connectionInfo
+            //wifi_bssid = wifiInfo.getBSSID()
             wifi_ssid = wifiInfo.getSSID()
             //Log.d("BILANCIA", "wifi ssid prima della bilancia è " + wifi_ssid)
         }else{
             //se localizzazione abilitata recupero direttamente ssid
             val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
             var wifiInfo : WifiInfo = wifi_manager.connectionInfo
+            //wifi_bssid = wifiInfo.getBSSID()
             wifi_ssid = wifiInfo.getSSID()
-            Log.d("BILANCIA", "wifi ssid prima della bilancia è " + wifi_ssid)
-        }
+            //Log.d("BILANCIA", "wifi ssid prima della bilancia è " + wifi_ssid)
+        }*/
 
 
         registra_peso.isEnabled = false
@@ -113,6 +133,20 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                     override fun onResponse(call: Call<UtenteAvviaBilanciaClass>?, response: Response<UtenteAvviaBilanciaClass>?) {
                                         //if(response?.body() != null)
                                         if (response?.isSuccessful == true) {
+
+                                            if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                                                //se localizzazione non abilitata, chiedo all'utente di abilitarla e poi recupero ssid
+                                                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
+                                                val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
+                                                var wifiInfo : WifiInfo = wifi_manager.connectionInfo
+                                                wifi_id = wifiInfo.networkId
+                                            }else{
+                                                //se localizzazione abilitata recupero direttamente ssid
+                                                val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
+                                                var wifiInfo : WifiInfo = wifi_manager.connectionInfo
+                                                wifi_id = wifiInfo.networkId
+                                            }
+
                                             // posso recuperare e registrare il peso acquisito
                                             avvia_bilancia.visibility = View.GONE
                                             registra_peso.visibility = View.VISIBLE
@@ -166,6 +200,36 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                 progress_bar.visibility = View.GONE
                                 text_measure.text = weight.toString()
                                 text_measure.visibility = View.VISIBLE
+
+                                //salvo peso in locale
+                                var today = Calendar.getInstance().time
+
+                                if(viewModel.utenteCorrente.storico_pesi?.toMutableList()?.lastIndex!!.toInt() >= 0) {
+                                    var new = Calendar.getInstance()
+                                    new.setTime(today)
+                                    var old = Calendar.getInstance()
+                                    old.setTime(viewModel.utenteCorrente.storico_pesi?.last()?.data)
+
+                                    if (new.get(Calendar.YEAR) == old.get(Calendar.YEAR)) {
+                                        if (new.get(Calendar.MONTH) == old.get(Calendar.MONTH)) {
+                                            if (new.get(Calendar.DAY_OF_MONTH) == old.get(Calendar.DAY_OF_MONTH)) {
+                                                var last =
+                                                    viewModel.utenteCorrente.storico_pesi?.toMutableList()?.lastIndex!!.toInt()
+                                                viewModel.utenteCorrente.storico_pesi?.toMutableList()
+                                                    ?.set(last, Peso(today, weight))
+                                            }
+                                        } else {
+                                            viewModel.utenteCorrente.storico_pesi?.toMutableList()
+                                                ?.add(Peso(today, weight))
+                                        }
+                                    } else {
+                                        viewModel.utenteCorrente.storico_pesi?.toMutableList()
+                                            ?.add(Peso(today, weight))
+                                    }
+                                } else {
+                                    viewModel.utenteCorrente.storico_pesi?.toMutableList()
+                                        ?.add(Peso(today, weight))
+                                }
                             }
                         }
                         override fun onFailure(
@@ -198,14 +262,38 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
             registra_peso?.isEnabled = false
             disconnetti_bilancia?.isEnabled = false
 
-            //prova cambio wifi
-            builder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+            //prova disconnessione da bilancia
+
+            if(wifi_id != 0) {
+                if (ActivityCompat.checkSelfPermission(
+                        requireContext(),
+                        Manifest.permission.ACCESS_FINE_LOCATION
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    //se localizzazione non abilitata, chiedo all'utente di abilitarla e poi recupero ssid
+                    ActivityCompat.requestPermissions(
+                        requireActivity(),
+                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                        1
+                    )
+                    val wifi_manager: WifiManager = requireContext().getApplicationContext()
+                        .getSystemService(Context.WIFI_SERVICE) as WifiManager
+                    wifi_manager.removeNetwork(wifi_id)
+                } else {
+                    //se localizzazione abilitata recupero direttamente ssid
+                    val wifi_manager: WifiManager = requireContext().getApplicationContext()
+                        .getSystemService(Context.WIFI_SERVICE) as WifiManager
+                    wifi_manager.removeNetwork(wifi_id)
+                }
+            }
+            /*builder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
             builder.removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
             if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q){
                 builder.setNetworkSpecifier(
                     WifiNetworkSpecifier.Builder().apply{
                         //Qui inserite il nome del vostro WIFI e la password
-                        setSsid(wifi_ssid)
+                        //setBssid(wifi_bssid)
+                        //setSsid(wifi_ssid)
                         Log.d("BILANCIA", "ssid è " + wifi_ssid)
                     }.build()
                 )
@@ -221,7 +309,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                 })
             }catch (e: SecurityException) {
                 Log.e(LOG_TAG_ESP, e.message!!)
-            }
+            }*/
 
             //recupero data odierna
             var today = Calendar.getInstance().time
