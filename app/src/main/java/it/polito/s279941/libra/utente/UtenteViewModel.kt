@@ -26,7 +26,7 @@ class UtenteViewModel: ViewModel() {
         PastoItem("COLAZIONE", "", false),
         PastoItem("SPUNTINO", "", false),
         PastoItem("PRANZO", "", false),
-        PastoItem("MERENDA", "", true),
+        PastoItem("MERENDA", "", false),
         PastoItem("CENA", "", false)
     )
 
@@ -36,7 +36,7 @@ class UtenteViewModel: ViewModel() {
     // funzione di test per verificare se effettivamente l'oggetto c'è
     fun initByUtenteDataClass_AG(userData: UtenteDataClass){
         Log.d(LOG_TAG, "initByUtenteDataClass_AG() tipologia utente: ${utenteCorrente.tipo} , email: ${utenteCorrente.email}  in UtenteViewModel")
-        //setPaziente(userData._id)
+        setPaziente(userData._id)
         //initByUtenteDataClass(userData)
     }
 
@@ -67,9 +67,9 @@ class UtenteViewModel: ViewModel() {
         if (userData.dieta==null) {
             userData.dieta = Dieta("2021-10-09",
                 mutableListOf<GiornoDieta>(
-                    GiornoDieta(0,"briosche","biscotto","spaghetti","yogurt","mela") ,
-                    GiornoDieta(1,"marmellata","tost","ragu","uva","pizza"),
-                    GiornoDieta(2,"nutella","caffe","lasagne","torta","frittura di pesce")
+                    //GiornoDieta(0,"briosche","biscotto","spaghetti","yogurt","mela") ,
+                    //GiornoDieta(1,"marmellata","tost","ragu","uva","pizza"),
+                    //GiornoDieta(2,"nutella","caffe","lasagne","torta","frittura di pesce")
             )
             )
             userData.calendarioDieta = mutableListOf();

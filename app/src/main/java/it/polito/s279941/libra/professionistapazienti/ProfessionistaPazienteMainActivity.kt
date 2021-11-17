@@ -25,11 +25,10 @@ class ProfessionistaPazienteMainActivity : AppCompatActivity() {
 
         // TODO: Sofia da verificare, non sono riuscita a provare a causa del network error e poi mi serve
         // un utente professionista ed un utente paziente gia inseriti
-        //val idUtente = "61391a94f264961050bd82fb"
-        val gson = Gson()
-        val utenteCorrenteGson = intent.getStringExtra("libra.loggedUserGson")
-        val utenteCorrente = gson.fromJson(utenteCorrenteGson, UtenteDataClass::class.java)
-        professionistaGiorniDietaPazienteViewModel.setPaziente(utenteCorrente._id)
+        // I seguenti si possono riattivare solo dopo che la lista di pazienti passa l'id del paxziente
+        // val idUtente = intent.getStringExtra("PatientId") // da scommentare appena passato il vero id
+        val idUtente = "61391a94f264961050bd82fb" // lo sovrascrivo perchè ancora non viene passato  l'id, da commentare appena passato il vero id
+        professionistaGiorniDietaPazienteViewModel.setPaziente(idUtente!!)
 
 
 

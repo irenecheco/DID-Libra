@@ -67,6 +67,9 @@ class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_
         //Toast.makeText(activity, item.nome_utente, Toast.LENGTH_SHORT).show()
         val intent = Intent(activity, ProfessionistaPazienteMainActivity::class.java)
         intent.putExtra("Patient", item.nome_utente)
+
+        // TODO: impostare l'id del paziente perchè serve alla vista di dettaglio paziente
+        intent.putExtra("PatientId",item.nome_utente); // invece di item.nome_utente =>  item._id)
         activity?.startActivity(intent)
     }
 
