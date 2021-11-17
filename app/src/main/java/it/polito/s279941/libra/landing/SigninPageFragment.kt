@@ -2,6 +2,7 @@ package it.polito.s279941.libra.landing
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -35,6 +36,8 @@ class SigninPageFragment : Fragment() {
     private var emailFieldDataIntegrity : Boolean = false
     private var passwordFieldDataIntegrity : Boolean = false
     private var codiceAlboFieldDataIntegrity : Boolean = false
+    private var codAlboCurrentLen : Int = 0
+    private var codAlboPreviousLen : Int = 0
 
     companion object {
         /* Use this factory method to create a new instance of this fragment */
@@ -201,8 +204,32 @@ class SigninPageFragment : Fragment() {
             val albo_regex = "^[A-Z]{2}_\\d{6}"
             val albo_prefix_regex = "^[A-Z]{2}"
 
-            // aggiungo automaticamente '_'
-            if (signinUserRoleBasedField.text.matches(Regex(albo_prefix_regex))) {signinUserRoleBasedField.text.append('_')}
+            codAlboPreviousLen = codAlboCurrentLen
+            codAlboCurrentLen = signinUserRoleBasedField.length()
+
+            // aggiungo/tolgo automaticamente '_'
+            if (
+                (codAlboCurrentLen > codAlboPreviousLen) and
+                (signinUserRoleBasedField.text.matches(Regex(albo_prefix_regex))) )
+                {
+                signinUserRoleBasedField.text.append('_')
+                    codAlboPreviousLen = codAlboCurrentLen
+                    codAlboCurrentLen = signinUserRoleBasedField.length()
+            }
+
+            if (
+                (codAlboCurrentLen < codAlboPreviousLen) and
+                (signinUserRoleBasedField.text.matches(Regex(albo_prefix_regex))) )
+            {
+                val testo = signinUserRoleBasedField.text.dropLast(1)
+                signinUserRoleBasedField.text = testo as Editable?
+                // riposiziono il cursore a fine stringa
+                signinUserRoleBasedField.setSelection(signinUserRoleBasedField.text.length)
+                codAlboPreviousLen = codAlboCurrentLen
+                codAlboCurrentLen = signinUserRoleBasedField.length()
+            }
+
+            // verifica dell'integrità del campo
             if (signinUserRoleBasedField.text.matches(Regex(albo_regex))) {
                 Log.d(LOG_TAG, "albo field matches regex: ${signinUserRoleBasedField.text}") //--->DBG
                 // salvo il valore nel viewModel
