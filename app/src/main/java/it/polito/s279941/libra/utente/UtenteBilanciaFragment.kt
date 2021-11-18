@@ -41,6 +41,7 @@ import retrofit2.Response
 import java.util.*
 
 // TODO : l'app va in crash quando si ruota il telefono
+// TODO: provare disconnessione e riconnessione a wifi
 // TODO: se funziona tutto pulizia codice
 
 class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
@@ -190,21 +191,27 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                         override fun onResponse(call: Call<UtenteAggiornaPesoClass>?, response: Response<UtenteAggiornaPesoClass>?) {
                             //if(response?.body() != null)
                             if (response?.isSuccessful == true) {
+
                                 // peso recuperato, devo elaborare il json
                                 Log.d(LOG_TAG_ESP,"response code: " + response.code())
                                 Log.d(LOG_TAG_ESP,"getWeight: response.isSuccessful=true -> PESO acquisito")
+
                                 // response.body() è oggetto della classe UtenteAggiornaPesoClass
                                 weight = response.body()!!.get_weight // '!!' forza cast da tipo "?Double" a "Double"
                                 Log.d(LOG_TAG_ESP, "weight: " + weight + "| type is double: " + (weight is Double).toString())
+
                                 // nascondo la progress_bar e visualizzo il peso
                                 progress_bar.visibility = View.GONE
-                                text_measure.text = weight.toString()
+                                text_measure.text = weight.toString() + " KG"
                                 text_measure.visibility = View.VISIBLE
 
                                 //salvo peso in locale
                                 var today = Calendar.getInstance().time
 
-                                if(viewModel.utenteCorrente.storico_pesi?.toMutableList()?.lastIndex!!.toInt() >= 0) {
+                                var ultimo = viewModel.utenteCorrente.storico_pesi?.lastIndex!!.toInt()
+                                Log.d("Ultimo", "ultimo indice è " + ultimo)
+
+                                if(ultimo >= 0) {
                                     var new = Calendar.getInstance()
                                     new.setTime(today)
                                     var old = Calendar.getInstance()
@@ -213,23 +220,26 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                     if (new.get(Calendar.YEAR) == old.get(Calendar.YEAR)) {
                                         if (new.get(Calendar.MONTH) == old.get(Calendar.MONTH)) {
                                             if (new.get(Calendar.DAY_OF_MONTH) == old.get(Calendar.DAY_OF_MONTH)) {
-                                                var last =
-                                                    viewModel.utenteCorrente.storico_pesi?.toMutableList()?.lastIndex!!.toInt()
-                                                viewModel.utenteCorrente.storico_pesi?.toMutableList()
-                                                    ?.set(last, Peso(today, weight))
+                                                viewModel.utenteCorrente.storico_pesi?.set(ultimo, Peso(today, weight))
+                                                Log.d("Calendar", "stessa data, sovrascrivo")
+                                                Log.d("nuovo vettore", "nuovo vettore è " + viewModel.utenteCorrente.storico_pesi)
                                             }
                                         } else {
-                                            viewModel.utenteCorrente.storico_pesi?.toMutableList()
-                                                ?.add(Peso(today, weight))
+                                            viewModel.utenteCorrente.storico_pesi?.add(Peso(today, weight))
+                                            Log.d("Calendar", "diversa data, aggiungo")
+                                            Log.d("nuovo vettore", "nuovo vettore è " + viewModel.utenteCorrente.storico_pesi)
                                         }
                                     } else {
-                                        viewModel.utenteCorrente.storico_pesi?.toMutableList()
-                                            ?.add(Peso(today, weight))
+                                        viewModel.utenteCorrente.storico_pesi?.add(Peso(today, weight))
+                                        Log.d("Calendar", "diversa data, aggiungo")
+                                        Log.d("nuovo vettore", "nuovo vettore è " + viewModel.utenteCorrente.storico_pesi)
                                     }
                                 } else {
-                                    viewModel.utenteCorrente.storico_pesi?.toMutableList()
-                                        ?.add(Peso(today, weight))
+                                    viewModel.utenteCorrente.storico_pesi?.add(Peso(today, weight))
+                                    Log.d("Calendar", "array vuoto, aggiungo")
+                                    Log.d("nuovo vettore", "nuovo vettore è " + viewModel.utenteCorrente.storico_pesi)
                                 }
+
                             }
                         }
                         override fun onFailure(
@@ -251,6 +261,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
             }
         }
 
+        //disconnette bilancia e fa post al server
         disconnetti_bilancia.setOnClickListener(){
             Log.d("BILANCIA", "Fragment è onpause()")
 

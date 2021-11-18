@@ -39,7 +39,7 @@ data class UtenteDataClass(
         var lista_pazienti: List<String>? = null,
         var scr_foto: String ="",
         var obiettivi: List<Obiettivo>? = null,
-        var storico_pesi: List<Peso>? = null,
+        var storico_pesi: MutableList<Peso>? = null,
         var dieta: Dieta? = null,
         var calendarioDieta: MutableList<CalendarioDieta>? = null,
         var registrazione_peso: Int =0
