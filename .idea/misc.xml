@@ -38,6 +38,9 @@
         <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/layout/utente_bilancia_fragment.xml" value="0.264" />
         <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/layout/utente_profilo_fragment.xml" value="0.17798913043478262" />
         <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/menu/utente_bottom_navigation_menu.xml" value="0.24615384615384617" />
+        <entry key="app/src/main/res/layout-land/utente_profilo_fragment.xml" value="0.18298059964726632" />
+        <entry key="app/src/main/res/layout/professionista_profilo_fragment.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/utente_profilo_fragment.xml" value="0.33" />
       </map>
     </option>
   </component>

@@ -5,30 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/user_pic2"
-        android:layout_width="165dp"
-        android:layout_height="152dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/user_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <TextView
         android:id="@+id/nutr_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="27dp"
         android:text="@string/nutr_user_name"
         android:textAllCaps="true"
         android:textSize="30sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/nutr_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_pic2" />
+        app:layout_constraintTop_toBottomOf="@+id/nutr_user_name2" />
+
+    <TextView
+        android:id="@+id/nutr_user_name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="@string/nutr_user_name"
+        android:textAllCaps="true"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/nutr_user_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_nutr_id"
@@ -44,7 +48,7 @@
         app:layout_constraintBottom_toTopOf="@+id/card_data"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nutr_user_name"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/nutr_id"
@@ -59,7 +63,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/card_data"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.306"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toEndOf="@+id/text_nutr_id"
         app:layout_constraintTop_toBottomOf="@+id/nutr_user_name"
         app:layout_constraintVertical_bias="0.333" />
@@ -69,7 +73,7 @@
         android:layout_width="345dp"
         android:layout_height="121dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="8dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="0dp"
         app:cardElevation="0dp"
@@ -85,9 +89,9 @@
             android:id="@+id/text_nutr_dateOfBirth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
             android:text="@string/text_nutr_dateOfBirth" />
 
         <TextView
@@ -96,17 +100,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="170dp"
             android:layout_marginLeft="170dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="@string/nutr_dateOfBirth" />
-
-        <TextView
-            android:id="@+id/id_albo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="170dp"
-            android:layout_marginLeft="170dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/id_albo" />
 
         <TextView
             android:id="@+id/nutr_email"
@@ -114,25 +109,16 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="128dp"
             android:layout_marginLeft="128dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="55dp"
             android:text="@string/nutr_email" />
-
-        <TextView
-            android:id="@+id/text_albo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/text_albo" />
 
         <TextView
             android:id="@+id/text_nutr_email"
             android:layout_width="52dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="74dp"
-            android:layout_marginLeft="74dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="55dp"
             android:text="@string/text_nutr_email" />
     </androidx.cardview.widget.CardView>
 

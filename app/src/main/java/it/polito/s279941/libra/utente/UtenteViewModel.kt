@@ -258,6 +258,7 @@ class UtenteViewModel: ViewModel() {
         return _userData.email
     }
 
+
     /**
      * VIEWMODEL PER BILANCIA
      *
