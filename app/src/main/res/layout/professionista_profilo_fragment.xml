@@ -89,9 +89,9 @@
             android:id="@+id/text_nutr_dateOfBirth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
-            android:layout_marginLeft="70dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
             android:text="@string/text_nutr_dateOfBirth" />
 
         <TextView
@@ -100,17 +100,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="170dp"
             android:layout_marginLeft="170dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="@string/nutr_dateOfBirth" />
-
-        <TextView
-            android:id="@+id/id_albo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="170dp"
-            android:layout_marginLeft="170dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/id_albo" />
 
         <TextView
             android:id="@+id/nutr_email"
@@ -118,25 +109,16 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="128dp"
             android:layout_marginLeft="128dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="55dp"
             android:text="@string/nutr_email" />
-
-        <TextView
-            android:id="@+id/text_albo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/text_albo" />
 
         <TextView
             android:id="@+id/text_nutr_email"
             android:layout_width="52dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="74dp"
-            android:layout_marginLeft="74dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="55dp"
             android:text="@string/text_nutr_email" />
     </androidx.cardview.widget.CardView>
 
