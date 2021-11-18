@@ -275,7 +275,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
             //prova disconnessione da bilancia e connessione a wifi
 
-            /*if(wifi_id != 0) {
+            if(wifi_id != 0) {
                 if (ActivityCompat.checkSelfPermission(
                         requireContext(),
                         Manifest.permission.ACCESS_FINE_LOCATION
@@ -289,15 +289,21 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                     )
                     val wifi_manager: WifiManager = requireContext().getApplicationContext()
                         .getSystemService(Context.WIFI_SERVICE) as WifiManager
+                    Log.d("AIUTO", "id del wifi è" + wifi_id)
+                    wifi_manager.disconnect()
+                    wifi_manager.disableNetwork(wifi_id)
                     wifi_manager.removeNetwork(wifi_id)
                 } else {
                     //se localizzazione abilitata recupero direttamente ssid
                     val wifi_manager: WifiManager = requireContext().getApplicationContext()
                         .getSystemService(Context.WIFI_SERVICE) as WifiManager
+                    Log.d("AIUTO", "id del wifi è" + wifi_id)
+                    wifi_manager.disconnect()
+                    wifi_manager.removeNetwork(wifi_id)
                     wifi_manager.removeNetwork(wifi_id)
                 }
-            }*/
-            builder.removeTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+            }
+            //builder.removeTransportType(NetworkCapabilities.TRANSPORT_WIFI)
 
             /*builder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
             builder.removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
