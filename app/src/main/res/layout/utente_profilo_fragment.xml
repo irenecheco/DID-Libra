@@ -111,15 +111,6 @@
             android:layout_marginTop="100dp"
             android:text="@string/time_last_detection" />
 
-        <TextView
-            android:id="@+id/text_next_detection"
-            android:layout_width="158dp"
-            android:layout_height="51dp"
-            android:layout_marginStart="175dp"
-            android:layout_marginLeft="175dp"
-            android:layout_marginTop="130dp"
-            android:text="@string/text_next_detection" />
-
     </androidx.cardview.widget.CardView>
 
     <ImageView
@@ -143,8 +134,23 @@
         android:textAllCaps="true"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/user_pic"
-        app:layout_constraintStart_toStartOf="@+id/user_pic"
+        app:layout_constraintEnd_toStartOf="@+id/user_name2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_pic" />
+
+    <TextView
+        android:id="@+id/user_name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/user_name"
+        android:textAllCaps="true"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/user_name"
         app:layout_constraintTop_toBottomOf="@+id/user_pic" />
 
     <TextView
@@ -186,29 +192,6 @@
         app:layout_constraintEnd_toEndOf="@+id/card_n_patients" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_goal"
-        android:layout_width="348dp"
-        android:layout_height="77dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="48dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/text_last_measure"
-        app:layout_constraintEnd_toEndOf="@+id/card_n_patients"
-        app:layout_constraintHorizontal_bias="0.539"
-        app:layout_constraintStart_toStartOf="@+id/card_n_patients">
-
-        <TextView
-            android:id="@+id/last_goal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/last_goal" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
         android:id="@+id/card_data"
         android:layout_width="348dp"
         android:layout_height="77dp"
@@ -221,7 +204,7 @@
         app:cardUseCompatPadding="false"
         app:layout_constraintBottom_toTopOf="@+id/text_goal"
         app:layout_constraintEnd_toEndOf="@+id/card_goal"
-        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/card_goal"
         app:layout_constraintTop_toBottomOf="@+id/nutr_name"
         app:layout_constraintVertical_bias="0.437">
@@ -245,7 +228,7 @@
             android:text="@string/text_dateOfBirth" />
 
         <TextView
-            android:id="@+id/nutr_dateOfBirth"
+            android:id="@+id/user_dateOfBirth3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
@@ -261,6 +244,28 @@
             android:layout_marginLeft="120dp"
             android:layout_marginTop="40dp"
             android:text="@string/user_email" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_goal"
+        android:layout_width="348dp"
+        android:layout_height="77dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="4dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_last_measure"
+        app:layout_constraintEnd_toEndOf="@+id/card_n_patients"
+        app:layout_constraintStart_toStartOf="@+id/card_n_patients">
+
+        <TextView
+            android:id="@+id/last_goal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/last_goal" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

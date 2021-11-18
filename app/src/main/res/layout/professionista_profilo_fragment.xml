@@ -21,12 +21,27 @@
         android:id="@+id/nutr_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="@string/nutr_user_name"
         android:textAllCaps="true"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/nutr_user_name2"
+        app:layout_constraintTop_toBottomOf="@+id/user_pic2" />
+
+    <TextView
+        android:id="@+id/nutr_user_name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/nutr_user_name"
+        android:textAllCaps="true"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/nutr_user_name"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_pic2" />
 
@@ -69,7 +84,7 @@
         android:layout_width="345dp"
         android:layout_height="121dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="8dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="0dp"
         app:cardElevation="0dp"
