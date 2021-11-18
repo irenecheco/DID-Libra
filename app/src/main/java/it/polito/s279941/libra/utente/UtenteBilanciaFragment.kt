@@ -275,7 +275,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
             //prova disconnessione da bilancia e connessione a wifi
 
-            if(wifi_id != 0) {
+            /*if(wifi_id != 0) {
                 if (ActivityCompat.checkSelfPermission(
                         requireContext(),
                         Manifest.permission.ACCESS_FINE_LOCATION
@@ -296,10 +296,10 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                         .getSystemService(Context.WIFI_SERVICE) as WifiManager
                     wifi_manager.removeNetwork(wifi_id)
                 }
-            }
-            /*builder.removeTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+            }*/
+            builder.removeTransportType(NetworkCapabilities.TRANSPORT_WIFI)
 
-            builder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+            /*builder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
             builder.removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
             if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q){
                 builder.setNetworkSpecifier(
