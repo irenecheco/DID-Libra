@@ -18,6 +18,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import kotlinx.android.synthetic.main.utente_profilo_fragment.*
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 
 
 class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
@@ -48,8 +49,14 @@ class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
         val weights = utenteViewModel.pesoGrafico.value
 
         val xvalue = ArrayList<String>()
+        var dataGraph = ""
         for((i, w) in weights!!.takeLast(8).withIndex()){
-            w.data?.let { DateFormat.getDateInstance(DateFormat.SHORT).format(it) }?.let {xvalue.add(it)}
+            //w.data?.let { DateFormat.getDateInstance(DateFormat.SHORT).format(it) }?.let {xvalue.add(it)}
+            w.data?.let {
+                val simpleDateFormat = SimpleDateFormat("dd/MM")
+                dataGraph = simpleDateFormat.format(it)
+            }?.let {xvalue.add(dataGraph)}
+
         }
 
         val lineEntry = ArrayList<Entry>()
@@ -70,7 +77,7 @@ class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
 
         lineChart?.setDescription("")
         lineChart?.xAxis?.position = XAxisPosition.BOTTOM
-        lineChart?.xAxis?.textSize = 6.5f
+        lineChart?.xAxis?.textSize = 9.5f
         lineChart?.axisLeft?.setDrawLabels(false)
         lineChart?.axisRight?.setDrawLabels(false)
         lineChart?.legend?.isEnabled = false
