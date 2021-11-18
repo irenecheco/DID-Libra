@@ -5,45 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/user_pic2"
-        android:layout_width="165dp"
-        android:layout_height="152dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/user_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <TextView
         android:id="@+id/nutr_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="27dp"
         android:text="@string/nutr_user_name"
         android:textAllCaps="true"
         android:textSize="30sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/nutr_id"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/nutr_user_name2"
-        app:layout_constraintTop_toBottomOf="@+id/user_pic2" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nutr_user_name2" />
 
     <TextView
         android:id="@+id/nutr_user_name2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="100dp"
         android:text="@string/nutr_user_name"
         android:textAllCaps="true"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/nutr_user_name"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintBottom_toTopOf="@+id/nutr_user_name"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_pic2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_nutr_id"
@@ -59,7 +48,7 @@
         app:layout_constraintBottom_toTopOf="@+id/card_data"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nutr_user_name"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/nutr_id"
@@ -74,7 +63,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/card_data"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.306"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toEndOf="@+id/text_nutr_id"
         app:layout_constraintTop_toBottomOf="@+id/nutr_user_name"
         app:layout_constraintVertical_bias="0.333" />
