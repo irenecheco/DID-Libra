@@ -65,13 +65,21 @@ class UtenteViewModel: ViewModel() {
         _userData=userData;
 
         if (userData.dieta==null) {
-            userData.dieta = Dieta("2021-10-09",
+            userData.dieta = Dieta("2021-01-01",
                 mutableListOf<GiornoDieta>(
-                    //GiornoDieta(0,"briosche","biscotto","spaghetti","yogurt","mela") ,
-                    //GiornoDieta(1,"marmellata","tost","ragu","uva","pizza"),
-                    //GiornoDieta(2,"nutella","caffe","lasagne","torta","frittura di pesce")
+                    GiornoDieta(0,"Dieta non ancora assegnata dal nutrizionista","Dieta non ancora assegnata dal nutrizionista","Dieta non ancora assegnata dal nutrizionista","Dieta non ancora assegnata dal nutrizionista","Dieta non ancora assegnata dal nutrizionista")
+                )
             )
+        }
+        if (userData.dieta!!.data_inizio==null) {
+            userData.dieta!!.data_inizio = "2021-01-01"
+        }
+        if (userData.dieta!!.giorni==null || userData.dieta!!.giorni.size==0) {
+            userData.dieta!!.giorni = mutableListOf<GiornoDieta>(
+                GiornoDieta(0,"Dieta non ancora assegnata dal nutrizionista","Dieta non ancora assegnata dal nutrizionista","Dieta non ancora assegnata dal nutrizionista","Dieta non ancora assegnata dal nutrizionista","Dieta non ancora assegnata dal nutrizionista")
             )
+        }
+        if (userData.calendarioDieta == null) {
             userData.calendarioDieta = mutableListOf();
         }
 

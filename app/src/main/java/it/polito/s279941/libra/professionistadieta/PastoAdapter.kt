@@ -28,7 +28,8 @@ class PastoAdapter () : RecyclerView.Adapter<PastoAdapter.ViewHolder>() {
             PastoItem("SPUNTINO", giornoDieta.spuntinoMattina?:"", false),
             PastoItem("PRANZO", giornoDieta.pranzo?:"", false),
             PastoItem("MERENDA",giornoDieta.spuntinoPomeriggio?:"", true),
-            PastoItem("CENA",giornoDieta.cena?:"", false)
+            PastoItem("CENA",giornoDieta.cena?:""
+                , false)
         )
 
         notifyDataSetChanged();

@@ -78,7 +78,7 @@ data class Peso(
 
 data class Dieta(
         var data_inizio: String?,
-        val giorni: MutableList<GiornoDieta>,
+        var giorni: MutableList<GiornoDieta>,
 )
 
 data class GiornoDieta(
