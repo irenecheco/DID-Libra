@@ -32,7 +32,6 @@ class UtenteProfiloFragment: Fragment(R.layout.utente_profilo_fragment) {
         last_goal.text  = utenteViewModel.utenteCorrente.obiettivi?.last()?.obiettivo
         text_measure.text = utenteViewModel.utenteCorrente.storico_pesi?.last()?.peso.toString()
         date_last_detection2.text = utenteViewModel.utenteCorrente.storico_pesi?.last()?.data.toString()
-        time_last_detection2.text = utenteViewModel.utenteCorrente.storico_pesi?.last()?.data.toString()
 
 
 

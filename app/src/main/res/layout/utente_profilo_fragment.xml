@@ -52,15 +52,6 @@
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/date_last_detection2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="175dp"
-            android:layout_marginLeft="175dp"
-            android:layout_marginTop="50dp"
-            android:text="@string/date_last_detection" />
-
         <androidx.cardview.widget.CardView
             android:id="@+id/circle"
             android:layout_width="111dp"
@@ -88,28 +79,18 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="175dp"
             android:layout_marginLeft="175dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="60dp"
             android:text="@string/text_data_detection"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/text_time_detection"
-            android:layout_width="158dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="175dp"
-            android:layout_marginLeft="175dp"
-            android:layout_marginTop="78dp"
-            android:text="@string/text_time_detection"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/time_last_detection2"
+            android:id="@+id/date_last_detection2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="175dp"
             android:layout_marginLeft="175dp"
-            android:layout_marginTop="100dp"
-            android:text="@string/time_last_detection" />
+            android:layout_marginTop="85dp"
+            android:text="@string/date_last_detection" />
 
     </androidx.cardview.widget.CardView>
 
@@ -201,8 +182,8 @@
             android:id="@+id/text_albo"
             android:layout_width="52dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
-            android:layout_marginLeft="70dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="40dp"
             android:text="@string/text_email" />
 
@@ -210,8 +191,8 @@
             android:id="@+id/text_nutr_dateOfBirth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
-            android:layout_marginLeft="70dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:text="@string/text_dateOfBirth" />
 
@@ -228,8 +209,8 @@
             android:id="@+id/id_albo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginLeft="120dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginLeft="160dp"
             android:layout_marginTop="40dp"
             android:text="@string/user_email" />
     </androidx.cardview.widget.CardView>
