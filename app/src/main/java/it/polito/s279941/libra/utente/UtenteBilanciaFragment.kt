@@ -14,10 +14,7 @@ import android.net.wifi.WifiNetworkSpecifier
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
@@ -73,10 +70,11 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
         val manager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val builder = NetworkRequest.Builder()
+        var networkCallback :ConnectivityManager.NetworkCallback? = null
 
         //controllo permessi per recuperare ssid del wifi
 
-        var wifi_id = 0
+        //var wifi_id = 0
         /*if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             //se localizzazione non abilitata, chiedo all'utente di abilitarla e poi recupero ssid
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
@@ -118,7 +116,8 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
             Log.d(LOG_TAG_ESP, "NetworkRequest.Builder built")
             try {
-                manager.requestNetwork(builder.build(), object : ConnectivityManager.NetworkCallback() {
+
+                networkCallback =  object : ConnectivityManager.NetworkCallback() {
                         @RequiresApi(Build.VERSION_CODES.M)
                         override fun onAvailable(network: Network) {
                             manager.bindProcessToNetwork(network)
@@ -135,7 +134,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                         //if(response?.body() != null)
                                         if (response?.isSuccessful == true) {
 
-                                            if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                                            /*if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                                                 //se localizzazione non abilitata, chiedo all'utente di abilitarla e poi recupero ssid
                                                 ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
                                                 val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
@@ -146,7 +145,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                                 val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
                                                 var wifiInfo : WifiInfo = wifi_manager.connectionInfo
                                                 wifi_id = wifiInfo.networkId
-                                            }
+                                            }*/
 
                                             // posso recuperare e registrare il peso acquisito
                                             avvia_bilancia.visibility = View.GONE
@@ -168,7 +167,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                 })
                             }
                         }
-                    })
+                    }
             } catch (e: SecurityException) {
                 Log.e(LOG_TAG_ESP, e.message!!)
                 progress_bar.visibility = View.GONE
@@ -275,7 +274,12 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
             //prova disconnessione da bilancia e connessione a wifi
 
-            if(wifi_id != 0) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                manager.bindProcessToNetwork(null)
+            }
+            networkCallback?.let{ manager.unregisterNetworkCallback(it)}
+
+            /*if(wifi_id != 0) {
                 if (ActivityCompat.checkSelfPermission(
                         requireContext(),
                         Manifest.permission.ACCESS_FINE_LOCATION
@@ -302,7 +306,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                     wifi_manager.removeNetwork(wifi_id)
                     wifi_manager.removeNetwork(wifi_id)
                 }
-            }
+            }*/
             //builder.removeTransportType(NetworkCapabilities.TRANSPORT_WIFI)
 
             /*builder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
