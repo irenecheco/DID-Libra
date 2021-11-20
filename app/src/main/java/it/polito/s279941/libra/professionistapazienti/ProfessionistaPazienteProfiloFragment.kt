@@ -33,13 +33,16 @@ class ProfessionistaPazienteProfiloFragment: Fragment(R.layout.professionista_pa
         super.onViewCreated(view, savedInstanceState)
 
         nome_paziente.text = pazienteViewModel.pazienteCorrente.nome
+        cognome_paziente.text = pazienteViewModel.pazienteCorrente.cognome
+        data_nascita_paziente.text = DateFormat.getDateInstance(DateFormat.SHORT).format(pazienteViewModel.pazienteCorrente.data_nascita)
+        mail_paziente.text = pazienteViewModel.pazienteCorrente.email
 
         // Grafico
         lineChart = getView()?.findViewById(R.id.paziente_grafico)
-        //setLineChartData()
+        setLineChartData()
 
         // Obiettivi
-        //pazienteViewModel.obiettiviStorico.observe(viewLifecycleOwner, Observer { data -> goalsAdapter.setObiettivi(data) })
+        pazienteViewModel.obiettiviStorico.observe(viewLifecycleOwner, Observer { data -> goalsAdapter.setObiettivi(data) })
         recyclerView_obiettivi_paziente.layoutManager = LinearLayoutManager(requireContext())
         recyclerView_obiettivi_paziente.adapter = goalsAdapter
 

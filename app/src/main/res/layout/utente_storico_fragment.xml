@@ -7,49 +7,31 @@
     android:alwaysDrawnWithCache="true"
     tools:context=".utente.UtenteMainActivity">
 
-    <ImageView
-        android:id="@+id/foto_utente"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_profile"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <TextView
         android:id="@+id/nome_utente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_marginTop="16dp"
         android:text="NOME"
         android:textAllCaps="true"
         android:textSize="21sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/foto_utente"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/foto_utente"
-        app:layout_constraintTop_toTopOf="@+id/foto_utente" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/cognome_utente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
         android:text="COGNOME"
         android:textAllCaps="true"
         android:textSize="21sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/foto_utente"
-        app:layout_constraintStart_toEndOf="@+id/nome_utente"
-        app:layout_constraintTop_toTopOf="@+id/foto_utente" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nome_utente" />
 
     <View
         android:id="@+id/divider1"
@@ -63,7 +45,7 @@
         android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foto_utente" />
+        app:layout_constraintTop_toBottomOf="@+id/cognome_utente" />
 
     <View
         android:id="@+id/divider1_bold"
@@ -117,7 +99,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/foto_utente" />
+        app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
 
     <View

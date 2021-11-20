@@ -66,8 +66,6 @@ class ProfessionistaPazienteMainActivity : AppCompatActivity() {
         setContentView(R.layout.professionista_paziente_activity_main)
         setSupportActionBar(toolbar2)
 
-        toolbar2.title = intent.getStringExtra("Patient")
-
         val paziente_profilo_fragment = ProfessionistaPazienteProfiloFragment()
         val paziente_dieta_fragment = ProfessionistaPazienteDietaFragment()
         val paziente_chat_fragment = ProfessionistaPazienteChatFragment()
