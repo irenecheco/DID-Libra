@@ -8,6 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -79,14 +80,34 @@ class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_
         patientViewModel.pazienteId.pazienteId = "617ea2a7b5bee74a7064f702"
         patientViewModel.findPaziente()
 
-        val gson = Gson()
-        val pazienteCorrenteInLivedata : UtenteDataClass = pazienteViewModel.pazienteCorrente
-        val pazienteCorrenteGson = gson.toJson(pazienteCorrenteInLivedata)
-        Log.d(LOG_TAG, "pazienteViewModel.pazienteCorrente --> " + pazienteViewModel.pazienteCorrente)
-        val intent = Intent(activity, ProfessionistaPazienteMainActivity::class.java)
-        intent.putExtra("libra.pazienteGson", pazienteCorrenteGson)
-        startActivityForResult(intent, 1)
-        //activity?.startActivity(intent)
+        //controllo su live data
+        patientViewModel.pazienteCorrente.observe(viewLifecycleOwner) {
+
+            val gson = Gson()
+            //riempio pazienteCorrente in pazienteViewModel
+            pazienteViewModel.pazienteCorrente = patientViewModel.pazienteCorrente.value!!
+            val pazienteCorrenteInLivedata: UtenteDataClass = pazienteViewModel.pazienteCorrente
+            /*val pazienteCorrenteInLivedata: UtenteDataClass? = patientViewModel.pazienteCorrente.value*/
+            val pazienteCorrenteGson = gson.toJson(pazienteCorrenteInLivedata)
+            Log.d(
+                LOG_TAG,
+                "pazienteViewModel.pazienteCorrente --> " + pazienteViewModel.pazienteCorrente
+            )
+            //Controllo che effettivamente pazienteCorrente sia pieno e che sia un paziente
+            when (pazienteViewModel.getTipologiaUtente()) {
+                "PAZ" -> {
+                    val intent = Intent(activity, ProfessionistaPazienteMainActivity::class.java)
+                    intent.putExtra("libra.pazienteGson", pazienteCorrenteGson)
+                    startActivityForResult(intent, 1)
+                    //activity?.startActivity(intent)
+                }
+                "NETERR" -> {
+                    Log.d(LOG_TAG, "when (viewModel.getTipologiaUtente() -> NETERR") //--->DBG
+                    Toast.makeText(this.context, R.string.nutr_patient_ErrorMsg, Toast.LENGTH_LONG).show()
+                }
+            }
+
+        }
     }
 
 }

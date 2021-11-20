@@ -102,6 +102,7 @@
     <string name="order_alph">Ordine alfabetico</string>
     <string name="order_check">Ordine per ultimo controllo</string>
     <string name="search_patient">Cerca…</string>
+    <string name="nutr_patient_ErrorMsg">Paziente non trovato</string>
 
     <!-- Profilo pazienti professionista -->
     <string name="nutr_patient_dateOfBirth">Data di nascita:</string>

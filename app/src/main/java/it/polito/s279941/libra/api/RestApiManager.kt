@@ -132,6 +132,9 @@ class RestApiManager {
         apiService.findPaziente(pazienteData).enqueue(
             object : Callback<UtenteDataClass> {
                 override fun onResponse(call: Call<UtenteDataClass>, response: Response<UtenteDataClass>) {
+                    Log.d(LOG_TAG, "RestApiManager.findPaziente.onResponse() -> response.isSuccessful=" + response.isSuccessful) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.findPaziente.onResponse() -> response.code()=" + response.code()) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.findPaziente.onResponse() -> response.body()=" + response.body()) //--->DBG
                     when (response.code()){
                         200 -> {
                             utenteData.value = response.body()
@@ -141,6 +144,8 @@ class RestApiManager {
                             utenteData.value = UtenteDataClass(tipo=response.code().toString())
                         }
                         404 -> {
+                            Log.d(LOG_TAG, "when( response.code() == 404)") //--->DBG
+                            Log.d(LOG_TAG, "  user not exist") //--->DBG
                             utenteData.value = response.body()
                             utenteData.value = UtenteDataClass(tipo=response.code().toString())
                         }

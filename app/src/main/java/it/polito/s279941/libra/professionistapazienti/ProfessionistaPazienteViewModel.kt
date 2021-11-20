@@ -15,6 +15,15 @@ class ProfessionistaPazienteViewModel: ViewModel() {
     var pazienteCorrente : UtenteDataClass = UtenteDataClass()
 
 
+    // usata per check che dati paziente presenti e che sia un paziente
+    fun getTipologiaUtente(): String {
+        // se .tipo è null assegno valore 'NETERR' come defalut
+        //Log.d(LOG_TAG, "1 getTipologiaUtente()=${utenteCorrente.value?.tipo}  in LandingPageViewModel") //--->DBG
+        val t = pazienteCorrente.tipo ?: "NETERR"
+        //Log.d(LOG_TAG, "  2 getTipologiaUtente()=${utenteCorrente.value?.tipo}  in LandingPageViewModel")
+        return t
+    }
+
     // MISURAZIONI PESO PER GRAFICO
     private var _pesoGrafico = MutableLiveData<List<Peso>>()
     var pesoGrafico : LiveData<List<Peso>> = _pesoGrafico

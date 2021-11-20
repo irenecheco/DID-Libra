@@ -50,7 +50,7 @@ class ProfessionistaPazienteMainActivity : AppCompatActivity() {
         // un utente professionista ed un utente paziente gia inseriti
         // I seguenti si possono riattivare solo dopo che la lista di pazienti passa l'id del paxziente
         // val idUtente = intent.getStringExtra("PatientId") // da scommentare appena passato il vero id
-        val idUtente = "61391a94f264961050bd82fb" // lo sovrascrivo perchè ancora non viene passato  l'id, da commentare appena passato il vero id
+        val idUtente = pazienteViewModel.pazienteCorrente._id // lo sovrascrivo perchè ancora non viene passato  l'id, da commentare appena passato il vero id
         professionistaGiorniDietaPazienteViewModel.setPaziente(idUtente!!)
 
         // MISURAZIONI PESO PER GRAFICO
