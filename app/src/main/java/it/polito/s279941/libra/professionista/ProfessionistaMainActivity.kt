@@ -4,7 +4,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
+import it.polito.s279941.libra.DataModel.Obiettivo
+import it.polito.s279941.libra.DataModel.Paziente
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.utils.LOG_TAG
@@ -14,11 +18,14 @@ class ProfessionistaMainActivity : AppCompatActivity() {
 
     // Riferimento al viewModel
     val proViewModel by viewModels<ProfessionistaViewModel>()
+    private var _pazientiLista = MutableLiveData<List<Paziente>>()
+    var pazientiLista : LiveData<List<Paziente>> = _pazientiLista
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.professionista_activity_main)
-
+        setSupportActionBar(toolbar_professionista)
+        setUpTabs()
 
         /** @AG  **/
         // estraggo dall'intent l'oggetto json passatto dal fragment precedente e lo riconverto
@@ -32,9 +39,9 @@ class ProfessionistaMainActivity : AppCompatActivity() {
         proViewModel.initByUtenteDataClass_AG(proViewModel.utenteCorrente)
 
 
-
-        setSupportActionBar(toolbar_professionista)
-        setUpTabs()
+        // LISTA PAZIENTI
+        // prendo la lista degli degli id dei pazienti del nutrizionista dall'utente corrente in ProfessionistaViewModel
+        pazientiLista = proViewModel.getIdPatientFromUserData()
     }
 
     private fun setUpTabs(){
@@ -45,7 +52,5 @@ class ProfessionistaMainActivity : AppCompatActivity() {
         adapter.addFragment(ProfessionistaPazientiFragment(), pazienti)
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
-
-
     }
 }

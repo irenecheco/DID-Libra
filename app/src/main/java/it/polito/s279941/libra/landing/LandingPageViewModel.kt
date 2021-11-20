@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import it.polito.s279941.libra.DataModel.PazienteData
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.DataModel.UtenteLoginData
 import it.polito.s279941.libra.DataModel.UtenteSigninData
@@ -114,6 +115,17 @@ class LandingPageViewModel : ViewModel(){
                 "Cognome=${utenteSigninData.cognome},\n" +
                 "emain=${utenteSigninData.email},\n" +
                 "password=${utenteSigninData.password}")
+    }
+
+    /** per recuperare i dati dei pazienti dal profilo del nutrizionista **/
+    private var _pazienteCorrente = MutableLiveData<UtenteDataClass>()
+    var pazienteCorrente : LiveData<UtenteDataClass> = _pazienteCorrente
+    var pazienteId : PazienteData = PazienteData()
+
+    fun findPaziente(){
+        Log.d(LOG_TAG, "  start findPaziente()  in LandingPageViewModel")
+        _pazienteCorrente = loginRepository.findPaziente(pazienteId)
+        pazienteCorrente = _pazienteCorrente
     }
 
 }

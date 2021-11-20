@@ -51,12 +51,10 @@ class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
         val xvalue = ArrayList<String>()
         var dataGraph = ""
         for((i, w) in weights!!.takeLast(8).withIndex()){
-            //w.data?.let { DateFormat.getDateInstance(DateFormat.SHORT).format(it) }?.let {xvalue.add(it)}
             w.data?.let {
                 val simpleDateFormat = SimpleDateFormat("dd/MM")
                 dataGraph = simpleDateFormat.format(it)
             }?.let {xvalue.add(dataGraph)}
-
         }
 
         val lineEntry = ArrayList<Entry>()

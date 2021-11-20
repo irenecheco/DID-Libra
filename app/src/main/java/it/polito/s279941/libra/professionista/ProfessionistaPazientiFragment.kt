@@ -2,32 +2,42 @@ package it.polito.s279941.libra.professionista
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
+import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.R
-import it.polito.s279941.libra.professionistapazienti.OnPatientItemClickListener
-import it.polito.s279941.libra.professionistapazienti.PazientiAdapter
-import it.polito.s279941.libra.professionistapazienti.PazientiItem
-import it.polito.s279941.libra.professionistapazienti.ProfessionistaPazienteMainActivity
+import it.polito.s279941.libra.api.RestApiManager
+import it.polito.s279941.libra.landing.LandingPageViewModel
+import it.polito.s279941.libra.landing.LoginRepository
+import it.polito.s279941.libra.professionistapazienti.*
+import it.polito.s279941.libra.utente.UtenteMainActivity
+import it.polito.s279941.libra.utente.UtenteViewModel
+import it.polito.s279941.libra.utils.LOG_TAG
 import kotlinx.android.synthetic.main.professionista_pazienti_fragment.*
 
 class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_fragment), OnPatientItemClickListener {
 
-    val patientViewModel by activityViewModels<ProfessionistaViewModel>()
+    val nutViewModel by activityViewModels<ProfessionistaViewModel>()
+    val patientViewModel by activityViewModels<LandingPageViewModel>()
+    val pazienteViewModel by viewModels<ProfessionistaPazienteViewModel>()
     //lateinit var patientAdapter: PazientiAdapter
     val patientAdapter = PazientiAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        patientViewModel.pazientiLiveData.observe(viewLifecycleOwner, Observer { data -> patientAdapter.setPazienti(data) })
+        nutViewModel.pazientiLiveData.observe(viewLifecycleOwner, Observer { data -> patientAdapter.setPazienti(data) })
         recyclerView_pazienti.layoutManager= LinearLayoutManager(requireContext())
         recyclerView_pazienti.adapter = patientAdapter
 
@@ -65,12 +75,18 @@ class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_
 
     override fun onItemClick(item: PazientiItem, position: Int){
         //Toast.makeText(activity, item.nome_utente, Toast.LENGTH_SHORT).show()
-        val intent = Intent(activity, ProfessionistaPazienteMainActivity::class.java)
-        intent.putExtra("Patient", item.nome_utente)
 
-        // TODO: impostare l'id del paziente perchè serve alla vista di dettaglio paziente
-        intent.putExtra("PatientId",item.nome_utente); // invece di item.nome_utente =>  item._id)
-        activity?.startActivity(intent)
+        patientViewModel.pazienteId.pazienteId = "617ea2a7b5bee74a7064f702"
+        patientViewModel.findPaziente()
+
+        val gson = Gson()
+        val pazienteCorrenteInLivedata : UtenteDataClass = pazienteViewModel.pazienteCorrente
+        val pazienteCorrenteGson = gson.toJson(pazienteCorrenteInLivedata)
+        Log.d(LOG_TAG, "pazienteViewModel.pazienteCorrente --> " + pazienteViewModel.pazienteCorrente)
+        val intent = Intent(activity, ProfessionistaPazienteMainActivity::class.java)
+        intent.putExtra("libra.pazienteGson", pazienteCorrenteGson)
+        startActivityForResult(intent, 1)
+        //activity?.startActivity(intent)
     }
 
 }

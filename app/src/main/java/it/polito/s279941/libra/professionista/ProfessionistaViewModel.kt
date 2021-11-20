@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import it.polito.s279941.libra.DataModel.Obiettivo
+import it.polito.s279941.libra.DataModel.Paziente
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.api.RestApiManager
 import it.polito.s279941.libra.professionistapazienti.PazientiItem
@@ -36,17 +37,23 @@ class ProfessionistaViewModel: ViewModel() {
 
     val pazientiLiveData : LiveData<MutableList<PazientiItem>> = _pazientiLiveData
 
-    fun addPazienti(foto: String, nome: String, ultimoControllo_data: Long) {
-        val nuovoPaziente = PazientiItem(foto, nome, ultimoControllo_data)
-        _pazienti.add(nuovoPaziente)
-        _pazientiLiveData.value = _pazienti
+
+    // LISTA PAZIENTI --> recupera la lista degli id dei pazienti del nutrizionista
+    private var _pazientiLista = MutableLiveData<List<Paziente>>()
+    var pazientiLista : LiveData<List<Paziente>> = _pazientiLista
+
+    fun getIdPatientFromUserData() : LiveData<List<Paziente>>{
+        _pazientiLista = MutableLiveData<List<Paziente>>().also{
+            it.value = utenteCorrente.lista_pazienti
+        }
+        pazientiLista = _pazientiLista
+        return pazientiLista
     }
 
 
     // OBIETTIVI
     fun addGoal(newUserGoal: Obiettivo) {
         Log.d("LIBRAgoals","start fun addGoal() in class ProfessionistaViewModel")
-        //val idPaziente = "6071aea342e7530e8c1947ed"   // solito utente prova
         val idPaziente = "617ea2a7b5bee74a7064f702"     // utente q@q.com
         //val idPaziente = utenteCorrente._id  -->  è null
         //val idPaziente TODO con getPaziente per trovare id paziente a cui assegnare obiettivo

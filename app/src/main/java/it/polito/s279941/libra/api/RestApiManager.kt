@@ -122,6 +122,43 @@ class RestApiManager {
 
 
 
+
+    fun findPaziente(pazienteData: PazienteData): MutableLiveData<UtenteDataClass> {
+        Log.d(LOG_TAG, "start fun  findPaziente()  in class RestApiManager") //--->DBG
+        val utenteData = MutableLiveData<UtenteDataClass>()
+
+        val apiService = ServiceBuilder.buildService(RestApi::class.java)
+
+        apiService.findPaziente(pazienteData).enqueue(
+            object : Callback<UtenteDataClass> {
+                override fun onResponse(call: Call<UtenteDataClass>, response: Response<UtenteDataClass>) {
+                    when (response.code()){
+                        200 -> {
+                            utenteData.value = response.body()
+                        }
+                        401 -> {
+                            utenteData.value = response.body()
+                            utenteData.value = UtenteDataClass(tipo=response.code().toString())
+                        }
+                        404 -> {
+                            utenteData.value = response.body()
+                            utenteData.value = UtenteDataClass(tipo=response.code().toString())
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<UtenteDataClass>, t: Throwable) {
+                    Log.d(LOG_TAG, "RestApiManager.login.onFailure() -> throwable.message=" + t.message) //--->DBG
+                    Log.d(LOG_TAG, "RestApiManager.login.onFailure() -> throwable.cause=" + t.cause) //--->DBG
+                }
+            }
+        )
+        return utenteData
+    }
+
+
+
+
     // OBIETTIVI
     /*fun getGoals(idPaziente: String, onResult: (List<Obiettivo>?) -> Unit){
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)

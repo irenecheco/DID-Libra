@@ -25,6 +25,12 @@ interface RestApi {
     @POST("auth/register")
     fun signin(@Body utenteSigninData: UtenteSigninData) : Call<UtenteDataClass>
 
+
+    @Headers("Content-Type: application/json")
+    @POST("auth/findPaziente")
+    fun findPaziente(@Body pazienteData: PazienteData) : Call<UtenteDataClass>
+
+
     /*@GET("users")
     fun getUsers2() : Observable<List<UtenteDataClass>>*/
 

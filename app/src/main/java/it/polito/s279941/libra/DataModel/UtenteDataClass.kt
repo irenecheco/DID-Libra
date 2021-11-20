@@ -8,6 +8,9 @@ data class UtenteLoginData(
         var password: String =""
 )
 
+data class PazienteData(
+        var pazienteId: String = ""
+)
 
 // TODO: verificare coerenza con attributi definiti in NodeJS
 data class UtenteSigninData(
@@ -36,7 +39,7 @@ data class UtenteDataClass(
         var data_nascita: Date? = null, // todo: check with date format in DB
         var cod_nutrizionista: String ="", // valido sia per pazienti che per nutrizionisti
         //var cod_iscrizione_albo: String ="",  // OBSOLETO: ELIMINATO e sostituito con "cod_nutrizionista"
-        var lista_pazienti: List<String>? = null,
+        var lista_pazienti: List<Paziente>? = null,
         var scr_foto: String ="",
         var obiettivi: List<Obiettivo>? = null,
         var storico_pesi: MutableList<Peso>? = null,
@@ -61,14 +64,16 @@ data class  ConsumazionePasto(
 
 
 data class Obiettivo(
-        //@SerializedName("_id")
-        //var id: String,
         @SerializedName("data_obiettivo")
         val data_obiettivo: Date,
         @SerializedName("obiettivo")
         val obiettivo: String,
 )
 
+data class Paziente(
+        @SerializedName("id_paziente")
+        val id_paziente: String,
+)
 
 data class Peso(
         @SerializedName("data") var data: Date?,

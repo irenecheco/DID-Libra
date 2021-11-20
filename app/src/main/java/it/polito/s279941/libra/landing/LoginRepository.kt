@@ -2,6 +2,7 @@ package it.polito.s279941.libra.landing
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import it.polito.s279941.libra.DataModel.PazienteData
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.DataModel.UtenteLoginData
 import it.polito.s279941.libra.api.RestApiManager
@@ -20,6 +21,15 @@ class LoginRepository (private val webService: RestApiManager){
     fun login(loginData: UtenteLoginData): MutableLiveData<UtenteDataClass> {
         var data = MutableLiveData<UtenteDataClass>()
         data = webService.login(loginData)
+        if (data == null) {
+            Log.d(LOG_TAG, "data from RestAPI=null  in LoginRepository")
+        }
+        return data
+    }
+
+    fun findPaziente(pazienteData: PazienteData): MutableLiveData<UtenteDataClass> {
+        var data = MutableLiveData<UtenteDataClass>()
+        data = webService.findPaziente(pazienteData)
         if (data == null) {
             Log.d(LOG_TAG, "data from RestAPI=null  in LoginRepository")
         }
