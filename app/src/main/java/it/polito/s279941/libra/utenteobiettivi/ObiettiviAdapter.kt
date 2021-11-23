@@ -15,7 +15,7 @@ class ObiettiviAdapter () : RecyclerView.Adapter<ObiettiviAdapter.ObiettiviViewH
     private var obiettiviStorico: List<Obiettivo> = emptyList()
 
     fun setObiettivi(_obiettiviStorico: List<Obiettivo>){
-        obiettiviStorico = _obiettiviStorico
+        obiettiviStorico = _obiettiviStorico.reversed()
         notifyDataSetChanged()
     }
 

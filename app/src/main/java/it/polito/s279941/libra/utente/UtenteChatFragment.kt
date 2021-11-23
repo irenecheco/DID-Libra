@@ -20,10 +20,10 @@ class UtenteChatFragment: Fragment(R.layout.utente_chat_fragment) {
         //button click to get input and call sendEmail method
         button_email.setOnClickListener {
             //get input from EditTexts and save in variables
-            mailDestinatario.text = utenteViewModel.utenteCorrente.cod_nutrizionista
+            mailDestinatario.text = utenteViewModel.utenteCorrente.cod_nutrizionista  // TODO non codice, ma mail nutrizionista
             val nut_mail = mailDestinatario.text.toString().trim()
-            val subject = subjectEt.text.toString().trim()
-            val message = messageEt.text.toString().trim()
+            val subject = subject_input.text.toString().trim()
+            val message = message_input.text.toString().trim()
 
             //method call for email intent with these inputs as parameters
             sendEmail(nut_mail, subject, message)

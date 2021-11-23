@@ -7,46 +7,128 @@
     tools:context=".utente.UtenteMainActivity">
 
     <TextView
-        android:id="@+id/mailDestinatario"
-        android:layout_width="match_parent"
+        android:id="@+id/mailDestinatarioTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Recipient email(s)"
-        android:inputType="textEmailAddress"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:padding="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/mailMittente" />
+        android:text="@string/mailTo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!--EditText: Input the subject of email-->
-
-    <!--EditText: Input the message-->
     <TextView
-        android:id="@+id/subjectEt"
-        android:layout_width="match_parent"
+        android:id="@+id/mailDestinatario"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Subject"
-        android:inputType="text|textCapSentences"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
         android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/messageEt"
-        app:layout_constraintTop_toBottomOf="@+id/mailMittente"
-        tools:layout_editor_absoluteX="0dp" />
+        android:text="nutrizionista@mail.com"
+        app:layout_constraintStart_toEndOf="@+id/mailDestinatarioTitle"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/messageEt"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
-        android:hint="Enter message here..."
-        android:inputType="text|textCapSentences"
-        android:minHeight="150dp"
-        android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_email" />
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/colorPrimaryLight"
+        app:cardCornerRadius="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mailDestinatarioTitle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/subjectLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="18dp"
+                android:text="@string/mailSubject"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+                android:id="@+id/subject_input_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="19dp"
+                android:layout_marginRight="19dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/colorLight">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/subjectInputLayout"
+                android:layout_width="409dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/subject_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/mailSubjectHint" />
+            </com.google.android.material.textfield.TextInputLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/messageLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="0dp"
+                android:paddingBottom="18dp"
+                android:paddingRight="18dp"
+                android:paddingLeft="18dp"
+                android:text="@string/mailMessage"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+                android:id="@+id/message_input_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="19dp"
+                android:layout_marginRight="19dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/colorLight">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/messageInputLayout"
+                    android:layout_width="409dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/message_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/mailMessageHint" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
     <Button
         android:id="@+id/button_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="8dp"
+        android:text="@string/goal_submit_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

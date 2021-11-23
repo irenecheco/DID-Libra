@@ -79,6 +79,13 @@
     <!-- Dieta utente -->
     <string name="tv_today_data">Today data</string>
 
+    <!-- Chat utente -->
+    <string name="mailTo" >To: </string>
+    <string name="mailSubject" >Subject: </string>
+    <string name="mailSubjectHint" >Enter the subject... </string>
+    <string name="mailMessage" >Message: </string>
+    <string name="mailMessageHint" >Enter the message... </string>
+
     <!-- Tab Professionista -->
     <string name="tab_profile_label">Profile</string>
     <string name="tab_patients_label">Patients</string>
@@ -116,6 +123,7 @@
     <string name="goal_confirm_button">Yes</string>
     <string name="goal_deny_button">No</string>
     <string name="nutr_patient_goal_added_Label">The new goal was added successfully.</string>
+    <string name="nutr_patient_goal_not_added_Label">The new goal could not be added. Try later.</string>
     <string name="goal_back_button">Go back to the patient profile</string>
 
     <!-- TODO: Remove or change this placeholder text -->
