@@ -17,10 +17,11 @@ class UtenteChatFragment: Fragment(R.layout.utente_chat_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        mailDestinatario.text = utenteViewModel.utenteCorrente.cod_nutrizionista  // TODO non codice, ma mail nutrizionista
+
         //button click to get input and call sendEmail method
         button_email.setOnClickListener {
             //get input from EditTexts and save in variables
-            mailDestinatario.text = utenteViewModel.utenteCorrente.cod_nutrizionista  // TODO non codice, ma mail nutrizionista
             val nut_mail = mailDestinatario.text.toString().trim()
             val subject = subject_input.text.toString().trim()
             val message = message_input.text.toString().trim()
