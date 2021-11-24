@@ -39,9 +39,14 @@ class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
         setLineChartData()
 
         // Obiettivi
-        utenteViewModel.obiettiviStorico.observe(viewLifecycleOwner, Observer { data -> goalsAdapter.setObiettivi(data) })
-        recyclerView_obiettivi.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView_obiettivi.adapter = goalsAdapter
+        noObiettivi.visibility = View.GONE
+        if(utenteViewModel.utenteCorrente.obiettivi?.size != 0) {
+            utenteViewModel.obiettiviStorico.observe(viewLifecycleOwner, Observer { data -> goalsAdapter.setObiettivi(data) })
+            recyclerView_obiettivi.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView_obiettivi.adapter = goalsAdapter
+        } else {
+            noObiettivi.visibility = View.VISIBLE
+        }
     }
 
     fun setLineChartData(){

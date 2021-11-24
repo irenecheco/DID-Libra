@@ -58,7 +58,9 @@
 
     <!-- Storico utente -->
     <string name="utente_graph_title">Andamento del peso</string>
-    <string name="utente_goals_title">Obiettivi raggiunti</string>
+    <string name="utente_goals_title">Obiettivi</string>
+    <string name="no_goals_title">Non sono presenti obiettivi.</string>
+
 
     <!-- Profilo utente -->
     <string name="user_name">User Name</string>

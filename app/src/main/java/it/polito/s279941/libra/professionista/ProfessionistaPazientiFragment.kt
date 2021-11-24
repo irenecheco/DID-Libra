@@ -30,7 +30,7 @@ import kotlinx.android.synthetic.main.professionista_pazienti_fragment.*
 class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_fragment), OnPatientItemClickListener {
 
     val nutViewModel by activityViewModels<ProfessionistaViewModel>()
-    val patientViewModel by activityViewModels<LandingPageViewModel>()
+    val landingPageViewModel by activityViewModels<LandingPageViewModel>()
     val pazienteViewModel by viewModels<ProfessionistaPazienteViewModel>()
     //lateinit var patientAdapter: PazientiAdapter
     val patientAdapter = PazientiAdapter(this)
@@ -77,15 +77,15 @@ class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_
     override fun onItemClick(item: PazientiItem, position: Int){
         //Toast.makeText(activity, item.nome_utente, Toast.LENGTH_SHORT).show()
 
-        patientViewModel.pazienteId.pazienteId = "617ea2a7b5bee74a7064f702"
-        patientViewModel.findPaziente()
+        landingPageViewModel.pazienteId.pazienteId = "619e274d328e957ddd522ce2"  // TODO da sistemare
+        landingPageViewModel.findPaziente()
 
         //controllo su live data
-        patientViewModel.pazienteCorrente.observe(viewLifecycleOwner) {
+        landingPageViewModel.pazienteCorrente.observe(viewLifecycleOwner) {
 
             val gson = Gson()
             //riempio pazienteCorrente in pazienteViewModel
-            pazienteViewModel.pazienteCorrente = patientViewModel.pazienteCorrente.value!!
+            pazienteViewModel.pazienteCorrente = landingPageViewModel.pazienteCorrente.value!!
             val pazienteCorrenteInLivedata: UtenteDataClass = pazienteViewModel.pazienteCorrente
             /*val pazienteCorrenteInLivedata: UtenteDataClass? = patientViewModel.pazienteCorrente.value*/
             val pazienteCorrenteGson = gson.toJson(pazienteCorrenteInLivedata)

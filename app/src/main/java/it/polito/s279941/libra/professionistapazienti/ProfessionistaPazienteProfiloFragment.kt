@@ -42,9 +42,15 @@ class ProfessionistaPazienteProfiloFragment: Fragment(R.layout.professionista_pa
         setLineChartData()
 
         // Obiettivi
-        pazienteViewModel.obiettiviStorico.observe(viewLifecycleOwner, Observer { data -> goalsAdapter.setObiettivi(data) })
-        recyclerView_obiettivi_paziente.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView_obiettivi_paziente.adapter = goalsAdapter
+        noObiettivi_paziente.visibility = View.GONE
+        if(pazienteViewModel.pazienteCorrente.obiettivi?.size != 0) {
+            pazienteViewModel.obiettiviStorico.observe(viewLifecycleOwner, Observer { data -> goalsAdapter.setObiettivi(data) })
+            recyclerView_obiettivi_paziente.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView_obiettivi_paziente.adapter = goalsAdapter
+        } else {
+            noObiettivi_paziente.visibility = View.VISIBLE
+        }
+
 
         val newFragment: Fragment = ProfessionistaPazienteAggiungiObiettivoFragment()
         add_goal_button.setOnClickListener{

@@ -34,7 +34,7 @@ class UtenteProfiloFragment: Fragment(R.layout.utente_profilo_fragment) {
             last_goal.text = utenteViewModel.utenteCorrente.obiettivi?.last()?.obiettivo
         } else {
             Log.d("profilo", "Sto creando il profilo, non ci sono obiettivi")
-            last_goal.text = "Non sono presenti obiettivi"
+            last_goal.text = getString(R.string.no_goals_title)
         }
         if(utenteViewModel.utenteCorrente.storico_pesi?.size != 0) {
             text_measure.text = utenteViewModel.utenteCorrente.storico_pesi?.last()?.peso.toString()
