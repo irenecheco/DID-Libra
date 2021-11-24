@@ -54,7 +54,6 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
             val inputGoal : String = addGoal_input.text.toString()
             val newGoal = Obiettivo(dateGoal,inputGoal)
             nutViewModel.addGoal(newGoal)
-            pazienteViewModel.pazienteCorrente.obiettivi?.add(newGoal)
 
             nutViewModel.confirmationAddGoal.observe(viewLifecycleOwner) { goalStatus ->
                 when(goalStatus!!){
@@ -64,6 +63,7 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
                     Status.SUCCESS -> {
                         progressBarGoal.visibility = View.GONE
                         add_goal_Label.text = getString(R.string.nutr_patient_goal_added_Label)
+                        pazienteViewModel.pazienteCorrente.obiettivi?.add(newGoal)
                     }
                     Status.ERROR -> {
                         progressBarGoal.visibility = View.GONE
