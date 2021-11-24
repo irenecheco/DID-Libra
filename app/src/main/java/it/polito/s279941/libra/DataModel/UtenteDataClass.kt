@@ -41,7 +41,7 @@ data class UtenteDataClass(
         //var cod_iscrizione_albo: String ="",  // OBSOLETO: ELIMINATO e sostituito con "cod_nutrizionista"
         var lista_pazienti: List<Paziente>? = null,
         var scr_foto: String ="",
-        var obiettivi: List<Obiettivo>? = null,
+        var obiettivi: MutableList<Obiettivo>? = null,
         var storico_pesi: MutableList<Peso>? = null,
         var dieta: Dieta? = null,
         var calendarioDieta: MutableList<CalendarioDieta>? = null,

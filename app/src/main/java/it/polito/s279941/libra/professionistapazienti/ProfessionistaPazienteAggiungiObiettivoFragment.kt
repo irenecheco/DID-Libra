@@ -4,17 +4,18 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import it.polito.s279941.libra.DataModel.Obiettivo
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.professionista.ProfessionistaViewModel
+import it.polito.s279941.libra.utils.Status
 import kotlinx.android.synthetic.main.professionista_paziente_aggiungi_obiettivo_fragment.*
 import java.util.*
 
 class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.professionista_paziente_aggiungi_obiettivo_fragment) {
 
-    //private lateinit var viewModel: ObiettiviViewModel
-    private lateinit var viewModel: ProfessionistaViewModel
+    private val nutViewModel: ProfessionistaViewModel by activityViewModels()
+    private val pazienteViewModel: ProfessionistaPazienteViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -24,10 +25,9 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
         addGoal_submitButton.text = getString(R.string.goal_submit_button)
         add_goal_input.visibility = View.VISIBLE
         add_goal_confirmation.visibility = View.GONE
-        addGoal_input.isFocusable = true  //TODO da emulatore funge, ma da telefono no --> da rivedere
+        progressBarGoal.visibility = View.GONE
         var goalConfirmed = false
 
-        viewModel = ViewModelProvider(this).get(ProfessionistaViewModel::class.java)
         Log.d("LIBRA","calling & create the viewModel of class ObiettiviVieModel in ProfessionistaPazienteAggiungiObiettivoFragment")
 
         val newFragment: Fragment = ProfessionistaPazienteProfiloFragment()
@@ -37,7 +37,6 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
             if(!addGoal_input.text.isNullOrEmpty()) {
                 add_goal_confirmation.visibility = View.VISIBLE
                 addGoal_submitButton.visibility = View.GONE
-                addGoal_input.isFocusable = false
             }
 
             if(goalConfirmed){
@@ -51,14 +50,29 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
         confirm_button.setOnClickListener{
             Log.d("LIBRA", "event CLICK on CONFIRM in ProfessionistaPazienteAggiungiObiettivoFragment")
 
-            // TODO bisogna controllare che effettivamente l'obiettivo sia stato postato correttamente e in caso contrario dare relativo feeedback
-
             val dateGoal = Date()
             val inputGoal : String = addGoal_input.text.toString()
             val newGoal = Obiettivo(dateGoal,inputGoal)
-            viewModel.addGoal(newGoal)
+            nutViewModel.addGoal(newGoal)
 
-            add_goal_Label.text = getString(R.string.nutr_patient_goal_added_Label)
+            nutViewModel.confirmationAddGoal.observe(viewLifecycleOwner) { goalStatus ->
+                when(goalStatus!!){
+                    Status.LOADING -> {
+                        progressBarGoal.visibility = View.VISIBLE
+                    }
+                    Status.SUCCESS -> {
+                        progressBarGoal.visibility = View.GONE
+                        add_goal_Label.text = getString(R.string.nutr_patient_goal_added_Label)
+                        pazienteViewModel.pazienteCorrente.obiettivi?.add(newGoal)
+                    }
+                    Status.ERROR -> {
+                        progressBarGoal.visibility = View.GONE
+                        add_goal_Label.text = getString(R.string.nutr_patient_goal_not_added_Label)
+                    }
+                }
+                Log.d("LIBRAgoals", "confirmationStatus in fragment: " + goalStatus.toString())
+            }
+
             addGoal_submitButton.text = getString(R.string.goal_back_button)
             add_goal_input.visibility = View.GONE
             addGoal_submitButton.visibility = View.VISIBLE
@@ -75,7 +89,6 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
             addGoal_submitButton.text = getString(R.string.goal_submit_button)
             add_goal_input.visibility = View.VISIBLE
             add_goal_confirmation.visibility = View.GONE
-            addGoal_input.isFocusable = true
         }
     }
 }
