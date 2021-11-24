@@ -1,6 +1,5 @@
 package it.polito.s279941.libra.landing
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,8 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import it.polito.s279941.libra.R
-import it.polito.s279941.libra.professionista.ProfessionistaMainActivity
-import it.polito.s279941.libra.utente.UtenteMainActivity
 import it.polito.s279941.libra.utils.LOG_TAG
 import kotlinx.android.synthetic.main.fragment_landing_page.*
 
@@ -67,13 +64,12 @@ class LandingPageFragment : Fragment() {
         //Log.d(LOG_TAG, "onActivityCreated -> savedInstanceState = " + savedInstanceState.toString())
         Log.d(LOG_TAG, "  viewModel: " + viewModel.toString() + " in LandingPageFragment")
 
-
+        // due bottoni utilizzati per debug in precedenza
         /*utente_button.setOnClickListener{
             Log.d(LOG_TAG, "event CLICK on INTERFACCIA UTENTE button in LandingPageFragment")
             val i = Intent(activity, UtenteMainActivity::class.java)
             startActivityForResult(i, 1)
         }
-
         professionista_button.setOnClickListener{
             Log.d(LOG_TAG, "event CLICK on INTERFACCIA PROFESSIONISTA button in LandingPageFragment")
             val i = Intent(activity, ProfessionistaMainActivity::class.java)

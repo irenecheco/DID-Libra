@@ -31,7 +31,10 @@
     <string name="signinPasswordNotice">Password  corretta</string>
     <string name="signinButton">Registrazione</string>
     <string name="loginErrorMsg">Credenziali errate</string>
-    <string name="signinErrorMsg">e-mail già esistente.\n Fare login o cambiare e-mail</string>
+    <string name="signinErrorCode409">e-mail già esistente.\n Fare login o cambiare e-mail</string>
+    <string name="signinErrorCode490">Numero iscrizione ALBO già in uso.\n Verificare codice iscrizione ALBO</string>
+    <string name="signinErrorCode491">Codice MIO nutrizionista inesistente.\n Verificare codice nutrizionista</string>
+    <string name="signinErrorMsg">Errore generico.\n Riprova più tardi</string>
     <string name="quitMessage">Errore di rete.\nPer favore verifica la connessione internet del dispositivo prima di utilizzare Libra</string>
     <string name="quitButton">ESCI</string>
     <string name="rememberMeCheckBox">Ricordami per i prossimi accessi</string>

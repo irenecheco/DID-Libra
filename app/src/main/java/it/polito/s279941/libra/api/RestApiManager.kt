@@ -96,16 +96,35 @@ class RestApiManager {
                     Log.d(LOG_TAG, "RestApiManager.signin.onResponse() -> response.code()=" + response.code()) //--->DBG
                     Log.d(LOG_TAG, "RestApiManager.signin.onResponse() -> response.body()=" + response.body()) //--->DBG
                     when (response.code()){
+                        // se risposta ok carico in utenteData la risposta che mi arriva dal backend
                         201 -> {
                             Log.d(LOG_TAG, "when( response.code() == 201)") //--->DBG
                             Log.d(LOG_TAG, "  user created, signin allowed") //--->DBG
                             utenteData.value = response.body()
                         }
+                        // altrimenti creo un "utente fake" e nel campo .tipo carico il codice di
+                        // errore che mi arriva dal backend in modo da dare feedback all'utente
+                        // nel SigninPageFragment
                         409 -> {
                             Log.d(LOG_TAG, "when( response.code() == 409)") //--->DBG
                             Log.d(LOG_TAG, "  user already exists") //--->DBG
                             // v. login()
-                            utenteData.value = response.body()
+                            //utenteData.value = response.body()
+                            utenteData.value = UtenteDataClass(tipo=response.code().toString())
+                        }
+                        // Custom codes
+                        490 -> {
+                            Log.d(LOG_TAG, "when( response.code() == 490)") //--->DBG
+                            Log.d(LOG_TAG, "  msg for nutrizionisti: cod_nutrizionista already used") //--->DBG
+                            // v. login()
+                            //utenteData.value = response.body()
+                            utenteData.value = UtenteDataClass(tipo=response.code().toString())
+                        }
+                        491 -> {
+                            Log.d(LOG_TAG, "when( response.code() == 491)") //--->DBG
+                            Log.d(LOG_TAG, "  msg for pazienti: cod_nutrizionista NOT exists") //--->DBG
+                            // v. login()
+                            //utenteData.value = response.body()
                             utenteData.value = UtenteDataClass(tipo=response.code().toString())
                         }
                     }

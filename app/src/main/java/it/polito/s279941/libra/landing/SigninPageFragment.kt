@@ -348,11 +348,18 @@ class SigninPageFragment : Fragment() {
                         }
                         /* se abilito questa clausola (409) posso inviare (sempre con toast)
                         * un msg più dettagliato oltre a quello che viene inviato da NETERR */
-                        /*"409" -> {
-                            Log.d(LOG_TAG, "when (viewModel.getTipologiaUtente() -> 401") //--->DBG
-                            Toast.makeText(this.context, "email già esistente", Toast.LENGTH_LONG).show()
+                        "409" -> {
+                            Log.d(LOG_TAG, "when (viewModel.getTipologiaUtente() -> 409") //--->DBG
+                            Toast.makeText(this.context, R.string.signinErrorCode409, Toast.LENGTH_LONG).show()
                         }
-                        */
+                        "490" -> {
+                            Log.d(LOG_TAG, "when (viewModel.getTipologiaUtente() -> 490") //--->DBG
+                            Toast.makeText(this.context, R.string.signinErrorCode490, Toast.LENGTH_LONG).show()
+                        }
+                        "491" -> {
+                            Log.d(LOG_TAG, "when (viewModel.getTipologiaUtente() -> 491") //--->DBG
+                            Toast.makeText(this.context, R.string.signinErrorCode491, Toast.LENGTH_LONG).show()
+                        }
                         // Mandiamo all'utente un generico messaggio di errore per il signin
                         // e torniamo alla landing page
                         "NETERR" -> {

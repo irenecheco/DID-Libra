@@ -18,6 +18,7 @@ import it.polito.s279941.libra.utils.LOG_TAG
 // è questa classe che deve decidere se recuperare i dati dal db esterno o locale
 
 class SigninRepository (private val webService: RestApiManager){
+
     fun signin(signinData: UtenteSigninData): MutableLiveData<UtenteDataClass> {
         var data = MutableLiveData<UtenteDataClass>()
         data = webService.signin(signinData)
@@ -26,4 +27,5 @@ class SigninRepository (private val webService: RestApiManager){
         }
         return data
     }
+
 }

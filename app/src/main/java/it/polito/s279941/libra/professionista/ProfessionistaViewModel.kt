@@ -21,6 +21,7 @@ class ProfessionistaViewModel: ViewModel() {
     // funzione di test per verificare se effettivamente l'oggetto c'è
     fun initByUtenteDataClass_AG(userData: UtenteDataClass){
         Log.d(LOG_TAG, "initByUtenteDataClass_AG() tipologia utente: ${utenteCorrente.tipo} , email: ${utenteCorrente.email}  in ProfessionistaViewModel")
+        Log.d(LOG_TAG, "initByUtenteDataClass_AG() Lista Pazienti: ${utenteCorrente.lista_pazienti}")
     }
 
 

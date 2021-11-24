@@ -82,7 +82,8 @@ class LandingPageViewModel : ViewModel(){
     }
 
 
-    // se restituisce "NETERR" c'è stato un errore o il valore .tipo, che viene assegnato in RestApiManager
+    // se l'attributo .tipo è nullo assegno il valore "NETERR", altrimenti .tipo contiene
+    // il valore che gli viene assegnato in RestApiManager in base al code error della get/post
     fun getTipologiaUtente(): String {
         // se .tipo è null assegno valore 'NETERR' come defalut
         //Log.d(LOG_TAG, "1 getTipologiaUtente()=${utenteCorrente.value?.tipo}  in LandingPageViewModel") //--->DBG

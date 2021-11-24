@@ -24,14 +24,14 @@ class LandingPageActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             Toast.makeText(this,"Checking connection", Toast.LENGTH_SHORT).show()
             Log.d(LOG_TAG, "isConnected()=${isConnected()}  in LandingPageActivity")    //-->DBG
-            /*if ( ! isConnected() ) {
+            if ( ! isConnected() ) {
                 val networkErrorFragment = NetworkErrorFragment.newInstance()
                 showFragment(networkErrorFragment)
             }
-            else {*/
+            else {
                 val landingPageFragment = LandingPageFragment.newInstance()
                 showFragment(landingPageFragment)
-            //}
+            }
         }
         Log.d(LOG_TAG, "viewModel: " + viewModel.toString() + " in LandingPageActivity")    //-->DBG
     }

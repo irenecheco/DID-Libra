@@ -30,7 +30,10 @@
     <string name="signinPasswordNotice">Password match</string>
     <string name="signinButton">Signin</string>
     <string name="loginErrorMsg">Wrong credential</string>
-    <string name="signinErrorMsg">e-mail already exists.\n Try login or use another e-mail</string>
+    <string name="signinErrorCode409">e-mail already exists.\n Try login or use another e-mail</string>
+    <string name="signinErrorCode490">Professional ID already used.\n Check ID for typo</string>
+    <string name="signinErrorCode491">Nutritionist ID not exists.\n Check ID for typo</string>
+    <string name="signinErrorMsg">Generic error.\n Try login later</string>
     <string name="quitMessage">A network error occurred.\nPlease check your internet connection before use Libra</string>
     <string name="quitButton">QUIT</string>
     <string name="rememberMeCheckBox">Remember me for future login</string>
