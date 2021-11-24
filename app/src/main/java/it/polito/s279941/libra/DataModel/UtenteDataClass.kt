@@ -71,8 +71,10 @@ data class Obiettivo(
 )
 
 data class Paziente(
-        @SerializedName("id_paziente")
-        val id_paziente: String,
+        // nome attributo nel db NodeJS
+        @SerializedName("_id")
+        // nome riassegnato in kotlin
+        val IdPaziente: String
 )
 
 data class Peso(

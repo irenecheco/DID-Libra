@@ -52,7 +52,8 @@ class LandingPageViewModel : ViewModel(){
             "nome " + this?.nome.toString() + " " +
             "cogn " + this?.cognome.toString() + " - " +
             "email " + this?.email.toString() + " " +
-            "tipo " + this?.tipo} //--->DBG
+            "tipo " + this?.tipo + " " +
+            "lista_pazienti" + this?.lista_pazienti} //--->DBG
         Log.d(LOG_TAG, "LandingPageViewModel --> attributi utenteCorrente=" + alcuniAttributiUtenteCorrente) //--->DBG
     }
 

@@ -35,7 +35,7 @@
     <string name="signinErrorCode490">Numero iscrizione ALBO già in uso.\n Verificare codice iscrizione ALBO</string>
     <string name="signinErrorCode491">Codice MIO nutrizionista inesistente.\n Verificare codice nutrizionista</string>
     <string name="signinErrorMsg">Errore generico.\n Riprova più tardi</string>
-    <string name="quitMessage">Errore di rete.\nPer favore verifica la connessione internet del dispositivo prima di utilizzare Libra</string>
+    <string name="quitMessage">Errore di rete.\nPer favore verifica la connessione internet del dispositivo prima di utilizzare Libra.\nServer backend non raggiungibile</string>
     <string name="quitButton">ESCI</string>
     <string name="rememberMeCheckBox">Ricordami per i prossimi accessi</string>
 
