@@ -47,6 +47,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
     //var wifi_ssid : String = "null"
     var weight : Double = 0.0
     //var wifi_bssid : String = "null"
+    var flag_lettura = 0
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 
@@ -64,13 +65,14 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                 viewModel.utenteCorrente.storico_pesi?.last()?.peso.toString() + " KG"
         }catch (e: NoSuchElementException){
             val bottomNavView: View? = activity?.findViewById(R.id.bottom_bar)
-            Snackbar.make(bottomNavView!!, "No previous measure", Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorPrimaryDark)).setAnchorView(bottomNavView).show()
+            Snackbar.make(bottomNavView!!, R.string.snackbar_no_measure, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorPrimaryDark)).setAnchorView(bottomNavView).show()
             text_measure.text = "- KG"
         }
 
         val manager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val builder = NetworkRequest.Builder()
         var networkCallback :ConnectivityManager.NetworkCallback? = null
+        flag_lettura = 0
 
         //controllo permessi per recuperare ssid del wifi
 
@@ -150,7 +152,9 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                             // posso recuperare e registrare il peso acquisito
                                             avvia_bilancia.visibility = View.GONE
                                             registra_peso.visibility = View.VISIBLE
+                                            registra_peso_label.visibility = View.VISIBLE
                                             disconnetti_bilancia.visibility = View.VISIBLE
+                                            disconnetti_bilancia_label.visibility = View.VISIBLE
                                             Log.d(LOG_TAG_ESP,
                                                 "initScale: response.isSuccessful=true -> Bilancia attiva")
                                             registra_peso?.isEnabled = true
@@ -203,6 +207,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                 progress_bar.visibility = View.GONE
                                 text_measure.text = weight.toString() + " KG"
                                 text_measure.visibility = View.VISIBLE
+                                flag_lettura = 1
 
                                 //salvo peso in locale
                                 var today = Calendar.getInstance().time
@@ -262,24 +267,27 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
         //disconnette bilancia e fa post al server
         disconnetti_bilancia.setOnClickListener(){
-            Log.d("BILANCIA", "Fragment è onpause()")
+            if(flag_lettura ==1) {
 
-            registra_peso.visibility = View.GONE
-            disconnetti_bilancia.visibility = View.GONE
-            avvia_bilancia.visibility = View.VISIBLE
+                registra_peso.visibility = View.GONE
+                registra_peso_label.visibility = View.GONE
+                disconnetti_bilancia.visibility = View.GONE
+                disconnetti_bilancia_label.visibility = View.GONE
+                avvia_bilancia.visibility = View.VISIBLE
 
-            avvia_bilancia?.isEnabled = true
-            registra_peso?.isEnabled = false
-            disconnetti_bilancia?.isEnabled = false
+                avvia_bilancia?.isEnabled = true
+                registra_peso?.isEnabled = false
+                disconnetti_bilancia?.isEnabled = false
 
-            //prova disconnessione da bilancia e connessione a wifi
+                //prova disconnessione da bilancia e connessione a wifi
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                manager.bindProcessToNetwork(null)
-            }
-            networkCallback?.let{ manager.unregisterNetworkCallback(it)}
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    manager.bindProcessToNetwork(null)
+                }
+                networkCallback?.let { manager.unregisterNetworkCallback(it) }
 
-            /*if(wifi_id != 0) {
+
+                /*if(wifi_id != 0) {
                 if (ActivityCompat.checkSelfPermission(
                         requireContext(),
                         Manifest.permission.ACCESS_FINE_LOCATION
@@ -307,9 +315,9 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                     wifi_manager.removeNetwork(wifi_id)
                 }
             }*/
-            //builder.removeTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                //builder.removeTransportType(NetworkCapabilities.TRANSPORT_WIFI)
 
-            /*builder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                /*builder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
             builder.removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
             if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q){
                 builder.setNetworkSpecifier(
@@ -352,17 +360,18 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                 Log.e(LOG_TAG_ESP, e.message!!)
             }*/
 
-            //recupero data odierna
-            var today = Calendar.getInstance().time
+                //recupero data odierna
+                var today = Calendar.getInstance().time
 
-            if(weight > 0) {
-                //lancio la funzione post weight contenuta in UtenteBilanciaViewModel per fare POST al server
-                viewModel.postWeight(today, weight)
-                Log.d("BILANCIA", "Lanciata post")
+                if (weight > 0) {
+                    //lancio la funzione post weight contenuta in UtenteBilanciaViewModel per fare POST al server
+                    viewModel.postWeight(today, weight)
+                    Log.d("BILANCIA", "Lanciata post")
+                }
+            } else {
+                val bottomNavView: View? = activity?.findViewById(R.id.bottom_bar)
+                Snackbar.make(bottomNavView!!, R.string.snackbar_read_first, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorPrimaryDark)).setAnchorView(bottomNavView).show()
             }
-
-    }
-
-
+        }
     }
 }

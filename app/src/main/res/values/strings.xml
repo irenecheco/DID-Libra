@@ -48,10 +48,13 @@
 
     <!-- Bilancia utente -->
     <string name="utente_libra_button">Start Libra</string>
-    <string name="utente_save_weight_button">Save Weight</string>
-    <string name="utente_disconnect_libra_button">Disconnect Libra</string>
-    <string name="utente_save_weight_label">You can save your weight only once every xx days</string>
+    <string name="utente_save_weight_button">Read Weight</string>
+    <string name="utente_disconnect_libra_button">Save and disconnect</string>
+    <string name="utente_registra_peso_label">To read the weight from libra:</string>
+    <string name="utente_disconnect_libra_label">To disconnect from libra and save weight:</string>
     <string name="utente_last_measurement_label">Last measure:</string>
+    <string name="snackbar_no_measure">No previous measure</string>
+    <string name="snackbar_read_first">You have to read the weight before disconnecting</string>
 
 
     <!-- Storico utente -->

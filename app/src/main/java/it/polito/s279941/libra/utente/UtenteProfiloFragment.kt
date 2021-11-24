@@ -3,6 +3,7 @@ package it.polito.s279941.libra.utente
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -29,9 +30,23 @@ class UtenteProfiloFragment: Fragment(R.layout.utente_profilo_fragment) {
         val dateString = simpleDateFormat.format(utenteViewModel.utenteCorrente.data_nascita)
         user_dateOfBirth3.text = (dateString).toString()
         id_albo.text = utenteViewModel.utenteCorrente.email
-        last_goal.text  = utenteViewModel.utenteCorrente.obiettivi?.last()?.obiettivo
-        text_measure.text = utenteViewModel.utenteCorrente.storico_pesi?.last()?.peso.toString()
-        date_last_detection2.text = utenteViewModel.utenteCorrente.storico_pesi?.last()?.data.toString()
+        if(utenteViewModel.utenteCorrente.obiettivi?.size != 0) {
+            last_goal.text = utenteViewModel.utenteCorrente.obiettivi?.last()?.obiettivo
+        } else {
+            Log.d("profilo", "Sto creando il profilo, non ci sono obiettivi")
+            last_goal.text = "Non sono presenti obiettivi"
+        }
+        if(utenteViewModel.utenteCorrente.storico_pesi?.size != 0) {
+            text_measure.text = utenteViewModel.utenteCorrente.storico_pesi?.last()?.peso.toString()
+            date_last_detection2.text =
+                utenteViewModel.utenteCorrente.storico_pesi?.last()?.data.toString()
+        } else {
+            Log.d("profilo", "Sto creando il profilo, non ci sono pesi")
+            text_measure.text = "- KG"
+            date_last_detection2.text = "-/-/-"
+        }
+
+
 
 
 

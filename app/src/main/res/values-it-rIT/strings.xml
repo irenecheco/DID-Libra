@@ -48,10 +48,13 @@
 
     <!-- Bilancia utente-->
     <string name="utente_libra_button">Avvia Bilancia</string>
-    <string name="utente_save_weight_button">Salva Peso</string>
-    <string name="utente_disconnect_libra_button">Disconnetti Bilancia</string>
-    <string name="utente_save_weight_label">Puoi registrare il tuo peso solo una volta ogni xx giorni</string>
+    <string name="utente_save_weight_button">Leggi Peso</string>
+    <string name="utente_disconnect_libra_button">Salva e disconnetti</string>
+    <string name="utente_registra_peso_label">Per leggere il peso dalla bilancia:</string>
+    <string name="utente_disconnect_libra_label">Per disconnettersi dalla bilancia e salvare il peso:</string>
     <string name="utente_last_measurement_label">Ultima misurazione rilevata:</string>
+    <string name="snackbar_no_measure">Non vi sono misurazioni precedenti</string>
+    <string name="snackbar_read_first">Devi leggere il peso prima di disconnetterti</string>
 
     <!-- Storico utente -->
     <string name="utente_graph_title">Andamento del peso</string>
