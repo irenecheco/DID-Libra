@@ -10,6 +10,7 @@ import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.api.RestApiManager
 import it.polito.s279941.libra.professionistapazienti.PazientiItem
 import it.polito.s279941.libra.utils.LOG_TAG
+import it.polito.s279941.libra.utils.Status
 
 class ProfessionistaViewModel: ViewModel() {
 
@@ -53,20 +54,25 @@ class ProfessionistaViewModel: ViewModel() {
 
 
     // OBIETTIVI
+    var confirmationAddGoal: MutableLiveData<Status> = MutableLiveData<Status>()
     fun addGoal(newUserGoal: Obiettivo) {
         Log.d("LIBRAgoals","start fun addGoal() in class ProfessionistaViewModel")
         val idPaziente = "617ea2a7b5bee74a7064f702"     // utente q@q.com
         //val idPaziente = utenteCorrente._id  -->  è null
         //val idPaziente TODO con getPaziente per trovare id paziente a cui assegnare obiettivo
 
+        confirmationAddGoal.setValue(Status.LOADING)
         restApiManager.addGoal(idPaziente,newUserGoal) {
             Log.d("LIBRAgoals","  start fun restApiManager.addGoal(userGoal) in class ProfessionistaViewModel ")
             if (it?.obiettivo != null) {
+                confirmationAddGoal.setValue(Status.SUCCESS)
                 Log.d("LIBRAgoals", "    restApiManager.addGoal() : Success registering new goal")
                 Log.d("LIBRAgoals", "    it = " + it.toString() + "  --  classe: " + it.javaClass)
             } else {
+                confirmationAddGoal.setValue(Status.ERROR)
                 Log.d("LIBRAgoals", "    restApiManager.addGoal() : Error registering new goal")
             }
+            Log.d("LIBRAgoals", "  confirmationStatus in ViewModel: " + confirmationAddGoal.value.toString())
         }
     }
 }
