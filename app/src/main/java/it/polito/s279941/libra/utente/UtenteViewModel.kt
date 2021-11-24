@@ -75,8 +75,9 @@ class UtenteViewModel: ViewModel() {
             userData.dieta!!.data_inizio = "2021-01-01"
         }
         if (userData.dieta!!.giorni==null || userData.dieta!!.giorni.size==0) {
+            val msg = "Dieta non ancora assegnata dal nutrizionista" // String = Resources.getSystem().getString(R.string.utente_messaggio_dieta_not_assegnata)
             userData.dieta!!.giorni = mutableListOf<GiornoDieta>(
-                GiornoDieta(0,"Dieta non ancora assegnata dal nutrizionista","Dieta non ancora assegnata dal nutrizionista","Dieta non ancora assegnata dal nutrizionista","Dieta non ancora assegnata dal nutrizionista","Dieta non ancora assegnata dal nutrizionista")
+                GiornoDieta(0,msg,msg,msg,msg,msg)
             )
         }
         if (userData.calendarioDieta == null) {
@@ -197,10 +198,10 @@ class UtenteViewModel: ViewModel() {
         if (diffInDay<0) {
             // La data inizio dieta è successiva ad oggi, non deve mostrare la dieta
             _pastiDelGiorno[0].descrizione = "Data inizio dieta successiva alla data selezionata"
-            _pastiDelGiorno[1].descrizione = ""
-            _pastiDelGiorno[2].descrizione = ""
-            _pastiDelGiorno[3].descrizione = ""
-            _pastiDelGiorno[4].descrizione = ""
+            _pastiDelGiorno[1].descrizione = "Data inizio dieta successiva alla data selezionata"
+            _pastiDelGiorno[2].descrizione = "Data inizio dieta successiva alla data selezionata"
+            _pastiDelGiorno[3].descrizione = "Data inizio dieta successiva alla data selezionata"
+            _pastiDelGiorno[4].descrizione = "Data inizio dieta successiva alla data selezionata"
         } else {
             val resto = diffInDay % _userData.dieta?.giorni?.size!!
             Log.d(

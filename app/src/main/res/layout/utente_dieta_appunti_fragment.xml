@@ -14,7 +14,7 @@
         android:layout_marginLeft="240dp"
         android:layout_marginBottom="16dp"
         android:layout_weight="1"
-        android:text="SALVA"
+        android:text="@string/utente_save_commento"
         app:backgroundTint="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
