@@ -71,7 +71,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
         val manager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val builder = NetworkRequest.Builder()
-        var networkCallback :ConnectivityManager.NetworkCallback? = null
+        //var networkCallback :ConnectivityManager.NetworkCallback? = null
         flag_lettura = 0
 
         //controllo permessi per recuperare ssid del wifi
@@ -118,8 +118,6 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
             Log.d(LOG_TAG_ESP, "NetworkRequest.Builder built")
             try {
-
-
                 manager.requestNetwork(builder.build(), object : ConnectivityManager.NetworkCallback() {
                     @RequiresApi(Build.VERSION_CODES.M)
                     override fun onAvailable(network: Network) {
