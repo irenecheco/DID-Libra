@@ -40,10 +40,7 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
             }
 
             if(goalConfirmed){
-                val transaction = activity?.supportFragmentManager?.beginTransaction()
-                transaction?.replace(R.id.pazienti_fragment_container, newFragment)
-                //transaction?.addToBackStack("ProfessionistaPazienteAggiungiObiettivoFragment")
-                transaction?.commit()
+                activity?.onBackPressed()
             }
         }
 
