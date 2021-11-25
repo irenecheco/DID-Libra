@@ -4,21 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
-import it.polito.s279941.libra.DataModel.Obiettivo
 import it.polito.s279941.libra.DataModel.Paziente
-import it.polito.s279941.libra.DataModel.PazientiItem
 import it.polito.s279941.libra.R
-import it.polito.s279941.libra.landing.LandingPageViewModel
 import java.util.*
 
 class PazientiAdapter (var clickListener: OnPatientItemClickListener) : RecyclerView.Adapter<PazientiAdapter.PazientiViewHolder>(), Filterable {
 
-    private var pazienti: MutableList<PazientiItem> = mutableListOf()
-    var pazientiFilter: MutableList<PazientiItem> = mutableListOf()
+    private var pazienti: MutableList<Paziente> = mutableListOf()
+    var pazientiFilter: MutableList<Paziente> = mutableListOf()
 
-    fun setPazienti(_pazienti: MutableList<PazientiItem>){
+    fun setPazienti(_pazienti: MutableList<Paziente>){
         pazienti = _pazienti
         pazientiFilter = _pazienti
         notifyDataSetChanged()
@@ -29,9 +25,9 @@ class PazientiAdapter (var clickListener: OnPatientItemClickListener) : Recycler
         private val lista_pazienti_cognome: TextView = v.findViewById(R.id.cognomePaziente)
         private val paziente_button: Button = v.findViewById(R.id.paziente_button)
 
-        fun bind(item: PazientiItem, action: OnPatientItemClickListener) {
-            lista_pazienti_nome.text = item.nome_paziente
-            lista_pazienti_cognome.text = item.cognome_paziente
+        fun bind(item: Paziente, action: OnPatientItemClickListener) {
+            lista_pazienti_nome.text = item.nomePaziente
+            lista_pazienti_cognome.text = item.cognomePaziente
 
             paziente_button.setOnClickListener{
                 action.onItemClick(item, adapterPosition)
@@ -51,17 +47,17 @@ class PazientiAdapter (var clickListener: OnPatientItemClickListener) : Recycler
     override fun getItemCount() = pazienti.size;
 
     fun sortAlphabeticallyWithName(){
-        val newPazienti = pazienti.sortedBy { it.nome_paziente }
+        val newPazienti = pazienti.sortedBy { it.nomePaziente }
         if (!newPazienti.isEmpty()){
-            pazienti = newPazienti as MutableList<PazientiItem>
+            pazienti = newPazienti as MutableList<Paziente>
         }
         notifyDataSetChanged()
     }
 
     fun sortAlphabeticallyWithSurname(){
-        val newPazienti = pazienti.sortedBy { it.cognome_paziente }
+        val newPazienti = pazienti.sortedBy { it.cognomePaziente }
         if (!newPazienti.isEmpty()){
-            pazienti = newPazienti as MutableList<PazientiItem>
+            pazienti = newPazienti as MutableList<Paziente>
         }
         notifyDataSetChanged()
     }
@@ -73,11 +69,11 @@ class PazientiAdapter (var clickListener: OnPatientItemClickListener) : Recycler
                 if (charSearch.isEmpty()) {
                     pazienti = pazientiFilter
                 } else {
-                    val resultList = mutableListOf<PazientiItem>()
+                    val resultList = mutableListOf<Paziente>()
                     pazienti = pazientiFilter
                     for (row in pazienti) {
-                        if (row.nome_paziente.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT)) ||
-                            row.cognome_paziente.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
+                        if (row.nomePaziente.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT)) ||
+                            row.cognomePaziente.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
                             resultList.add(row)
                         }
                     }
@@ -90,7 +86,7 @@ class PazientiAdapter (var clickListener: OnPatientItemClickListener) : Recycler
 
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                pazienti = results?.values as MutableList<PazientiItem>
+                pazienti = results?.values as MutableList<Paziente>
                 notifyDataSetChanged()
             }
 
@@ -99,5 +95,5 @@ class PazientiAdapter (var clickListener: OnPatientItemClickListener) : Recycler
 }
 
 interface OnPatientItemClickListener{
-    fun onItemClick(item: PazientiItem, position: Int)
+    fun onItemClick(item: Paziente, position: Int)
 }

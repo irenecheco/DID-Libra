@@ -53,7 +53,7 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
             val dateGoal = Date()
             val inputGoal : String = addGoal_input.text.toString()
             val newGoal = Obiettivo(dateGoal,inputGoal)
-            nutViewModel.addGoal(newGoal)
+            nutViewModel.addGoal(pazienteViewModel.pazienteCorrente._id,newGoal)
 
             nutViewModel.confirmationAddGoal.observe(viewLifecycleOwner) { goalStatus ->
                 when(goalStatus!!){

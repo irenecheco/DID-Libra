@@ -13,23 +13,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import it.polito.s279941.libra.DataModel.Paziente
-import it.polito.s279941.libra.DataModel.PazientiItem
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.R
-import it.polito.s279941.libra.api.RestApiManager
 import it.polito.s279941.libra.landing.LandingPageViewModel
-import it.polito.s279941.libra.landing.LoginRepository
 import it.polito.s279941.libra.professionistapazienti.*
-import it.polito.s279941.libra.utente.UtenteMainActivity
-import it.polito.s279941.libra.utente.UtenteViewModel
 import it.polito.s279941.libra.utils.LOG_TAG
 import kotlinx.android.synthetic.main.professionista_pazienti_fragment.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+
 
 class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_fragment), OnPatientItemClickListener {
 
@@ -41,12 +34,7 @@ class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //nutViewModel.pazientiLiveData.observe(viewLifecycleOwner, Observer { data -> patientAdapter.setPazienti(data) })
         nutViewModel.pazientiLista.observe(viewLifecycleOwner, Observer {
-            idPazienteDaLista -> ConvertiPazienteInPazientiItem(idPazienteDaLista)
-        })
-
-        nutViewModel.listaPazientiItemLiveData.observe(viewLifecycleOwner, Observer {
             pazienti -> patientAdapter.setPazienti(pazienti)
         })
 
@@ -85,9 +73,9 @@ class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onItemClick(item: PazientiItem, position: Int){
+    override fun onItemClick(item: Paziente, position: Int){
         //landingPageViewModel.pazienteId.pazienteId = "619e274d328e957ddd522ce2"  // TODO da sistemare
-        landingPageViewModel.pazienteId.pazienteId = item.id
+        landingPageViewModel.pazienteId.pazienteId = item.IdPaziente
         landingPageViewModel.findPaziente()
 
         //controllo su live data
@@ -117,31 +105,6 @@ class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_
                 }
             }
 
-        }
-    }
-
-    fun ConvertiPazienteInPazientiItem(listaPaziente: MutableList<Paziente>){
-        for(paziente in listaPaziente){
-            landingPageViewModel.pazienteId.pazienteId = paziente.IdPaziente
-            Log.d("LIBRApazienti", "idPaziente: " + paziente.IdPaziente)
-            landingPageViewModel.findPaziente()
-
-            landingPageViewModel.pazienteCorrente.observe(viewLifecycleOwner) {
-                Log.d("LIBRApazienti", "landingPageViewModel.pazienteCorrente.value: " + landingPageViewModel.pazienteCorrente.value)
-                if (landingPageViewModel.pazienteCorrente.value != null){
-                    //riempio pazienteCorrente in pazienteViewModel
-                    pazienteViewModel.pazienteCorrente = landingPageViewModel.pazienteCorrente.value!!
-
-                    // creo il pazientiItem a partire da id, nome e cognome del pazienteCorrente
-                    val pazienteItem = PazientiItem(pazienteViewModel.pazienteCorrente._id,
-                        pazienteViewModel.pazienteCorrente.nome, pazienteViewModel.pazienteCorrente.cognome)
-                    Log.d("LIBRApazienti", "pazienteItem: " + pazienteItem)
-
-                    // aggiungo il nuovo pazientiItem alla mutable list di pazienti che verranno poi visualizzati
-                    nutViewModel._listaPazientiItem.add(pazienteItem)
-                }
-                Log.d("LIBRApazienti", "listaPazientiItem: " + nutViewModel._listaPazientiItem)
-            }
         }
     }
 

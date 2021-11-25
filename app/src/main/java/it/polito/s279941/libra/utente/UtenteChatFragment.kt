@@ -17,7 +17,7 @@ class UtenteChatFragment: Fragment(R.layout.utente_chat_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mailDestinatario.text = utenteViewModel.utenteCorrente.cod_nutrizionista  // TODO non codice, ma mail nutrizionista
+        mailDestinatario.text = utenteViewModel.utenteCorrente.email_nutrizionista
 
         //button click to get input and call sendEmail method
         button_email.setOnClickListener {

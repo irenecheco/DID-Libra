@@ -38,6 +38,7 @@ data class UtenteDataClass(
         var cognome: String ="",
         var data_nascita: Date? = null, // todo: check with date format in DB
         var cod_nutrizionista: String ="", // valido sia per pazienti che per nutrizionisti
+        var email_nutrizionista: String ="", // si popola solo per i pazienti con la mail del nutrizionista
         //var cod_iscrizione_albo: String ="",  // OBSOLETO: ELIMINATO e sostituito con "cod_nutrizionista"
         var lista_pazienti: List<Paziente>? = null,
         var scr_foto: String ="",
@@ -74,13 +75,11 @@ data class Paziente(
         // nome attributo nel db NodeJS
         @SerializedName("_id")
         // nome riassegnato in kotlin
-        val IdPaziente: String
-)
-
-data class PazientiItem(
-        val id: String,
-        val nome_paziente: String,
-        val cognome_paziente: String
+        val IdPaziente: String,
+        @SerializedName("nome_paziente")
+        val nomePaziente: String,
+        @SerializedName("cognome_paziente")
+        val cognomePaziente: String
 )
 
 data class Peso(
