@@ -4,9 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
+import it.polito.s279941.libra.DataModel.Obiettivo
+import it.polito.s279941.libra.DataModel.Paziente
+import it.polito.s279941.libra.DataModel.PazientiItem
 import it.polito.s279941.libra.R
-import java.text.DateFormat
+import it.polito.s279941.libra.landing.LandingPageViewModel
 import java.util.*
 
 class PazientiAdapter (var clickListener: OnPatientItemClickListener) : RecyclerView.Adapter<PazientiAdapter.PazientiViewHolder>(), Filterable {
@@ -21,15 +25,13 @@ class PazientiAdapter (var clickListener: OnPatientItemClickListener) : Recycler
     }
 
     class PazientiViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        private val lista_pazienti_immagine: ImageView = v.findViewById(R.id.lista_pazienti_immagine)
-        private val lista_pazienti_nome: TextView = v.findViewById(R.id.numeroGiorno)
-        private val lista_pazienti_data_ultimo_controllo: TextView = v.findViewById(R.id.lista_pazienti_data_ultimo_controllo)
+        private val lista_pazienti_nome: TextView = v.findViewById(R.id.nomePaziente)
+        private val lista_pazienti_cognome: TextView = v.findViewById(R.id.cognomePaziente)
         private val paziente_button: Button = v.findViewById(R.id.paziente_button)
 
         fun bind(item: PazientiItem, action: OnPatientItemClickListener) {
-            //lista_pazienti_immagine.setImageResource(R.drawable.ic_profile)
-            lista_pazienti_nome.text = item.nome_utente
-            lista_pazienti_data_ultimo_controllo.text = DateFormat.getDateInstance(DateFormat.SHORT).format(Date(item.data_ultimo_controllo))
+            lista_pazienti_nome.text = item.nome_paziente
+            lista_pazienti_cognome.text = item.cognome_paziente
 
             paziente_button.setOnClickListener{
                 action.onItemClick(item, adapterPosition)
@@ -48,15 +50,19 @@ class PazientiAdapter (var clickListener: OnPatientItemClickListener) : Recycler
 
     override fun getItemCount() = pazienti.size;
 
-    fun sortAlphabetically(){
-        val newPazienti = pazienti.sortedBy { it.nome_utente }
-        pazienti = newPazienti as MutableList<PazientiItem>
+    fun sortAlphabeticallyWithName(){
+        val newPazienti = pazienti.sortedBy { it.nome_paziente }
+        if (!newPazienti.isEmpty()){
+            pazienti = newPazienti as MutableList<PazientiItem>
+        }
         notifyDataSetChanged()
     }
 
-    fun sortChronologically(){
-        val newPazienti = pazienti.sortedBy { it.data_ultimo_controllo }
-        pazienti = newPazienti as MutableList<PazientiItem>
+    fun sortAlphabeticallyWithSurname(){
+        val newPazienti = pazienti.sortedBy { it.cognome_paziente }
+        if (!newPazienti.isEmpty()){
+            pazienti = newPazienti as MutableList<PazientiItem>
+        }
         notifyDataSetChanged()
     }
 
@@ -70,7 +76,8 @@ class PazientiAdapter (var clickListener: OnPatientItemClickListener) : Recycler
                     val resultList = mutableListOf<PazientiItem>()
                     pazienti = pazientiFilter
                     for (row in pazienti) {
-                        if (row.nome_utente.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
+                        if (row.nome_paziente.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT)) ||
+                            row.cognome_paziente.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
                             resultList.add(row)
                         }
                     }

@@ -9,13 +9,15 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
+import it.polito.s279941.libra.DataModel.Paziente
+import it.polito.s279941.libra.DataModel.PazientiItem
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.api.RestApiManager
@@ -26,19 +28,28 @@ import it.polito.s279941.libra.utente.UtenteMainActivity
 import it.polito.s279941.libra.utente.UtenteViewModel
 import it.polito.s279941.libra.utils.LOG_TAG
 import kotlinx.android.synthetic.main.professionista_pazienti_fragment.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_fragment), OnPatientItemClickListener {
 
     val nutViewModel by activityViewModels<ProfessionistaViewModel>()
     val landingPageViewModel by activityViewModels<LandingPageViewModel>()
     val pazienteViewModel by viewModels<ProfessionistaPazienteViewModel>()
-    //lateinit var patientAdapter: PazientiAdapter
     val patientAdapter = PazientiAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        nutViewModel.pazientiLiveData.observe(viewLifecycleOwner, Observer { data -> patientAdapter.setPazienti(data) })
+        //nutViewModel.pazientiLiveData.observe(viewLifecycleOwner, Observer { data -> patientAdapter.setPazienti(data) })
+        nutViewModel.pazientiLista.observe(viewLifecycleOwner, Observer {
+            idPazienteDaLista -> ConvertiPazienteInPazientiItem(idPazienteDaLista)
+        })
+
+        nutViewModel.listaPazientiItemLiveData.observe(viewLifecycleOwner, Observer {
+            pazienti -> patientAdapter.setPazienti(pazienti)
+        })
+
         recyclerView_pazienti.layoutManager= LinearLayoutManager(requireContext())
         recyclerView_pazienti.adapter = patientAdapter
 
@@ -65,19 +76,18 @@ class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId){
             R.id.ordine_alfabetico -> {
-                patientAdapter.sortAlphabetically()
+                patientAdapter.sortAlphabeticallyWithName()
             }
             R.id.ordine_ultimo_controllo -> {
-                patientAdapter.sortChronologically()
+                patientAdapter.sortAlphabeticallyWithSurname()
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
     override fun onItemClick(item: PazientiItem, position: Int){
-        //Toast.makeText(activity, item.nome_utente, Toast.LENGTH_SHORT).show()
-
-        landingPageViewModel.pazienteId.pazienteId = "619e274d328e957ddd522ce2"  // TODO da sistemare
+        //landingPageViewModel.pazienteId.pazienteId = "619e274d328e957ddd522ce2"  // TODO da sistemare
+        landingPageViewModel.pazienteId.pazienteId = item.id
         landingPageViewModel.findPaziente()
 
         //controllo su live data
@@ -87,7 +97,7 @@ class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_
             //riempio pazienteCorrente in pazienteViewModel
             pazienteViewModel.pazienteCorrente = landingPageViewModel.pazienteCorrente.value!!
             val pazienteCorrenteInLivedata: UtenteDataClass = pazienteViewModel.pazienteCorrente
-            /*val pazienteCorrenteInLivedata: UtenteDataClass? = patientViewModel.pazienteCorrente.value*/
+            /*val pazienteCorrenteInLivedata: UtenteDataClass? = landingPageViewModel.pazienteCorrente.value*/
             val pazienteCorrenteGson = gson.toJson(pazienteCorrenteInLivedata)
             Log.d(
                 LOG_TAG,
@@ -107,6 +117,31 @@ class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_
                 }
             }
 
+        }
+    }
+
+    fun ConvertiPazienteInPazientiItem(listaPaziente: MutableList<Paziente>){
+        for(paziente in listaPaziente){
+            landingPageViewModel.pazienteId.pazienteId = paziente.IdPaziente
+            Log.d("LIBRApazienti", "idPaziente: " + paziente.IdPaziente)
+            landingPageViewModel.findPaziente()
+
+            landingPageViewModel.pazienteCorrente.observe(viewLifecycleOwner) {
+                Log.d("LIBRApazienti", "landingPageViewModel.pazienteCorrente.value: " + landingPageViewModel.pazienteCorrente.value)
+                if (landingPageViewModel.pazienteCorrente.value != null){
+                    //riempio pazienteCorrente in pazienteViewModel
+                    pazienteViewModel.pazienteCorrente = landingPageViewModel.pazienteCorrente.value!!
+
+                    // creo il pazientiItem a partire da id, nome e cognome del pazienteCorrente
+                    val pazienteItem = PazientiItem(pazienteViewModel.pazienteCorrente._id,
+                        pazienteViewModel.pazienteCorrente.nome, pazienteViewModel.pazienteCorrente.cognome)
+                    Log.d("LIBRApazienti", "pazienteItem: " + pazienteItem)
+
+                    // aggiungo il nuovo pazientiItem alla mutable list di pazienti che verranno poi visualizzati
+                    nutViewModel._listaPazientiItem.add(pazienteItem)
+                }
+                Log.d("LIBRApazienti", "listaPazientiItem: " + nutViewModel._listaPazientiItem)
+            }
         }
     }
 

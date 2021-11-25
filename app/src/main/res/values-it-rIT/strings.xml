@@ -117,8 +117,8 @@
     <!-- Lista pazienti professionista -->
     <string name="nutr_button">Visita</string>
     <string name="nutr_patient_check">Ultimo controllo:</string>
-    <string name="order_alph">Ordine alfabetico</string>
-    <string name="order_check">Ordine per ultimo controllo</string>
+    <string name="order_alph">Ordine per nome</string>
+    <string name="order_check">Ordine per cognome</string>
     <string name="search_patient">Cerca…</string>
     <string name="nutr_patient_ErrorMsg">Paziente non trovato</string>
 

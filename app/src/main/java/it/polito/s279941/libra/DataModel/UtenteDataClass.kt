@@ -77,6 +77,12 @@ data class Paziente(
         val IdPaziente: String
 )
 
+data class PazientiItem(
+        val id: String,
+        val nome_paziente: String,
+        val cognome_paziente: String
+)
+
 data class Peso(
         @SerializedName("data") var data: Date?,
         @SerializedName("peso") var peso: Double?,

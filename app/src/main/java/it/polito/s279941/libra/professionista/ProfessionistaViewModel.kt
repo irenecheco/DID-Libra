@@ -1,14 +1,16 @@
 package it.polito.s279941.libra.professionista
 
 import android.util.Log
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import it.polito.s279941.libra.DataModel.Obiettivo
 import it.polito.s279941.libra.DataModel.Paziente
+import it.polito.s279941.libra.DataModel.PazientiItem
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.api.RestApiManager
-import it.polito.s279941.libra.professionistapazienti.PazientiItem
+import it.polito.s279941.libra.landing.LandingPageViewModel
 import it.polito.s279941.libra.utils.LOG_TAG
 import it.polito.s279941.libra.utils.Status
 
@@ -26,38 +28,32 @@ class ProfessionistaViewModel: ViewModel() {
     }
 
 
-    private val _pazienti = mutableListOf(
-            PazientiItem("url foto", "Alice Rossi", System.currentTimeMillis()-100000000),
-            PazientiItem("url foto", "Mario Bianchi", System.currentTimeMillis()-1000000000),
-            PazientiItem("url foto", "Giuseppe Verdi", System.currentTimeMillis()-3000000000),
-            PazientiItem("url foto", "Alessandro Neri", System.currentTimeMillis()-7000000000)
-    )
+    // LISTA PAZIENTI
+    // recupera la lista degli id dei pazienti del nutrizionista
+    private var _pazientiLista = MutableLiveData<MutableList<Paziente>>()
+    var pazientiLista : LiveData<MutableList<Paziente>> = _pazientiLista
 
-    private val _pazientiLiveData = MutableLiveData<MutableList<PazientiItem>>().also{
-        it.value = _pazienti
-    }
-
-    val pazientiLiveData : LiveData<MutableList<PazientiItem>> = _pazientiLiveData
-
-
-    // LISTA PAZIENTI --> recupera la lista degli id dei pazienti del nutrizionista
-    private var _pazientiLista = MutableLiveData<List<Paziente>>()
-    var pazientiLista : LiveData<List<Paziente>> = _pazientiLista
-
-    fun getIdPatientFromUserData() : LiveData<List<Paziente>>{
-        _pazientiLista = MutableLiveData<List<Paziente>>().also{
-            it.value = utenteCorrente.lista_pazienti
+    fun getIdPatientFromUserData() : LiveData<MutableList<Paziente>>{
+        _pazientiLista = MutableLiveData<MutableList<Paziente>>().also{
+            it.value = utenteCorrente.lista_pazienti as MutableList<Paziente>
         }
         pazientiLista = _pazientiLista
         return pazientiLista
     }
+
+    // lista per convertire Paziente in PazientItem
+    var _listaPazientiItem = mutableListOf<PazientiItem>()
+    private val _listaPazientiItemLiveData = MutableLiveData<MutableList<PazientiItem>>().also{
+        it.value = _listaPazientiItem
+    }
+    val listaPazientiItemLiveData : LiveData<MutableList<PazientiItem>> = _listaPazientiItemLiveData
 
 
     // OBIETTIVI
     var confirmationAddGoal: MutableLiveData<Status> = MutableLiveData<Status>()
     fun addGoal(newUserGoal: Obiettivo) {
         Log.d("LIBRAgoals","start fun addGoal() in class ProfessionistaViewModel")
-        val idPaziente = "617ea2a7b5bee74a7064f702"     // utente q@q.com
+        val idPaziente = "619e274d328e957ddd522ce2"     // utente q@q.com
         //val idPaziente = utenteCorrente._id  -->  è null
         //val idPaziente TODO con getPaziente per trovare id paziente a cui assegnare obiettivo
 

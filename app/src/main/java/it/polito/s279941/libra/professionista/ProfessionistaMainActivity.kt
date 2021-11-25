@@ -18,8 +18,8 @@ class ProfessionistaMainActivity : AppCompatActivity() {
 
     // Riferimento al viewModel
     val proViewModel by viewModels<ProfessionistaViewModel>()
-    private var _pazientiLista = MutableLiveData<List<Paziente>>()
-    var pazientiLista : LiveData<List<Paziente>> = _pazientiLista
+    private var _pazientiLista = MutableLiveData<MutableList<Paziente>>()
+    var pazientiLista : LiveData<MutableList<Paziente>> = _pazientiLista
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

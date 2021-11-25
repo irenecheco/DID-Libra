@@ -5,50 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/lista_pazienti_immagine"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/divider9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider10"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <TextView
-        android:id="@+id/numeroGiorno"
+        android:id="@+id/nomePaziente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Nome Cognome"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Nome"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/lista_pazienti_ultimo_controllo_titolo"
-        app:layout_constraintTop_toTopOf="@+id/lista_pazienti_immagine" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/lista_pazienti_ultimo_controllo_titolo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/nutr_patient_check"
-        app:layout_constraintBottom_toBottomOf="@+id/lista_pazienti_immagine"
-        app:layout_constraintStart_toEndOf="@+id/lista_pazienti_immagine" />
-
-    <TextView
-        android:id="@+id/lista_pazienti_data_ultimo_controllo"
+        android:id="@+id/cognomePaziente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:text="12/01/21"
-        app:layout_constraintBottom_toBottomOf="@+id/lista_pazienti_ultimo_controllo_titolo"
-        app:layout_constraintStart_toEndOf="@+id/lista_pazienti_ultimo_controllo_titolo" />
+        android:text="Cognome"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nomePaziente"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/paziente_button"
@@ -64,7 +45,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toTopOf="@+id/lista_pazienti_immagine" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"

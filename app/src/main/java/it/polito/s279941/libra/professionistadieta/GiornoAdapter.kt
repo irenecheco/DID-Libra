@@ -9,7 +9,6 @@ import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import it.polito.s279941.libra.DataModel.GiornoDieta
 import it.polito.s279941.libra.R
-import it.polito.s279941.libra.professionistapazienti.PazientiItem
 import it.polito.s279941.libra.utentedieta.PastoItem
 import kotlinx.android.synthetic.main.professionista_paziente_dieta_fragment.*
 
