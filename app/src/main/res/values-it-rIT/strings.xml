@@ -64,7 +64,7 @@
 
     <!-- Profilo utente -->
     <string name="user_name">User Name</string>
-    <string name="nutr_name">Nutrizionista: %NutrSurname%</string>
+    <string name="nutr_name">Nutrizionista: </string>
 
     <string name="text_dateOfBirth">Data di nascita: </string>
     <string name="user_dateOfBirth">%DD/MM/YYYY%</string>

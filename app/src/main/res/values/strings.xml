@@ -64,7 +64,7 @@
 
     <!-- Profilo utente -->
     <string name="user_name">User Name</string>
-    <string name="nutr_name">Nutritionist: %NutrSurname%</string>
+    <string name="nutr_name">Nutritionist: </string>
 
     <string name="text_dateOfBirth">Date of birth: </string>
     <string name="user_dateOfBirth">%DD/MM/YYYY%</string>
@@ -122,7 +122,7 @@
     <string name="search_patient">Search…</string>
     <string name="nutr_patient_ErrorMsg">Patient not found</string>
 
-    !-- Profilo pazienti professionista -->
+    <!-- Profilo pazienti professionista -->
     <string name="nutr_patient_dateOfBirth">Date of birth:</string>
     <string name="nutr_patient_email">Email:</string>
     <string name="goal_button">Add goal</string>
@@ -139,7 +139,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    !-- Blocco bilancia pazienti professionista -->
+    <!-- Blocco bilancia pazienti professionista -->
     <string name="nutr_patient_libraLock_spinnerLabel">Register measurement:</string>
     <string-array name="nut_libra_lock_options">
         <item>Once a week</item>

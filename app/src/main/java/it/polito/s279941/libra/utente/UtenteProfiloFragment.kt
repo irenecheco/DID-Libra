@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import it.polito.s279941.libra.R
 import kotlinx.android.synthetic.main.utente_profilo_fragment.*
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -38,8 +39,8 @@ class UtenteProfiloFragment: Fragment(R.layout.utente_profilo_fragment) {
         }
         if(utenteViewModel.utenteCorrente.storico_pesi?.size != 0) {
             text_measure.text = utenteViewModel.utenteCorrente.storico_pesi?.last()?.peso.toString()
-            date_last_detection2.text =
-                utenteViewModel.utenteCorrente.storico_pesi?.last()?.data.toString()
+            date_last_detection2.text = DateFormat.getDateInstance(DateFormat.SHORT)
+                .format(utenteViewModel.utenteCorrente.storico_pesi?.last()?.data)
         } else {
             Log.d("profilo", "Sto creando il profilo, non ci sono pesi")
             text_measure.text = "- KG"
