@@ -119,24 +119,29 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
             Log.d(LOG_TAG_ESP, "NetworkRequest.Builder built")
             try {
 
-                networkCallback =  object : ConnectivityManager.NetworkCallback() {
-                        @RequiresApi(Build.VERSION_CODES.M)
-                        override fun onAvailable(network: Network) {
-                            manager.bindProcessToNetwork(network)
-                            Log.d(LOG_TAG_ESP, "network connected")
-                            // avvio la fase di attivazione bilancia in uno scope dedicato all'I/O
-                            lifecycleScope.launch(Dispatchers.IO) {
-                                //Inizializzo la richiesta GET per attivare bilancia
-                                val initScale = apiServe.initScaleREST()
 
-                                // inoltro la richiesta al S.O. e implemento la callback per gestire la risposta
-                                // la get si aspetta in risposta un oggetto di tipo UtenteAvviaBilanciaClass
-                                initScale.enqueue(object : Callback<UtenteAvviaBilanciaClass> {
-                                    override fun onResponse(call: Call<UtenteAvviaBilanciaClass>?, response: Response<UtenteAvviaBilanciaClass>?) {
-                                        //if(response?.body() != null)
-                                        if (response?.isSuccessful == true) {
+                manager.requestNetwork(builder.build(), object : ConnectivityManager.NetworkCallback() {
+                    @RequiresApi(Build.VERSION_CODES.M)
+                    override fun onAvailable(network: Network) {
 
-                                            /*if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        manager.bindProcessToNetwork(network)
+                        Log.d(LOG_TAG_ESP, "network connected")
+                        // avvio la fase di attivazione bilancia in uno scope dedicato all'I/O
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            //Inizializzo la richiesta GET per attivare bilancia
+                            val initScale = apiServe.initScaleREST()
+
+                            // inoltro la richiesta al S.O. e implemento la callback per gestire la risposta
+                            // la get si aspetta in risposta un oggetto di tipo UtenteAvviaBilanciaClass
+                            initScale.enqueue(object : Callback<UtenteAvviaBilanciaClass> {
+                                override fun onResponse(
+                                    call: Call<UtenteAvviaBilanciaClass>?,
+                                    response: Response<UtenteAvviaBilanciaClass>?
+                                ) {
+                                    //if(response?.body() != null)
+                                    if (response?.isSuccessful == true) {
+
+                                        /*if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                                                 //se localizzazione non abilitata, chiedo all'utente di abilitarla e poi recupero ssid
                                                 ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
                                                 val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
@@ -149,29 +154,31 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                                 wifi_id = wifiInfo.networkId
                                             }*/
 
-                                            // posso recuperare e registrare il peso acquisito
-                                            avvia_bilancia.visibility = View.GONE
-                                            registra_peso.visibility = View.VISIBLE
-                                            registra_peso_label.visibility = View.VISIBLE
-                                            disconnetti_bilancia.visibility = View.VISIBLE
-                                            disconnetti_bilancia_label.visibility = View.VISIBLE
-                                            Log.d(LOG_TAG_ESP,
-                                                "initScale: response.isSuccessful=true -> Bilancia attiva")
-                                            registra_peso?.isEnabled = true
-                                            disconnetti_bilancia.isEnabled = true
-                                            avvia_bilancia?.isEnabled = false
-                                        }
+                                        // posso recuperare e registrare il peso acquisito
+                                        avvia_bilancia.visibility = View.GONE
+                                        registra_peso.visibility = View.VISIBLE
+                                        registra_peso_label.visibility = View.VISIBLE
+                                        disconnetti_bilancia.visibility = View.VISIBLE
+                                        disconnetti_bilancia_label.visibility = View.VISIBLE
+                                        Log.d(
+                                            LOG_TAG_ESP,
+                                            "initScale: response.isSuccessful=true -> Bilancia attiva"
+                                        )
+                                        registra_peso?.isEnabled = true
+                                        disconnetti_bilancia.isEnabled = true
+                                        avvia_bilancia?.isEnabled = false
                                     }
+                                }
 
-                                    override fun onFailure(
-                                        call: Call<UtenteAvviaBilanciaClass>?, t: Throwable?,
-                                    ) {
-                                        Log.d(LOG_TAG_ESP, "initScale: response FAIL")
-                                    }
-                                })
-                            }
+                                override fun onFailure(
+                                    call: Call<UtenteAvviaBilanciaClass>?, t: Throwable?,
+                                ) {
+                                    Log.d(LOG_TAG_ESP, "initScale: response FAIL")
+                                }
+                            })
                         }
                     }
+                })
             } catch (e: SecurityException) {
                 Log.e(LOG_TAG_ESP, e.message!!)
                 progress_bar.visibility = View.GONE
@@ -284,7 +291,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     manager.bindProcessToNetwork(null)
                 }
-                networkCallback?.let { manager.unregisterNetworkCallback(it) }
+                //networkCallback?.let { manager.unregisterNetworkCallback(it) }
 
 
                 /*if(wifi_id != 0) {
