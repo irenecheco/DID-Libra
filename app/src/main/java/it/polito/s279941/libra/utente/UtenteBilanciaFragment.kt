@@ -27,6 +27,8 @@ import it.polito.s279941.libra.DataModel.UtenteAvviaBilanciaClass
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.api.Api2
 import it.polito.s279941.libra.utils.LOG_TAG_ESP
+import it.polito.s279941.libra.utils.Status
+import kotlinx.android.synthetic.main.professionista_paziente_aggiungi_obiettivo_fragment.*
 import kotlinx.android.synthetic.main.utente_activity_main.*
 import kotlinx.android.synthetic.main.utente_bilancia_fragment.*
 import kotlinx.android.synthetic.main.utente_profilo_fragment.text_measure
@@ -38,15 +40,11 @@ import retrofit2.Response
 import java.util.*
 
 // TODO : l'app va in crash quando si ruota il telefono
-// TODO: provare disconnessione e riconnessione a wifi
-// TODO: se funziona tutto pulizia codice
 
 class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
     private val viewModel: UtenteViewModel by activityViewModels()
-    //var wifi_ssid : String = "null"
     var weight : Double = 0.0
-    //var wifi_bssid : String = "null"
     var flag_lettura = 0
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -71,29 +69,8 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
         val manager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val builder = NetworkRequest.Builder()
-        //var networkCallback :ConnectivityManager.NetworkCallback? = null
+
         flag_lettura = 0
-
-        //controllo permessi per recuperare ssid del wifi
-
-        //var wifi_id = 0
-        /*if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            //se localizzazione non abilitata, chiedo all'utente di abilitarla e poi recupero ssid
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
-            val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
-            var wifiInfo : WifiInfo = wifi_manager.connectionInfo
-            //wifi_bssid = wifiInfo.getBSSID()
-            wifi_ssid = wifiInfo.getSSID()
-            Log.d("BILANCIA", "wifi ssid prima della bilancia è " + wifi_ssid)
-        }else{
-            //se localizzazione abilitata recupero direttamente ssid
-            val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
-            var wifiInfo : WifiInfo = wifi_manager.connectionInfo
-            //wifi_bssid = wifiInfo.getBSSID()
-            wifi_ssid = wifiInfo.getSSID()
-            //Log.d("BILANCIA", "wifi ssid prima della bilancia è " + wifi_ssid)
-        }*/
-
 
         registra_peso.isEnabled = false
         disconnetti_bilancia.isEnabled = false
@@ -128,6 +105,8 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                         lifecycleScope.launch(Dispatchers.IO) {
                             //Inizializzo la richiesta GET per attivare bilancia
                             val initScale = apiServe.initScaleREST()
+                            val bottomNavView: View? = activity?.findViewById(R.id.bottom_bar)
+                            Snackbar.make(bottomNavView!!, R.string.snackbar_follow_libra, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorPrimaryDark)).setAnchorView(bottomNavView).show()
 
                             // inoltro la richiesta al S.O. e implemento la callback per gestire la risposta
                             // la get si aspetta in risposta un oggetto di tipo UtenteAvviaBilanciaClass
@@ -138,19 +117,6 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                 ) {
                                     //if(response?.body() != null)
                                     if (response?.isSuccessful == true) {
-
-                                        /*if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                                                //se localizzazione non abilitata, chiedo all'utente di abilitarla e poi recupero ssid
-                                                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
-                                                val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
-                                                var wifiInfo : WifiInfo = wifi_manager.connectionInfo
-                                                wifi_id = wifiInfo.networkId
-                                            }else{
-                                                //se localizzazione abilitata recupero direttamente ssid
-                                                val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
-                                                var wifiInfo : WifiInfo = wifi_manager.connectionInfo
-                                                wifi_id = wifiInfo.networkId
-                                            }*/
 
                                         // posso recuperare e registrare il peso acquisito
                                         avvia_bilancia.visibility = View.GONE
@@ -260,10 +226,6 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                     })
                 }
 
-
-                // disconnessione dalla rete wifi bilancia
-                //builder.removeTransportType(NetworkCapabilities.TRANSPORT_WIFI)
-
             } catch (e: SecurityException) {
                 Log.e(LOG_TAG_ESP, "try/catch on getWeight, exception catched:" + e.message!!)
                 Log.d(LOG_TAG_ESP, "try/catch on getWeight, exception catched:" + e.message!!)
@@ -274,96 +236,11 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
         disconnetti_bilancia.setOnClickListener(){
             if(flag_lettura ==1) {
 
-                registra_peso.visibility = View.GONE
-                registra_peso_label.visibility = View.GONE
-                disconnetti_bilancia.visibility = View.GONE
-                disconnetti_bilancia_label.visibility = View.GONE
-                avvia_bilancia.visibility = View.VISIBLE
-
-                avvia_bilancia?.isEnabled = true
-                registra_peso?.isEnabled = false
-                disconnetti_bilancia?.isEnabled = false
-
-                //prova disconnessione da bilancia e connessione a wifi
+                //unbind process from Libra, può connettersi a internet con i dati del telefono
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     manager.bindProcessToNetwork(null)
                 }
-                //networkCallback?.let { manager.unregisterNetworkCallback(it) }
-
-
-                /*if(wifi_id != 0) {
-                if (ActivityCompat.checkSelfPermission(
-                        requireContext(),
-                        Manifest.permission.ACCESS_FINE_LOCATION
-                    ) != PackageManager.PERMISSION_GRANTED
-                ) {
-                    //se localizzazione non abilitata, chiedo all'utente di abilitarla e poi recupero ssid
-                    ActivityCompat.requestPermissions(
-                        requireActivity(),
-                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                        1
-                    )
-                    val wifi_manager: WifiManager = requireContext().getApplicationContext()
-                        .getSystemService(Context.WIFI_SERVICE) as WifiManager
-                    Log.d("AIUTO", "id del wifi è" + wifi_id)
-                    wifi_manager.disconnect()
-                    wifi_manager.disableNetwork(wifi_id)
-                    wifi_manager.removeNetwork(wifi_id)
-                } else {
-                    //se localizzazione abilitata recupero direttamente ssid
-                    val wifi_manager: WifiManager = requireContext().getApplicationContext()
-                        .getSystemService(Context.WIFI_SERVICE) as WifiManager
-                    Log.d("AIUTO", "id del wifi è" + wifi_id)
-                    wifi_manager.disconnect()
-                    wifi_manager.removeNetwork(wifi_id)
-                    wifi_manager.removeNetwork(wifi_id)
-                }
-            }*/
-                //builder.removeTransportType(NetworkCapabilities.TRANSPORT_WIFI)
-
-                /*builder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
-            builder.removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-            if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q){
-                builder.setNetworkSpecifier(
-                    WifiNetworkSpecifier.Builder().apply{
-                        //Qui inserite il nome del vostro WIFI e la password
-                        //setBssid(wifi_bssid)
-                        setSsid(wifi_ssid)
-                        Log.d("BILANCIA", "ssid è " + wifi_ssid)
-                    }.build()
-                )
-            }
-            Log.d(LOG_TAG_ESP, "NetworkRequest.Builder built")
-            try{
-                manager.requestNetwork(builder.build(), object: ConnectivityManager.NetworkCallback(){
-                    @RequiresApi(Build.VERSION_CODES.M)
-                    override fun onAvailable(network: Network) {
-                        manager.bindProcessToNetwork(network)
-                        Log.d(LOG_TAG_ESP, "network changed")
-                        var new_wifi_ssid : String
-                        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                            //se localizzazione non abilitata, chiedo all'utente di abilitarla e poi recupero ssid
-                            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
-                            val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
-                            var wifiInfo : WifiInfo = wifi_manager.connectionInfo
-                            //wifi_bssid = wifiInfo.getBSSID()
-                            new_wifi_ssid = wifiInfo.getSSID()
-                            //Log.d("BILANCIA", "wifi ssid prima della bilancia è " + wifi_ssid)
-                        }else{
-                            //se localizzazione abilitata recupero direttamente ssid
-                            val wifi_manager : WifiManager = requireContext().getApplicationContext().getSystemService(Context.WIFI_SERVICE) as WifiManager
-                            var wifiInfo : WifiInfo = wifi_manager.connectionInfo
-                            //wifi_bssid = wifiInfo.getBSSID()
-                            new_wifi_ssid = wifiInfo.getSSID()
-                            //Log.d("BILANCIA", "wifi ssid prima della bilancia è " + wifi_ssid)
-                        }
-                        Log.d("Controllo", "SSID ora è " + new_wifi_ssid)
-                    }
-                })
-            }catch (e: SecurityException) {
-                Log.e(LOG_TAG_ESP, e.message!!)
-            }*/
 
                 //recupero data odierna
                 var today = Calendar.getInstance().time
@@ -372,6 +249,28 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                     //lancio la funzione post weight contenuta in UtenteBilanciaViewModel per fare POST al server
                     viewModel.postWeight(today, weight)
                     Log.d("BILANCIA", "Lanciata post")
+                    viewModel.confirmation.observe(viewLifecycleOwner) { weightStatus ->
+                        when(weightStatus!!){
+                            Status.SUCCESS -> {
+                                val bottomNavView: View? = activity?.findViewById(R.id.bottom_bar)
+                                Snackbar.make(bottomNavView!!, R.string.snackbar_saved_weight, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorPrimaryDark)).setAnchorView(bottomNavView).show()
+                                registra_peso.visibility = View.GONE
+                                registra_peso_label.visibility = View.GONE
+                                disconnetti_bilancia.visibility = View.GONE
+                                disconnetti_bilancia_label.visibility = View.GONE
+                                avvia_bilancia.visibility = View.VISIBLE
+
+                                avvia_bilancia?.isEnabled = true
+                                registra_peso?.isEnabled = false
+                                disconnetti_bilancia?.isEnabled = false
+                            }
+                            Status.ERROR -> {
+                                val bottomNavView: View? = activity?.findViewById(R.id.bottom_bar)
+                                Snackbar.make(bottomNavView!!, R.string.snackbar_error_weight, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorPrimaryDark)).setAnchorView(bottomNavView).show()
+                            }
+                        }
+                        Log.d("LIBRAgoals", "confirmationStatus in fragment: " + weightStatus.toString())
+                    }
                 }
             } else {
                 val bottomNavView: View? = activity?.findViewById(R.id.bottom_bar)

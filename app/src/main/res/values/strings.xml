@@ -53,8 +53,12 @@
     <string name="utente_registra_peso_label">To read the weight from libra:</string>
     <string name="utente_disconnect_libra_label">To disconnect from libra and save weight:</string>
     <string name="utente_last_measurement_label">Last measure:</string>
+    <string name="utente_no_previous_measure">- KG</string>
     <string name="snackbar_no_measure">No previous measure</string>
+    <string name="snackbar_follow_libra">Wait for tare calculation before weighing yourself</string>
     <string name="snackbar_read_first">You have to read the weight before disconnecting</string>
+    <string name="snackbar_saved_weight">Weight saved</string>
+    <string name="snackbar_error_weight">Error saving weight, try again</string>
 
 
     <!-- Storico utente -->

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorLight">
 
     <TextView
         android:id="@+id/textview_ultima_rilevazione"
@@ -70,6 +71,16 @@
         app:layout_constraintStart_toEndOf="@+id/cardView2"
         app:layout_constraintTop_toTopOf="@+id/guideline8" />
 
+    <TextView
+        android:id="@+id/registra_peso_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/utente_registra_peso_label"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/registra_peso"
+        app:layout_constraintEnd_toEndOf="@+id/registra_peso"
+        app:layout_constraintStart_toStartOf="@+id/registra_peso" />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/registra_peso"
@@ -82,33 +93,45 @@
         android:text="@string/utente_save_weight_button"
         android:textColor="@color/colorLight"
         android:textSize="18sp"
+        android:visibility="gone"
         app:backgroundTint="@color/button_background_color"
         app:elevation="6dp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline9"
+        app:layout_constraintBottom_toTopOf="@+id/disconnetti_bilancia"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/cardView2"
-        app:layout_constraintTop_toTopOf="@+id/guideline8"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline8" />
+
+    <TextView
+        android:id="@+id/disconnetti_bilancia_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="@string/utente_disconnect_libra_label"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/disconnetti_bilancia"
+        app:layout_constraintEnd_toEndOf="@+id/disconnetti_bilancia"
+        app:layout_constraintStart_toStartOf="@+id/disconnetti_bilancia" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/disconnetti_bilancia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
-
         android:includeFontPadding="true"
         android:padding="12dp"
         android:shadowRadius="0.5"
         android:text="@string/utente_disconnect_libra_button"
         android:textColor="@color/colorLight"
         android:textSize="18sp"
+        android:visibility="gone"
         app:backgroundTint="@color/button_background_color"
         app:elevation="6dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/cardView2"
-        app:layout_constraintTop_toBottomOf="@+id/avvia_bilancia"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toBottomOf="@+id/registra_peso" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline8"

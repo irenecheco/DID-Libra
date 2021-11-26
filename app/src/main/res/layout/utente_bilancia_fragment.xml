@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorLight"
     tools:context=".utente.UtenteMainActivity">
 
     <TextView
@@ -36,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="75 KG"
+            android:text="@string/utente_no_previous_measure"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             android:textColor="@color/colorPrimaryDark" />
 
@@ -75,8 +76,8 @@
         android:id="@+id/registra_peso_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:text="@string/utente_registra_peso_label"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/registra_peso"
         app:layout_constraintEnd_toEndOf="@+id/registra_peso"
         app:layout_constraintStart_toStartOf="@+id/registra_peso" />
@@ -106,8 +107,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
-        android:visibility="gone"
         android:text="@string/utente_disconnect_libra_label"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/disconnetti_bilancia"
         app:layout_constraintEnd_toEndOf="@+id/disconnetti_bilancia"
         app:layout_constraintStart_toStartOf="@+id/disconnetti_bilancia" />
@@ -144,6 +145,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8" />
+        app:layout_constraintGuide_percent="0.85" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

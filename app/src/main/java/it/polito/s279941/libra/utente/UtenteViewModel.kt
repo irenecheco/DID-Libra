@@ -9,6 +9,7 @@ import it.polito.s279941.libra.api.RestApiManager
 import it.polito.s279941.libra.utentedieta.PastoItem
 import it.polito.s279941.libra.utentedieta.UtenteDietaRepository
 import it.polito.s279941.libra.utils.LOG_TAG
+import it.polito.s279941.libra.utils.Status
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -265,14 +266,16 @@ class UtenteViewModel: ViewModel() {
      *
      */
 
-    // TODO: salva peso tra dati utente in locale, al momento aggiorna solo il server
-
     var userWeight = Peso(
         data = null,
         peso = null
     )
 
+    var confirmation: MutableLiveData<Status> = MutableLiveData<Status>()
+
     fun postWeight(new_date: Date, new_weight: Double){
+
+        confirmation.setValue(Status.LOADING)
 
         userWeight.data = new_date
         userWeight.peso = new_weight
@@ -287,6 +290,15 @@ class UtenteViewModel: ViewModel() {
                 "start fun restApiManager.postWeight(userWeight)  in class UtenteViewModel "
             )
             Log.d("LIBRA", "id paziente è " + id)
+            if (it?.peso != null) {
+                confirmation.setValue(Status.SUCCESS)
+                Log.d("LIBRA", "    restApiManager.addGoal() : Success registering new goal")
+                Log.d("LIBRA", "    it = " + it.toString() + "  --  classe: " + it.javaClass)
+            } else {
+                confirmation.setValue(Status.ERROR)
+                Log.d("LIBRA", "    restApiManager.addGoal() : Error registering new goal")
+            }
+            Log.d("LIBRA", "  confirmationStatus in ViewModel: " + confirmation.value.toString())
         }
     }
 
