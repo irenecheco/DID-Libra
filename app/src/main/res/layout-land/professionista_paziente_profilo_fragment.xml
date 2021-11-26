@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
 
     <TextView
         android:id="@+id/nome_paziente"
@@ -17,7 +18,8 @@
         android:textSize="21sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/colorSnackbar"/>
 
     <TextView
         android:id="@+id/cognome_paziente"
@@ -31,7 +33,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/nome_paziente"
         app:layout_constraintStart_toEndOf="@+id/nome_paziente"
-        app:layout_constraintTop_toTopOf="@+id/nome_paziente" />
+        app:layout_constraintTop_toTopOf="@+id/nome_paziente"
+        android:textColor="@color/colorSnackbar"/>
 
     <View
         android:id="@+id/divider11"
@@ -51,7 +54,7 @@
         android:id="@+id/divider1_bold2"
         android:layout_width="0dp"
         android:layout_height="3dp"
-        android:background="@android:drawable/screen_background_dark_transparent"
+        android:background="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="@+id/divider11"
         app:layout_constraintEnd_toEndOf="@+id/paziente_grafico_titolo"
         app:layout_constraintStart_toStartOf="@+id/paziente_grafico_titolo" />
@@ -66,7 +69,8 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/divider11"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/colorSnackbar"/>
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/paziente_grafico"
@@ -89,7 +93,7 @@
         android:layout_height="3dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@android:drawable/screen_background_dark_transparent"
+        android:background="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="@+id/divider11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/paziente_obiettivi_titolo" />
@@ -104,12 +108,15 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/divider11"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/colorSnackbar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_obiettivi_paziente"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/add_goal_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -124,7 +131,8 @@
         android:layout_marginTop="8dp"
         android:text="@string/nutr_patient_dateOfBirth"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nome_paziente" />
+        app:layout_constraintTop_toBottomOf="@+id/nome_paziente"
+        android:textColor="@color/colorSnackbar"/>
 
     <TextView
         android:id="@+id/mail_paziente_titolo"
@@ -135,7 +143,8 @@
         android:layout_marginTop="8dp"
         android:text="@string/nutr_patient_email"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/data_nascita_paziente_titolo" />
+        app:layout_constraintTop_toBottomOf="@+id/data_nascita_paziente_titolo"
+        android:textColor="@color/colorSnackbar"/>
 
     <TextView
         android:id="@+id/data_nascita_paziente"
@@ -146,7 +155,8 @@
         android:text="18/10/92"
         app:layout_constraintBottom_toBottomOf="@+id/data_nascita_paziente_titolo"
         app:layout_constraintStart_toEndOf="@+id/data_nascita_paziente_titolo"
-        app:layout_constraintTop_toTopOf="@+id/data_nascita_paziente_titolo" />
+        app:layout_constraintTop_toTopOf="@+id/data_nascita_paziente_titolo"
+        android:textColor="@color/colorSnackbar"/>
 
     <TextView
         android:id="@+id/mail_paziente"
@@ -157,7 +167,8 @@
         android:text="mail@mail.com"
         app:layout_constraintBottom_toBottomOf="@+id/mail_paziente_titolo"
         app:layout_constraintStart_toEndOf="@+id/mail_paziente_titolo"
-        app:layout_constraintTop_toTopOf="@+id/mail_paziente_titolo" />
+        app:layout_constraintTop_toTopOf="@+id/mail_paziente_titolo"
+        android:textColor="@color/colorSnackbar"/>
 
     <TextView
         android:id="@+id/noObiettivi_paziente"
@@ -168,7 +179,8 @@
         android:layout_marginTop="16dp"
         android:text="@string/no_goals_title"
         app:layout_constraintStart_toStartOf="@+id/recyclerView_obiettivi_paziente"
-        app:layout_constraintTop_toTopOf="@+id/recyclerView_obiettivi_paziente" />
+        app:layout_constraintTop_toTopOf="@+id/recyclerView_obiettivi_paziente"
+        android:textColor="@color/colorSnackbar"/>
 
     <Button
         android:id="@+id/add_goal_button"
@@ -177,6 +189,7 @@
         android:layout_marginBottom="16dp"
         android:text="@string/goal_button"
         app:backgroundTint="@color/colorAccent"
+        android:textColor="@color/colorLight_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline4" />

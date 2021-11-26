@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FFFFFF"
+    android:background="@color/colorBackground"
     tools:context=".utente.UtenteMainActivity">
 
     <TextView
@@ -18,7 +18,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/colorSnackbar"/>
 
     <TextView
         android:id="@+id/user_name2"
@@ -30,7 +31,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_name" />
+        app:layout_constraintTop_toBottomOf="@+id/user_name"
+        android:textColor="@color/colorSnackbar"/>
 
     <TextView
         android:id="@+id/nutr_name_label"
@@ -43,7 +45,8 @@
         android:textAllCaps="true"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_name2" />
+        app:layout_constraintTop_toBottomOf="@+id/user_name2"
+        android:textColor="@color/colorSnackbar"/>
 
     <TextView
         android:id="@+id/nutr_name"
@@ -56,7 +59,8 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/nutr_name_label"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/nutr_name_label" />
+        app:layout_constraintTop_toTopOf="@+id/nutr_name_label"
+        android:textColor="@color/colorSnackbar"/>
 
 
     <TextView
@@ -68,7 +72,8 @@
         android:layout_marginTop="8dp"
         android:text="@string/text_dateOfBirth"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nutr_name_label" />
+        app:layout_constraintTop_toBottomOf="@+id/nutr_name_label"
+        android:textColor="@color/colorSnackbar"/>
 
     <TextView
         android:id="@+id/user_dateOfBirth3"
@@ -79,7 +84,8 @@
         android:text="@string/user_dateOfBirth"
         app:layout_constraintBottom_toBottomOf="@+id/text_nutr_dateOfBirth"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_nutr_dateOfBirth" />
+        app:layout_constraintTop_toTopOf="@+id/text_nutr_dateOfBirth"
+        android:textColor="@color/colorSnackbar"/>
 
     <TextView
         android:id="@+id/text_albo"
@@ -90,7 +96,8 @@
         android:layout_marginTop="4dp"
         android:text="@string/text_email"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_nutr_dateOfBirth" />
+        app:layout_constraintTop_toBottomOf="@+id/text_nutr_dateOfBirth"
+        android:textColor="@color/colorSnackbar"/>
 
     <TextView
         android:id="@+id/id_albo"
@@ -101,7 +108,8 @@
         android:text="@string/user_email"
         app:layout_constraintBottom_toBottomOf="@+id/text_albo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_albo" />
+        app:layout_constraintTop_toTopOf="@+id/text_albo"
+        android:textColor="@color/colorSnackbar"/>
 
     <TextView
         android:id="@+id/text_goal"
@@ -113,7 +121,8 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/card_goal"
         app:layout_constraintEnd_toEndOf="@+id/card_goal"
-        app:layout_constraintStart_toStartOf="@+id/card_goal" />
+        app:layout_constraintStart_toStartOf="@+id/card_goal"
+        android:textColor="@color/colorSnackbar"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_goal"
@@ -145,7 +154,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="@string/last_goal" />
+                android:text="@string/last_goal"
+                android:textColor="@color/colorPrimaryDark"/>
 
         </RelativeLayout>
 
@@ -172,7 +182,7 @@
         android:layout_height="3dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:background="@android:drawable/screen_background_dark_transparent"
+        android:background="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="@+id/divider12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/text_last_measure" />
@@ -187,7 +197,8 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/divider12"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/colorSnackbar"/>
 
     <TextView
         android:id="@+id/text_data_detection"
@@ -198,7 +209,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/circle"
-        app:layout_constraintTop_toTopOf="@+id/circle" />
+        app:layout_constraintTop_toTopOf="@+id/circle"
+        android:textColor="@color/colorSnackbar"/>
 
     <TextView
         android:id="@+id/date_last_detection2"
@@ -208,7 +220,8 @@
         android:text="@string/date_last_detection"
         app:layout_constraintBottom_toBottomOf="@+id/circle"
         app:layout_constraintEnd_toEndOf="@+id/text_data_detection"
-        app:layout_constraintStart_toStartOf="@+id/text_data_detection" />
+        app:layout_constraintStart_toStartOf="@+id/text_data_detection"
+        android:textColor="@color/colorSnackbar"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/circle"

@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
 
     <TextView
         android:id="@+id/mailDestinatarioTitle"
@@ -17,7 +18,8 @@
         android:text="@string/mailTo"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/colorSnackbar"/>
 
     <TextView
         android:id="@+id/mailDestinatario"
@@ -30,7 +32,8 @@
         android:text="nutrizionista@mail.com"
         android:textSize="18dp"
         app:layout_constraintStart_toEndOf="@+id/mailDestinatarioTitle"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/colorSnackbar"/>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
@@ -55,7 +58,8 @@
                 android:layout_height="wrap_content"
                 android:padding="18dp"
                 android:text="@string/mailSubject"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"/>
 
             <RelativeLayout
                 android:id="@+id/subject_input_card"
@@ -63,8 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="19dp"
                 android:layout_marginRight="19dp"
-                android:layout_marginBottom="20dp"
-                android:background="@color/colorLight">
+                android:layout_marginBottom="20dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/subjectInputLayout"
@@ -72,13 +75,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColorHint="@color/colorGreyDark">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/subject_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mailSubjectHint" />
+                        android:hint="@string/mailSubjectHint"
+                        android:background="@color/colorGreyLight"
+                        android:textColor="@color/colorPrimaryDark_text"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </RelativeLayout>
 
@@ -91,7 +97,8 @@
                 android:paddingRight="18dp"
                 android:paddingLeft="18dp"
                 android:text="@string/mailMessage"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark"/>
 
             <RelativeLayout
                 android:id="@+id/message_input_card"
@@ -99,8 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="19dp"
                 android:layout_marginRight="19dp"
-                android:layout_marginBottom="20dp"
-                android:background="@color/colorLight">
+                android:layout_marginBottom="20dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/messageInputLayout"
@@ -108,13 +114,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColorHint="@color/colorGreyDark">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/message_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mailMessageHint" />
+                        android:hint="@string/mailMessageHint"
+                        android:background="@color/colorGreyLight"
+                        android:textColor="@color/colorPrimaryDark_text"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
             </RelativeLayout>
@@ -129,6 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/goal_submit_button"
+        android:textColor="@color/colorLight_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView" />

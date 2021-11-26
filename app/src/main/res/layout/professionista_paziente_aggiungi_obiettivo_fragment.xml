@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/professionista_paziente_aggiungi_obiettivo_fragment_id"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline14"
@@ -35,7 +36,8 @@
                 android:layout_height="wrap_content"
                 android:padding="18dp"
                 android:text="@string/nutr_patient_add_goal_Label"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textColor="@color/colorPrimaryDark" />
 
             <RelativeLayout
                 android:id="@+id/add_goal_input"
@@ -43,8 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="19dp"
                 android:layout_marginRight="19dp"
-                android:layout_marginBottom="20dp"
-                android:background="@color/colorLight">
+                android:layout_marginBottom="20dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayout"
@@ -52,13 +53,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColorHint="@color/colorGreyDark">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/addGoal_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/nutr_patient_add_goal_input_label" />
+                        android:hint="@string/nutr_patient_add_goal_input_label"
+                        android:background="@color/colorGreyLight"
+                        android:textColor="@color/colorPrimaryDark_text"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
             </RelativeLayout>
@@ -77,7 +81,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:text="@string/goal_confirmation_request"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textColor="@color/colorPrimaryDark"/>
 
                 <Button
                     android:id="@+id/confirm_button"
@@ -90,7 +95,8 @@
                     android:layout_marginEnd="30dp"
                     android:layout_marginRight="30dp"
                     android:text="@string/goal_confirm_button"
-                    app:backgroundTint="@color/colorAccent" />
+                    app:backgroundTint="@color/colorAccent"
+                    android:textColor="@color/colorLight_text"/>
 
                 <Button
                     android:id="@+id/deny_button"
@@ -103,7 +109,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/goal_deny_button"
-                    android:textColor="@color/cardview_dark_background"
+                    android:textColor="@color/colorPrimaryDark_text"
                     app:backgroundTint="@color/colorAccentLight" />
 
             </RelativeLayout>
@@ -135,6 +141,7 @@
         android:layout_marginTop="12dp"
         android:text="@string/goal_submit_button"
         app:backgroundTint="@color/colorAccent"
+        android:textColor="@color/colorLight_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView" />

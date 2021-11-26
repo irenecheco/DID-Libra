@@ -2,6 +2,7 @@ package it.polito.s279941.libra.utente
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -68,19 +69,20 @@ class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
         }
 
         val lineDataSet = LineDataSet(lineEntry, "")
-        lineDataSet.color = resources.getColor(R.color.colorPrimary)
+        lineDataSet.color = ResourcesCompat.getColor(getResources(), R.color.colorGraph, null)
         lineDataSet.lineWidth = 2f
         lineDataSet.setDrawCircles(true)
         lineDataSet.circleRadius = 5f
         lineDataSet.setDrawFilled(true)
-        lineDataSet.fillColor = resources.getColor(R.color.colorPrimary)
+        lineDataSet.fillColor = ResourcesCompat.getColor(getResources(), R.color.colorGraph, null)
         lineDataSet.fillAlpha = 30
-        lineDataSet.valueTextColor = resources.getColor(R.color.colorPrimary)
+        lineDataSet.valueTextColor = ResourcesCompat.getColor(getResources(), R.color.colorPrimary, null)
         lineDataSet.valueTextSize = 15f
 
         lineChart?.setDescription("")
         lineChart?.xAxis?.position = XAxisPosition.BOTTOM
         lineChart?.xAxis?.textSize = 9.5f
+        lineChart?.xAxis?.textColor = ResourcesCompat.getColor(getResources(), R.color.colorSnackbar, null)
         lineChart?.axisLeft?.setDrawLabels(false)
         lineChart?.axisRight?.setDrawLabels(false)
         lineChart?.legend?.isEnabled = false
@@ -89,8 +91,7 @@ class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
         val data = LineData(xvalue, lineDataSet)
 
         lineChart?.data = data
-        lineChart?.setBackgroundColor(resources.getColor(R.color.colorLight))
-        lineChart?.animateXY(1000,1000)
+        //lineChart?.animateXY(200,200)
 
     }
 

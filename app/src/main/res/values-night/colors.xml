@@ -12,4 +12,7 @@
         <color name="colorBackground">#093A3E</color>
         <color name="colorLight_text">#F9F9F9</color>
         <color name="colorGrey">#C5C5C5</color>
+        <color name="colorGreyLight">#E6E6E6</color>
+        <color name="colorGreyDark">#A1A1A1</color>
+        <color name="colorGraph">#CBF3F0</color>
 </resources>
