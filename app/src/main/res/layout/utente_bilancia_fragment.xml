@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorLight"
+    android:background="@color/colorBackground"
     tools:context=".utente.UtenteMainActivity">
 
     <TextView
@@ -36,17 +36,17 @@
             android:id="@+id/text_measure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center|center_horizontal|center_vertical"
             android:text="@string/utente_no_previous_measure"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/colorPrimaryDark_text" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
             style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center|center_horizontal|center_vertical"
             android:indeterminateTint="@color/colorPrimaryDark"
             android:padding="10dp"
             android:visibility="gone" />
@@ -62,7 +62,7 @@
         android:padding="12dp"
         android:shadowRadius="0.5"
         android:text="@string/utente_libra_button"
-        android:textColor="@color/colorLight"
+        android:textColor="@color/colorLight_text"
         android:textSize="18sp"
         app:backgroundTint="@color/button_background_color"
         app:elevation="6dp"
@@ -92,7 +92,7 @@
         android:padding="12dp"
         android:shadowRadius="0.5"
         android:text="@string/utente_save_weight_button"
-        android:textColor="@color/colorLight"
+        android:textColor="@color/colorLight_text"
         android:textSize="18sp"
         android:visibility="gone"
         app:backgroundTint="@color/button_background_color"
@@ -123,7 +123,7 @@
         android:padding="12dp"
         android:shadowRadius="0.5"
         android:text="@string/utente_disconnect_libra_button"
-        android:textColor="@color/colorLight"
+        android:textColor="@color/colorLight_text"
         android:textSize="18sp"
         android:visibility="gone"
         app:backgroundTint="@color/button_background_color"

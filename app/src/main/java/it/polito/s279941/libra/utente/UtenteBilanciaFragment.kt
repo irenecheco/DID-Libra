@@ -63,7 +63,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                 viewModel.utenteCorrente.storico_pesi?.last()?.peso.toString() + " KG"
         }catch (e: NoSuchElementException){
             val bottomNavView: View? = activity?.findViewById(R.id.bottom_bar)
-            Snackbar.make(bottomNavView!!, R.string.snackbar_no_measure, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorPrimaryDark)).setAnchorView(bottomNavView).show()
+            Snackbar.make(bottomNavView!!, R.string.snackbar_no_measure, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorSnackbar)).setAnchorView(bottomNavView).show()
             text_measure.text = "- KG"
         }
 
@@ -106,7 +106,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                             //Inizializzo la richiesta GET per attivare bilancia
                             val initScale = apiServe.initScaleREST()
                             val bottomNavView: View? = activity?.findViewById(R.id.bottom_bar)
-                            Snackbar.make(bottomNavView!!, R.string.snackbar_follow_libra, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorPrimaryDark)).setAnchorView(bottomNavView).show()
+                            Snackbar.make(bottomNavView!!, R.string.snackbar_follow_libra, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorSnackbar)).setAnchorView(bottomNavView).show()
 
                             // inoltro la richiesta al S.O. e implemento la callback per gestire la risposta
                             // la get si aspetta in risposta un oggetto di tipo UtenteAvviaBilanciaClass
@@ -253,7 +253,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                         when(weightStatus!!){
                             Status.SUCCESS -> {
                                 val bottomNavView: View? = activity?.findViewById(R.id.bottom_bar)
-                                Snackbar.make(bottomNavView!!, R.string.snackbar_saved_weight, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorPrimaryDark)).setAnchorView(bottomNavView).show()
+                                Snackbar.make(bottomNavView!!, R.string.snackbar_saved_weight, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorSnackbar)).setAnchorView(bottomNavView).show()
                                 registra_peso.visibility = View.GONE
                                 registra_peso_label.visibility = View.GONE
                                 disconnetti_bilancia.visibility = View.GONE
@@ -266,7 +266,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                             }
                             Status.ERROR -> {
                                 val bottomNavView: View? = activity?.findViewById(R.id.bottom_bar)
-                                Snackbar.make(bottomNavView!!, R.string.snackbar_error_weight, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorPrimaryDark)).setAnchorView(bottomNavView).show()
+                                Snackbar.make(bottomNavView!!, R.string.snackbar_error_weight, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorSnackbar)).setAnchorView(bottomNavView).show()
                             }
                         }
                         Log.d("LIBRAgoals", "confirmationStatus in fragment: " + weightStatus.toString())
@@ -274,7 +274,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                 }
             } else {
                 val bottomNavView: View? = activity?.findViewById(R.id.bottom_bar)
-                Snackbar.make(bottomNavView!!, R.string.snackbar_read_first, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorPrimaryDark)).setAnchorView(bottomNavView).show()
+                Snackbar.make(bottomNavView!!, R.string.snackbar_read_first, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorSnackbar)).setAnchorView(bottomNavView).show()
             }
         }
     }
