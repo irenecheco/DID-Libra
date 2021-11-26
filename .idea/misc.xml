@@ -40,10 +40,15 @@
         <entry key="..\:/Users/bluee/AndroidStudioProjects/DID-Libra/app/src/main/res/layout/utente_profilo_fragment.xml" value="0.264" />
         <entry key="..\:/Users/bluee/AndroidStudioProjects/DID-Libra/app/src/main/res/layout/utente_storico_fragment.xml" value="0.264" />
         <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/drawable/logo_black.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/layout-land/activity_landing_page.xml" value="0.20208333333333334" />
         <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/layout-land/utente_bilancia_fragment.xml" value="0.264" />
-        <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/layout/activity_landing_page.xml" value="0.13451086956521738" />
+        <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/layout/activity_landing_page.xml" value="0.2" />
         <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/layout/custom_toast.xml" value="0.11354166666666667" />
         <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/layout/fragment_landing_page.xml" value="0.264" />
+        <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/layout/fragment_logged_page.xml" value="0.17572463768115942" />
+        <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/layout/fragment_login_page.xml" value="0.264" />
+        <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/layout/fragment_network_error.xml" value="0.17572463768115942" />
+        <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/layout/fragment_signin_page.xml" value="0.264" />
         <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/layout/professionista_paziente_aggiungi_obiettivo_fragment.xml" value="0.18795289855072464" />
         <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/layout/utente_activity_main.xml" value="0.13451086956521738" />
         <entry key="..\:/Users/irech/Documents/GitHub/DID-Libra/app/src/main/res/layout/utente_bilancia_fragment.xml" value="0.264" />

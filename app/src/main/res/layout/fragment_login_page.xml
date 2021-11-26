@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     android:padding="@dimen/padding_small"
     tools:context=".landing.LoginPageFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackground">
 
         <TextView
             android:id="@+id/loginDescription"
@@ -19,6 +21,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif"
             android:text="@string/loginDescription"
+            android:textColor="@color/colorSnackbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/emailLabel"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimaryDark_text" />
 
         </LinearLayout>
 
@@ -55,9 +58,11 @@
             android:id="@+id/emailField"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent"
             android:hint="@string/emailTip"
             android:inputType="textEmailAddress"
             android:padding="@dimen/padding_large"
+            android:textColor="@color/colorSnackbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
@@ -87,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="@string/passwordLabel"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimaryDark_text" />
 
         </LinearLayout>
 
@@ -95,9 +100,11 @@
             android:id="@+id/passwordField"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent"
             android:hint="@string/passwordLabel"
             android:inputType="textPassword"
             android:padding="@dimen/padding_large"
+            android:textColor="@color/colorSnackbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
@@ -124,6 +131,7 @@
             android:paddingRight="@dimen/padding_huge"
             android:paddingBottom="@dimen/padding_large"
             android:text="@string/loginButton"
+            android:textColor="@color/colorLight_text"
             app:layout_constraintEnd_toEndOf="@+id/remembeMe_checkBox"
             app:layout_constraintStart_toStartOf="@+id/remembeMe_checkBox"
             app:layout_constraintTop_toBottomOf="@+id/remembeMe_checkBox" />
