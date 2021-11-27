@@ -24,6 +24,8 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
         addGoal_submitButton.visibility = View.VISIBLE
         addGoal_submitButton.text = getString(R.string.goal_submit_button)
         add_goal_input.visibility = View.VISIBLE
+        addGoal_input.isFocusable = true
+        addGoal_input.isEnabled = true
         add_goal_confirmation.visibility = View.GONE
         progressBarGoal.visibility = View.GONE
         var goalConfirmed = false
@@ -35,6 +37,8 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
             Log.d("LIBRA", "event CLICK on SUBMIT in ProfessionistaPazienteAggiungiObiettivoFragment")
 
             if(!addGoal_input.text.isNullOrEmpty()) {
+                addGoal_input.isFocusable = false
+                addGoal_input.isEnabled = false
                 add_goal_confirmation.visibility = View.VISIBLE
                 addGoal_submitButton.visibility = View.GONE
             }
@@ -85,6 +89,8 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
             addGoal_submitButton.visibility = View.VISIBLE
             addGoal_submitButton.text = getString(R.string.goal_submit_button)
             add_goal_input.visibility = View.VISIBLE
+            addGoal_input.isFocusableInTouchMode = true
+            addGoal_input.isEnabled = true
             add_goal_confirmation.visibility = View.GONE
         }
     }
