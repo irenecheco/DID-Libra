@@ -229,7 +229,6 @@
         android:layout_gravity="center"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginBottom="16dp"
         app:cardBackgroundColor="@color/colorPrimaryLight"
         app:cardCornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -252,7 +251,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="223dp" />
+        app:layout_constraintGuide_percent="0.7" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
