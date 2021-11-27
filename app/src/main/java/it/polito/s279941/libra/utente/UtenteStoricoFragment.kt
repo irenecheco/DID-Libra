@@ -73,10 +73,11 @@ class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
         lineDataSet.lineWidth = 2f
         lineDataSet.setDrawCircles(true)
         lineDataSet.circleRadius = 5f
+        lineDataSet.setCircleColor(ResourcesCompat.getColor(getResources(), R.color.colorAccent, null))
         lineDataSet.setDrawFilled(true)
         lineDataSet.fillColor = ResourcesCompat.getColor(getResources(), R.color.colorGraph, null)
         lineDataSet.fillAlpha = 30
-        lineDataSet.valueTextColor = ResourcesCompat.getColor(getResources(), R.color.colorPrimary, null)
+        lineDataSet.valueTextColor = ResourcesCompat.getColor(getResources(), R.color.colorGraph, null)
         lineDataSet.valueTextSize = 15f
 
         lineChart?.setDescription("")
