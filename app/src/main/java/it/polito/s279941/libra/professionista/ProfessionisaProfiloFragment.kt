@@ -25,6 +25,7 @@ class ProfessionisaProfiloFragment: Fragment(R.layout.professionista_profilo_fra
         val dateString = simpleDateFormat.format(professionistaViewModel.utenteCorrente.data_nascita)
         nutr_dateOfBirth.text = (dateString).toString()
         nutr_email.text = professionistaViewModel.utenteCorrente.email
+        text_number.text = professionistaViewModel.utenteCorrente.lista_pazienti?.size.toString()
 
 
     }

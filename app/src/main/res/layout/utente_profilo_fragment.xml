@@ -93,11 +93,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:text="@string/text_email"
+        android:textColor="@color/colorSnackbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_nutr_dateOfBirth"
-        android:textColor="@color/colorSnackbar"/>
+        app:layout_constraintTop_toBottomOf="@+id/text_nutr_dateOfBirth" />
 
     <TextView
         android:id="@+id/id_albo"
