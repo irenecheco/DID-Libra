@@ -105,8 +105,8 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                         lifecycleScope.launch(Dispatchers.IO) {
                             //Inizializzo la richiesta GET per attivare bilancia
                             val initScale = apiServe.initScaleREST()
-                            val bottomNavView: View? = activity?.findViewById(R.id.bottom_bar)
-                            Snackbar.make(bottomNavView!!, R.string.snackbar_follow_libra, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorSnackbar)).setAnchorView(bottomNavView).show()
+                            val ultimarilevazioneView: View? = activity?.findViewById(R.id.textview_ultima_rilevazione)
+                            Snackbar.make(ultimarilevazioneView!!, R.string.snackbar_follow_libra, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorSnackbar)).setAnchorView(ultimarilevazioneView).show()
 
                             // inoltro la richiesta al S.O. e implemento la callback per gestire la risposta
                             // la get si aspetta in risposta un oggetto di tipo UtenteAvviaBilanciaClass
