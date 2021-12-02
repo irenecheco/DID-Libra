@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".professionista.ProfessionistaPazientiFragment">
+    tools:context=".professionista.ProfessionistaPazientiFragment"
+    android:background="@color/colorBackground">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewGiorni"
@@ -23,6 +24,7 @@
         android:contentDescription="@null"
         android:importantForAccessibility="no"
         app:backgroundTint="@color/colorAccent"
+        app:tint="@color/colorLight_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.907"
@@ -35,6 +37,7 @@
         android:id="@+id/tv_data_inizio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorSnackbar"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.02"

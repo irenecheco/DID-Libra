@@ -12,7 +12,8 @@
     <color name="colorBackground">#F9F9F9</color>
     <color name="colorLight_text">#F9F9F9</color>
     <color name="colorGrey">#C5C5C5</color>
-    <color name="colorGreyLight">#E6E6E6</color>
+    <color name="colorGreyLight">#F0F0F0</color>
     <color name="colorGreyDark">#A1A1A1</color>
     <color name="colorGraph">#2EC4B6</color>
+    <color name="colorBackgroundButton">#093A3E</color>
 </resources>

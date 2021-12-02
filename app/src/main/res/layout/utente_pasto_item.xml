@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/colorBackground">
 
     <TextView
         android:id="@+id/tv_titolo_pasto"
@@ -14,6 +15,7 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:text="TITOLO PASTO"
+        android:textColor="@color/colorPrimaryDark"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,6 +31,7 @@
         android:paddingRight="8dp"
         android:paddingBottom="8dp"
         android:text="Descrizione pasto"
+        android:textColor="@color/colorSnackbar"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

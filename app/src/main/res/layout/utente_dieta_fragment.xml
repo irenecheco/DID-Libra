@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".utente.UtenteMainActivity">
+    tools:context=".utente.UtenteMainActivity"
+    android:background="@color/colorBackground">
 
     <TextView
         android:id="@+id/tv_today_data"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingLeft="8dp"
+        android:textColor="@color/colorSnackbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

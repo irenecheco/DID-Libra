@@ -89,8 +89,10 @@
 
     <!-- Dieta utente -->
     <string name="tv_today_data" >Data del giorno</string>
-    <string name="utente_save_commento">SALVA1</string>
-    <string name="utente_messaggio_dieta_not_assegnata">Dieta non ancora assegnata dal nutrizionista in inglese</string>
+    <string name="utente_save_commento">Salva</string>
+    <string name="utente_messaggio_dieta_not_assegnata">Dieta non ancora assegnata dal nutrizionista</string>
+    <string name="addComment">Aggiungi un commento</string>
+    <string name="add_comment_text">Commento del giorno: </string>
 
 
     <!-- Chat utente -->

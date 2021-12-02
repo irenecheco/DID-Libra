@@ -5,7 +5,7 @@
     <string name="loginLabel">Already have an account</string>
     <string name="loginButton">LOGIN</string>
     <string name="registrationLabel">I want to create an account</string>
-    <string name="registrationButton">SIGN IN</string>
+    <string name="registrationButton">SIGN UP</string>
     <string name="loginDescription">Fill-in with your Libra credentials to login</string>
     <string name="signinDescription">Fill-in with your personal data to sign-in</string>
     <string name="emailLabel">e-mail</string>
@@ -89,8 +89,10 @@
 
     <!-- Dieta utente -->
     <string name="tv_today_data">Today data</string>
-    <string name="utente_save_commento">SAVE1</string>
-    <string name="utente_messaggio_dieta_not_assegnata">Dieta NON ancora assegnata dal nutrizionista</string>
+    <string name="utente_save_commento">Save</string>
+    <string name="utente_messaggio_dieta_not_assegnata">Diet not yet assigned by nutritionist</string>
+    <string name="addComment">Add a comment</string>
+    <string name="add_comment_text">Comment of the day: </string>
 
 
     <!-- Chat utente -->

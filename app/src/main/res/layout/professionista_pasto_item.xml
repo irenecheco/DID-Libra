@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/colorBackground">
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/tv_descrizione_pasto"
@@ -11,6 +12,7 @@
         android:layout_height="wrap_content"
         android:hint="hint"
         android:minHeight="48dp"
+        android:textColor="@color/colorSnackbar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +27,7 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:text="TITOLO PASTO"
+        android:textColor="@color/colorPrimaryDark"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
