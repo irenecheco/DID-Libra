@@ -11,6 +11,8 @@ import it.polito.s279941.libra.R
 import it.polito.s279941.libra.utils.LOG_TAG
 import kotlinx.android.synthetic.main.fragment_logged_page.*
 
+/* Fragment di test per login */
+
 class LoggedPageFragment : Fragment() {
     // creo il rif al viewModel istanziato dall'activity
     private val viewModel: LandingPageViewModel by activityViewModels()

@@ -24,17 +24,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:networkSecurityConfig="@xml/network_security_config">
-        <activity android:name=".professionista.ProfessionistaMainActivity">
+        <activity android:name=".professionista.ProfessionistaMainActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".landing.LandingPageActivity">
+        <activity android:name=".landing.LandingPageActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".utente.UtenteMainActivity">
+        <activity android:name=".utente.UtenteMainActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".professionistapazienti.ProfessionistaPazienteMainActivity">
+        <activity android:name=".professionistapazienti.ProfessionistaPazienteMainActivity"
+            android:screenOrientation="portrait">
         </activity>
 
     </application>
