@@ -45,6 +45,7 @@
     <string name="menu_libra_label">Bilancia</string>
     <string name="menu_history_label">Storico</string>
     <string name="menu_chat_label">Contatti</string>
+    <string name="menu_patient_label">Paziente</string>
 
     <!-- Bilancia utente-->
     <string name="utente_libra_button">Avvia Bilancia</string>
