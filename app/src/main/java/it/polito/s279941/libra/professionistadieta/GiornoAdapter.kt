@@ -22,6 +22,7 @@ class GiornoAdapter (var btnClickListener: OnGiornoDietaRowButtonClickListener):
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         private val numeroGiorno: TextView = v.findViewById(R.id.numeroGiorno)
         private val btnModificaGionroDieta: TextView = v.findViewById(R.id.idBtnModificaGionroDieta)
+        private val btnEliminaGionroDieta: TextView = v.findViewById(R.id.idBtnEliminaGionroDieta)
         //private val tv_descrizione_pasto: TextView = v.findViewById(R.id.tv_descrizione_pasto)
         //private val cb_pasto_rispettato: CheckBox = v.findViewById(R.id.cb_pasto_rispettato)
 
@@ -32,6 +33,10 @@ class GiornoAdapter (var btnClickListener: OnGiornoDietaRowButtonClickListener):
             btnModificaGionroDieta.setOnClickListener { view ->
                 Log.d("aaaa","btnModificaGionroDieta")
                 vhBtnClickListener.onEditaDietaGiorno(item,position);
+            }
+            btnEliminaGionroDieta.setOnClickListener { view ->
+                Log.d("aaaa","btnEliminaGionroDieta")
+                vhBtnClickListener.onEliminaDietaGiorno(item,position);
             }
 
 

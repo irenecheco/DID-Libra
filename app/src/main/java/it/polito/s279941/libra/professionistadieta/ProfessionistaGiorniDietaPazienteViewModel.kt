@@ -126,6 +126,12 @@ class ProfessionistaGiorniDietaPazienteViewModel: ViewModel() {
         _giornoInModifica = _giorni[idx]
         _giornoInModificaLiveData.value = _giornoInModifica
     }
+    fun eliminaGiornoDieta(idx: Int) {
+        _giorni.removeAt(idx)
+        _giorniLiveData.value = _giorni
+        _giornoInModifica = null
+        _giornoInModificaLiveData.value = _giornoInModifica
+    }
     fun updateDatiGiornoInModifica(colazione: String, spuntino : String, pranzo : String, merenda: String, cena: String ) {
 
         /*_giornoInModifica?._pastiDelGiorno?.get(0)?.descrizione = colazione
