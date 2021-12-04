@@ -130,10 +130,12 @@
     <string name="search_patient">Search…</string>
     <string name="nutr_patient_ErrorMsg">Patient not found</string>
 
+    <string name="day_button">Day</string>
+
     <!-- Profilo pazienti professionista -->
     <string name="nutr_patient_dateOfBirth">Date of birth:</string>
     <string name="nutr_patient_email">Email:</string>
-    <string name="goal_button">Add goal</string>
+    <string name="goal_button">Goal</string>
     <string name="nutr_patient_add_goal_Label">Next goal to achieve:</string>
     <string name="nutr_patient_add_goal_input_label">New goal</string>
     <string name="goal_submit_button">Add</string>

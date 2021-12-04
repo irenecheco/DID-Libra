@@ -18,11 +18,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/addGiornoDietaPaziente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
+        android:text="@string/day_button"
+        android:textColor="@color/colorLight_text"
+        android:textSize="14dp"
         android:contentDescription="@null"
         android:importantForAccessibility="no"
         app:backgroundTint="@color/colorAccent"
@@ -33,7 +36,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.955"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:icon="@android:drawable/ic_input_add"
+        app:iconTint="@color/colorLight" />
 
     <TextView
         android:id="@+id/tv_data_inizio"

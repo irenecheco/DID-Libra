@@ -197,15 +197,21 @@
         app:layout_constraintTop_toTopOf="@+id/recyclerView_obiettivi_paziente"
         android:textColor="@color/colorSnackbar"/>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/add_goal_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_gravity="bottom|right|end"
+        android:layout_marginBottom="22dp"
+        android:gravity="center"
         android:text="@string/goal_button"
-        app:backgroundTint="@color/colorAccent"
         android:textColor="@color/colorLight_text"
+        android:textSize="14dp"
+        app:backgroundTint="@color/colorAccent"
+        app:icon="@android:drawable/ic_input_add"
+        app:iconTint="@color/colorLight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.907"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
