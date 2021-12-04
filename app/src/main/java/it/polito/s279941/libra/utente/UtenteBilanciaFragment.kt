@@ -1,22 +1,17 @@
 package it.polito.s279941.libra.utente
 
 
-import android.Manifest
 import android.content.Context
-import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
-import android.net.wifi.WifiInfo
-import android.net.wifi.WifiManager
 import android.net.wifi.WifiNetworkSpecifier
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -28,8 +23,6 @@ import it.polito.s279941.libra.R
 import it.polito.s279941.libra.api.Api2
 import it.polito.s279941.libra.utils.LOG_TAG_ESP
 import it.polito.s279941.libra.utils.Status
-import kotlinx.android.synthetic.main.professionista_paziente_aggiungi_obiettivo_fragment.*
-import kotlinx.android.synthetic.main.utente_activity_main.*
 import kotlinx.android.synthetic.main.utente_bilancia_fragment.*
 import kotlinx.android.synthetic.main.utente_profilo_fragment.text_measure
 import kotlinx.coroutines.Dispatchers
@@ -151,7 +144,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
             }
         }
 
-        //Con il tasto registra_peso faccio una get per acquisire il peso dalla bilancia
+        //Con il tasto registra_peso (LEGGI PESO) faccio una get per acquisire il peso dalla bilancia
         registra_peso.setOnClickListener() {
             Log.d(LOG_TAG_ESP, "Click on REGISTRA PESO")
             try {
@@ -186,11 +179,18 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                 var ultimo = viewModel.utenteCorrente.storico_pesi?.lastIndex!!.toInt()
                                 Log.d("Ultimo", "ultimo indice è " + ultimo)
 
-                                if(ultimo >= 0) {
+                                if (ultimo >= 0) {
+                                    Log.d("Ultimo", "dentro IF")
                                     var new = Calendar.getInstance()
                                     new.setTime(today)
                                     var old = Calendar.getInstance()
                                     old.setTime(viewModel.utenteCorrente.storico_pesi?.last()?.data)
+
+                                    Log.d("Ultimo", "new.setTime= ${new.get(Calendar.YEAR)}  ${new.get(
+                                        java.util.Calendar.MONTH)}  ${new.get(java.util.Calendar.DAY_OF_MONTH)}")
+
+                                    Log.d("Ultimo", "old.setTime= ${old.get(Calendar.YEAR)}  ${old.get(
+                                        java.util.Calendar.MONTH)}  ${old.get(java.util.Calendar.DAY_OF_MONTH)}")
 
                                     if (new.get(Calendar.YEAR) == old.get(Calendar.YEAR)) {
                                         if (new.get(Calendar.MONTH) == old.get(Calendar.MONTH)) {
@@ -199,25 +199,31 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
                                                 Log.d("Calendar", "stessa data, sovrascrivo")
                                                 Log.d("nuovo vettore", "nuovo vettore è " + viewModel.utenteCorrente.storico_pesi)
+                                            } else {
+                                                viewModel.utenteCorrente.storico_pesi?.add(Peso(today, weight))
+                                                Log.d("Calendar", "diversa data (giorno), aggiungo")
+                                                Log.d("nuovo vettore", "nuovo vettore è " + viewModel.utenteCorrente.storico_pesi)
                                             }
                                         } else {
                                             viewModel.utenteCorrente.storico_pesi?.add(Peso(today, weight))
-                                            Log.d("Calendar", "diversa data, aggiungo")
+                                            Log.d("Calendar", "diversa data (mese), aggiungo")
                                             Log.d("nuovo vettore", "nuovo vettore è " + viewModel.utenteCorrente.storico_pesi)
                                         }
                                     } else {
                                         viewModel.utenteCorrente.storico_pesi?.add(Peso(today, weight))
-                                        Log.d("Calendar", "diversa data, aggiungo")
+                                        Log.d("Calendar", "diversa data (anno), aggiungo")
                                         Log.d("nuovo vettore", "nuovo vettore è " + viewModel.utenteCorrente.storico_pesi)
                                     }
                                 } else {
+                                    Log.d("Ultimo", "dentro ELSE ")
                                     viewModel.utenteCorrente.storico_pesi?.add(Peso(today, weight))
                                     Log.d("Calendar", "array vuoto, aggiungo")
                                     Log.d("nuovo vettore", "nuovo vettore è " + viewModel.utenteCorrente.storico_pesi)
                                 }
-
+                                Log.d("Ultimo", "FINE FUNZIONE LEGGI PESO ==========================")
                             }
                         }
+
                         override fun onFailure(
                             call: Call<UtenteAggiornaPesoClass>?,
                             t: Throwable?,
