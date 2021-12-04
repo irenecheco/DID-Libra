@@ -137,7 +137,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/goal_submit_button"
+        android:text="@string/submit_email"
         android:textColor="@color/colorLight_text"
         android:backgroundTint="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
