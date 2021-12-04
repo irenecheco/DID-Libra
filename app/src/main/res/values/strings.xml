@@ -136,6 +136,7 @@
     <string name="nutr_patient_add_goal_Label">Next goal to achieve:</string>
     <string name="nutr_patient_add_goal_input_label">New goal</string>
     <string name="goal_submit_button">Submit</string>
+    <string name="goal_add_button">Add</string>
     <string name="goal_confirmation_request">Are you sure you want to add this goal?</string>
     <string name="goal_confirm_button">Yes</string>
     <string name="goal_deny_button">No</string>
