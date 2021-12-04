@@ -88,13 +88,22 @@
     <string name="time_last_detection">%HH:MM%</string>
     <string name="text_next_detection">Prossima rilevazione: </string>
 
-    <!-- Dieta utente -->
+    <!-- Dieta -->
     <string name="tv_today_data" >Data del giorno</string>
     <string name="utente_save_commento">Salva</string>
     <string name="utente_messaggio_dieta_not_assegnata">Dieta non ancora assegnata dal nutrizionista</string>
     <string name="addComment">Aggiungi un commento</string>
     <string name="add_comment_text">Commento del giorno: </string>
-
+    <string name="ok_text">SI</string>
+    <string name="no_text">NO</string>
+    <string name="title_confirm_text">Sei sicuro di volerlo eliminare?</string>
+    <string name="message_confirm_text">Selezionando "SI" non potrai più tornare indietro</string>
+    <string name="edit_button_giornodieta">MODIFICA</string>
+    <string name="delete_button_giornodieta">ELIMINA</string>
+    <string name="insert_meal_description">Inserisci descrizione pasto..</string>
+    <string name="set_start_date">Imposta data inizio dieta</string>
+    <string name="notes_of_the_day">Appunti del giorno</string>
+    <string name="calendar">Calendario</string>
 
     <!-- Chat utente -->
     <string name="mailTo" >A: </string>

@@ -94,6 +94,17 @@
     <string name="utente_messaggio_dieta_not_assegnata">Diet not yet assigned by nutritionist</string>
     <string name="addComment">Add a comment</string>
     <string name="add_comment_text">Comment of the day: </string>
+    <string name="ok_text">YES</string>
+    <string name="no_text">NO</string>
+    <string name="title_confirm_text">Are you sure you want to delete it?</string>
+    <string name="message_confirm_text">By selecting YES you will not be able to go back</string>
+    <string name="edit_button_giornodieta">EDIT</string>
+    <string name="delete_button_giornodieta">DELETE</string>
+    <string name="insert_meal_description">Insert meal description..</string>
+    <string name="set_start_date">Set diet start date</string>
+    <string name="notes_of_the_day">Note of the day</string>
+    <string name="calendar">Calendar</string>
+
 
 
     <!-- Chat utente -->

@@ -10,7 +10,7 @@
         android:id="@+id/tv_descrizione_pasto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Inserisci descrizione pasto.."
+        android:hint="@string/insert_meal_description"
         android:minHeight="48dp"
         android:textColor="@color/colorSnackbar"
         app:layout_constraintBottom_toBottomOf="parent"

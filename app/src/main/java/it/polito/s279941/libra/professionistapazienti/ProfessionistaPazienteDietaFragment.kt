@@ -1,11 +1,14 @@
 package it.polito.s279941.libra.professionistapazienti
 
+import android.app.Activity
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -13,14 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import it.polito.s279941.libra.DataModel.GiornoDieta
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.professionistadieta.*
-import it.polito.s279941.libra.utentedieta.DietaAppuntiFragment
-import it.polito.s279941.libra.utentedieta.DietaCalendarioFragment
 import kotlinx.android.synthetic.main.professionista_paziente_dieta_fragment.*
-import kotlinx.android.synthetic.main.utente_dieta_fragment.*
 import java.text.DateFormat
 import java.util.*
-
-//import java.util.*
 
 class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_paziente_dieta_fragment),
     OnGiornoDietaRowButtonClickListener {
@@ -95,8 +93,38 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
     }
 
     override fun onEliminaDietaGiorno(item: GiornoDieta, position: Int) {
-        //utenteDietaRepository.saveDieta(paziente.value!!._id,paziente.value!!.dieta!!)
-        professionistaGiorniDietaPazienteViewModel.eliminaGiornoDieta(position)
-        professionistaGiorniDietaPazienteViewModel.saveDietaPaziente()
+
+
+        dialogYesOrNo(
+            this.requireActivity(),
+            getString(R.string.title_confirm_text),
+            getString(R.string.message_confirm_text),
+            DialogInterface.OnClickListener { dialog, id ->
+                //utenteDietaRepository.saveDieta(paziente.value!!._id,paziente.value!!.dieta!!)
+                professionistaGiorniDietaPazienteViewModel.eliminaGiornoDieta(position)
+                professionistaGiorniDietaPazienteViewModel.saveDietaPaziente()
+            }
+        )
     }
+
+
+    fun dialogYesOrNo(
+        activity: Activity,
+        title: String,
+        message: String,
+        listener: DialogInterface.OnClickListener
+    ) {
+        val builder = AlertDialog.Builder(activity)
+        builder.setPositiveButton(R.string.ok_text, DialogInterface.OnClickListener { dialog, id ->
+            dialog.dismiss()
+            listener.onClick(dialog, id)
+        })
+        builder.setNegativeButton(R.string.no_text, null)
+        val alert = builder.create()
+        alert.setTitle(title)
+        alert.setMessage(message)
+        alert.show()
+    }
+
+
 }

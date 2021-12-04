@@ -4,5 +4,5 @@
 
     <item
         android:id="@+id/menuDataInizio"
-        android:title="Imposta data inizio" />
+        android:title="@string/set_start_date" />
 </menu>
