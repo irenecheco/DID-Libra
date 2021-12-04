@@ -7,6 +7,7 @@
     <color name="colorPrimaryLight">#CBF3F0</color>
     <color name="colorAccent">#FF9F1C</color>
     <color name="colorAccentERROR">#F2FF3232</color>
+    <color name="colorAccentELIMINA">#F2FF3232</color>
     <color name="colorAccentLight">#FFE0B2</color>
     <color name="colorLight">#F9F9F9</color>
     <color name="colorBackground">#F9F9F9</color>
