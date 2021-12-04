@@ -196,6 +196,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                                         if (new.get(Calendar.MONTH) == old.get(Calendar.MONTH)) {
                                             if (new.get(Calendar.DAY_OF_MONTH) == old.get(Calendar.DAY_OF_MONTH)) {
                                                 viewModel.utenteCorrente.storico_pesi?.set(ultimo, Peso(today, weight))
+
                                                 Log.d("Calendar", "stessa data, sovrascrivo")
                                                 Log.d("nuovo vettore", "nuovo vettore è " + viewModel.utenteCorrente.storico_pesi)
                                             }
