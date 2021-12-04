@@ -138,6 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/goal_submit_button"
+        android:backgroundTint="@color/colorAccent"
         android:textColor="@color/colorLight_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
