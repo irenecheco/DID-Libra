@@ -37,7 +37,9 @@ class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
 
         // Grafico
         lineChart = getView()?.findViewById(R.id.utente_grafico)
-        setLineChartData()
+        utenteViewModel.pesoGrafico.observe(viewLifecycleOwner, Observer{
+            setLineChartData()
+        })
 
         // Obiettivi
         noObiettivi.visibility = View.GONE
