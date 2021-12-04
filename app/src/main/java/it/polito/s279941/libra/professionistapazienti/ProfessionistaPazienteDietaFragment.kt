@@ -95,6 +95,8 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
     }
 
     override fun onEliminaDietaGiorno(item: GiornoDieta, position: Int) {
-        TODO("Not yet implemented")
+        //utenteDietaRepository.saveDieta(paziente.value!!._id,paziente.value!!.dieta!!)
+        professionistaGiorniDietaPazienteViewModel.eliminaGiornoDieta(position)
+        professionistaGiorniDietaPazienteViewModel.saveDietaPaziente()
     }
 }
