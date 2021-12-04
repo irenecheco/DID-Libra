@@ -6,7 +6,7 @@
     <string name="loginLabel">Ho già un mio account</string>
     <string name="loginButton">LOGIN</string>
     <string name="registrationLabel">Voglio creare un account</string>
-    <string name="registrationButton">SIGN IN</string>
+    <string name="registrationButton">REGISTRAZIONE</string>
     <string name="loginDescription">Inserire le proprie credenziali per accedere</string>
     <string name="signinDescription">Compilare con i propri dati per la registrazione</string>
     <string name="emailLabel">e-mail</string>
@@ -48,11 +48,11 @@
     <string name="menu_patient_label">Paziente</string>
 
     <!-- Bilancia utente-->
-    <string name="utente_libra_button">Avvia Bilancia</string>
+    <string name="utente_libra_button">Attiva Bilancia</string>
     <string name="utente_save_weight_button">Leggi Peso</string>
-    <string name="utente_disconnect_libra_button">Salva e disconnetti</string>
+    <string name="utente_disconnect_libra_button">Salva e disattiva</string>
     <string name="utente_registra_peso_label">Per leggere il peso dalla bilancia:</string>
-    <string name="utente_disconnect_libra_label">Per disconnettersi dalla bilancia e salvare il peso:</string>
+    <string name="utente_disconnect_libra_label">Per salvare il peso e disattivare la bilancia:</string>
     <string name="utente_last_measurement_label">Ultima misurazione rilevata:</string>
     <string name="utente_no_previous_measure">- KG</string>
     <string name="snackbar_no_measure">Non vi sono misurazioni precedenti</string>
