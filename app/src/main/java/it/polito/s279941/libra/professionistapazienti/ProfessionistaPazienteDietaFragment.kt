@@ -48,7 +48,6 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
             )
             })
 
-
         setHasOptionsMenu(true)
 
     }
@@ -56,7 +55,6 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
     override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.professionista_dieta_menu,menu)
         super.onCreateOptionsMenu(menu,menuInflater)
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -93,8 +91,6 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
     }
 
     override fun onEliminaDietaGiorno(item: GiornoDieta, position: Int) {
-
-
         dialogYesOrNo(
             this.requireActivity(),
             getString(R.string.title_confirm_text),

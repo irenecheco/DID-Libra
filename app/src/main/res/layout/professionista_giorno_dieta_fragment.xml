@@ -10,7 +10,7 @@
         android:id="@+id/professionista_pasti_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/salvaGiornoButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,6 +19,7 @@
         android:id="@+id/salvaGiornoButton"
         android:layout_width="105dp"
         android:layout_height="55dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/utente_save_commento"
         android:textColor="@color/colorLight_text"
@@ -26,6 +27,7 @@
         app:elevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/professionista_pasti_rv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
