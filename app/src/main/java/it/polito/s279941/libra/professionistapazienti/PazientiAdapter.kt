@@ -11,8 +11,10 @@ import java.util.*
 
 class PazientiAdapter (var clickListener: OnPatientItemClickListener) : RecyclerView.Adapter<PazientiAdapter.PazientiViewHolder>(), Filterable {
 
-    private var pazienti: MutableList<Paziente> = mutableListOf()
-    var pazientiFilter: MutableList<Paziente> = mutableListOf()
+    // creo due liste per implementare il search
+    private var pazienti: MutableList<Paziente> = mutableListOf()  // lista che visualizzo
+    var pazientiFilter: MutableList<Paziente> = mutableListOf()  // lista con tutti i pazienti che rimane invariata
+                                                                 // anche mentre utilizzo il search
 
     fun setPazienti(_pazienti: MutableList<Paziente>){
         pazienti = _pazienti
@@ -67,11 +69,13 @@ class PazientiAdapter (var clickListener: OnPatientItemClickListener) : Recycler
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
                 if (charSearch.isEmpty()) {
+                    // se non sto cercando un nome visualizzo tutti i pazienti
                     pazienti = pazientiFilter
                 } else {
                     val resultList = mutableListOf<Paziente>()
                     pazienti = pazientiFilter
                     for (row in pazienti) {
+                        // cerco tra i pazienti quelli che contengono ciò che sto cercando
                         if (row.nomePaziente.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT)) ||
                             row.cognomePaziente.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
                             resultList.add(row)

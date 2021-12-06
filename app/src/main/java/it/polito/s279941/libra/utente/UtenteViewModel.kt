@@ -307,6 +307,7 @@ class UtenteViewModel: ViewModel() {
     private var _pesoGrafico = MutableLiveData<List<Peso>>()
     var pesoGrafico : LiveData<List<Peso>> = _pesoGrafico
 
+    // funzione richiamata in UtenteMainActivity per recuperare la lista dei pesi dell'utente corrente
     fun getWeightFromUserData() : LiveData<List<Peso>>{
         _pesoGrafico = MutableLiveData<List<Peso>>().also{
             it.value = utenteCorrente.storico_pesi
@@ -320,6 +321,7 @@ class UtenteViewModel: ViewModel() {
     private var _obiettiviStorico = MutableLiveData<List<Obiettivo>>()
     var obiettiviStorico : LiveData<List<Obiettivo>> = _obiettiviStorico
 
+    // funzione richiamata in UtenteMainActivity per recuperare la lista degli obiettivi dell'utente corrente
     fun getGoalsFromUserData() : LiveData<List<Obiettivo>>{
         _obiettiviStorico = MutableLiveData<List<Obiettivo>>().also{
             it.value = utenteCorrente.obiettivi

@@ -65,22 +65,18 @@ data class  ConsumazionePasto(
 
 
 data class Obiettivo(
-        @SerializedName("data_obiettivo")
-        val data_obiettivo: Date,
-        @SerializedName("obiettivo")
-        val obiettivo: String,
+        @SerializedName("data_obiettivo") val data_obiettivo: Date,
+        @SerializedName("obiettivo") val obiettivo: String,
 )
 
+
 data class Paziente(
-        // nome attributo nel db NodeJS
-        @SerializedName("_id")
-        // nome riassegnato in kotlin
-        val IdPaziente: String,
-        @SerializedName("nome_paziente")
-        val nomePaziente: String,
-        @SerializedName("cognome_paziente")
-        val cognomePaziente: String
+        @SerializedName("_id")  // nome attributo nel db NodeJS
+        val IdPaziente: String,  // nome riassegnato in kotlin
+        @SerializedName("nome_paziente") val nomePaziente: String,
+        @SerializedName("cognome_paziente") val cognomePaziente: String
 )
+
 
 data class Peso(
         @SerializedName("data") var data: Date?,

@@ -54,12 +54,12 @@ class ProfessionistaPazienteMainActivity : AppCompatActivity() {
         professionistaGiorniDietaPazienteViewModel.setPaziente(idUtente!!)
 
         // MISURAZIONI PESO PER GRAFICO
-        // prendo la lista delle misurazioni dei pesi dell'utente a partire dall'utente corrente in UtenteViewModel
+        // prendo la lista delle misurazioni dei pesi dell'utente a partire dall'utente corrente in ProfessionistaPazienteViewModel
         pesiLista = pazienteViewModel.getWeightFromUserData()
 
 
         // OBIETTIVI
-        // prendo la lista degli obiettivi dell'utente a partire dall'utente corrente in UtenteViewModel
+        // prendo la lista degli obiettivi dell'utente a partire dall'utente corrente in ProfessionistaPazienteViewModel
         obiettiviLista = pazienteViewModel.getGoalsFromUserData()
 
         //binding = DataBindingUtil.setContentView(this, R.layout.professionista_paziente_activity_main)

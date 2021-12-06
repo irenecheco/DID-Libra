@@ -37,6 +37,7 @@ class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
 
         // Grafico
         lineChart = getView()?.findViewById(R.id.utente_grafico)
+        // controllo sui pesi dell'utente: aggiorna il grafico ogni volta che si usa la bilancia
         utenteViewModel.pesoGrafico.observe(viewLifecycleOwner, Observer{
             setLineChartData()
         })
@@ -58,7 +59,7 @@ class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
 
         val xvalue = ArrayList<String>()
         var dataGraph = ""
-        for((i, w) in weights!!.takeLast(8).withIndex()){
+        for((i, w) in weights!!.takeLast(8).withIndex()){   // considera solamente gli ultimi otto pesi
             w.data?.let {
                 val simpleDateFormat = SimpleDateFormat("dd/MM")
                 dataGraph = simpleDateFormat.format(it)

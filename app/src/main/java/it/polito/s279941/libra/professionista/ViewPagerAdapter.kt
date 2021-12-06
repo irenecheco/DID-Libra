@@ -22,6 +22,7 @@ class ViewPagerAdapter (supportFragmentManager: FragmentManager) :
         return fragmentTitleList[position]
     }
 
+    // funzione richiamata in setUpTabs() in ProfessionistaMainActivity
     fun addFragment(fragment: Fragment, title: String){
         fragmentList.add(fragment)
         fragmentTitleList.add(title)

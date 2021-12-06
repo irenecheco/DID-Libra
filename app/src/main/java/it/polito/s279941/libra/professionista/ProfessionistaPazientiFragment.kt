@@ -43,6 +43,7 @@ class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_
 
         setHasOptionsMenu(true)
 
+        // search
         searchPatient.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 patientAdapter.filter.filter(query)
@@ -74,24 +75,19 @@ class ProfessionistaPazientiFragment: Fragment(R.layout.professionista_pazienti_
     }
 
     override fun onItemClick(item: Paziente, position: Int){
-        //landingPageViewModel.pazienteId.pazienteId = "619e274d328e957ddd522ce2"  // TODO da sistemare
         landingPageViewModel.pazienteId.pazienteId = item.IdPaziente
         landingPageViewModel.findPaziente()
 
-        //controllo su live data
+        // controllo su live data
         landingPageViewModel.pazienteCorrente.observe(viewLifecycleOwner) {
 
             val gson = Gson()
-            //riempio pazienteCorrente in pazienteViewModel
+            // riempio pazienteCorrente in pazienteViewModel
             pazienteViewModel.pazienteCorrente = landingPageViewModel.pazienteCorrente.value!!
             val pazienteCorrenteInLivedata: UtenteDataClass = pazienteViewModel.pazienteCorrente
-            /*val pazienteCorrenteInLivedata: UtenteDataClass? = landingPageViewModel.pazienteCorrente.value*/
             val pazienteCorrenteGson = gson.toJson(pazienteCorrenteInLivedata)
-            Log.d(
-                LOG_TAG,
-                "pazienteViewModel.pazienteCorrente --> " + pazienteViewModel.pazienteCorrente
-            )
-            //Controllo che effettivamente pazienteCorrente sia pieno e che sia un paziente
+            Log.d(LOG_TAG,"pazienteViewModel.pazienteCorrente --> " + pazienteViewModel.pazienteCorrente)
+            // Controllo che effettivamente pazienteCorrente sia pieno e che sia un paziente
             when (pazienteViewModel.getTipologiaUtente()) {
                 "PAZ" -> {
                     val intent = Intent(activity, ProfessionistaPazienteMainActivity::class.java)

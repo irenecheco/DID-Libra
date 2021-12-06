@@ -184,28 +184,8 @@ class RestApiManager {
 
 
     // OBIETTIVI
-    /*fun getGoals(idPaziente: String, onResult: (List<Obiettivo>?) -> Unit){
-        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
-        // richiamo al metodo associato alla richiesta REST
-        retrofit.getGoals(idPaziente).enqueue(
-            object : Callback<List<Obiettivo>> {
-                override fun onFailure(call: Call<List<Obiettivo>>, t: Throwable) {
-                    Log.d("LIBRAgoals", "  start onFailure()  in  retrofit.getGoals().enqueue  in  RestApiManager")
-                    Log.d("LIBRAgoals", "    throwable mess: " + t.message)
-                    onResult(null)
-                }
-                override fun onResponse(call: Call<List<Obiettivo>>, response: Response<List<Obiettivo>>) {
-                    Log.d("LIBRAgoals", "  start onResponse()  in  retrofit.getGoals().enqueue  in  RestApiManager")
-                    Log.d("LIBRAgoals", "    status code: " + response.code())
-                    val listOfGoals = response.body()
-                    onResult(listOfGoals)
-                }
-            }
-        )
-    }*/
-
     fun addGoal(idPaziente: String, userGoal: Obiettivo, onResult: (Obiettivo?) -> Unit){
-        Log.d("LIBRA","start fun addGoal() in class RestApiManager")
+        Log.d("LIBRAgoals","start fun addGoal() in class RestApiManager")
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         // richiamo al metodo associato alla richiesta REST
         val myCall = retrofit.addGoal(idPaziente,userGoal)

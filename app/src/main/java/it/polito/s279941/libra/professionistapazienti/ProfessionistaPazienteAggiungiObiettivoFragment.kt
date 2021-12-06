@@ -33,9 +33,11 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
         Log.d("LIBRA","calling & create the viewModel of class ObiettiviVieModel in ProfessionistaPazienteAggiungiObiettivoFragment")
 
         val newFragment: Fragment = ProfessionistaPazienteProfiloFragment()
+        // un unico bottone ha due funzioni a seconda di quando viene premuto
         addGoal_submitButton.setOnClickListener{
             Log.d("LIBRA", "event CLICK on SUBMIT in ProfessionistaPazienteAggiungiObiettivoFragment")
 
+            // se è stato scritto qualcosa nell'input il bottone scompare e si chiede conferma di invio
             if(!addGoal_input.text.isNullOrEmpty()) {
                 addGoal_input.isFocusable = false
                 addGoal_input.isEnabled = false
@@ -43,6 +45,8 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
                 addGoal_submitButton.visibility = View.GONE
             }
 
+            // se l'obiettivo è stato confermato e quindi aggiunto al server, il bottone riporta al profilo del paziente
+            // infatti anche il testo del bottone è cambiato in "torna alla pagina del paziente"
             if(goalConfirmed){
                 activity?.onBackPressed()
             }
@@ -51,11 +55,14 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
         confirm_button.setOnClickListener{
             Log.d("LIBRA", "event CLICK on CONFIRM in ProfessionistaPazienteAggiungiObiettivoFragment")
 
-            val dateGoal = Date()
-            val inputGoal : String = addGoal_input.text.toString()
+            val dateGoal = Date()  // la data odierna
+            val inputGoal : String = addGoal_input.text.toString()  // l'obiettivo inserito nell'input
             val newGoal = Obiettivo(dateGoal,inputGoal)
+            // aggiungo l'obiettivo alla lista degli obiettivi del paziente corrente attraverso la funzione
+            // addGoal(idPaziente,userGoal) nel view model del professionista
             nutViewModel.addGoal(pazienteViewModel.pazienteCorrente._id,newGoal)
 
+            // controllo lo stato dell'operazione della riga precedente
             nutViewModel.confirmationAddGoal.observe(viewLifecycleOwner) { goalStatus ->
                 when(goalStatus!!){
                     Status.LOADING -> {
@@ -74,7 +81,7 @@ class ProfessionistaPazienteAggiungiObiettivoFragment : Fragment(R.layout.profes
                 Log.d("LIBRAgoals", "confirmationStatus in fragment: " + goalStatus.toString())
             }
 
-            addGoal_submitButton.text = getString(R.string.goal_back_button)
+            addGoal_submitButton.text = getString(R.string.goal_back_button)  // cambio testo del bottone
             add_goal_input.visibility = View.GONE
             addGoal_submitButton.visibility = View.VISIBLE
             add_goal_confirmation.visibility = View.GONE

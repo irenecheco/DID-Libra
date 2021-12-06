@@ -31,6 +31,7 @@ class ProfessionistaViewModel: ViewModel() {
     private var _pazientiLista = MutableLiveData<MutableList<Paziente>>()
     var pazientiLista : LiveData<MutableList<Paziente>> = _pazientiLista
 
+    // funzione richiamata in ProfessionistaMainActivity per recuperare la lista dei pazienti del nutrizionista
     fun getIdPatientFromUserData() : LiveData<MutableList<Paziente>>{
         _pazientiLista = MutableLiveData<MutableList<Paziente>>().also{
             it.value = utenteCorrente.lista_pazienti as MutableList<Paziente>

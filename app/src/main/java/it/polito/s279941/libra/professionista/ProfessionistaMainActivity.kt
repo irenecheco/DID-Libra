@@ -44,6 +44,7 @@ class ProfessionistaMainActivity : AppCompatActivity() {
         pazientiLista = proViewModel.getIdPatientFromUserData()
     }
 
+    // set up del tab in alto nell'activity del professionista (profilo - pazienti)
     private fun setUpTabs(){
         val profilo: String = getString(R.string.tab_profile_label)
         val pazienti: String = getString(R.string.tab_patients_label)
