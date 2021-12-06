@@ -1,5 +1,6 @@
 package it.polito.s279941.libra.professionistapazienti
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.DialogInterface
 import android.os.Bundle
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import it.polito.s279941.libra.DataModel.GiornoDieta
 import it.polito.s279941.libra.R
 import it.polito.s279941.libra.professionistadieta.*
+import it.polito.s279941.libra.utils.LOG_TAG
 import kotlinx.android.synthetic.main.professionista_paziente_dieta_fragment.*
 import java.text.DateFormat
 import java.util.*
@@ -25,6 +27,7 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
     val professionistaGiorniDietaPazienteViewModel by activityViewModels<ProfessionistaGiorniDietaPazienteViewModel>()
     val giornoAdapter = GiornoAdapter(this);
 
+    @SuppressLint("StringFormatInvalid")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -43,10 +46,13 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
         }
 
         professionistaGiorniDietaPazienteViewModel.giornoInizioDietaLiveData.observe(viewLifecycleOwner,
-            Observer { giorno -> tv_data_inizio.text= DateFormat.getDateInstance(DateFormat.LONG).format(
-                Date(giorno)
-            )
+            Observer {
+                    giorno ->
+                Log.d(LOG_TAG,"  start Lambda expression  in ProfessionistaPazienteDietaFragment.onViewCreated() ")
+                tv_data_inizio.text = DateFormat.getDateInstance(DateFormat.LONG).format(Date(giorno))
+                tv_data_inizio_dieta.text = getString(R.string.tv_data_inizio_dieta_prefisso, tv_data_inizio.text)
             })
+
 
         setHasOptionsMenu(true)
 

@@ -7,6 +7,19 @@
     tools:context=".professionista.ProfessionistaPazientiFragment"
     android:background="@color/colorBackground">
 
+    <TextView
+        android:id="@+id/tv_data_inizio_dieta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_large"
+        android:textColor="@color/colorSnackbar"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="tv_data_inizio_dieta" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewGiorni"
         android:layout_width="match_parent"
@@ -16,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_data_inizio_dieta" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/addGiornoDietaPaziente"

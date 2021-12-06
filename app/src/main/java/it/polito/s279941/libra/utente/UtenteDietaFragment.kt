@@ -1,7 +1,6 @@
 package it.polito.s279941.libra.utente
 
 import android.os.Bundle
-import android.text.TextUtils.replace
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
@@ -10,13 +9,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import it.polito.s279941.libra.R
-import it.polito.s279941.libra.utente.UtenteMainActivity
-import it.polito.s279941.libra.utente.UtenteProfiloFragment
-import it.polito.s279941.libra.utente.UtenteViewModel
 import it.polito.s279941.libra.utentedieta.*
 import kotlinx.android.synthetic.main.utente_dieta_fragment.*
 import java.text.DateFormat
@@ -34,7 +28,7 @@ class UtenteDietaFragment : Fragment(R.layout.utente_dieta_fragment), OnRowEdite
         Log.d("aaaa","onViewCreated")
         //tv_today_data.text= DateFormat.getDateInstance(DateFormat.SHORT).format(Date(System.currentTimeMillis()))
         utenteViewModel.giornoLiveData.observe(viewLifecycleOwner,
-            Observer { giorno -> tv_today_data.text= DateFormat.getDateInstance(DateFormat.SHORT).format(Date(giorno))
+            Observer { giorno -> tv_today_data.text = DateFormat.getDateInstance(DateFormat.SHORT).format(Date(giorno))
             })
 
 

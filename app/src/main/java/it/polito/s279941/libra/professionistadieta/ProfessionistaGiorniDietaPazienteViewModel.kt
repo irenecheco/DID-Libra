@@ -6,10 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import it.polito.s279941.libra.DataModel.Dieta
 import it.polito.s279941.libra.DataModel.GiornoDieta
-import it.polito.s279941.libra.DataModel.Obiettivo
 import it.polito.s279941.libra.DataModel.UtenteDataClass
 import it.polito.s279941.libra.api.RestApiManager
-import it.polito.s279941.libra.utentedieta.PastoItem
 import it.polito.s279941.libra.utentedieta.UtenteDietaRepository
 import java.util.*
 
@@ -30,7 +28,6 @@ class ProfessionistaGiorniDietaPazienteViewModel: ViewModel() {
         if (_paziente.dieta==null) {
 
             Log.d("aaaa",": IL paziente non ha la dieta gli inserisco una dieta finta. ATTENZIONE: PUO CAPITARE ANCHE QUANDO NON VA BENE IL RECUPERO DEL PAZIENTE DAL DATABASE E CAPITA ANCHE AL PRIMO PASSAGGIO IN QUESTO PUNTO PERCHE' IL LIVE DATA VIENE RISOLTO IN UN GIRO SUCCESSIVO" + paziente)
-
 
             // Per ora mettiamo un utente mock
             //Log.d("aaaa","IdPaziente ${idPaziente}")
