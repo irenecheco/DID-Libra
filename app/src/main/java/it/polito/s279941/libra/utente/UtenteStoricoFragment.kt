@@ -8,22 +8,19 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import it.polito.s279941.libra.*
+import it.polito.s279941.libra.R
 import it.polito.s279941.libra.utenteobiettivi.ObiettiviAdapter
+import it.polito.s279941.libra.utils.OneDecimalFormatter
 import kotlinx.android.synthetic.main.utente_storico_fragment.*
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.XAxis.XAxisPosition
-import kotlinx.android.synthetic.main.utente_profilo_fragment.*
-import java.text.DateFormat
 import java.text.SimpleDateFormat
 
 
 class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
-    
+
     val goalsAdapter = ObiettiviAdapter()
     private val utenteViewModel: UtenteViewModel by activityViewModels()
 
@@ -82,6 +79,10 @@ class UtenteStoricoFragment: Fragment(R.layout.utente_storico_fragment) {
         lineDataSet.fillAlpha = 30
         lineDataSet.valueTextColor = ResourcesCompat.getColor(getResources(), R.color.colorGraph, null)
         lineDataSet.valueTextSize = 15f
+
+        // istanzio la classe che definisce la formattazione
+        var oneDecimalFormatter = OneDecimalFormatter()
+        lineDataSet.setValueFormatter(oneDecimalFormatter)
 
         lineChart?.setDescription("")
         lineChart?.xAxis?.position = XAxisPosition.BOTTOM
