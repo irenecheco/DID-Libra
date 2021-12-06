@@ -324,7 +324,7 @@
             android:paddingTop="@dimen/padding_large"
             android:paddingRight="@dimen/padding_huge"
             android:paddingBottom="@dimen/padding_large"
-            android:text="@string/signinButton"
+            android:text="@string/registrationButton"
             android:textColor="@color/colorLight_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/progressBarSignin"
