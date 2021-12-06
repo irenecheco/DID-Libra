@@ -53,7 +53,6 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
                 tv_data_inizio_dieta.text = getString(R.string.tv_data_inizio_dieta_prefisso, tv_data_inizio.text)
             })
 
-
         setHasOptionsMenu(true)
 
     }

@@ -52,12 +52,13 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
         }
 
         try {
-            text_measure.text =
-                viewModel.utenteCorrente.storico_pesi?.last()?.peso.toString() + " KG"
+            //text_measure.text=viewModel.utenteCorrente.storico_pesi?.last()?.peso.toString() + " kg"
+            // formatto a una cifra decimale
+            text_measure.text = String.format("%.1f kg", viewModel.utenteCorrente.storico_pesi?.last()?.peso)
         }catch (e: NoSuchElementException){
             val bottomNavView: View? = activity?.findViewById(R.id.bottom_bar)
             Snackbar.make(bottomNavView!!, R.string.snackbar_no_measure, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorSnackbar)).setAnchorView(bottomNavView).show()
-            text_measure.text = "- KG"
+            text_measure.text = "- kg"
         }
 
         val manager = requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -169,7 +170,8 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
 
                                 // nascondo la progress_bar e visualizzo il peso
                                 progress_bar.visibility = View.GONE
-                                text_measure.text = weight.toString() + " KG"
+                                //text_measure.text = weight.toString() + " kg"
+                                text_measure.text = String.format("%.1f kg", weight)
                                 text_measure.visibility = View.VISIBLE
                                 flag_lettura = 1
 
