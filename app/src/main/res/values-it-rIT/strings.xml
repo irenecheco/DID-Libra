@@ -156,7 +156,7 @@
     <string name="goal_back_button">Torna alla pagina del paziente</string>
 
     <!-- Pagina giorni dieta utente lato professionista -->
-    <string name="tv_data_inizio_dieta_prefisso">Data inizio: %1$s</string>
+    <string name="tv_data_inizio_dieta_prefisso">Imposta data inizio: %1$s</string>
 
     <!-- Blocco bilancia pazienti professionista -->
     <string name="nutr_patient_libraLock_spinnerLabel">Registra misurazione:</string>

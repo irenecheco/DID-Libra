@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -43,6 +44,14 @@ class ProfessionistaPazienteDietaFragment: Fragment(R.layout.professionista_pazi
         addGiornoDietaPaziente.setOnClickListener { view ->
             Log.d("aaaaPiuBtn","onClick")
             professionistaGiorniDietaPazienteViewModel.addGiorno()
+        }
+
+        val tv_data: TextView = view.findViewById(R.id.tv_data_inizio_dieta)
+        tv_data.setOnClickListener { view ->
+            val f: Fragment = ProfessionistaCalendarioDietaDataInizio()
+            activity?.supportFragmentManager?.beginTransaction()?.apply{
+                replace(R.id.pazienti_fragment_container, f).addToBackStack("dietafrag_caldatainizio").commit()
+            }
         }
 
         professionistaGiorniDietaPazienteViewModel.giornoInizioDietaLiveData.observe(viewLifecycleOwner,
