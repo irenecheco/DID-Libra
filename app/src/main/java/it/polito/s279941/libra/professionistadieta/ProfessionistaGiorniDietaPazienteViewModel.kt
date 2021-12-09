@@ -42,10 +42,16 @@ class ProfessionistaGiorniDietaPazienteViewModel: ViewModel() {
             // Fine mock
         }
 
-        val d= (_paziente.dieta!!.data_inizio?:"2021-10-12").split("T")[0].split("-")
-        val cal = Calendar.getInstance()
-        cal.set(d[0].toInt(),d[1].toInt()-1,d[2].toInt())
-        setGiornoInizioDieta(cal.timeInMillis)
+        if (_paziente.dieta!!.data_inizio!=null) {
+            //val d = (_paziente.dieta!!.data_inizio ?: "2021-10-12").split("T")[0].split("-")
+            val d = _paziente.dieta!!.data_inizio!!.split("T")[0].split("-")
+            val cal = Calendar.getInstance()
+            cal.set(d[0].toInt(), d[1].toInt() - 1, d[2].toInt())
+            setGiornoInizioDieta(cal.timeInMillis)
+        }else {
+            setGiornoInizioDieta(System.currentTimeMillis())
+        }
+
 
         _giorni = _paziente.dieta!!.giorni
         _giorniLiveData.value = _giorni
