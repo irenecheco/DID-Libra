@@ -9,11 +9,13 @@
 
     <TextView
         android:id="@+id/tv_today_data"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="left"
         android:padding="@dimen/padding_large"
         android:textColor="@color/colorSnackbar"
         android:textSize="16sp"
+        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

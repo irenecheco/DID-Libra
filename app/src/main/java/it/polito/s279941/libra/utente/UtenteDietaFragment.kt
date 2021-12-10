@@ -28,7 +28,7 @@ class UtenteDietaFragment : Fragment(R.layout.utente_dieta_fragment), OnRowEdite
         Log.d("aaaa","onViewCreated")
         //tv_today_data.text= DateFormat.getDateInstance(DateFormat.SHORT).format(Date(System.currentTimeMillis()))
         utenteViewModel.giornoLiveData.observe(viewLifecycleOwner,
-            Observer { giorno -> tv_today_data.text = DateFormat.getDateInstance(DateFormat.SHORT).format(Date(giorno))
+            Observer { giorno -> tv_today_data.text = "Dieta del giorno: " + DateFormat.getDateInstance(DateFormat.SHORT).format(Date(giorno))
             })
 
 
