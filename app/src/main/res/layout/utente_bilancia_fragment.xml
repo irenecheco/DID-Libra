@@ -149,4 +149,15 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.85" />
 
+    <TextView
+        android:id="@+id/calibrationLink_tv"
+        android:layout_width="192dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/calibrationLink_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

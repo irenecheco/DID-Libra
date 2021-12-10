@@ -2,10 +2,8 @@ package it.polito.s279941.libra.utente
 
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.Network
-import android.net.NetworkCapabilities
-import android.net.NetworkRequest
+import android.content.Intent
+import android.net.*
 import android.net.wifi.WifiNetworkSpecifier
 import android.os.Build
 import android.os.Bundle
@@ -74,6 +72,7 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
             Log.d(LOG_TAG_ESP, "Click on AVVIA bilancia")
             text_measure.visibility = View.GONE
             progress_bar.visibility = View.VISIBLE
+            calibrationLink_tv.visibility = View.INVISIBLE
 
                 builder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
                 builder.removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
@@ -285,6 +284,14 @@ class UtenteBilanciaFragment: Fragment(R.layout.utente_bilancia_fragment) {
                 val bottomNavView: View? = activity?.findViewById(R.id.bottom_bar)
                 Snackbar.make(bottomNavView!!, R.string.snackbar_read_first, Snackbar.LENGTH_SHORT).setBackgroundTint(requireContext().resources.getColor(R.color.colorSnackbar)).setAnchorView(bottomNavView).show()
             }
+        }
+
+        calibrationLink_tv.setOnClickListener {
+            // creo un intent per aprire il browser e scaricare il pdf ccon le istruzioni di calibrazione
+            val url = "https://drive.google.com/file/d/1JFBIP35yRLzonqK1woXRDbxQr2q1geYA/view?usp=sharing"
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
         }
     }
 }
