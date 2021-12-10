@@ -60,6 +60,7 @@
     <string name="snackbar_follow_libra">Aspetta il calcolo della tara prima di pesarti</string>
     <string name="snackbar_saved_weight">Peso salvato</string>
     <string name="snackbar_error_weight">Errore durante il salvataggio del peso, riprova</string>
+    <string name="calibrationLink_text">Necessaria taratura?\nTocca qui per le istruzioni</string>
 
     <!-- Storico utente -->
     <string name="utente_graph_title">Andamento del peso</string>

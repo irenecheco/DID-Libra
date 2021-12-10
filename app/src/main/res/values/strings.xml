@@ -60,6 +60,7 @@
     <string name="snackbar_read_first">You have to read the weight before disconnecting</string>
     <string name="snackbar_saved_weight">Weight saved</string>
     <string name="snackbar_error_weight">Error saving weight, try again</string>
+    <string name="calibrationLink_text">Calibration needed?\nTap here for the instructions</string>
 
 
     <!-- Storico utente -->
